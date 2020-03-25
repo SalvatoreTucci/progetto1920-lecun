@@ -1,4 +1,4 @@
-# scacchi ![Gradle Check&Build + Image Push on GitHub Packages](https://github.com/softeng1920-inf-uniba/progetto1920-lecun/workflows/Gradle%20Check&Build%20+%20Image%20Push%20on%20GitHub%20Packages/badge.svg)
+# scacchi ![Gradle Check&Build + Image Push on GitHub Packages](https://github.com/softeng1920-inf-uniba/progetto1920-lecun/workflows/Gradle%20Check&Build%20+%20Image%20Push%20on%20GitHub%20Packages/badge.svg) [![Coverage Status](https://coveralls.io/repos/github/softeng1920-inf-uniba/progetto1920-lecun/badge.svg?branch=issue%238&t=Of79Y4)](https://coveralls.io/github/softeng1920-inf-uniba/progetto1920-lecun?branch=issue%238)
 
 La struttura della repository si presenta nel seguente modo:
 ```
