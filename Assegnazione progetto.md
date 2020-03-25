@@ -28,9 +28,9 @@ docker run --rm softeng1819infuniba/<nome_repository> <options>
   - il foglio di calcolo deve poter essere salvato in locale in formato CSV
 
 # Progetto assegnato: scacchi 
-![scacchi](/res/img/assegnazione-progetto/scacchi.png)
+![scacchi](./res/img/assegnazione-progetto/scacchi.png)
 * Applicazione per il gioco 2-players degli scacchi, con interfaccia a linea di comando (CLI)
-* Le mosse sono descritte in notazione algebrica https://it.wikipedia.org/ wiki/Notazione_algebrica 
+* Le mosse sono descritte in notazione algebrica https://it.wikipedia.org/wiki/Notazione_algebrica 
   
   – 1.e4 e5 	
   
