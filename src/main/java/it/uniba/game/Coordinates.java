@@ -1,4 +1,4 @@
-package game;
+package it.uniba.game;
 
 public class Coordinates{
     // Class used to represent a position in the chessboard
@@ -26,8 +26,8 @@ public class Coordinates{
 
     public void setRow(int x){
 
-        const int MIN_ROW = 0;
-        const int MAX_ROW = 7;
+        int MIN_ROW = 0;
+        int MAX_ROW = 7;
 
         if(x >= MIN_ROW & x <= MAX_ROW)
             row = x;
@@ -39,8 +39,8 @@ public class Coordinates{
 
     public void setColumn(int y){
 
-        const int MIN_COLUMN = 0;
-        const int MAX_COLUMN = 7;
+        int MIN_COLUMN = 0;
+        int MAX_COLUMN = 7;
 
         if(y >= MIN_COLUMN & y <= MAX_COLUMN)
             column = y;
