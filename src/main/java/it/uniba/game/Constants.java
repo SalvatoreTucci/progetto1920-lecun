@@ -19,4 +19,13 @@ public final class Constants {
 	public final static String W_PAWN = "♙";
 	public final static String B_PAWN = "♟";
 	
+	// Constants for the class Pawn
+	public final static int B_MID_ROW = 3;
+	public final static int W_MID_ROW = 4;
+	public final static int B_DIRECTION_ROW = -1;
+	public final static int W_DIRECTION_ROW = 1;
+	
+	public final static int FIRST_ROW = 0;
+	public final static int LAST_ROW = 7;
+	
 }
