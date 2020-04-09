@@ -37,13 +37,5 @@ public class UI {
 			}
 		} while (!read.contains(YES) && !read.contains(NO));
 	}
-	
-	/*
-	 * returns the required status of the application (true = to be closed, false = to be kept open)
-	 */
-	bool getStatus() {
-		
-		return quitGame;
-	}
 
 }
