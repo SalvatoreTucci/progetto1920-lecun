@@ -37,11 +37,17 @@ class Pawn extends Piece {
 		 */
 		int addInRow = (pieceColor == Piece.Color.BLACK) ? -1 : 1;
 		
+		/*
+		 * If the color is BLACK, you can move the pawn, the first time, to the row 3
+		 * If the color is WHITE, you can move the pawn, the first time, to the row 4
+		 */
+		int initialMoveRow = (pieceColor == Piece.Color.BLACK) ? 3 : 4; 
+		
 		// Add the basic movement of the pawn
 		startingPos.add(new Coordinates(endingPos.getColumn(), endingPos.getRow() + addInRow));
 		
 		// If the ending position has the row 3, add the initial movement of the pawn (2 square up or down)
-		if(endingPos.getRow() == 3) {
+		if(endingPos.getRow() == initialMoveRow) {
 			startingPos.add(new Coordinates(endingPos.getColumn(), endingPos.getRow() + (addInRow * 2)));
 			
 		}
@@ -53,7 +59,7 @@ class Pawn extends Piece {
 		 */
 		if(endingPos.getColumn() > 0) {
 			startingPos.add(new Coordinates(endingPos.getColumn() - 1, endingPos.getRow() + addInRow));
-			if(endingPos.getRow() == 3) {
+			if(endingPos.getRow() == initialMoveRow) {
 				startingPos.add(new Coordinates(endingPos.getColumn() - 1, endingPos.getRow() + (addInRow * 2)));
 			
 			}
@@ -61,7 +67,7 @@ class Pawn extends Piece {
 		}
 		else if(endingPos.getColumn() < 7) {
 			startingPos.add(new Coordinates(endingPos.getColumn() + 1, endingPos.getRow() + addInRow));
-			if(endingPos.getRow() == 3) {
+			if(endingPos.getRow() == initialMoveRow) {
 				startingPos.add(new Coordinates(endingPos.getColumn() + 1, endingPos.getRow() + (addInRow * 2)));
 				
 			}
