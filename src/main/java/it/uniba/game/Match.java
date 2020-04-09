@@ -46,7 +46,21 @@ public class Match {
 		// 1: e3, b6
 		// 2: c4, f6
 		
+		String printableHistory = "";
 
+		int i = 0;
+		int j = 1;
+		while(i < moves.size()) {
+			if(i % 2 == 0) {
+				printableHistory += "\n" + j + ". ";
+				j++;
+			}
+			printableHistory += moves.elementAt(i);
+			
+			i++;
+		}
+		
+		return printableHistory;
 	}
 	
 	public String getPrintableChessboard() {
