@@ -1,31 +1,33 @@
 package it.uniba.game.pieces;
 
-
+import java.util.Vector;
 
 public final class Queen extends Piece {
-	//Sub-class of Piece representing the queen
+	/*
+	 * Subclass of Piece representing the Queen, 
+	 * the method reverseMove will be extended later
+	*/
 	
-	//new Attributes eventually to be added
-	
-	//Methods
+	//Constructor
 	public Queen(Color col) {
 		
 		super(col);
-		if (col == Piece.Color.BLACK) {
-			symbol="♛";
+		
+		if (pieceColor == Color.BLACK) {
 			
+			symbol = "♛";
 		} else {
-			symbol="♕";
 			
+			symbol = "♕";	
 		}
-		//eventually there will be introduced other inits
 		
 	}
 	
-	public it.uniba.game.Coordinates reverseMove(it.uniba.game.Coordinates endingPos){
+	public Vector<it.uniba.game.Coordinates> reverseMove(it.uniba.game.Coordinates endingPos){
 		
-		return new it.uniba.game.Coordinates(-1,-1);
-		//it returns an invalid value since it can't be moved for now
+		Vector<it.uniba.game.Coordinates> possibleSquares = new Vector<it.uniba.game.Coordinates>();
+		
+		return possibleSquares;
 	}
 	
 }
