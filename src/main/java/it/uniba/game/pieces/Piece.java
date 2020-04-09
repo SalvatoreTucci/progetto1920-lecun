@@ -1,4 +1,4 @@
-package pieces;
+package it.uniba.game.pieces;
 
 public abstract class Piece{
     /*
