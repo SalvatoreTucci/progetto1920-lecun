@@ -1,6 +1,7 @@
 package it.uniba.game.pieces;
 
 import java.util.Vector;
+import it.uniba.game.Constants;
 
 public final class Knight extends Piece{
 	/*
@@ -15,10 +16,10 @@ public final class Knight extends Piece{
 		
 		if(pieceColor == Color.BLACK) {
 			
-			symbol = "♞";
+			symbol = Constants.B_KNIGHT;
 		} else {
 			
-			symbol = "♘";
+			symbol = Constants.W_KNIGHT;
 		}
 	}
 	

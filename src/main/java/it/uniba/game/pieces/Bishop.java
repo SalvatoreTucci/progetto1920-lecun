@@ -1,6 +1,7 @@
 package it.uniba.game.pieces;
 
 import java.util.Vector;
+import it.uniba.game.Constants;
 
 public final class Bishop extends Piece {
 	/*
@@ -15,10 +16,10 @@ public final class Bishop extends Piece {
 		
 		if(pieceColor == Color.BLACK) {
 			
-			symbol = "♝";
+			symbol = Constants.B_BISHOP;
 		} else {
 			
-			symbol = "♗";
+			symbol = Constants.W_BISHOP;
 		}
 	}
 	
