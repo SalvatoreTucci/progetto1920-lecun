@@ -1,5 +1,5 @@
 package it.uniba.game;
-import it.uniba.game.pieces;
+import it.uniba.game.pieces.Piece;
 
 
 
@@ -8,6 +8,7 @@ public class Move {
 	 * This class represent a generic move converted from the string inserted by the user
 	 * (there will be an external method which will do this particular conversion from string to Move)
 	*/
+	
 	//Attributes
 	private Piece toMove;
 	private Coordinates startingPos;
