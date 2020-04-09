@@ -9,7 +9,7 @@ class Pawn extends Piece {
 	/*
 	 * Subclass of Piece representing the Pawn
 	 */
-	
+	private boolean enPassant;
 	
 	// Constructor
 	public Pawn(Color col) {
@@ -24,6 +24,8 @@ class Pawn extends Piece {
 			this.symbol = "♙";
 			
 		}
+		
+		enPassant = false;
 		
 	}
 	
@@ -41,7 +43,7 @@ class Pawn extends Piece {
 		 * If the color is BLACK, you can move the pawn, the first time, to the row 3
 		 * If the color is WHITE, you can move the pawn, the first time, to the row 4
 		 */
-		int initialMoveRow = (pieceColor == Piece.Color.BLACK) ? 3 : 4; 
+		int initialMoveRow = (pieceColor == Piece.Color.BLACK) ? 3 : 4;
 		
 		// Check if the pawn is moving in the right direction
 		if((pieceColor == Piece.Color.BLACK && endingPos.getRow() == 0) ||
@@ -62,25 +64,25 @@ class Pawn extends Piece {
 		/* 
 		 * If the ending position has the column > 0, we add the normal capture of the pawn on the left
 		 * If the ending position has the column < 7, we add the normal capture of the pawn on the right
-		 * In each of the two cases, if the row's ending position is 3, we add the capture 'en passant' of the pawn
 		 */
 		if(endingPos.getColumn() > 0) {
 			startingPos.add(new Coordinates(endingPos.getColumn() - 1, endingPos.getRow() + addInRow));
-			if(endingPos.getRow() == initialMoveRow) {
-				startingPos.add(new Coordinates(endingPos.getColumn() - 1, endingPos.getRow() + (addInRow * 2)));
-			
-			}
 			
 		}
 		else if(endingPos.getColumn() < 7) {
 			startingPos.add(new Coordinates(endingPos.getColumn() + 1, endingPos.getRow() + addInRow));
-			if(endingPos.getRow() == initialMoveRow) {
-				startingPos.add(new Coordinates(endingPos.getColumn() + 1, endingPos.getRow() + (addInRow * 2)));
-				
-			}
+			
 		}
 		
 		return startingPos;
+	}
+
+	public boolean isEnPassant() {
+		return enPassant;
+	}
+
+	public void setEnPassant(boolean enPassant) {
+		this.enPassant = enPassant;
 	}
 	
 	
