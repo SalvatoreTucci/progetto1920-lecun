@@ -1,31 +1,34 @@
 package it.uniba.game.pieces;
 
-
+import java.util.Vector;
 
 public final class King extends Piece {
-	//Sub-class of Piece representing the king
+	/*
+	 * Subclass of Piece representing the King, 
+	 * the method reverseMove will be extended later
+	 * also new attributes could be added
+	*/
 	
-	//new Attributes to be added
-	
-	//Methods
+	//Constructor
 	public King(Color col) {
 		
 		super(col);
-		if (col == Piece.Color.BLACK) {
+		
+		if (col == Color.BLACK) {
+			
 			symbol="♚";
-			
 		} else {
-			symbol="♔";
 			
+			symbol="♔";
 		}
 		//eventually there will be introduced other inits
-		
 	}
 	
-	public it.uniba.game.Coordinates reverseMove(it.uniba.game.Coordinates endingPos){
+	public Vector<it.uniba.game.Coordinates> reverseMove(it.uniba.game.Coordinates endingPos){
 		
-		return new it.uniba.game.Coordinates(-1,-1);
-		//it returns an invalid value since it can't be moved for now
+		Vector<it.uniba.game.Coordinates> possibleSquares = new Vector<it.uniba.game.Coordinates>();
+		
+		return possibleSquares;
 	}
 
 }
