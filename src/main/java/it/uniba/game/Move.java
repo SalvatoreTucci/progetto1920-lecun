@@ -17,50 +17,46 @@ public class Move {
 	
 	
 	//Methods
-	Move(Piece pieceToSet, Coordinates startPos, Coordinates endPos, boolean cap) {
+	public Move(Piece pieceToSet, Coordinates startPos, Coordinates endPos, boolean cap) {
 		
 		setPiece(pieceToSet);
 		setStartingPos(startPos);
 		setEndingPos(endPos);
-		setCaptureFlag(cap);
+		isCapture = cap;
 	}
 	
-	void setPiece(Piece pieceToSet) {
+	public void setPiece(Piece pieceToSet) {
 		
 		this.toMove = pieceToSet;
 	}
 	
-	Piece getPiece() {
+	public Piece getPiece() {
 		
 		return this.toMove;
 	}
 	
-	Coordinates getEndingPos() {
+	public Coordinates getEndingPos() {
 		
 		return this.endingPos;
 	}
 	
-	void setEndingPos(Coordinates posToSet) {
+	public void setEndingPos(Coordinates posToSet) {
 		
 		this.endingPos = posToSet;
 	}
 	
-	Coordinates getStartingPos() {
+	public Coordinates getStartingPos() {
 		
 		return this.startingPos;
 	}
 	
-	void setStartingPos(Coordinates posToSet) {
+	public void setStartingPos(Coordinates posToSet) {
 		
 		this.startingPos = posToSet;
 	}
 	
-	private void setCaptureFlag(boolean flagToSet) {
-		
-		isCapture = flagToSet;
-	}
 	
-	boolean getCaptureFlag() {
+	public boolean getCaptureFlag() {
 		
 		return this.isCapture;
 	}
