@@ -1,5 +1,7 @@
 package it.uniba.game;
-package it.uniba.game.pieces;
+import it.uniba.game.pieces;
+
+
 
 public class Move {
 	/*
