@@ -1,6 +1,7 @@
 package it.uniba.game.pieces;
 
 import java.util.Vector;
+import it.uniba.game.Constants;
 
 public final class Rook extends Piece{
 	/*
@@ -14,10 +15,10 @@ public final class Rook extends Piece{
 		super(col);
 		if (pieceColor == Color.BLACK) {
 			
-			symbol="♜";
+			symbol=Constants.B_ROOK;
 		} else {
 			
-			symbol="♖";
+			symbol=Constants.W_ROOK;
 		}
 		
 	}
