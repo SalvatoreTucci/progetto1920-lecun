@@ -6,7 +6,7 @@ public abstract class Piece{
      */
 
     public enum Color {
-        // Enumerated type used to represent the color of the card
+        // Enumerated type used to represent the color of the piece
         WHITE,
         BLACK;
     }
