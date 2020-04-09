@@ -6,8 +6,12 @@ import it.uniba.game.*;
 
 
 class Pawn extends Piece {
-	// Pawn class
+	/*
+	 * Subclass of Piece representing the Pawn
+	 */
 	
+	
+	// Constructor
 	public Pawn(Color col) {
 		
 		super(col);
@@ -34,11 +38,11 @@ class Pawn extends Piece {
 		int addInRow = (pieceColor == Piece.Color.BLACK) ? -1 : 1;
 		
 		// Add the basic movement of the pawn
-		startingPos.add(new Coordinates(endingPos.getRow() + addInRow, endingPos.getColumn()));
+		startingPos.add(new Coordinates(endingPos.getColumn(), endingPos.getRow() + addInRow));
 		
 		// If the ending position has the row 3, add the initial movement of the pawn (2 square up or down)
 		if(endingPos.getRow() == 3) {
-			startingPos.add(new Coordinates(endingPos.getRow() + (addInRow * 2), endingPos.getColumn()));
+			startingPos.add(new Coordinates(endingPos.getColumn(), endingPos.getRow() + (addInRow * 2)));
 			
 		}
 		
@@ -48,17 +52,17 @@ class Pawn extends Piece {
 		 * In each of the two cases, if the row's ending position is 3, we add the capture 'en passant' of the pawn
 		 */
 		if(endingPos.getColumn() > 0) {
-			startingPos.add(new Coordinates(endingPos.getRow() + addInRow, endingPos.getColumn() - 1));
+			startingPos.add(new Coordinates(endingPos.getColumn() - 1, endingPos.getRow() + addInRow));
 			if(endingPos.getRow() == 3) {
-				startingPos.add(new Coordinates(endingPos.getRow() + (addInRow * 2), endingPos.getColumn() - 1));
+				startingPos.add(new Coordinates(endingPos.getColumn() - 1, endingPos.getRow() + (addInRow * 2)));
 			
 			}
 			
 		}
 		else if(endingPos.getColumn() < 7) {
-			startingPos.add(new Coordinates(endingPos.getRow() + addInRow, endingPos.getColumn() + 1));
+			startingPos.add(new Coordinates(endingPos.getColumn() + 1, endingPos.getRow() + addInRow));
 			if(endingPos.getRow() == 3) {
-				startingPos.add(new Coordinates(endingPos.getRow() + (addInRow * 2), endingPos.getColumn() + 1));
+				startingPos.add(new Coordinates(endingPos.getColumn() + 1, endingPos.getRow() + (addInRow * 2)));
 				
 			}
 		}
