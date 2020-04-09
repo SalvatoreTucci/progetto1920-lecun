@@ -10,8 +10,8 @@ public class Coordinates{
     // Methods
     public Coordinates(int x, int y) {
 
-        setRow(x);
-        setColumn(y);
+    	setColumn(x);
+        setRow(y);
     }
 
     public int getRow() {
@@ -24,13 +24,13 @@ public class Coordinates{
         return column;
     }
 
-    public void setRow(int x){
+    public void setRow(int y){
 
-        row = x;
+        row = y;
     }
 
-    public void setColumn(int y){
+    public void setColumn(int x){
 
-        column = y;
+        column = x;
     }
 }
