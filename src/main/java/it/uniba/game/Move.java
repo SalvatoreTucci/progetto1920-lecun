@@ -17,32 +17,32 @@ public class Move {
 	
 	void setPiece(Piece pieceToSet) {
 		
-		Move.toMove = pieceToSet;
+		this.toMove = pieceToSet;
 	}
 	
 	Piece getPiece() {
 		
-		return Piece.toMove;
+		return this.toMove;
 	}
 	
 	Coordinates getEndingPos() {
 		
-		return Move.endingPos;
+		return this.endingPos;
 	}
 	
 	void setEndingPos(Coordinates posToSet) {
 		
-		Move.endingPos = posToSet;
+		this.endingPos = posToSet;
 	}
 	
 	Coordinates getStartingPos() {
 		
-		return Move.startingPos;
+		return this.startingPos;
 	}
 	
 	void setStartingPos(Coordinates posToSet) {
 		
-		Move.startingPos = posToSet;
+		this.startingPos = posToSet;
 	}
 	
 	private void setCaptureFlag(boolean flagToSet) {
@@ -52,6 +52,6 @@ public class Move {
 	
 	boolean getCaptureFlag() {
 		
-		return Move.isCapture;
+		return this.isCapture;
 	}
 }
