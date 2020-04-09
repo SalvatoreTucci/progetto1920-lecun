@@ -4,7 +4,7 @@ import java.util.Vector;
 import it.uniba.game.*;
 
 
-class Pawn extends Piece {
+public final class Pawn extends Piece {
 	/*
 	 * Subclass of Piece representing the Pawn
 	 */
