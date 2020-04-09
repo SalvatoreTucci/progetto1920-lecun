@@ -1,6 +1,7 @@
 package it.uniba.game.pieces;
 
 import java.util.Vector;
+import it.uniba.game.Constants;
 
 public final class King extends Piece {
 	/*
@@ -16,10 +17,10 @@ public final class King extends Piece {
 		
 		if (pieceColor == Color.BLACK) {
 			
-			symbol="♚";
+			symbol=Constants.B_KING;
 		} else {
 			
-			symbol="♔";
+			symbol=Constants.W_KING;
 		}
 		//eventually there will be introduced other inits
 	}
