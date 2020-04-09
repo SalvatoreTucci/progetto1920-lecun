@@ -4,12 +4,12 @@ import it.uniba.game.pieces.*;
 import it.uniba.game.*;
 
 
-class Chessboard {
+public class ChessBoard {
 	// Class used for represents the chessboard
 	
 	private Square elements[][];
 	
-	public Chessboard() {
+	public ChessBoard() {
 		
 		// Inizialize Rook pieces
 		elements[0][0] = new Square(new Rook(Piece.Color.BLACK));
