@@ -43,7 +43,14 @@ class Pawn extends Piece {
 		 */
 		int initialMoveRow = (pieceColor == Piece.Color.BLACK) ? 3 : 4; 
 		
-		// Add the basic movement of the pawn
+		// Check if the pawn is moving in the right direction
+		if((pieceColor == Piece.Color.BLACK && endingPos.getRow() == 0) ||
+				(pieceColor == Piece.Color.WHITE && endingPos.getRow() == 7)) {
+			return startingPos;
+			
+		}
+		
+		// Add the bamovement of the pawn
 		startingPos.add(new Coordinates(endingPos.getColumn(), endingPos.getRow() + addInRow));
 		
 		// If the ending position has the row 3, add the initial movement of the pawn (2 square up or down)
