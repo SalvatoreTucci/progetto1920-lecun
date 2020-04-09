@@ -4,7 +4,6 @@ import java.util.Vector;
 import it.uniba.game.*;
 
 
-
 class Pawn extends Piece {
 	/*
 	 * Subclass of Piece representing the Pawn
@@ -17,11 +16,11 @@ class Pawn extends Piece {
 		super(col);
 		
 		if(col == Piece.Color.BLACK) {
-			this.symbol = "♟";
+			this.symbol = Constants.B_PAWN;
 			
 		}
 		else {
-			this.symbol = "♙";
+			this.symbol = Constants.W_PAWN;
 			
 		}
 		
@@ -34,20 +33,20 @@ class Pawn extends Piece {
 		Vector<Coordinates> startingPos = new Vector<Coordinates>();
 		
 		/*
-		 * If the color is BLACK, you can move the pawn down, so it will be - 1
-		 * If the color is WHITE, you can move the pawn up, so it will be + 1
+		 * If the color is BLACK, you can move the pawn down, so it will be B_DIRECTION_ROW
+		 * If the color is WHITE, you can move the pawn up, so it will be W_DIRECTION_ROW
 		 */
-		int addInRow = (pieceColor == Piece.Color.BLACK) ? -1 : 1;
+		int addInRow = (pieceColor == Piece.Color.BLACK) ? Constants.B_DIRECTION_ROW : Constants.W_DIRECTION_ROW;
 		
 		/*
 		 * If the color is BLACK, you can move the pawn, the first time, to the row 3
 		 * If the color is WHITE, you can move the pawn, the first time, to the row 4
 		 */
-		int initialMoveRow = (pieceColor == Piece.Color.BLACK) ? 3 : 4;
+		int initialMoveRow = (pieceColor == Piece.Color.BLACK) ? Constants.B_MID_ROW : Constants.W_MID_ROW;
 		
 		// Check if the pawn is moving in the right direction
-		if((pieceColor == Piece.Color.BLACK && endingPos.getRow() == 0) ||
-				(pieceColor == Piece.Color.WHITE && endingPos.getRow() == 7)) {
+		if((pieceColor == Piece.Color.BLACK && endingPos.getRow() == Constants.FIRST_ROW) ||
+				(pieceColor == Piece.Color.WHITE && endingPos.getRow() == Constants.LAST_ROW)) {
 			return startingPos;
 			
 		}
