@@ -5,7 +5,7 @@ public abstract class Piece{
     Abstract class representing a generic chess piece
      */
 
-    enum Color {
+    public enum Color {
         // Enumerated type used to represent the color of the card
         WHITE,
         BLACK;
@@ -17,13 +17,17 @@ public abstract class Piece{
 
     // Methods
     public Piece(Color col) {
+
         pieceColor = col;
     }
 
     public Color getColor() {
+
         return pieceColor;
     }
+
     public String toString() {
+
         return symbol;
     }
 
