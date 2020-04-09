@@ -26,27 +26,11 @@ public class Coordinates{
 
     public void setRow(int x){
 
-        int MIN_ROW = 0;
-        int MAX_ROW = 7;
-
-        if(x >= MIN_ROW & x <= MAX_ROW)
-            row = x;
-        /*
-        else
-            aggiungere exception
-         */
+        row = x;
     }
 
     public void setColumn(int y){
 
-        int MIN_COLUMN = 0;
-        int MAX_COLUMN = 7;
-
-        if(y >= MIN_COLUMN & y <= MAX_COLUMN)
-            column = y;
-        /*
-        else
-            aggiungere exception
-         */
+        column = y;
     }
 }
