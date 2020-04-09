@@ -1,5 +1,7 @@
 package it.uniba.game.pieces;
 
+
+
 public final class King extends Piece {
 	//Sub-class of Piece representing the king
 	
