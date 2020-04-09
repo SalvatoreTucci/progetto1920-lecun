@@ -2,7 +2,7 @@ package it.uniba.game;
 import it.uniba.game.pieces.Piece;
 import java.util.Vector;
 
-public class Match {
+class Match {
 	/*
 	 * Class used to manage the flow of the game
 	 */
