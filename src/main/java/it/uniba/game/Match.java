@@ -18,6 +18,10 @@ public class Match {
 	public Match() {
 		
 		currentPlayer = Piece.Color.WHITE;
+		blackCaptured= new Vector<Piece>();
+		whiteCaptured = new Vector<Piece>();
+		moves = new Vector<String>();
+		
 	}
 	
 	public void inputMove(String toParse) {
