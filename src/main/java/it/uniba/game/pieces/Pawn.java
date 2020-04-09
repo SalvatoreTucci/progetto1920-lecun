@@ -50,7 +50,7 @@ class Pawn extends Piece {
 			
 		}
 		
-		// Add the bamovement of the pawn
+		// Add the basic movement of the pawn
 		startingPos.add(new Coordinates(endingPos.getColumn(), endingPos.getRow() + addInRow));
 		
 		// If the ending position has the row 3, add the initial movement of the pawn (2 square up or down)
