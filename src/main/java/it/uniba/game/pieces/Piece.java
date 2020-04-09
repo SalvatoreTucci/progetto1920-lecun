@@ -31,6 +31,6 @@ public abstract class Piece{
         return symbol;
     }
 
-    public Coordinates reverseMove(Coordinates endingPos);
+    abstract public it.uniba.game.Coordinates reverseMove(it.uniba.game.Coordinates endingPos);
 
 }
