@@ -8,11 +8,11 @@ public class Match {
 	 */
 
 	// Attributes
-	Chessboard field;
-	Vector<Piece> blackCaptured;
-	Vector<Piece> whiteCaptured;
-	Vector<String> moves;
-	Piece.Color currentPlayer;
+	private Chessboard field;
+	private Vector<Piece> blackCaptured;
+	private Vector<Piece> whiteCaptured;
+	private Vector<String> moves;
+	private Piece.Color currentPlayer;
 	
 	// Methods
 	public Match() {
