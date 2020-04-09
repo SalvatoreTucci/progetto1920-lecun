@@ -14,7 +14,7 @@ public final class King extends Piece {
 		
 		super(col);
 		
-		if (col == Color.BLACK) {
+		if (pieceColor == Color.BLACK) {
 			
 			symbol="♚";
 		} else {
