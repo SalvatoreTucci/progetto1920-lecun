@@ -30,8 +30,9 @@ class Match {
 		Move parsedMove = parseMove(toParse);
 		Coordinates startingPos = findToMove(parsedMove);
 		
-		if(parsedMove.getCaptureFlag())
+		if(parsedMove.getCaptureFlag()){
 			insertCapture(parsedMove);
+		}
 		
 		field.setMove(parsedMove);
 		
@@ -44,19 +45,23 @@ class Match {
 		Coordinates endingSquare = captureMove.getEndingPos();
 		Piece capturedPiece = field.getPiece(endingSquare);
 		
-		if(capturedPiece.getColor() == Piece.Color.BLACK)
+		if(capturedPiece.getColor() == Piece.Color.BLACK){
 			whiteCaptured.add(capturedPiece);
-		else
+		}
+		else{
 			blackCaptured.add(capturedPiece);
+		}
 */	
 	}
 	
 	public String getPrintableCaptures(Piece.Color side) {
 		
-		if(side == Piece.Color.WHITE)
-			return whiteCaptured.toString();
-		else
-			return blackCaptured.toString();
+		if(side == Piece.Color.WHITE) {
+			return whiteCaptured.toString();			
+		}
+		else {
+			return blackCaptured.toString();	
+		}
 	}
 	
 	public String getPrintableMoves() {
@@ -100,10 +105,12 @@ class Match {
 	public void nextTurn() {
 		// method used to proceed in the game flow
 		
-		if(currentPlayer == Piece.Color.BLACK)
-			currentPlayer = Piece.Color.WHITE;
-		else
+		if(currentPlayer == Piece.Color.BLACK) {
+			currentPlayer = Piece.Color.WHITE;	
+		}
+		else {
 			currentPlayer = Piece.Color.BLACK;
+		}
 	}
 
 /*
