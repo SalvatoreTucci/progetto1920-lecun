@@ -88,7 +88,7 @@ public class ChessBoard {
 		return res;
 	}
 	
-	void setMove(Move currentMove) {
+	public void setMove(Move currentMove) {
 		
 		Coordinates start = currentMove.getEndingPos();
 		Coordinates end   = currentMove.getStartingPos();
@@ -97,7 +97,7 @@ public class ChessBoard {
 		elements[start.getRow()][start.getColumn()] = null;
 	}
 	
-	Piece getPiece(Coordinates coord) {
+	public Piece getPiece(Coordinates coord) {
 		return elements[coord.getRow()][coord.getColumn()].getPiece();
 	}
 }
