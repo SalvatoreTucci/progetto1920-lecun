@@ -36,4 +36,25 @@ public final class Constants {
 	public final static String CB_LAST_ROW = "  \u2514\u2500\u2534\u2500\u2534\u2500\u2534\u2500\u2534\u2500\u2534\u2500\u2534\u2500\u2534\u2500\u2518\n";
 	public final static String CB_EMPY_SQUARE = " ";
 	
+	// Constants containing Messages and for the class UI
+	// Commands
+	public final static String HELP_COMMAND = "help";
+	public final static String START_COMMAND = "play";
+	public final static String QUIT_COMMAND = "quit";
+	public final static String SHOW_BOARD_COMMAND = "board";
+	public final static String HISTORY_COMMAND = "moves";
+	public final static String CAPTURE_COMMAND = "capture";
+	
+	// Messages
+	public final static String UNRECOGNIZED_COMM_ERR = "Unknown command \n";
+	public final static String START_MESS = "New match! White starts: \n";
+	public final static String QUIT_MESS = "Are you sure? \n";
+	public final static String INCORRECT_QUIT_RESPONSE = "I didn't understand. Are you sure? \n";
+	public final static String HELP = "help \nplay \nquit \nIn-game commands:\n \nmoves \nboard \ncapture";
+	
+	//Other
+	public final static String YES = "yes";
+	public final static String NO = "no";
+	
+	
 }
