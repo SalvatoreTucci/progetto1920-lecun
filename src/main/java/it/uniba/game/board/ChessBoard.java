@@ -56,17 +56,17 @@ public class ChessBoard {
 		String res = Constants.CB_LETTERS_COORDS;
 		res += Constants.CB_FIRST_ROW;
 		
-		for(int I = 0; I < 8; I++) {
-			for(int J = 0; J < 8; J++) {
-				if(J == 0) {
-					res += Math.abs(I - 8) + " ";
+		for(int i = 0; i < 8; i++) {
+			for(int j = 0; j < 8; j++) {
+				if(j == 0) {
+					res += Math.abs(i - 8) + " ";
 					
 				}
 				
-				res += Constants.CB_VERTICAL_SQUARE_SYMBOL + Math.abs(I - 8) + "\n";
+				res += Constants.CB_VERTICAL_SQUARE_SYMBOL + Math.abs(i - 8) + "\n";
 				
-				if(elements[I][J].isOccupied()) {
-					res += elements[I][J].getPiece().toString();
+				if(elements[i][j].isOccupied()) {
+					res += elements[i][j].getPiece().toString();
 					
 				}
 				else {
@@ -76,8 +76,8 @@ public class ChessBoard {
 				
 			}
 			
-			res += Constants.CB_VERTICAL_SQUARE_SYMBOL + Math.abs(I - 8) + "\n";
-			if(I != 7) {
+			res += Constants.CB_VERTICAL_SQUARE_SYMBOL + Math.abs(i - 8) + "\n";
+			if(i != 7) {
 				res += Constants.CB_MIDDLE_ROW_SQUARES;
 			}
 		}
