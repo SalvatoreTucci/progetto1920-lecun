@@ -47,11 +47,12 @@ public final class Constants {
 	
 	// Messages
 	public final static String UNRECOGNIZED_COMM_ERR = "Unknown command \n";
+	public final static String ALREADY_STARTED_ERR = "A match is currently running. \n";
 	public final static String START_MESS = "New match! White starts: \n";
 	public final static String QUIT_MESS = "Are you sure? \n";
 	public final static String INCORRECT_QUIT_RESPONSE = "I didn't understand. Are you sure? \n";
 	public final static String HELP = "help \nplay \nquit \nIn-game commands:\n \nmoves \nboard \ncapture";
-	
+		
 	//Other
 	public final static String YES = "yes";
 	public final static String NO = "no";

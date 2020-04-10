@@ -33,7 +33,12 @@ public class UI {
 				printHelp();
 				break;
 			case Constants.START_COMMAND:
-				startGame();
+				if (currentMatch == null) {
+					
+					startGame();
+				} else {
+					System.out.println(Constants.ALREADY_STARTED_ERR);
+				}
 				break;
 			case Constants.QUIT_COMMAND: 
 				quit();
