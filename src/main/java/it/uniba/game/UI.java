@@ -1,6 +1,7 @@
 package it.uniba.game;
 
 import java.util.Scanner;
+import it.uniba.game.Constants;
 
 public class UI {
 	/*
@@ -28,13 +29,13 @@ public class UI {
 	public void parseCommand(String toParse) {
 		
 		switch (toParse) {
-			case HELP_COMMAND:
+			case Constants.HELP_COMMAND:
 				printHelp();
 				break;
-			case START_COMMAND:
+			case Constants.START_COMMAND:
 				startGame();
 				break;
-			case QUIT_COMMAND: 
+			case Constants.QUIT_COMMAND: 
 				quit();
 				break;
 			default:
@@ -52,18 +53,18 @@ public class UI {
 		if (currentMatch != null) {
 			
 			switch (toParse) {
-				case SHOW_BOARD_COMMAND:
+				case Constants.SHOW_BOARD_COMMAND:
 					printBoard();
-				case HISTORY_COMMAND:
+				case Constants.HISTORY_COMMAND:
 					printMoves();
-				case CAPTURE_COMMAND:
+				case Constants.CAPTURE_COMMAND:
 					printCaptures();
 				default:
 					currentMatch.parseMove(toParse);
 
 			}
 		} else {
-			System.err.println(UNRECOGNIZED_COMM_ERR);
+			System.err.println(Constants.UNRECOGNIZED_COMM_ERR);
 			
 		}
 	
@@ -75,7 +76,7 @@ public class UI {
 	 */
 	private void startGame() {
 		
-		System.out.println(WELCOME);
+		System.out.println(Constants.START_MESS);
 		currentMatch=new Match();
 	}
 	
@@ -86,17 +87,17 @@ public class UI {
 	 */
 	private void quit() {
 	
-		System.out.println(QUIT_MESSAGE);
+		System.out.println(Constants.QUIT_MESS);
 		Scanner keyboard = new Scanner(System.in);
 		String read;
 		do {
 			read = keyboard.nextLine();
-			if(read.contains(YES)) {
+			if(read.contains(Constants.YES)) {
 				quitGame=true;
-			} else if(!read.contains(NO)) {
-				System.out.println(INCORRECT_QUIT_RESPONSE);
+			} else if(!read.contains(Constants.NO)) {
+				System.out.println(Constants.INCORRECT_QUIT_RESPONSE);
 			}
-		} while (!read.contains(YES) && !read.contains(NO));
+		} while (!read.contains(Constants.YES) && !read.contains(Constants.NO));
 	}
 	
 	
@@ -105,7 +106,7 @@ public class UI {
 	 */
 	private void printHelp() {
 		
-		System.out.println(HELP);
+		System.out.println(Constants.HELP);
 	}
 	
 	/*
@@ -125,7 +126,7 @@ public class UI {
 	}
 	
 	/*
-	 * on command "captures", it prints the captured pieces 
+	 * on command "capture", it prints the captured pieces 
 	 */
 	private void printCaptures() {
 		
