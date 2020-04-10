@@ -119,7 +119,7 @@ public class UI {
 	 */
 	private void printBoard() {
 		
-		System.out.println(currentMatch.getPrintableBoard() + "\n");
+		System.out.println(currentMatch.getPrintableChessBoard() + "\n");
 	}
 	
 	/*
