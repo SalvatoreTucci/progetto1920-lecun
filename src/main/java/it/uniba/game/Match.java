@@ -41,7 +41,7 @@ class Match {
 	void insertCapture(Move captureMove) {
 		
 		Coordinates endingSquare = captureMove.getEndingPos();
-		Piece capturedPiece = field.getPiece(endingSquare.getRow(), endingSquare.getColumn());
+		Piece capturedPiece = field.getPiece(endingSquare);
 		
 		if(capturedPiece.getColor() == Piece.Color.BLACK)
 			whiteCaptured.add(capturedPiece);
