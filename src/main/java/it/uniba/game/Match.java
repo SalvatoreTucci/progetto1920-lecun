@@ -1,5 +1,6 @@
 package it.uniba.game;
 import it.uniba.game.pieces.Piece;
+import it.uniba.game.board.Chessboard;
 import java.util.Vector;
 
 class Match {
@@ -38,6 +39,14 @@ class Match {
 	}
 	
 	void insertCapture(Move captureMove) {
+		
+		Coordinates endingSquare = captureMove.getEndingPos();
+		Piece capturedPiece = field.getPiece(endingSquare.getRow(), endingSquare.getColumn());
+		
+		if(capturedPiece.getColor() == Piece.Color.BLACK)
+			whiteCaptured.add(capturedPiece);
+		else
+			blackCaptured.add(capturedPiece);
 		
 	}
 	
