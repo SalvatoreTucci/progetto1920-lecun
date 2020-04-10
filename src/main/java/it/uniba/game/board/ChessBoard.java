@@ -96,4 +96,8 @@ public class ChessBoard {
 		elements[end.getRow()][end.getColumn()] = elements[start.getRow()][start.getColumn()];
 		elements[start.getRow()][start.getColumn()] = null;
 	}
+	
+	Piece getPiece(Coordinates coord) {
+		return elements[coord.getRow()][coord.getColumn()].getPiece();
+	}
 }
