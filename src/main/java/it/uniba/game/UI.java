@@ -57,7 +57,7 @@ public class UI {
 				case HISTORY_COMMAND:
 					printMoves();
 				case CAPTURE_COMMAND:
-					printCommands();
+					printCaptures();
 				default:
 					currentMatch.parseMove(toParse);
 
@@ -109,14 +109,27 @@ public class UI {
 	}
 	
 	/*
-	 * on command board, it prints the current state of the board on screen   
+	 * on command "board", it prints the current state of the board on screen   
 	 */
 	private void printBoard() {
 		
 		System.out.println(currentMatch.getPrintableBoard() + "\n");
 	}
 	
-
+	/*
+	 * on command "moves", it prints the history of the moves, separated in couples
+	 */
+	private void printMoves() {
+		
+		System.out.println(currentMatch.getPrintableMoves() + "\n");
+	}
 	
-
+	/*
+	 * on command "captures", it prints the captured pieces 
+	 */
+	private void printCaptures() {
+		
+		System.out.println(currentMatch.getPrintableCaptures() + "\n");
+	}
+	
 }
