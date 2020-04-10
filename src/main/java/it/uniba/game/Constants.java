@@ -57,7 +57,7 @@ public final class Constants {
 	public final static String HELP = "help \nplay \nquit \nComandi in-game:\n \nmoves \nboard \ncapture";
 		
 	//Other
-	public final static String YES = "yes";
+	public final static String YES = "si";
 	public final static String NO = "no";
 	
 	
