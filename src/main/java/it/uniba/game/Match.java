@@ -1,6 +1,6 @@
 package it.uniba.game;
 import it.uniba.game.pieces.Piece;
-import it.uniba.game.board.Chessboard;
+import it.uniba.game.board.ChessBoard;
 import java.util.Vector;
 
 class Match {
@@ -9,7 +9,7 @@ class Match {
 	 */
 
 	// Attributes
-	private Chessboard field;
+	private ChessBoard field;
 	private Vector<Piece> blackCaptured;
 	private Vector<Piece> whiteCaptured;
 	private Vector<String> moves;
@@ -26,7 +26,7 @@ class Match {
 	}
 	
 	public void inputMove(String toParse) {
-		
+/*
 		Move parsedMove = parseMove(toParse);
 		Coordinates startingPos = findToMove(parsedMove);
 		
@@ -36,10 +36,11 @@ class Match {
 		field.setMove(parsedMove);
 		
 		moves.add(toParse);
+*/
 	}
 	
 	void insertCapture(Move captureMove) {
-		
+/*		
 		Coordinates endingSquare = captureMove.getEndingPos();
 		Piece capturedPiece = field.getPiece(endingSquare);
 		
@@ -47,7 +48,7 @@ class Match {
 			whiteCaptured.add(capturedPiece);
 		else
 			blackCaptured.add(capturedPiece);
-		
+*/	
 	}
 	
 	public String getPrintableCaptures(Piece.Color side) {
@@ -104,14 +105,16 @@ class Match {
 		else
 			currentPlayer = Piece.Color.BLACK;
 	}
-	
+
+/*
 	private Move parseMove(String toParse) {
 	
-		
+
 	}
 	
 	private Coordinates findToMove(Move toMove) {
 		
 	}
+*/
 	
 }
