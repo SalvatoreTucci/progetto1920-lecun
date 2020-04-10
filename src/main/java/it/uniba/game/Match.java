@@ -18,7 +18,7 @@ class Match {
 	public Match() {
 		
 		currentPlayer = Piece.Color.WHITE;
-		blackCaptured= new Vector<Piece>();
+		blackCaptured = new Vector<Piece>();
 		whiteCaptured = new Vector<Piece>();
 		moves = new Vector<String>();
 		
@@ -26,7 +26,15 @@ class Match {
 	
 	public void inputMove(String toParse) {
 		
+		Move parsedMove = parseMove(toParse);
+		Coordinates startingPos = findToMove(parsedMove);
 		
+		if(parsedMove.getCaptureFlag())
+			insertCapture(parsedMove);
+		
+		field.setMove(parsedMove);
+		
+		moves.add(toParse);
 	}
 	
 	void insertCapture(Move captureMove) {
