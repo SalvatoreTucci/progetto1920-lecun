@@ -37,6 +37,11 @@ public final class Constants {
 	public final static String CB_EMPY_SQUARE = " ";
 	
 	// Constants for the class Match
+	public final static char CHAR_KING = 'R';
+	public final static char CHAR_QUEEN = 'D';
+	public final static char CHAR_ROOK = 'T';
+	public final static char CHAR_BISHOP = 'A';
+	public final static char CHAR_KNIGHT = 'C';
 	public final static int INVALID_POS = -1;
 	public final static String GENERAL_MOVE_REGEX = "([RDTAC])?([a-h]|[1-8])?(x)?([a-h])([1-8])";
 	public final static String PIECE_MOVE_REGEX = "(RDTAC)?.*";

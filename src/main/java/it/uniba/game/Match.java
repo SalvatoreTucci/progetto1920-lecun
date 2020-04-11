@@ -127,16 +127,16 @@ class Match {
 			
 			if(Pattern.matches(Constants.PIECE_MOVE_REGEX, toParse)) {
 				switch(toParse.charAt(0)) {
-					case 'R': 	toMove = new King(currentPlayer);
-								break;
-					case 'D':	toMove = new Queen(currentPlayer);
-								break;
-					case 'T':	toMove = new Rook(currentPlayer);
-								break;
-					case 'A':	toMove = new Bishop(currentPlayer);
-								break;
-					case 'C':	toMove = new Knight(currentPlayer);
-								break;
+					case Constants.CHAR_KING: 	toMove = new King(currentPlayer);
+														break;
+					case Constants.CHAR_QUEEN:	toMove = new Queen(currentPlayer);
+														break;
+					case Constants.CHAR_ROOK:	toMove = new Rook(currentPlayer);
+														break;
+					case Constants.CHAR_BISHOP:	toMove = new Bishop(currentPlayer);
+														break;
+					case Constants.CHAR_KNIGHT:	toMove = new Knight(currentPlayer);
+														break;
 				}
 				offsetDisambiguation = 1;
 				
