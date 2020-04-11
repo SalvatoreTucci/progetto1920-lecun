@@ -27,9 +27,9 @@ class Match {
 	}
 	
 	public void inputMove(String toParse) {
-/*
+
 		Move parsedMove = parseMove(toParse);
-		Coordinates startingPos = findToMove(parsedMove);
+		parsedMove = findToMove(parsedMove);
 		
 		if(parsedMove.getCaptureFlag()){
 			insertCapture(parsedMove);
@@ -38,7 +38,6 @@ class Match {
 		field.setMove(parsedMove);
 		
 		moves.add(toParse);
-*/
 	}
 	
 	void insertCapture(Move captureMove) {
