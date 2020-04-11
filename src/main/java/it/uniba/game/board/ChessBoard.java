@@ -97,7 +97,7 @@ public class ChessBoard {
 		elements[start.getRow()][start.getColumn()] = null;
 	}
 	
-	public Piece getPiece(Coordinates coord) {
-		return elements[coord.getRow()][coord.getColumn()].getPiece();
+	public Square getSquare(Coordinates coord) {
+		return elements[coord.getRow()][coord.getColumn()];
 	}
 }
