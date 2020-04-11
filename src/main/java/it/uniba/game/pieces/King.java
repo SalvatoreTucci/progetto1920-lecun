@@ -27,7 +27,7 @@ public final class King extends Piece {
 		//eventually there will be introduced other inits
 	}
 	
-	public Vector<Coordinates> reverseMove(Move endingPos){
+	public Vector<Coordinates> reverseMove(Move target){
 		
 		Vector<Coordinates> possibleSquares = new Vector<Coordinates>();
 		

@@ -34,6 +34,6 @@ public abstract class Piece{
         return symbol;
     }
 
-    abstract public Vector<Coordinates> reverseMove(Move endingPos);
+    abstract public Vector<Coordinates> reverseMove(Move target);
 
 }

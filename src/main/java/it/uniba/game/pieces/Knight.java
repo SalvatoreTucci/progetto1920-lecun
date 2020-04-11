@@ -23,7 +23,7 @@ public final class Knight extends Piece{
 		}
 	}
 	
-	public Vector<it.uniba.game.Coordinates> reverseMove(it.uniba.game.Coordinates endingPos) {
+	public Vector<it.uniba.game.Coordinates> reverseMove(it.uniba.game.Coordinates target) {
 		
 		Vector<it.uniba.game.Coordinates> possibleSquares = new Vector<it.uniba.game.Coordinates>();
 		

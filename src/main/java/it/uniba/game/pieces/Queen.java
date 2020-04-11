@@ -26,7 +26,7 @@ public final class Queen extends Piece {
 		
 	}
 	
-	public Vector<Coordinates> reverseMove(Move endingPos){
+	public Vector<Coordinates> reverseMove(Move target){
 		
 		Vector<Coordinates> possibleSquares = new Vector<Coordinates>();
 		
