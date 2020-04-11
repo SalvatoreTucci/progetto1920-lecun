@@ -36,4 +36,12 @@ public final class Constants {
 	public final static String CB_LAST_ROW = "  \u2514\u2500\u2534\u2500\u2534\u2500\u2534\u2500\u2534\u2500\u2534\u2500\u2534\u2500\u2534\u2500\u2518\n";
 	public final static String CB_EMPY_SQUARE = " ";
 	
+	// Constants for the class Match
+	public final static int INVALID_POS = -1;
+	public final static String GENERAL_MOVE_REGEX = "([RDTAC])?([a-h]|[1-8])?(x)?([a-h])([1-8])";
+	public final static String PIECE_MOVE_REGEX = "(RDTAC)?.*";
+	public final static String DISAMBIGUATION_REGEX = ".*([a-h]|[1-8])(x)?([a-h])([1-8])";
+	public final static int CHAR_COLUMN_OFFSET = 97;
+	public final static int ROW_OFFSET = 8;
+	
 }
