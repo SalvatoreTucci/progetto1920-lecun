@@ -120,7 +120,7 @@ class Match {
 	}
 	*/
 	
-	private Move findToMove(Move toMove) {
+	private void findToMove(Move toMove) {
 		
 		Vector<Coordinates> possibleSquares = toMove.getPiece().reverseMove(toMove.getEndingPos());
 		
@@ -143,49 +143,53 @@ class Match {
 		
 		if (toMove.getCaptureFlag()) {
 			
-			return this.findToMoveCapture(toMove, possibleSquares);
-		} 
-		
-		//check on there's a piece in the middle
-		int k = 0;
-		
-		while (k < possibleSquares.size()) {
+			 this.findToMoveCapture(toMove, possibleSquares);
+			 
+		} else {
 			
-			if(isObstructed(possibleSquares.get(k), toMove.getEndingPos()) || field.getSquare(toMove.getEndingPos()).isOccupied()) {
+			//check on there's a piece in the middle
+			int k = 0;
+			
+			while (k < possibleSquares.size()) {
 				
-				possibleSquares.remove(k);
-			} else {
+				if(isObstructed(possibleSquares.get(k), toMove.getEndingPos()) || field.getSquare(toMove.getEndingPos()).isOccupied()) {
+					
+					possibleSquares.remove(k);
+				} else {
+					
+					k++;
+				}
 				
-				k++;
 			}
 			
-		}
-		
-		if(possibleSquares.size() > 1) {
+			if(possibleSquares.size() > 1) {
+				
+				solveAmbiguousMoves(possibleSquares, toMove);
+			}
 			
-			solveAmbiguousMoves(possibleSquares, toMove);
-		}
-		
-		//if there are no alternatives raise an exception
-		if (possibleSquares.size() == Constants.EMPTY_SIZE) {
+			//if there are no alternatives raise an exception
+			if (possibleSquares.size() == Constants.EMPTY_SIZE) {
+				
+				//exception-----------------------------------------------------------------
+			}
 			
-			//exception-----------------------------------------------------------------
+			toMove.setStartingPos(possibleSquares.firstElement());
+			
+			
 		}
-		
-		toMove.setStartingPos(possibleSquares.firstElement());
-		
-		return toMove;
+
 	}
 
 	//specific method wich handles the situation where the move is a capture
-	private Move findToMoveCapture(Move toMove, Vector<Coordinates> possibleSquares) {
+	private void findToMoveCapture(Move toMove, Vector<Coordinates> possibleSquares) {
+		
 		
 		if( field.getSquare(toMove.getEndingPos()).isOccupied() && (field.getSquare(toMove.getEndingPos()).getPiece().getColor() != toMove.getPiece().getColor()) ) {
+			
 			
 		}
 		
 		
-		return toMove;
 	}
 	
 	private boolean isObstructed (Coordinates startingPos, Coordinates endingPos) {
