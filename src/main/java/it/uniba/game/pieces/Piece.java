@@ -34,4 +34,12 @@ public abstract class Piece{
 
     abstract public Vector<it.uniba.game.Coordinates> reverseMove(it.uniba.game.Coordinates endingPos);
 
+    public boolean equal(Piece toCompare) {
+    	
+    	if(this.toString() == toCompare.toString()) {
+    		
+    		return true;
+    	}
+    	return false;
+    }
 }

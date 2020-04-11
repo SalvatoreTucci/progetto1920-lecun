@@ -36,4 +36,17 @@ public final class Constants {
 	public final static String CB_LAST_ROW = "  \u2514\u2500\u2534\u2500\u2534\u2500\u2534\u2500\u2534\u2500\u2534\u2500\u2534\u2500\u2534\u2500\u2518\n";
 	public final static String CB_EMPY_SQUARE = " ";
 	
+	//Constants for the class Coordinates
+	public final static int INVALID_POS = -1;
+	
+	//Constants for adders 
+	public final static int UP_DIRECTION = -1;
+	public final static int DOWN_DIRECTION = 1;
+	public final static int LEFT_DIRECTION = 1;
+	public final static int RIGHT_DIRECTION = -1;
+	public final static int STILL_DIRECTION = 0;
+	
+	//Constants for the class Vector
+	public final static int EMPTY_SIZE = 0;
+	
 }

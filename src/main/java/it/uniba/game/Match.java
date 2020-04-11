@@ -122,15 +122,157 @@ class Match {
 	
 	private Move findToMove(Move toMove) {
 		
+		Vector<Coordinates> possibleSquares = toMove.getPiece().reverseMove(toMove.getEndingPos());
+		
+		
+		//checking if there are possible pieces to move in the vector possibleSquares
+		int i = 0;
+		while (i < possibleSquares.size()) {
+			
+			if (field.getSquare( possibleSquares.get(i) ).getPiece().equal(toMove.getPiece())) {
+				i++ ;
+			} else {
+				
+				possibleSquares.remove(i);
+			}
+		}
+		
+		//now possibleSquares contains the Coordinates where there's a possible piece to move in the field
+		
+		//if we're handling a capture, the control is passed to a more specific method
+		
+		if (toMove.getCaptureFlag()) {
+			
+			return this.findToMoveCapture(toMove, possibleSquares);
+		} 
+		
+		//check on there's a piece in the middle
+		int k = 0;
+		
+		while (k < possibleSquares.size()) {
+			
+			if(isObstructed(possibleSquares.get(k), toMove.getEndingPos()) || field.getSquare(toMove.getEndingPos()).isOccupied()) {
+				
+				possibleSquares.remove(k);
+			} else {
+				
+				k++;
+			}
+			
+		}
+		
+		if(possibleSquares.size() > 1) {
+			
+			solveAmbiguousMoves(possibleSquares, toMove);
+		}
+		
+		//if there are no alternatives raise an exception
+		if (possibleSquares.size() == Constants.EMPTY_SIZE) {
+			
+			//exception-----------------------------------------------------------------
+		}
+		
+		toMove.setStartingPos(possibleSquares.firstElement());
 		
 		return toMove;
 	}
 
-	
-	private Move findToMoveCapture(Move toMove) {
+	//specific method wich handles the situation where the move is a capture
+	private Move findToMoveCapture(Move toMove, Vector<Coordinates> possibleSquares) {
+		
+		if( field.getSquare(toMove.getEndingPos()).isOccupied() && (field.getSquare(toMove.getEndingPos()).getPiece().getColor() != toMove.getPiece().getColor()) ) {
+			
+		}
 		
 		
 		return toMove;
+	}
+	
+	private boolean isObstructed (Coordinates startingPos, Coordinates endingPos) {
+		
+		int addR;
+		int addC;
+		
+		if(startingPos.getRow() == endingPos.getRow()) {
+			
+			addR = Constants.STILL_DIRECTION;
+		
+		} else if(startingPos.getRow() > endingPos.getRow()) {
+			
+			addR = Constants.UP_DIRECTION;
+			
+		} else {
+			
+			addR = Constants.DOWN_DIRECTION;
+		}
+		
+		if(startingPos.getColumn() == endingPos.getColumn()) {
+			
+			addC = Constants.STILL_DIRECTION;
+		
+		} else if(startingPos.getColumn() > endingPos.getColumn()) {
+			
+			addC = Constants.UP_DIRECTION;
+			
+		} else {
+			
+			addC = Constants.DOWN_DIRECTION;
+		}
+		
+		for (int i = startingPos.getRow() + addR, j = startingPos.getColumn() + addC;
+				i != endingPos.getRow() || j != endingPos.getColumn();
+				i += addR, j += addC ) {
+			
+			if (field.getSquare(new Coordinates(i, j)).isOccupied()) {
+				
+				return true;
+			}
+		}
+		return false;
+	}
+	
+	private void solveAmbiguousMoves(Vector<Coordinates> possibleSquares, Move toMove) {
+		//solve possible ambiguous moves
+		
+		if (toMove.getStartingPos().getRow() != Constants.INVALID_POS) {
+			
+			int j = 0;
+			while (j < possibleSquares.size()) {
+				
+				if (possibleSquares.get(j).getRow() != toMove.getStartingPos().getRow()) {
+					
+					possibleSquares.remove(j);
+				} else {
+					
+					j++ ;
+				}
+			}
+			
+		} else if (toMove.getStartingPos().getColumn() != Constants.INVALID_POS) {
+			
+			int j = 0;
+			while (j < possibleSquares.size()) {
+				
+				if (possibleSquares.get(j).getColumn() != toMove.getStartingPos().getColumn()) {
+					
+					possibleSquares.remove(j);
+				} else {
+					
+					j++ ;
+				}
+			}
+		} else {
+			
+			//exception-----------------------------------------------------------------
+		}
+		
+		//if there's still more than one alternative raise an exception
+		if (possibleSquares.size() > 1) {
+			
+			//exception-----------------------------------------------------------------
+		}
+		
+		return possibleSquares;
 	}
 	
 }
