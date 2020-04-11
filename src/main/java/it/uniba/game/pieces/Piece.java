@@ -1,5 +1,7 @@
 package it.uniba.game.pieces;
 import java.util.Vector;
+import it.uniba.game.Coordinates;
+import it.uniba.game.Move;
 
 public abstract class Piece{
     /*
@@ -32,6 +34,6 @@ public abstract class Piece{
         return symbol;
     }
 
-    abstract public Vector<it.uniba.game.Coordinates> reverseMove(it.uniba.game.Coordinates endingPos);
+    abstract public Vector<Coordinates> reverseMove(Move endingPos);
 
 }
