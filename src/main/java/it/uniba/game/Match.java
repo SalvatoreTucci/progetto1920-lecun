@@ -113,15 +113,24 @@ class Match {
 		}
 	}
 
-/*
+	/*
 	private Move parseMove(String toParse) {
 	
 
 	}
+	*/
 	
-	private Coordinates findToMove(Move toMove) {
+	private Move findToMove(Move toMove) {
 		
+		
+		return toMove;
 	}
-*/
+
+	
+	private Move findToMoveCapture(Move toMove) {
+		
+		
+		return toMove;
+	}
 	
 }
