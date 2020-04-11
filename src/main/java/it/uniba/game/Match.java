@@ -1,7 +1,8 @@
 package it.uniba.game;
-import it.uniba.game.pieces.Piece;
+import it.uniba.game.pieces.*;
 import it.uniba.game.board.ChessBoard;
 import java.util.Vector;
+import java.util.regex.Pattern;
 
 class Match {
 	/*
@@ -111,14 +112,66 @@ class Match {
 		else {
 			currentPlayer = Piece.Color.BLACK;
 		}
+		
+	}
+
+	private Move parseMove(String toParse) {
+		boolean validMove = Pattern.matches(Constants.GENERAL_MOVE_REGEX, toParse);
+		
+		if(validMove) {
+			boolean capture = toParse.contains("x");
+			Coordinates finalPos = new Coordinates((int) (toParse.charAt(toParse.length() - 2) - Constants.CHAR_COLUMN_OFFSET),
+					Math.abs((int) toParse.charAt(toParse.length() - 1) - Constants.ROW_OFFSET));
+			
+			Piece toMove = null;
+			int offsetDisambiguation = 0;
+			
+			if(Pattern.matches(Constants.PIECE_MOVE_REGEX, toParse)) {
+				switch(toParse.charAt(0)) {
+					case 'R': 	toMove = new King(currentPlayer);
+								break;
+					case 'D':	toMove = new Queen(currentPlayer);
+								break;
+					case 'T':	toMove = new Rook(currentPlayer);
+								break;
+					case 'A':	toMove = new Bishop(currentPlayer);
+								break;
+					case 'C':	toMove = new Knight(currentPlayer);
+								break;
+				}
+				offsetDisambiguation = 1;
+				
+			}
+			else {
+				toMove = new Pawn(currentPlayer);
+				
+			}
+			
+			Coordinates startPos = new Coordinates(Constants.INVALID_POS, Constants.INVALID_POS);
+			
+			if(Pattern.matches(Constants.DISAMBIGUATION_REGEX, toParse)) {
+				
+				if((int) toParse.charAt(offsetDisambiguation) >= Constants.CHAR_COLUMN_OFFSET) {
+					startPos.setColumn((int) (toParse.charAt(offsetDisambiguation) - Constants.CHAR_COLUMN_OFFSET));
+					
+				}
+				else {
+					startPos.setRow(Math.abs((int) toParse.charAt(offsetDisambiguation) - Constants.ROW_OFFSET));
+					
+				}
+				
+			}
+			
+			return new Move(toMove, startPos, finalPos, capture);
+			
+		}
+		else {
+			return null;
+			
+		}
 	}
 
 /*
-	private Move parseMove(String toParse) {
-	
-
-	}
-	
 	private Coordinates findToMove(Move toMove) {
 		
 	}
