@@ -2,6 +2,8 @@ package it.uniba.game.pieces;
 
 import java.util.Vector;
 import it.uniba.game.Constants;
+import it.uniba.game.Move;
+import it.uniba.game.Coordinates;
 
 public final class Knight extends Piece{
 	/*
@@ -23,9 +25,9 @@ public final class Knight extends Piece{
 		}
 	}
 	
-	public Vector<it.uniba.game.Coordinates> reverseMove(it.uniba.game.Coordinates target) {
+	public Vector<Coordinates> reverseMove(Move target) {
 		
-		Vector<it.uniba.game.Coordinates> possibleSquares = new Vector<it.uniba.game.Coordinates>();
+		Vector<Coordinates> possibleSquares = new Vector<Coordinates>();
 		
 		return possibleSquares;
 	}
