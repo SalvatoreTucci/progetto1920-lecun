@@ -1,6 +1,7 @@
+
 package it.uniba.game.pieces;
 import java.util.Vector;
-import it.uniba.game.Coordinates;
+
 import it.uniba.game.Move;
 
 public abstract class Piece{
@@ -34,6 +35,14 @@ public abstract class Piece{
         return symbol;
     }
 
-    abstract public Vector<Coordinates> reverseMove(Move target);
+    abstract public Vector<it.uniba.game.Coordinates> reverseMove(Move target);
 
+    public boolean equal(Piece toCompare) {
+    	
+    	if(this.toString() == toCompare.toString()) {
+    		
+    		return true;
+    	}
+    	return false;
+    }
 }

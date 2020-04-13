@@ -14,7 +14,7 @@ public class Move {
 	private Coordinates startingPos;
 	private Coordinates endingPos;
 	private boolean isCapture;
-	
+	private boolean isEnPassant = false;
 	
 	//Methods
 	public Move(Piece pieceToSet, Coordinates startPos, Coordinates endPos, boolean cap) {
@@ -59,5 +59,15 @@ public class Move {
 	public boolean getCaptureFlag() {
 		
 		return this.isCapture;
+	}
+	
+	public boolean getEnPassant() {
+		
+		return isEnPassant;
+	}
+	
+	public void setEnPassant() {
+		
+		isEnPassant = true;
 	}
 }
