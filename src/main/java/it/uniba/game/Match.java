@@ -115,6 +115,10 @@ class Match {
 	}
 
 	private Move parseMove(String toParse) {
+		// parses a move from a user entered string, following the algebraic notation
+		// the general form for a recognized move is:
+		// [Piece][Disambiguation coordinate][Capture][Landing square column][Landing square row]
+		
 		boolean validMove = Pattern.matches(Constants.GENERAL_MOVE_REGEX, toParse);
 		
 		if(validMove) {
