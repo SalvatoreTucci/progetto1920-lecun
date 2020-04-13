@@ -1,7 +1,8 @@
 package it.uniba.game;
-import it.uniba.game.pieces.Piece;
+import it.uniba.game.pieces.*;
 import it.uniba.game.board.ChessBoard;
 import java.util.Vector;
+
 
 class Match {
 	/*
@@ -28,7 +29,7 @@ class Match {
 	public void inputMove(String toParse) {
 /*
 		Move parsedMove = parseMove(toParse);
-		Coordinates startingPos = findToMove(parsedMove);
+		findToMove(parsedMove);
 		
 		if(parsedMove.getCaptureFlag()){
 			insertCapture(parsedMove);
@@ -122,7 +123,7 @@ class Match {
 	
 	private void findToMove(Move toMove) {
 		
-		Vector<Coordinates> possibleSquares = toMove.getPiece().reverseMove(toMove.getEndingPos());
+		Vector<Coordinates> possibleSquares = toMove.getPiece().reverseMove(toMove);
 		
 		
 		//checking if there are possible pieces to move in the vector possibleSquares
@@ -182,6 +183,14 @@ class Match {
 
 	//specific method wich handles the situation where the move is a capture
 	private void findToMoveCapture(Move toMove, Vector<Coordinates> possibleSquares) {
+		
+
+		//handleEnPassant(toMove, possibleSquares);
+		//if () {
+			
+			//handleEnPassant(toMove, possibleSquares);
+			
+		//}
 		
 		
 		if( field.getSquare(toMove.getEndingPos()).isOccupied() && (field.getSquare(toMove.getEndingPos()).getPiece().getColor() != toMove.getPiece().getColor()) ) {
@@ -276,7 +285,40 @@ class Match {
 			//exception-----------------------------------------------------------------
 		}
 		
-		return possibleSquares;
 	}
 	
+	private void handlePawn(Move toMove, Vector<Coordinates> possibleSquares) {
+		
+		if ( !field.getSquare(toMove.getEndingPos()).isOccupied() ) {
+			
+			int addR = ( toMove.getPiece().getColor() == Piece.Color.WHITE ) ? Constants.DOWN_DIRECTION : Constants.UP_DIRECTION;
+			
+			Coordinates toCheck = new Coordinates(toMove.getEndingPos().getColumn(), toMove.getEndingPos().getRow() + addR);
+			
+			if ( ( field.getSquare(toCheck).getPiece().getClass() == Pawn.class ) 
+					&& ( field.getSquare(toCheck).getPiece().getColor() != toMove.getPiece().getColor() ) ) {
+				
+				Pawn enPass = (Pawn) field.getSquare(toCheck).getPiece();
+				
+				if (enPass.isEnPassant()) {
+					
+					if (possibleSquares.size() > 1) {
+						
+						solveAmbiguousMoves(possibleSquares, toMove);
+					}
+					
+					toMove.setStartingPos(possibleSquares.firstElement());
+					
+				}
+			}
+			
+		} else if (( field.getSquare(toMove.getEndingPos()).getPiece().getColor() != toMove.getPiece().getColor() )) {
+			
+			if (possibleSquares.size() > 1) {
+				
+				solveAmbiguousMoves(possibleSquares, toMove);
+			}
+			toMove.setStartingPos(possibleSquares.firstElement());
+		}
+	}
 }
