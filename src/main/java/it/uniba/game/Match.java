@@ -31,6 +31,11 @@ class Match {
 		Move parsedMove = parseMove(toParse);
 		findToMove(parsedMove);
 		
+		if(parsedMove.getPiece().getClass() == Pawn.class) {
+		
+			setPawnEnPassantFlag(parsedMove);
+		}
+		
 		if(parsedMove.getCaptureFlag()){
 			insertCapture(parsedMove);
 		}
@@ -42,17 +47,30 @@ class Match {
 	}
 	
 	void insertCapture(Move captureMove) {
-/*		
-		Coordinates endingSquare = captureMove.getEndingPos();
-		Piece capturedPiece = field.getPiece(endingSquare);
+		
+		Coordinates endingSquare;
+		
+		if(captureMove.getEnPassant()) {
+			
+			int addR = ( captureMove.getPiece().getColor() == Piece.Color.WHITE ) ? Constants.DOWN_DIRECTION : Constants.UP_DIRECTION;
+			endingSquare = new Coordinates(captureMove.getEndingPos().getColumn(), captureMove.getEndingPos().getRow() + addR);
+			
+		} else {
+			
+			endingSquare = captureMove.getEndingPos();
+		}
+		
+		
+		Piece capturedPiece = field.getSquare(endingSquare).getPiece();
 		
 		if(capturedPiece.getColor() == Piece.Color.BLACK){
+			
 			whiteCaptured.add(capturedPiece);
 		}
 		else{
 			blackCaptured.add(capturedPiece);
 		}
-*/	
+		
 	}
 	
 	public String getPrintableCaptures(Piece.Color side) {
@@ -176,7 +194,6 @@ class Match {
 			
 			toMove.setStartingPos(possibleSquares.firstElement());
 			
-			
 		}
 
 	}
@@ -184,20 +201,15 @@ class Match {
 	//specific method wich handles the situation where the move is a capture
 	private void findToMoveCapture(Move toMove, Vector<Coordinates> possibleSquares) {
 		
-
-		//handleEnPassant(toMove, possibleSquares);
-		//if () {
+		if (toMove.getPiece().getClass() == Pawn.class) {
 			
-			//handleEnPassant(toMove, possibleSquares);
+			handlePawn(toMove, possibleSquares);
 			
-		//}
-		
-		
-		if( field.getSquare(toMove.getEndingPos()).isOccupied() && (field.getSquare(toMove.getEndingPos()).getPiece().getColor() != toMove.getPiece().getColor()) ) {
+		} else if ( field.getSquare(toMove.getEndingPos()).isOccupied() && (field.getSquare(toMove.getEndingPos()).getPiece().getColor() != toMove.getPiece().getColor()) ) {
 			
-			
+			//to be expanded in further sprints
+			//At the moment this block will throw an exception, because we can only move pawns for now 
 		}
-		
 		
 	}
 	
@@ -308,8 +320,16 @@ class Match {
 					}
 					
 					toMove.setStartingPos(possibleSquares.firstElement());
+					toMove.setEnPassant();
 					
+				} else {
+					
+					//exception regarding the impossibility of doing an EnPassant move on the target pawn
 				}
+				
+			} else {
+				
+				//exception regarding an incorrect EnPassant move
 			}
 			
 		} else if (( field.getSquare(toMove.getEndingPos()).getPiece().getColor() != toMove.getPiece().getColor() )) {
@@ -319,6 +339,25 @@ class Match {
 				solveAmbiguousMoves(possibleSquares, toMove);
 			}
 			toMove.setStartingPos(possibleSquares.firstElement());
+			
+		} else {
+			
+			//exception regarding the wrong target piece which has to be captured
 		}
+	}
+	
+	
+	private void setPawnEnPassantFlag(Move toCheck) {
+		
+		if(Math.abs(toCheck.getStartingPos().getRow() - toCheck.getEndingPos().getRow()) == Constants.LONG_MOVE_LENGTH) {
+			
+			
+			((Pawn)toCheck.getPiece()).setEnPassant(true);
+			
+		} else {
+			
+			((Pawn)toCheck.getPiece()).setEnPassant(false);
+		}
+		
 	}
 }

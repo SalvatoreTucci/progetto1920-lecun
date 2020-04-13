@@ -94,7 +94,16 @@ public class ChessBoard {
 		Coordinates end   = currentMove.getStartingPos();
 		
 		elements[end.getRow()][end.getColumn()] = elements[start.getRow()][start.getColumn()];
+			
 		elements[start.getRow()][start.getColumn()] = null;
+			
+		
+		if (currentMove.getEnPassant()) {
+			
+			int addR = ( currentMove.getPiece().getColor() == Piece.Color.WHITE ) ? Constants.DOWN_DIRECTION : Constants.UP_DIRECTION;
+			elements[end.getRow() + addR][end.getColumn()] = null;
+		}
+		
 	}
 	
 	public Square getSquare(Coordinates coord) {

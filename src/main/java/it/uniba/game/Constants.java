@@ -27,6 +27,8 @@ public final class Constants {
 	
 	public final static int FIRST_ROW = 0;
 	public final static int LAST_ROW = 7;
+	public final static int LONG_MOVE_LENGTH = 2;
+	
 	
 	// Constants for the class Chessboard
 	public final static String CB_LETTERS_COORDS = "   A B C D E F G H\n";
