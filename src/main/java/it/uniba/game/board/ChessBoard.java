@@ -11,6 +11,8 @@ public class ChessBoard {
 	
 	public ChessBoard() {
 		
+		elements = new Square[8][8];
+		
 		// Inizialize Rook pieces
 		elements[0][0] = new Square(new Rook(Piece.Color.BLACK));
 		elements[0][7] = new Square(new Rook(Piece.Color.BLACK));
@@ -44,7 +46,7 @@ public class ChessBoard {
 		}
 		
 		// Inizialize empty Squares
-		for(int i = 0; i < 4; i++) {
+		for(int i = 2; i < 6; i++) {
 			for(int j = 0; j < 8; j++) {
 				elements[i][j] = new Square(null);
 			}
@@ -63,7 +65,7 @@ public class ChessBoard {
 					
 				}
 				
-				res += Constants.CB_VERTICAL_SQUARE_SYMBOL + Math.abs(i - 8) + "\n";
+				res += Constants.CB_VERTICAL_SQUARE_SYMBOL;
 				
 				if(elements[i][j].isOccupied()) {
 					res += elements[i][j].getPiece().toString();
