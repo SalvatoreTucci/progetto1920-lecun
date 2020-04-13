@@ -122,7 +122,7 @@ class Match {
 		boolean validMove = Pattern.matches(Constants.GENERAL_MOVE_REGEX, toParse);
 		
 		if(validMove) {
-			boolean capture = toParse.contains("x");
+			boolean capture = toParse.contains(Constants.MOVE_CAPTURE);
 			Coordinates finalPos = new Coordinates((int) (toParse.charAt(toParse.length() - 2) - Constants.CHAR_COLUMN_OFFSET),
 					Math.abs((int) toParse.charAt(toParse.length() - 1) - Constants.ROW_OFFSET));
 			
@@ -132,15 +132,15 @@ class Match {
 			if(Pattern.matches(Constants.PIECE_MOVE_REGEX, toParse)) {
 				switch(toParse.charAt(0)) {
 					case Constants.CHAR_KING: 	toMove = new King(currentPlayer);
-														break;
+												break;
 					case Constants.CHAR_QUEEN:	toMove = new Queen(currentPlayer);
-														break;
+												break;
 					case Constants.CHAR_ROOK:	toMove = new Rook(currentPlayer);
-														break;
+												break;
 					case Constants.CHAR_BISHOP:	toMove = new Bishop(currentPlayer);
-														break;
+												break;
 					case Constants.CHAR_KNIGHT:	toMove = new Knight(currentPlayer);
-														break;
+												break;
 				}
 				offsetDisambiguation = 1;
 				
