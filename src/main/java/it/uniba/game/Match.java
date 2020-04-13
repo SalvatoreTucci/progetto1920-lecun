@@ -2,6 +2,7 @@ package it.uniba.game;
 import it.uniba.game.pieces.*;
 import it.uniba.game.board.ChessBoard;
 import java.util.Vector;
+import java.util.regex.Pattern;
 
 
 class Match {
@@ -27,7 +28,7 @@ class Match {
 	}
 	
 	public void inputMove(String toParse) {
-/*
+
 		Move parsedMove = parseMove(toParse);
 		findToMove(parsedMove);
 		
@@ -43,7 +44,7 @@ class Match {
 		field.setMove(parsedMove);
 		
 		moves.add(toParse);
-*/
+
 	}
 	
 	void insertCapture(Move captureMove) {
@@ -132,12 +133,66 @@ class Match {
 		}
 	}
 
-	/*
 	private Move parseMove(String toParse) {
-	
-
+		// parses a move from a user entered string, following the algebraic notation
+		// the general form for a recognized move is:
+		// [Piece][Disambiguation coordinate][Capture][Landing square column][Landing square row]
+		
+		boolean validMove = Pattern.matches(Constants.GENERAL_MOVE_REGEX, toParse);
+		
+		if(validMove) {
+			boolean capture = toParse.contains(Constants.MOVE_CAPTURE);
+			Coordinates finalPos = new Coordinates((int) (toParse.charAt(toParse.length() - Constants.MOVE_COLUMN_OFFSET) - Constants.CHAR_COLUMN_OFFSET),
+					Math.abs((int) toParse.charAt(toParse.length() - Constants.MOVE_ROW_OFFSET) - Constants.ROW_OFFSET));
+			
+			Piece toMove = null;
+			int offsetDisambiguation = 0;
+			
+			if(Pattern.matches(Constants.PIECE_MOVE_REGEX, toParse)) {
+				switch(toParse.charAt(0)) {
+					case Constants.CHAR_KING: 	toMove = new King(currentPlayer);
+												break;
+					case Constants.CHAR_QUEEN:	toMove = new Queen(currentPlayer);
+												break;
+					case Constants.CHAR_ROOK:	toMove = new Rook(currentPlayer);
+												break;
+					case Constants.CHAR_BISHOP:	toMove = new Bishop(currentPlayer);
+												break;
+					case Constants.CHAR_KNIGHT:	toMove = new Knight(currentPlayer);
+												break;
+					default:
+				}
+				offsetDisambiguation = 1;
+				
+			}
+			else {
+				toMove = new Pawn(currentPlayer);
+				
+			}
+			
+			Coordinates startPos = new Coordinates(Constants.INVALID_POS, Constants.INVALID_POS);
+			
+			if(Pattern.matches(Constants.DISAMBIGUATION_REGEX, toParse)) {
+				
+				if((int) toParse.charAt(offsetDisambiguation) >= Constants.CHAR_COLUMN_OFFSET) {
+					startPos.setColumn((int) (toParse.charAt(offsetDisambiguation) - Constants.CHAR_COLUMN_OFFSET));
+					
+				}
+				else {
+					startPos.setRow(Math.abs((int) toParse.charAt(offsetDisambiguation) - Constants.ROW_OFFSET));
+					
+				}
+				
+			}
+			
+			return new Move(toMove, startPos, finalPos, capture);
+			
+		}
+		else {
+			return null;
+			
+		}
 	}
-	*/
 	
 	private void findToMove(Move toMove) {
 		
@@ -198,7 +253,7 @@ class Match {
 
 	}
 
-	//specific method wich handles the situation where the move is a capture
+	//specific method which handles the situation where the move is a capture
 	private void findToMoveCapture(Move toMove, Vector<Coordinates> possibleSquares) {
 		
 		if (toMove.getPiece().getClass() == Pawn.class) {

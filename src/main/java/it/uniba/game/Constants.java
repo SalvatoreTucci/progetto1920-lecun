@@ -38,8 +38,21 @@ public final class Constants {
 	public final static String CB_LAST_ROW = "  \u2514\u2500\u2534\u2500\u2534\u2500\u2534\u2500\u2534\u2500\u2534\u2500\u2534\u2500\u2534\u2500\u2518\n";
 	public final static String CB_EMPY_SQUARE = " ";
 	
-	//Constants for the class Coordinates
+	// Constants for the class Match
+	public final static char CHAR_KING = 'R';
+	public final static char CHAR_QUEEN = 'D';
+	public final static char CHAR_ROOK = 'T';
+	public final static char CHAR_BISHOP = 'A';
+	public final static char CHAR_KNIGHT = 'C';
+	public final static String MOVE_CAPTURE = "x";
+	public final static int MOVE_COLUMN_OFFSET = 2;
+	public final static int MOVE_ROW_OFFSET = 1;
 	public final static int INVALID_POS = -1;
+	public final static String GENERAL_MOVE_REGEX = "([RDTAC])?([a-h]|[1-8])?(x)?([a-h])([1-8])";
+	public final static String PIECE_MOVE_REGEX = "([RDTAC])?.*";
+	public final static String DISAMBIGUATION_REGEX = ".*([a-h]|[1-8])(x)?([a-h])([1-8])";
+	public final static int CHAR_COLUMN_OFFSET = 97;
+	public final static int ROW_OFFSET = 8;
 	
 	//Constants for adders 
 	public final static int UP_DIRECTION = -1;
@@ -50,5 +63,4 @@ public final class Constants {
 	
 	//Constants for the class Vector
 	public final static int EMPTY_SIZE = 0;
-	
 }
