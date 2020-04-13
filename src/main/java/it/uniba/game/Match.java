@@ -24,6 +24,7 @@ class Match {
 		blackCaptured = new Vector<Piece>();
 		whiteCaptured = new Vector<Piece>();
 		moves = new Vector<String>();
+		field = new ChessBoard();
 		
 	}
 	

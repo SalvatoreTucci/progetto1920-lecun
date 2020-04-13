@@ -60,10 +60,13 @@ public class UI {
 			switch (toParse) {
 				case Constants.SHOW_BOARD_COMMAND:
 					printBoard();
+					break;
 				case Constants.HISTORY_COMMAND:
 					printMoves();
+					break;
 				case Constants.CAPTURE_COMMAND:
 					printCaptures();
+					break;
 				default:
 					currentMatch.inputMove(toParse);
 			}
@@ -96,13 +99,13 @@ public class UI {
 		String read;
 		do {
 			read = keyboard.nextLine();
-			if(read == Constants.YES) {
+			if(read.equals(Constants.YES)) {
 				quitGame = true;
-			} else if(read != Constants.NO) {
+			} else if(!read.equals(Constants.NO)) {
 				System.out.println(Constants.INCORRECT_QUIT_RESPONSE);
 			}
-		} while (read != Constants.YES && read != Constants.NO);
-		keyboard.close();
+		} while (!read.equals(Constants.YES) && !read.equals(Constants.NO));
+//		keyboard.close();
 		
 	}
 	
