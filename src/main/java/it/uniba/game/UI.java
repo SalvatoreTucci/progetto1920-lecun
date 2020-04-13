@@ -1,7 +1,7 @@
 package it.uniba.game;
 
 import java.util.Scanner;
-import it.uniba.game.Constants;
+import it.uniba.game.pieces.Piece;
 
 public class UI {
 	/*
@@ -65,8 +65,7 @@ public class UI {
 				case Constants.CAPTURE_COMMAND:
 					printCaptures();
 				default:
-					currentMatch.parseMove(toParse);
-
+					currentMatch.inputMove(toParse);
 			}
 		} else {
 			System.err.println(Constants.UNRECOGNIZED_COMM_ERR);
@@ -82,7 +81,7 @@ public class UI {
 	private void startGame() {
 		
 		System.out.println(Constants.START_MESS);
-		currentMatch=new Match();
+		currentMatch = new Match();
 	}
 	
 	/*
@@ -97,12 +96,14 @@ public class UI {
 		String read;
 		do {
 			read = keyboard.nextLine();
-			if(read.contains(Constants.YES)) {
-				quitGame=true;
-			} else if(!read.contains(Constants.NO)) {
+			if(read == Constants.YES) {
+				quitGame = true;
+			} else if(read != Constants.NO) {
 				System.out.println(Constants.INCORRECT_QUIT_RESPONSE);
 			}
-		} while (!read.contains(Constants.YES) && !read.contains(Constants.NO));
+		} while (read != Constants.YES && read != Constants.NO);
+		keyboard.close();
+		
 	}
 	
 	
@@ -135,7 +136,8 @@ public class UI {
 	 */
 	private void printCaptures() {
 		
-		System.out.println(currentMatch.getPrintableCaptures() + "\n");
+		System.out.println(currentMatch.getPrintableCaptures(Piece.Color.WHITE) + "\n");
+		System.out.println(currentMatch.getPrintableCaptures(Piece.Color.BLACK) + "\n");
 	}
 	
 }
