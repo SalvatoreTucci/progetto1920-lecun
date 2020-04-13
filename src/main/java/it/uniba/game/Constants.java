@@ -27,6 +27,8 @@ public final class Constants {
 	
 	public final static int FIRST_ROW = 0;
 	public final static int LAST_ROW = 7;
+	public final static int LONG_MOVE_LENGTH = 2;
+	
 	
 	// Constants for the class Chessboard
 	public final static String CB_LETTERS_COORDS = "   A B C D E F G H\n";
@@ -52,4 +54,13 @@ public final class Constants {
 	public final static int CHAR_COLUMN_OFFSET = 97;
 	public final static int ROW_OFFSET = 8;
 	
+	//Constants for adders 
+	public final static int UP_DIRECTION = -1;
+	public final static int DOWN_DIRECTION = 1;
+	public final static int LEFT_DIRECTION = 1;
+	public final static int RIGHT_DIRECTION = -1;
+	public final static int STILL_DIRECTION = 0;
+	
+	//Constants for the class Vector
+	public final static int EMPTY_SIZE = 0;
 }
