@@ -26,19 +26,26 @@ class Match {
 		
 	}
 	
+
 	public void inputMove(String toParse) {
 
-		Move parsedMove = parseMove(toParse);
-		parsedMove = findToMove(parsedMove);
-		
-		if(parsedMove.getCaptureFlag()){
-			insertCapture(parsedMove);
-		}
-		
-		field.setMove(parsedMove);
-		
-		moves.add(toParse);
-	}
+	        Move parsedMove = parseMove(toParse);
+	        findToMove(parsedMove);
+
+	        if(parsedMove.getPiece().getClass() == Pawn.class) {
+
+	            setPawnEnPassantFlag(parsedMove);
+	        }
+
+	        if(parsedMove.getCaptureFlag()){
+	            insertCapture(parsedMove);
+	        }
+
+	        field.setMove(parsedMove);
+
+	        moves.add(toParse);
+
+    }
 	
 	void insertCapture(Move captureMove) {
 /*		
