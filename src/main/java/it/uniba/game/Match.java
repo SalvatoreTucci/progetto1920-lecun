@@ -160,6 +160,7 @@ class Match {
 												break;
 					case Constants.CHAR_KNIGHT:	toMove = new Knight(currentPlayer);
 												break;
+					default:
 				}
 				offsetDisambiguation = 1;
 				
