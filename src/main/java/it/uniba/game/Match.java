@@ -123,8 +123,8 @@ class Match {
 		
 		if(validMove) {
 			boolean capture = toParse.contains(Constants.MOVE_CAPTURE);
-			Coordinates finalPos = new Coordinates((int) (toParse.charAt(toParse.length() - 2) - Constants.CHAR_COLUMN_OFFSET),
-					Math.abs((int) toParse.charAt(toParse.length() - 1) - Constants.ROW_OFFSET));
+			Coordinates finalPos = new Coordinates((int) (toParse.charAt(toParse.length() - Constants.MOVE_COLUMN_OFFSET) - Constants.CHAR_COLUMN_OFFSET),
+					Math.abs((int) toParse.charAt(toParse.length() - Constants.MOVE_ROW_OFFSET) - Constants.ROW_OFFSET));
 			
 			Piece toMove = null;
 			int offsetDisambiguation = 0;

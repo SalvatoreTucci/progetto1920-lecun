@@ -43,6 +43,8 @@ public final class Constants {
 	public final static char CHAR_BISHOP = 'A';
 	public final static char CHAR_KNIGHT = 'C';
 	public final static String MOVE_CAPTURE = "x";
+	public final static int MOVE_COLUMN_OFFSET = 2;
+	public final static int MOVE_ROW_OFFSET = 1;
 	public final static int INVALID_POS = -1;
 	public final static String GENERAL_MOVE_REGEX = "([RDTAC])?([a-h]|[1-8])?(x)?([a-h])([1-8])";
 	public final static String PIECE_MOVE_REGEX = "([RDTAC])?.*";
