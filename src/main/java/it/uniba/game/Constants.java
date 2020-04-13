@@ -32,12 +32,17 @@ public final class Constants {
 	
 	// Constants for the class Chessboard
 	public final static String CB_LETTERS_COORDS = "   A B C D E F G H\n";
-	public final static String CB_FIRST_ROW = "  \u250C\u2500\u2530\u2500\u2530\u2500\u2530\u2500\u2530\u2500\u2530\u2500\u2530\u2500\u2530\u2500\u2510\n";
+	public final static String CB_FIRST_ROW = "  \u250C\u2500\u2530\u2500\u2530\u2500\u2530"
+			+ "\u2500\u2530\u2500\u2530\u2500\u2530\u2500\u2530\u2500\u2510\n";
 	public final static String CB_VERTICAL_SQUARE_SYMBOL = "\u2502 ";
-	public final static String CB_MIDDLE_ROW_SQUARES = "  \u251C\u2500\u253C\u2500\u253C\u2500\u253C\u2500\u253C\u2500\u253C\u2500\u253C\u2500\u253C\u2500\u2526\n";
-	public final static String CB_LAST_ROW = "  \u2514\u2500\u2534\u2500\u2534\u2500\u2534\u2500\u2534\u2500\u2534\u2500\u2534\u2500\u2534\u2500\u2518\n";
+	public final static String CB_MIDDLE_ROW_SQUARES = "  \u251C\u2500\u253C\u2500\u253C\u2500"
+			+ "\u253C\u2500\u253C\u2500\u253C\u2500\u253C\u2500\u253C\u2500\u2526\n";
+	public final static String CB_LAST_ROW = "  \u2514\u2500\u2534\u2500\u2534\u2500\u2534\u2500"
+			+ "\u2534\u2500\u2534\u2500\u2534\u2500\u2534\u2500\u2518\n";
 	public final static String CB_EMPY_SQUARE = " ";
 	
+	
+
 	// Constants for the class Match
 	public final static char CHAR_KING = 'R';
 	public final static char CHAR_QUEEN = 'D';
@@ -63,4 +68,28 @@ public final class Constants {
 	
 	//Constants for the class Vector
 	public final static int EMPTY_SIZE = 0;
+	
+	// Constants containing Messages and for the class UI
+	// Commands
+	public final static String HELP_COMMAND = "help";
+	public final static String START_COMMAND = "play";
+	public final static String QUIT_COMMAND = "quit";
+	public final static String SHOW_BOARD_COMMAND = "board";
+	public final static String HISTORY_COMMAND = "moves";
+	public final static String CAPTURE_COMMAND = "capture";
+	
+	// Messages
+	public final static String UNRECOGNIZED_COMM_ERR = "Comando Sconosciuto \n";
+	public final static String ALREADY_STARTED_ERR = "C'e' gia' un match aperto. \n";
+	public final static String START_MESS = "Nuova Partita! Inizia il bianco: \n";
+	public final static String QUIT_MESS = "Sei sicuro di voler uscire? (si/no) \n";
+	public final static String INCORRECT_QUIT_RESPONSE = "Non ho capito. Sei sicuro? \n";
+	public final static String HELP = "help \nplay \nquit \n"
+			+ "Comandi in-game:\n \nmoves \nboard \ncapture";
+		
+	//Other
+	public final static String YES = "si";
+	public final static String NO = "no";
+	
+	
 }

@@ -112,7 +112,7 @@ class Match {
 		return printableHistory;
 	}
 	
-	public String getPrintableChessboard() {
+	public String getPrintableChessBoard() {
 		
 		return field.toString();
 	}
