@@ -7,6 +7,11 @@ import java.security.GeneralSecurityException;
 
 import it.uniba.sotorrent.GoogleDocsUtils;
 
+import it.uniba.game.UI;
+import java.util.Scanner;
+import java.io.PrintStream;
+import java.io.UnsupportedEncodingException;
+
 /**
  * The main class for the project. It must be customized to meet the project
  * assignment specifications.
@@ -28,29 +33,24 @@ public final class AppMain {
 	 * @param args The command-line arguments.
 	 */
 	public static void main(final String[] args) {
-
-		System.out.println("Current working dir: " + System.getProperty("user.dir"));
-
-		if (args.length > 0) {
-			switch (args[0]) {
-			case "it":
-				System.out.println("Applicazione avviata.");
-				break;
-
-			case "en":
-				System.out.println("Application started.");
-				break;
-
-			default:
-				System.out.println("Specify the language. "
-								   + "Languages supported: 'it' or 'en'");
-				break;
-			}
-		} else {
-			System.out.println("Using default language 'en'");
-			System.out.println("Application started.");
+		
+		try {
+			PrintStream utf8Out = new PrintStream(System.out,false,"UTF-8");
+			System.setOut(utf8Out);
 		}
-
+		catch(UnsupportedEncodingException e) {
+			
+		}
+		
+		UI gameUI = new UI();
+		String command;
+		Scanner userInput = new Scanner(System.in);
+		do {
+			command = userInput.nextLine();
+			gameUI.parseCommand(command);
+		}while(!gameUI.getStatus());
+		
+		userInput.close();
 	}
 
 }
