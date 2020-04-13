@@ -88,16 +88,25 @@ public class ChessBoard {
 		return res;
 	}
 	
-	void setMove(Move currentMove) {
+	public void setMove(Move currentMove) {
 		
 		Coordinates start = currentMove.getEndingPos();
 		Coordinates end   = currentMove.getStartingPos();
 		
 		elements[end.getRow()][end.getColumn()] = elements[start.getRow()][start.getColumn()];
+			
 		elements[start.getRow()][start.getColumn()] = null;
+			
+		
+		if (currentMove.getEnPassant()) {
+			
+			int addR = ( currentMove.getPiece().getColor() == Piece.Color.WHITE ) ? Constants.DOWN_DIRECTION : Constants.UP_DIRECTION;
+			elements[end.getRow() + addR][end.getColumn()] = null;
+		}
+		
 	}
 	
-	Piece getPiece(Coordinates coord) {
-		return elements[coord.getRow()][coord.getColumn()].getPiece();
+	public Square getSquare(Coordinates coord) {
+		return elements[coord.getRow()][coord.getColumn()];
 	}
 }
