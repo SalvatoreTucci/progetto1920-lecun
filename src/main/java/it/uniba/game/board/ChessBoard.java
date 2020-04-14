@@ -78,7 +78,7 @@ public class ChessBoard {
 				
 			}
 			
-			res += Constants.CB_VERTICAL_SQUARE_SYMBOL + Math.abs(i - 8) + "\n";
+			res += Constants.CB_VERTICAL_SQUARE_SYMBOL + " " + Math.abs(i - 8) + "\n";
 			if(i != 7) {
 				res += Constants.CB_MIDDLE_ROW_SQUARES;
 			}
