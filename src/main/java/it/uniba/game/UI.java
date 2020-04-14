@@ -69,6 +69,7 @@ public class UI {
 					break;
 				default:
 					currentMatch.inputMove(toParse);
+					currentMatch.nextTurn();
 			}
 		} else {
 			System.err.println(Constants.UNRECOGNIZED_COMM_ERR);
@@ -105,7 +106,6 @@ public class UI {
 				System.out.println(Constants.INCORRECT_QUIT_RESPONSE);
 			}
 		} while (!read.equals(Constants.YES) && !read.equals(Constants.NO));
-//		keyboard.close();
 		
 	}
 	

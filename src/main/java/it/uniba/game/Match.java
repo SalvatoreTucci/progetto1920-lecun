@@ -199,19 +199,19 @@ class Match {
 		
 		Vector<Coordinates> possibleSquares = toMove.getPiece().reverseMove(toMove);
 		
-		
 		//checking if there are possible pieces to move in the vector possibleSquares
 		int i = 0;
 		while (i < possibleSquares.size()) {
 			
-			if (field.getSquare( possibleSquares.get(i) ).getPiece().equal(toMove.getPiece())) {
+			if (field.getSquare( possibleSquares.get(i) ).isOccupied() 
+					&& field.getSquare( possibleSquares.get(i) ).getPiece().equal(toMove.getPiece())) {
 				i++ ;
 			} else {
 				
 				possibleSquares.remove(i);
 			}
 		}
-		
+
 		//now possibleSquares contains the Coordinates where there's a possible piece to move in the field
 		
 		//if we're handling a capture, the control is passed to a more specific method
@@ -224,9 +224,9 @@ class Match {
 			
 			//check on there's a piece in the middle
 			int k = 0;
-			
+
 			while (k < possibleSquares.size()) {
-				
+
 				if(isObstructed(possibleSquares.get(k), toMove.getEndingPos()) || field.getSquare(toMove.getEndingPos()).isOccupied()) {
 					
 					possibleSquares.remove(k);
@@ -247,7 +247,7 @@ class Match {
 				
 				//exception-----------------------------------------------------------------
 			}
-			
+
 			toMove.setStartingPos(possibleSquares.firstElement());
 			
 		}
@@ -293,18 +293,18 @@ class Match {
 		
 		} else if(startingPos.getColumn() > endingPos.getColumn()) {
 			
-			addC = Constants.UP_DIRECTION;
+			addC = Constants.LEFT_DIRECTION;
 			
 		} else {
 			
-			addC = Constants.DOWN_DIRECTION;
+			addC = Constants.RIGHT_DIRECTION;
 		}
 		
 		for (int i = startingPos.getRow() + addR, j = startingPos.getColumn() + addC;
 				i != endingPos.getRow() || j != endingPos.getColumn();
 				i += addR, j += addC ) {
 			
-			if (field.getSquare(new Coordinates(i, j)).isOccupied()) {
+			if (field.getSquare(new Coordinates(j, i)).isOccupied()) {
 				
 				return true;
 			}

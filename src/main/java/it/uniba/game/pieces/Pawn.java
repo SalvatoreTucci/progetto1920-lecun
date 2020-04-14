@@ -72,7 +72,8 @@ public final class Pawn extends Piece {
 				startingPos.add(new Coordinates(target.getEndingPos().getColumn() - 1, target.getEndingPos().getRow() + addInRow));
 				
 			}
-			else if(target.getEndingPos().getColumn() < Constants.LAST_ROW) {
+			
+			if(target.getEndingPos().getColumn() < Constants.LAST_ROW) {
 				startingPos.add(new Coordinates(target.getEndingPos().getColumn() + 1, target.getEndingPos().getRow() + addInRow));
 				
 			}
