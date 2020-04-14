@@ -68,7 +68,7 @@ public class ChessBoard {
 				res += Constants.CB_VERTICAL_SQUARE_SYMBOL;
 				
 				if(elements[i][j].isOccupied()) {
-					res += elements[i][j].getPiece().toString();
+					res += " " + elements[i][j].getPiece().toString() + " ";
 					
 				}
 				else {
@@ -92,18 +92,18 @@ public class ChessBoard {
 	
 	public void setMove(Move currentMove) {
 		
-		Coordinates start = currentMove.getEndingPos();
-		Coordinates end   = currentMove.getStartingPos();
+		Coordinates start = currentMove.getStartingPos();
+		Coordinates end   = currentMove.getEndingPos();
 		
-		elements[end.getRow()][end.getColumn()] = elements[start.getRow()][start.getColumn()];
+		elements[end.getRow()][end.getColumn()].setPiece(currentMove.getPiece());
 			
-		elements[start.getRow()][start.getColumn()] = null;
+		elements[start.getRow()][start.getColumn()].setPiece(null);
 			
 		
 		if (currentMove.getEnPassant()) {
 			
 			int addR = ( currentMove.getPiece().getColor() == Piece.Color.WHITE ) ? Constants.DOWN_DIRECTION : Constants.UP_DIRECTION;
-			elements[end.getRow() + addR][end.getColumn()] = null;
+			elements[end.getRow() + addR][end.getColumn()].setPiece(null);
 		}
 		
 	}
