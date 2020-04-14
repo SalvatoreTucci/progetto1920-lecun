@@ -92,10 +92,10 @@ public class ChessBoard {
 	
 	public void setMove(Move currentMove) {
 		
-		Coordinates start = currentMove.getEndingPos();
-		Coordinates end   = currentMove.getStartingPos();
+		Coordinates start = currentMove.getStartingPos();
+		Coordinates end   = currentMove.getEndingPos();
 		
-		elements[end.getRow()][end.getColumn()].setPiece(elements[start.getRow()][start.getColumn()].getPiece());
+		elements[end.getRow()][end.getColumn()].setPiece(currentMove.getPiece());
 			
 		elements[start.getRow()][start.getColumn()].setPiece(null);
 			
