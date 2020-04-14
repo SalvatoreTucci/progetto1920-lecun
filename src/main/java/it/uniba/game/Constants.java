@@ -34,7 +34,7 @@ public final class Constants {
 	public final static String CB_LETTERS_COORDS = "    A   B   C   D   E   F   G   H\n";
 	public final static String CB_FIRST_ROW = "  +\u2014\u2014\u2014+\u2014\u2014\u2014+\u2014\u2014"
 			+ "\u2014+\u2014\u2014\u2014+\u2014\u2014\u2014+\u2014\u2014\u2014+\u2014\u2014\u2014+\u2014\u2014\u2014+\n";
-	public final static String CB_VERTICAL_SQUARE_SYMBOL = "\u2502 ";
+	public final static String CB_VERTICAL_SQUARE_SYMBOL = "\u2502";
 	public final static String CB_MIDDLE_ROW_SQUARES = "  +\u2014\u2014\u2014+\u2014\u2014\u2014+\u2014\u2014\u2014+"
 			+ "\u2014\u2014\u2014+\u2014\u2014\u2014+\u2014\u2014\u2014+\u2014\u2014\u2014+\u2014\u2014\u2014+\n";
 	public final static String CB_LAST_ROW = "  +\u2014\u2014\u2014+\u2014\u2014\u2014+\u2014\u2014\u2014+\u2014\u2014"
