@@ -68,7 +68,7 @@ public class ChessBoard {
 				res += Constants.CB_VERTICAL_SQUARE_SYMBOL;
 				
 				if(elements[i][j].isOccupied()) {
-					res += elements[i][j].getPiece().toString();
+					res += " " + elements[i][j].getPiece().toString() + " ";
 					
 				}
 				else {
