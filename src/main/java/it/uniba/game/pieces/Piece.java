@@ -39,7 +39,7 @@ public abstract class Piece{
 
     public boolean equal(Piece toCompare) {
     	
-    	if(this.toString() == toCompare.toString()) {
+    	if (this.toString().equals(toCompare.toString())) {
     		
     		return true;
     	}
