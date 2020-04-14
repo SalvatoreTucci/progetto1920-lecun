@@ -62,8 +62,8 @@ public final class Constants {
 	//Constants for adders 
 	public final static int UP_DIRECTION = -1;
 	public final static int DOWN_DIRECTION = 1;
-	public final static int LEFT_DIRECTION = 1;
-	public final static int RIGHT_DIRECTION = -1;
+	public final static int LEFT_DIRECTION = -1;
+	public final static int RIGHT_DIRECTION = 1;
 	public final static int STILL_DIRECTION = 0;
 	
 	//Constants for the class Vector
