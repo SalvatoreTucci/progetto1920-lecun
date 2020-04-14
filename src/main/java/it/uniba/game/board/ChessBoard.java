@@ -95,15 +95,15 @@ public class ChessBoard {
 		Coordinates start = currentMove.getEndingPos();
 		Coordinates end   = currentMove.getStartingPos();
 		
-		elements[end.getRow()][end.getColumn()] = elements[start.getRow()][start.getColumn()];
+		elements[end.getRow()][end.getColumn()].setPiece(elements[start.getRow()][start.getColumn()].getPiece());
 			
-		elements[start.getRow()][start.getColumn()] = null;
+		elements[start.getRow()][start.getColumn()].setPiece(null);
 			
 		
 		if (currentMove.getEnPassant()) {
 			
 			int addR = ( currentMove.getPiece().getColor() == Piece.Color.WHITE ) ? Constants.DOWN_DIRECTION : Constants.UP_DIRECTION;
-			elements[end.getRow() + addR][end.getColumn()] = null;
+			elements[end.getRow() + addR][end.getColumn()].setPiece(null);
 		}
 		
 	}
