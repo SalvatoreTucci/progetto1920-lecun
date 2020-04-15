@@ -80,6 +80,7 @@ public final class Constants {
 	public final static String CAPTURE_COMMAND = "capture";
 	
 	// Messages
+	public final static String WELCOME = W_KING + " Benvenuto! Per conoscere i comandi digita 'help' " + B_KNIGHT;
 	public final static String ERR_UNRECOGNIZED_COMMAND = "Comando Sconosciuto o non eseguibile (prova help)";
 	public final static String ERR_ALREADY_STARTED = "C'e' gia' un match aperto. ";
 	public final static String START_MESS = "Nuova Partita! Inizia il bianco: ";
@@ -94,7 +95,7 @@ public final class Constants {
 	
 	// Exception Messages
 	public final static String ERR_UNRECOGNIZED_MOVE = "La mossa o il comando inserito non "
-			+ "è stato riconosciuto";
+			+ "e' stato riconosciuto";
 	public final static String ERR_ILLEGAL_MOVE = "Mossa illegale";
 	public final static String ERR_AMBIGUOUS_MOVE = "Mossa ambigua";
 	public final static String ERR_BAD_DISAMBIGUATION = "Disambiguazione mal specificata";

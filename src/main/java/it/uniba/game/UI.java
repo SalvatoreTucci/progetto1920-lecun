@@ -152,4 +152,9 @@ public class UI {
 		System.out.println(currentMatch.getPrintableCaptures(Piece.Color.BLACK) + "\n");
 	}
 	
+	public void printWelcome() {
+		
+		System.out.println(Constants.WELCOME);
+	}
+	
 }
