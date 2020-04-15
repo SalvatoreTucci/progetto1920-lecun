@@ -48,8 +48,8 @@ public final class AppMain {
 		do {
 			
 			command = userInput.nextLine();
-			gameUI.parseCommand(command);
-			
+			gameUI.parseCommand(command.trim());
+
 		}while(!gameUI.getStatus());
 		
 		userInput.close();
