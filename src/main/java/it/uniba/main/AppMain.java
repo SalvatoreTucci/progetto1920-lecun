@@ -1,12 +1,5 @@
 package it.uniba.main;
 
-import java.io.FileNotFoundException;
-import java.io.IOException;
-import java.net.URISyntaxException;
-import java.security.GeneralSecurityException;
-
-import it.uniba.sotorrent.GoogleDocsUtils;
-
 import it.uniba.game.UI;
 import java.util.Scanner;
 import java.io.PrintStream;
@@ -24,7 +17,6 @@ public final class AppMain {
 	 * Private constructor. Change if needed.
 	 */
 	private AppMain() {
-
 	}
 
 	/**
@@ -35,10 +27,10 @@ public final class AppMain {
 	public static void main(final String[] args) {
 		
 		try {
+			
 			PrintStream utf8Out = new PrintStream(System.out,false,"UTF-8");
 			System.setOut(utf8Out);
-		}
-		catch(UnsupportedEncodingException e) {
+		} catch (UnsupportedEncodingException e) {
 			
 		}
 		
@@ -49,8 +41,7 @@ public final class AppMain {
 			
 			command = userInput.nextLine();
 			gameUI.parseCommand(command.trim());
-
-		}while(!gameUI.getStatus());
+		} while (!gameUI.getStatus());
 		
 		userInput.close();
 	}
