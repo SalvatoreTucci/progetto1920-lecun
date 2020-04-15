@@ -79,7 +79,7 @@ public final class Constants {
 	public final static String CAPTURE_COMMAND = "capture";
 	
 	// Messages
-	public final static String ERR_UNRECOGNIZED_COMM = "Comando Sconosciuto \n";
+	public final static String ERR_UNRECOGNIZED_COMMAND = "Comando Sconosciuto \n";
 	public final static String ERR_ALREADY_STARTED = "C'e' gia' un match aperto. \n";
 	public final static String START_MESS = "Nuova Partita! Inizia il bianco: \n";
 	public final static String QUIT_MESS = "Sei sicuro di voler uscire? (si/no) \n";

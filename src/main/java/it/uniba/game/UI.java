@@ -37,7 +37,7 @@ public class UI {
 					
 					startGame();
 				} else {
-					System.out.println(Constants.ALREADY_STARTED_ERR);
+					System.out.println(Constants.ERR_ALREADY_STARTED);
 				}
 				break;
 			case Constants.QUIT_COMMAND: 
@@ -72,7 +72,7 @@ public class UI {
 					currentMatch.nextTurn();
 			}
 		} else {
-			System.err.println(Constants.UNRECOGNIZED_COMM_ERR);
+			System.err.println(Constants.ERR_UNRECOGNIZED_COMMAND);
 			
 		}
 	
