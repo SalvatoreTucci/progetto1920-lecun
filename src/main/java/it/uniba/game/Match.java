@@ -375,8 +375,17 @@ class Match {
 						solveAmbiguousMoves(possibleSquares, toMove);
 					}
 					
-					toMove.setStartingPos(possibleSquares.firstElement());
-					toMove.setEnPassant();
+					if (!possibleSquares.isEmpty()) {
+						
+						toMove.setStartingPos(possibleSquares.firstElement());
+						toMove.setEnPassant();
+						
+					} else {
+						
+						throw new MatchException(Constants.ERR_ILLEGAL_MOVE);
+					}
+					
+
 					
 				} else {
 					
