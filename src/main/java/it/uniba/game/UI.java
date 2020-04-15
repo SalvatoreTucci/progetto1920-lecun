@@ -8,11 +8,11 @@ public class UI {
 	 * Class for App-User interaction
 	 */
 	
-	//Attributes
+	// Attributes
 	private Match currentMatch;
 	private boolean quitGame;
 	
-	//Methods
+	// Methods
 
 	/*
 	 * returns the required status of the application (true = to be closed,
@@ -45,7 +45,9 @@ public class UI {
 				break;
 			default:
 				handleInGameCommand(toParse);
+				
 		}
+		
 	}
 	
 	/*
@@ -81,7 +83,6 @@ public class UI {
 		} else {
 			
 			System.err.println(Constants.ERR_UNRECOGNIZED_COMMAND);
-			
 		}
 	
 	}
