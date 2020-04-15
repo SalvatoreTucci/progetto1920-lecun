@@ -91,10 +91,13 @@ class Match {
 		
 	}
 	
+	/*
+	 *  Returns a printable version of the move history, as in
+	 *  1. e3, b6
+	 *	2. c4, f6
+	 */
 	public String getPrintableMoves() {
-		// returns a printable version of the move history, as in
-		// 1. e3, b6
-		// 2. c4, f6
+
 		
 		String printableHistory = new String();
 
@@ -130,8 +133,9 @@ class Match {
 		return currentPlayer;
 	}
 	
+	// method used to proceed in the game flow
 	public void nextTurn() {
-		// method used to proceed in the game flow
+
 		
 		if (currentPlayer == Piece.Color.BLACK) {
 			
@@ -143,10 +147,13 @@ class Match {
 		
 	}
 
+	/* 
+	 * Parses a move from a user entered string, following the algebraic notation
+	 * the general form for a recognized move is:
+	 * [Piece][Disambiguation coordinate][Capture][Landing square column][Landing square row]
+	 */ 
 	private Move parseMove(String toParse) throws MatchException {
-		// parses a move from a user entered string, following the algebraic notation
-		// the general form for a recognized move is:
-		// [Piece][Disambiguation coordinate][Capture][Landing square column][Landing square row]
+
 		
 		boolean validMove = Pattern.matches(Constants.GENERAL_MOVE_REGEX, toParse);
 		
@@ -330,8 +337,9 @@ class Match {
 		
 	}
 	
+	// Solves possible ambiguous moves
 	private void solveAmbiguousMoves(Vector<Coordinates> possibleSquares, Move toMove) throws MatchException {
-		// solve possible ambiguous moves
+		
 		
 		if (toMove.getStartingPos().getRow() != Constants.INVALID_POS) {
 			

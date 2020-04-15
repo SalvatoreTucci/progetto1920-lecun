@@ -9,6 +9,8 @@ public final class Pawn extends Piece {
 	/*
 	 * Subclass of Piece representing the Pawn
 	 */
+	
+	// Attributes
 	private boolean enPassant;
 	
 	// Constructor
