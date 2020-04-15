@@ -79,13 +79,13 @@ public final class Constants {
 	public final static String CAPTURE_COMMAND = "capture";
 	
 	// Messages
-	public final static String ERR_UNRECOGNIZED_COMMAND = "Comando Sconosciuto \n";
-	public final static String ERR_ALREADY_STARTED = "C'e' gia' un match aperto. \n";
-	public final static String START_MESS = "Nuova Partita! Inizia il bianco: \n";
-	public final static String QUIT_MESS = "Sei sicuro di voler uscire? (si/no) \n";
-	public final static String INCORRECT_QUIT_RESPONSE = "Non ho capito. Sei sicuro? \n";
-	public final static String HELP = "help \nplay \nquit \n"
-			+ "Comandi in-game:\n \nmoves \nboard \ncapture";
+	public final static String ERR_UNRECOGNIZED_COMMAND = "Comando Sconosciuto o non eseguibile (prova help)";
+	public final static String ERR_ALREADY_STARTED = "C'e' gia' un match aperto. ";
+	public final static String START_MESS = "Nuova Partita! Inizia il bianco: ";
+	public final static String QUIT_MESS = "Sei sicuro di voler uscire? (si/no) ";
+	public final static String INCORRECT_QUIT_RESPONSE = "Non ho capito. Sei sicuro? ";
+	public final static String HELP = "\nhelp \nplay \nquit \n"
+			+ "Riconosciuti solo in-game: \nmoves \nboard \ncapture";
 		
 	//Other
 	public final static String YES = "si";
@@ -98,6 +98,8 @@ public final class Constants {
 	public final static String ERR_AMBIGUOUS_MOVE = "Mossa ambigua";
 	public final static String ERR_BAD_DISAMBIGUATION = "Disambiguazione mal specificata";
 	public final static String ERR_EN_PASSANT = "En passant non eseguibile";
+	public final static String ERR_EN_PASSANT_BAD_TARGET = "Impossibile eseguire En Passant "
+			+ "sul pezzo selezionato";
 	public final static String ERR_BAD_TARGET = "Pezzo non catturabile";
 	public final static String ERR_TEMP_BAD_MOVE = "Pezzo utilizzabile in questa iterazione";
 	

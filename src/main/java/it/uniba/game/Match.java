@@ -28,7 +28,7 @@ class Match {
 		
 	}
 	
-	public void inputMove(String toParse) {
+	public void inputMove(String toParse) throws MatchException {
 
 		Move parsedMove = parseMove(toParse);
 		findToMove(parsedMove);
@@ -134,14 +134,14 @@ class Match {
 		}
 	}
 
-	private Move parseMove(String toParse) {
+	private Move parseMove(String toParse) throws MatchException {
 		// parses a move from a user entered string, following the algebraic notation
 		// the general form for a recognized move is:
 		// [Piece][Disambiguation coordinate][Capture][Landing square column][Landing square row]
 		
 		boolean validMove = Pattern.matches(Constants.GENERAL_MOVE_REGEX, toParse);
 		
-		if(validMove) {
+		if (validMove) {
 			boolean capture = toParse.contains(Constants.MOVE_CAPTURE);
 			Coordinates finalPos = new Coordinates((int) (toParse.charAt(toParse.length() - Constants.MOVE_COLUMN_OFFSET) - Constants.CHAR_COLUMN_OFFSET),
 					Math.abs(Character.getNumericValue(toParse.charAt(toParse.length() - Constants.MOVE_ROW_OFFSET)) - Constants.ROW_OFFSET));
@@ -149,7 +149,7 @@ class Match {
 			Piece toMove = null;
 			int offsetDisambiguation = 0;
 			
-			if(Pattern.matches(Constants.PIECE_MOVE_REGEX, toParse)) {
+			if (Pattern.matches(Constants.PIECE_MOVE_REGEX, toParse)) {
 				switch(toParse.charAt(0)) {
 					case Constants.CHAR_KING: 	toMove = new King(currentPlayer);
 												break;
@@ -165,37 +165,34 @@ class Match {
 				}
 				offsetDisambiguation = 1;
 				
-			}
-			else {
+			} else {
 				toMove = new Pawn(currentPlayer);
 				
 			}
 			
 			Coordinates startPos = new Coordinates(Constants.INVALID_POS, Constants.INVALID_POS);
 			
-			if(Pattern.matches(Constants.DISAMBIGUATION_REGEX, toParse)) {
+			if (Pattern.matches(Constants.DISAMBIGUATION_REGEX, toParse)) {
 				
-				if((int) toParse.charAt(offsetDisambiguation) >= Constants.CHAR_COLUMN_OFFSET) {
+				if ((int) toParse.charAt(offsetDisambiguation) >= Constants.CHAR_COLUMN_OFFSET) {
 					startPos.setColumn((int) (toParse.charAt(offsetDisambiguation) - Constants.CHAR_COLUMN_OFFSET));
 					
-				}
-				else {
-					startPos.setRow(Math.abs((int) toParse.charAt(offsetDisambiguation) - Constants.ROW_OFFSET));
+				} else {
 					
+					startPos.setRow(Math.abs((int) toParse.charAt(offsetDisambiguation) - Constants.ROW_OFFSET));
 				}
 				
 			}
 			
 			return new Move(toMove, startPos, finalPos, capture);
 			
-		}
-		else {
-			return null;
+		} else {
 			
+			throw new MatchException(Constants.ERR_UNRECOGNIZED_MOVE);
 		}
 	}
 	
-	private void findToMove(Move toMove) {
+	private void findToMove(Move toMove) throws MatchException {
 		
 		Vector<Coordinates> possibleSquares = toMove.getPiece().reverseMove(toMove);
 		
@@ -245,7 +242,7 @@ class Match {
 			//if there are no alternatives raise an exception
 			if (possibleSquares.size() == Constants.EMPTY_SIZE) {
 				
-				//exception-----------------------------------------------------------------
+				throw new MatchException(Constants.ERR_ILLEGAL_MOVE);
 			}
 
 			toMove.setStartingPos(possibleSquares.firstElement());
@@ -255,7 +252,7 @@ class Match {
 	}
 
 	//specific method which handles the situation where the move is a capture
-	private void findToMoveCapture(Move toMove, Vector<Coordinates> possibleSquares) {
+	private void findToMoveCapture(Move toMove, Vector<Coordinates> possibleSquares) throws MatchException {
 		
 		if (toMove.getPiece().getClass() == Pawn.class) {
 			
@@ -265,6 +262,7 @@ class Match {
 			
 			//to be expanded in further sprints
 			//At the moment this block will throw an exception, because we can only move pawns for now 
+			throw new MatchException(Constants.ERR_TEMP_BAD_MOVE);
 		}
 		
 	}
@@ -312,7 +310,7 @@ class Match {
 		return false;
 	}
 	
-	private void solveAmbiguousMoves(Vector<Coordinates> possibleSquares, Move toMove) {
+	private void solveAmbiguousMoves(Vector<Coordinates> possibleSquares, Move toMove) throws MatchException {
 		//solve possible ambiguous moves
 		
 		if (toMove.getStartingPos().getRow() != Constants.INVALID_POS) {
@@ -345,17 +343,19 @@ class Match {
 		} else {
 			
 			//exception-----------------------------------------------------------------
+			throw new MatchException(Constants.ERR_BAD_DISAMBIGUATION);
 		}
 		
 		//if there's still more than one alternative raise an exception
 		if (possibleSquares.size() > 1) {
 			
 			//exception-----------------------------------------------------------------
+			throw new MatchException(Constants.ERR_AMBIGUOUS_MOVE);
 		}
 		
 	}
 	
-	private void handlePawn(Move toMove, Vector<Coordinates> possibleSquares) {
+	private void handlePawn(Move toMove, Vector<Coordinates> possibleSquares) throws MatchException {
 		
 		if ( !field.getSquare(toMove.getEndingPos()).isOccupied() ) {
 			
@@ -375,17 +375,28 @@ class Match {
 						solveAmbiguousMoves(possibleSquares, toMove);
 					}
 					
-					toMove.setStartingPos(possibleSquares.firstElement());
-					toMove.setEnPassant();
+					if (!possibleSquares.isEmpty()) {
+						
+						toMove.setStartingPos(possibleSquares.firstElement());
+						toMove.setEnPassant();
+						
+					} else {
+						
+						throw new MatchException(Constants.ERR_ILLEGAL_MOVE);
+					}
+					
+
 					
 				} else {
 					
 					//exception regarding the impossibility of doing an EnPassant move on the target pawn
+					throw new MatchException(Constants.ERR_EN_PASSANT);
 				}
 				
 			} else {
 				
 				//exception regarding an incorrect EnPassant move
+				throw new MatchException(Constants.ERR_EN_PASSANT_BAD_TARGET);
 			}
 			
 		} else if (( field.getSquare(toMove.getEndingPos()).getPiece().getColor() != toMove.getPiece().getColor() )) {
@@ -394,11 +405,20 @@ class Match {
 				
 				solveAmbiguousMoves(possibleSquares, toMove);
 			}
-			toMove.setStartingPos(possibleSquares.firstElement());
+			
+			if (!possibleSquares.isEmpty()) {
+				
+				toMove.setStartingPos(possibleSquares.firstElement());
+				
+			} else {
+				
+				throw new MatchException(Constants.ERR_ILLEGAL_MOVE);
+			}
 			
 		} else {
 			
 			//exception regarding the wrong target piece which has to be captured
+			throw new MatchException(Constants.ERR_BAD_TARGET);
 		}
 	}
 	

@@ -68,10 +68,18 @@ public class UI {
 					printCaptures();
 					break;
 				default:
-					currentMatch.inputMove(toParse);
-					currentMatch.nextTurn();
+					
+					try {
+						
+						currentMatch.inputMove(toParse);
+						currentMatch.nextTurn();
+					} catch (MatchException toHandle) {
+						
+						System.err.println(toHandle.getMessage());
+					}
 			}
 		} else {
+			
 			System.err.println(Constants.ERR_UNRECOGNIZED_COMMAND);
 			
 		}
