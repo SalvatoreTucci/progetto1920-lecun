@@ -47,7 +47,7 @@ public final class AppMain {
 		Scanner userInput = new Scanner(System.in);
 		do {
 			command = userInput.nextLine();
-			gameUI.parseCommand(command);
+			gameUI.parseCommand(command.trim());
 		}while(!gameUI.getStatus());
 		
 		userInput.close();
