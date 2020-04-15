@@ -11,18 +11,19 @@ public final class Knight extends Piece{
 	 * the method reverseMove will be extended later
 	*/
 	
-	//Constructor
+	// Constructor
 	public Knight(Color col) {
 
 		super(col);
 		
-		if(pieceColor == Color.BLACK) {
+		if (pieceColor == Color.BLACK) {
 			
 			symbol = Constants.B_KNIGHT;
 		} else {
 			
 			symbol = Constants.W_KNIGHT;
 		}
+		
 	}
 	
 	public Vector<Coordinates> reverseMove(Move target) {

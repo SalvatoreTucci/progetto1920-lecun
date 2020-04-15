@@ -5,22 +5,23 @@ import it.uniba.game.Constants;
 import it.uniba.game.Coordinates;
 import it.uniba.game.Move;
 
-public final class Rook extends Piece{
+public final class Rook extends Piece {
 	/*
 	 * Subclass of Piece representing the Bishop, 
 	 * the method reverseMove will be extended later
 	*/
 	
-	//Constructor
+	// Constructor
 	public Rook(Color col) {
 		
 		super(col);
+		
 		if (pieceColor == Color.BLACK) {
 			
-			symbol=Constants.B_ROOK;
+			symbol = Constants.B_ROOK;
 		} else {
 			
-			symbol=Constants.W_ROOK;
+			symbol = Constants.W_ROOK;
 		}
 		
 	}

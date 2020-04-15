@@ -19,10 +19,10 @@ public final class King extends Piece {
 		
 		if (pieceColor == Color.BLACK) {
 			
-			symbol=Constants.B_KING;
+			symbol = Constants.B_KING;
 		} else {
 			
-			symbol=Constants.W_KING;
+			symbol = Constants.W_KING;
 		}
 		//eventually there will be introduced other inits
 	}
