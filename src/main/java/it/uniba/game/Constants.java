@@ -84,7 +84,7 @@ public final class Constants {
 	public final static String START_MESS = "Nuova Partita! Inizia il bianco: ";
 	public final static String QUIT_MESS = "Sei sicuro di voler uscire? (si/no) ";
 	public final static String INCORRECT_QUIT_RESPONSE = "Non ho capito. Sei sicuro? ";
-	public final static String HELP = "help \nplay \nquit \n"
+	public final static String HELP = "\nhelp \nplay \nquit \n"
 			+ "Riconosciuti solo in-game: \nmoves \nboard \ncapture";
 		
 	//Other
