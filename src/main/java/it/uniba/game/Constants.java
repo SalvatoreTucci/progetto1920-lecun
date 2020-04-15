@@ -19,30 +19,32 @@ public final class Constants {
 	public final static String W_PAWN = "\u2659";
 	public final static String B_PAWN = "\u265F";
 	
+	
 	// Constants for the class Pawn
 	public final static int B_MID_ROW = 3;
 	public final static int W_MID_ROW = 4;
 	public final static int B_DIRECTION_ROW = -1;
 	public final static int W_DIRECTION_ROW = 1;
-	
 	public final static int FIRST_ROW = 0;
 	public final static int LAST_ROW = 7;
 	public final static int LONG_MOVE_LENGTH = 2;
 	
 	
-	// Constants for the class Chessboard
+	// Constants for the class ChessBoard
 	public final static String CB_LETTERS_COORDS = "    A   B   C   D   E   F   G   H\n";
 	public final static String CB_FIRST_ROW = "  +\u2014\u2014\u2014+\u2014\u2014\u2014+\u2014\u2014"
-			+ "\u2014+\u2014\u2014\u2014+\u2014\u2014\u2014+\u2014\u2014\u2014+\u2014\u2014\u2014+\u2014\u2014\u2014+\n";
+			+ "\u2014+\u2014\u2014\u2014+\u2014\u2014\u2014+\u2014\u2014\u2014+\u2014\u2014\u2014+"
+			+ "\u2014\u2014\u2014+\n";
 	public final static String CB_VERTICAL_SQUARE_SYMBOL = "\u2502";
-	public final static String CB_MIDDLE_ROW_SQUARES = "  +\u2014\u2014\u2014+\u2014\u2014\u2014+\u2014\u2014\u2014+"
-			+ "\u2014\u2014\u2014+\u2014\u2014\u2014+\u2014\u2014\u2014+\u2014\u2014\u2014+\u2014\u2014\u2014+\n";
-	public final static String CB_LAST_ROW = "  +\u2014\u2014\u2014+\u2014\u2014\u2014+\u2014\u2014\u2014+\u2014\u2014"
-			+ "\u2014+\u2014\u2014\u2014+\u2014\u2014\u2014+\u2014\u2014\u2014+\u2014\u2014\u2014+\n";
+	public final static String CB_MIDDLE_ROW_SQUARES = "  +\u2014\u2014\u2014+\u2014\u2014\u2014+"
+			+ "\u2014\u2014\u2014+\u2014\u2014\u2014+\u2014\u2014\u2014+\u2014\u2014\u2014+\u2014"
+			+ "\u2014\u2014+\u2014\u2014\u2014+\n";
+	public final static String CB_LAST_ROW = "  +\u2014\u2014\u2014+\u2014\u2014\u2014+\u2014\u2014"
+			+ "\u2014+\u2014\u2014\u2014+\u2014\u2014\u2014+\u2014\u2014\u2014+\u2014\u2014\u2014+"
+			+ "\u2014\u2014\u2014+\n";
 	public final static String CB_EMPY_SQUARE = "   ";
 	
 	
-
 	// Constants for the class Match
 	public final static char CHAR_KING = 'R';
 	public final static char CHAR_QUEEN = 'D';
@@ -59,6 +61,7 @@ public final class Constants {
 	public final static int CHAR_COLUMN_OFFSET = 97;
 	public final static int ROW_OFFSET = 8;
 	
+	
 	//Constants for adders 
 	public final static int UP_DIRECTION = -1;
 	public final static int DOWN_DIRECTION = 1;
@@ -66,8 +69,6 @@ public final class Constants {
 	public final static int RIGHT_DIRECTION = 1;
 	public final static int STILL_DIRECTION = 0;
 	
-	//Constants for the class Vector
-	public final static int EMPTY_SIZE = 0;
 	
 	// Constants containing Messages and for the class UI
 	// Commands
