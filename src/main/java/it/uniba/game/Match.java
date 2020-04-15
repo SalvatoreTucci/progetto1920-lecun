@@ -28,7 +28,7 @@ class Match {
 		
 	}
 	
-	public void inputMove(String toParse) {
+	public void inputMove(String toParse) throws MatchException {
 
 		Move parsedMove = parseMove(toParse);
 		findToMove(parsedMove);
@@ -134,14 +134,14 @@ class Match {
 		}
 	}
 
-	private Move parseMove(String toParse) {
+	private Move parseMove(String toParse) throws MatchException {
 		// parses a move from a user entered string, following the algebraic notation
 		// the general form for a recognized move is:
 		// [Piece][Disambiguation coordinate][Capture][Landing square column][Landing square row]
 		
 		boolean validMove = Pattern.matches(Constants.GENERAL_MOVE_REGEX, toParse);
 		
-		if(validMove) {
+		if (validMove) {
 			boolean capture = toParse.contains(Constants.MOVE_CAPTURE);
 			Coordinates finalPos = new Coordinates((int) (toParse.charAt(toParse.length() - Constants.MOVE_COLUMN_OFFSET) - Constants.CHAR_COLUMN_OFFSET),
 					Math.abs(Character.getNumericValue(toParse.charAt(toParse.length() - Constants.MOVE_ROW_OFFSET)) - Constants.ROW_OFFSET));
@@ -149,7 +149,7 @@ class Match {
 			Piece toMove = null;
 			int offsetDisambiguation = 0;
 			
-			if(Pattern.matches(Constants.PIECE_MOVE_REGEX, toParse)) {
+			if (Pattern.matches(Constants.PIECE_MOVE_REGEX, toParse)) {
 				switch(toParse.charAt(0)) {
 					case Constants.CHAR_KING: 	toMove = new King(currentPlayer);
 												break;
@@ -165,21 +165,19 @@ class Match {
 				}
 				offsetDisambiguation = 1;
 				
-			}
-			else {
+			} else {
 				toMove = new Pawn(currentPlayer);
 				
 			}
 			
 			Coordinates startPos = new Coordinates(Constants.INVALID_POS, Constants.INVALID_POS);
 			
-			if(Pattern.matches(Constants.DISAMBIGUATION_REGEX, toParse)) {
+			if (Pattern.matches(Constants.DISAMBIGUATION_REGEX, toParse)) {
 				
-				if((int) toParse.charAt(offsetDisambiguation) >= Constants.CHAR_COLUMN_OFFSET) {
+				if ((int) toParse.charAt(offsetDisambiguation) >= Constants.CHAR_COLUMN_OFFSET) {
 					startPos.setColumn((int) (toParse.charAt(offsetDisambiguation) - Constants.CHAR_COLUMN_OFFSET));
 					
-				}
-				else {
+				} else {
 					
 					startPos.setRow(Math.abs((int) toParse.charAt(offsetDisambiguation) - Constants.ROW_OFFSET));
 				}
@@ -188,10 +186,9 @@ class Match {
 			
 			return new Move(toMove, startPos, finalPos, capture);
 			
-		}
-		else {
+		} else {
 			
-			return null;
+			throw new MatchException(Constants.ERR_UNRECOGNIZED_MOVE);
 		}
 	}
 	
@@ -404,6 +401,7 @@ class Match {
 		} else {
 			
 			//exception regarding the wrong target piece which has to be captured
+			throw new MatchException(Constants.ERR_BAD_TARGET);
 		}
 	}
 	
