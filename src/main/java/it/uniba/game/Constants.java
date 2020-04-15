@@ -79,8 +79,8 @@ public final class Constants {
 	public final static String CAPTURE_COMMAND = "capture";
 	
 	// Messages
-	public final static String UNRECOGNIZED_COMM_ERR = "Comando Sconosciuto \n";
-	public final static String ALREADY_STARTED_ERR = "C'e' gia' un match aperto. \n";
+	public final static String ERR_UNRECOGNIZED_COMM = "Comando Sconosciuto \n";
+	public final static String ERR_ALREADY_STARTED = "C'e' gia' un match aperto. \n";
 	public final static String START_MESS = "Nuova Partita! Inizia il bianco: \n";
 	public final static String QUIT_MESS = "Sei sicuro di voler uscire? (si/no) \n";
 	public final static String INCORRECT_QUIT_RESPONSE = "Non ho capito. Sei sicuro? \n";
@@ -91,5 +91,14 @@ public final class Constants {
 	public final static String YES = "si";
 	public final static String NO = "no";
 	
+	// Exception Messages
+	public final static String ERR_UNRECOGNIZED_MOVE = "La mossa o il comando inserito non "
+			+ "è stato riconosciuto";
+	public final static String ERR_ILLEGAL_MOVE = "Mossa illegale";
+	public final static String ERR_AMBIGUOUS_MOVE = "Mossa ambigua";
+	public final static String ERR_BAD_DISAMBIGUATION = "Disambiguazione mal specificata";
+	public final static String ERR_EN_PASSANT = "En passant non eseguibile";
+	public final static String ERR_BAD_TARGET = "Pezzo non catturabile";
+	public final static String ERR_TEMP_BAD_MOVE = "Pezzo utilizzabile in questa iterazione";
 	
 }
