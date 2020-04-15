@@ -11,18 +11,19 @@ public final class Bishop extends Piece {
 	 * the method reverseMove will be extended later
 	*/
 	
-	//Constructor
+	// Constructor
 	public Bishop(Color col) {
 
 		super(col);
 		
-		if(pieceColor == Color.BLACK) {
+		if (pieceColor == Color.BLACK) {
 			
 			symbol = Constants.B_BISHOP;
 		} else {
 			
 			symbol = Constants.W_BISHOP;
 		}
+		
 	}
 	
 	public Vector<Coordinates> reverseMove(Move target) {

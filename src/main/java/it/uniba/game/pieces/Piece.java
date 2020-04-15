@@ -1,10 +1,10 @@
-
 package it.uniba.game.pieces;
-import java.util.Vector;
 
+import java.util.Vector;
+import it.uniba.game.Coordinates;
 import it.uniba.game.Move;
 
-public abstract class Piece{
+public abstract class Piece {
     /*
     Abstract class representing a generic chess piece
      */
@@ -24,6 +24,9 @@ public abstract class Piece{
 
         pieceColor = col;
     }
+    
+    // will be specified in the sub-classes 
+    abstract public Vector<Coordinates> reverseMove(Move target);
 
     public Color getColor() {
 
@@ -35,7 +38,6 @@ public abstract class Piece{
         return symbol;
     }
 
-    abstract public Vector<it.uniba.game.Coordinates> reverseMove(Move target);
 
     public boolean equal(Piece toCompare) {
     	

@@ -3,7 +3,6 @@ package it.uniba.game.board;
 import it.uniba.game.pieces.*;
 import it.uniba.game.*;
 
-
 public class ChessBoard {
 	// Class used for represents the chessboard
 	
@@ -40,14 +39,14 @@ public class ChessBoard {
 		elements[7][3] = new Square(new Queen(Piece.Color.WHITE));
 		
 		// Inizialize Pawn pieces
-		for(int i = 0; i < 8; i++) {
+		for (int i = 0; i < 8; i++) {
 			elements[1][i] = new Square(new Pawn(Piece.Color.BLACK));
 			elements[6][i] = new Square(new Pawn(Piece.Color.WHITE));
 		}
 		
 		// Inizialize empty Squares
-		for(int i = 2; i < 6; i++) {
-			for(int j = 0; j < 8; j++) {
+		for (int i = 2; i < 6; i++) {
+			for (int j = 0; j < 8; j++) {
 				elements[i][j] = new Square(null);
 			}
 		}
@@ -58,28 +57,29 @@ public class ChessBoard {
 		String res = Constants.CB_LETTERS_COORDS;
 		res += Constants.CB_FIRST_ROW;
 		
-		for(int i = 0; i < 8; i++) {
-			for(int j = 0; j < 8; j++) {
-				if(j == 0) {
-					res += Math.abs(i - 8) + " ";
+		for (int i = 0; i < 8; i++) {
+			
+			for (int j = 0; j < 8; j++) {
+				if (j == 0) {
 					
+					res += Math.abs(i - 8) + " ";
 				}
 				
 				res += Constants.CB_VERTICAL_SQUARE_SYMBOL;
 				
-				if(elements[i][j].isOccupied()) {
+				if (elements[i][j].isOccupied()) {
 					res += " " + elements[i][j].getPiece().toString() + " ";
 					
-				}
-				else {
-					res += Constants.CB_EMPY_SQUARE;
+				} else {
 					
+					res += Constants.CB_EMPY_SQUARE;
 				}
 				
 			}
 			
 			res += Constants.CB_VERTICAL_SQUARE_SYMBOL + " " + Math.abs(i - 8) + "\n";
-			if(i != 7) {
+			if (i != 7) {
+				
 				res += Constants.CB_MIDDLE_ROW_SQUARES;
 			}
 		}
@@ -88,6 +88,7 @@ public class ChessBoard {
 		res += Constants.CB_LETTERS_COORDS;
 		
 		return res;
+		
 	}
 	
 	public void setMove(Move currentMove) {
@@ -102,13 +103,16 @@ public class ChessBoard {
 		
 		if (currentMove.getEnPassant()) {
 			
-			int addR = ( currentMove.getPiece().getColor() == Piece.Color.WHITE ) ? Constants.DOWN_DIRECTION : Constants.UP_DIRECTION;
+			int addR = ( currentMove.getPiece().getColor() == Piece.Color.WHITE )
+					? Constants.DOWN_DIRECTION : Constants.UP_DIRECTION;
 			elements[end.getRow() + addR][end.getColumn()].setPiece(null);
 		}
 		
 	}
 	
 	public Square getSquare(Coordinates coord) {
+		
 		return elements[coord.getRow()][coord.getColumn()];
 	}
+	
 }

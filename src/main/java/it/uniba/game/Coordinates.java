@@ -1,7 +1,9 @@
 package it.uniba.game;
 
-public class Coordinates{
-    // Class used to represent a position in the chessboard
+
+
+public class Coordinates {
+    // Class used to represent a position in the ChessBoard
 
     // Attributes
     private int row;
@@ -24,13 +26,14 @@ public class Coordinates{
         return column;
     }
 
-    public void setRow(int y){
+    public void setRow(int y) {
 
         row = y;
     }
 
-    public void setColumn(int x){
+    public void setColumn(int x) {
 
         column = x;
     }
+    
 }

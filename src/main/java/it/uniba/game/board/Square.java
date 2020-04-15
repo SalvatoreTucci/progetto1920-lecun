@@ -1,4 +1,5 @@
 package it.uniba.game.board;
+
 import it.uniba.game.pieces.Piece;
 
 public class Square {
@@ -7,17 +8,16 @@ public class Square {
 	 * where pieces are placed
 	*/
 	
-	//Attributes
+	// Attributes
 	private Piece placed;
 	
-	
-	//Constructor
+	// Constructor
 	public Square(Piece toPlace) {
 		
 		placed = toPlace;
 	}
 	
-	//Methods
+	// Methods
 	public Piece getPiece() {
 		
 		return placed;
@@ -31,12 +31,13 @@ public class Square {
 	
 	public boolean isOccupied() {
 		
-		if(getPiece() == null) {
+		if (getPiece() == null) {
 			
 			return false;
 		} else {
 			
 			return true;
 		}
-	} 
+	}
+	
 }

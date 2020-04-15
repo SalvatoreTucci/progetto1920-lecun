@@ -11,7 +11,7 @@ public final class Queen extends Piece {
 	 * the method reverseMove will be extended later
 	*/
 	
-	//Constructor
+	// Constructor
 	public Queen(Color col) {
 		
 		super(col);

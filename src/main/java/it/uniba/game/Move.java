@@ -1,7 +1,6 @@
 package it.uniba.game;
+
 import it.uniba.game.pieces.Piece;
-
-
 
 public class Move {
 	/*
@@ -9,20 +8,21 @@ public class Move {
 	 * (there will be an external method which will do this particular conversion from string to Move)
 	*/
 	
-	//Attributes
+	// Attributes
 	private Piece toMove;
 	private Coordinates startingPos;
 	private Coordinates endingPos;
 	private boolean isCapture;
 	private boolean isEnPassant = false;
 	
-	//Methods
+	// Methods
 	public Move(Piece pieceToSet, Coordinates startPos, Coordinates endPos, boolean cap) {
 		
 		setPiece(pieceToSet);
 		setStartingPos(startPos);
 		setEndingPos(endPos);
 		isCapture = cap;
+		
 	}
 	
 	public void setPiece(Piece pieceToSet) {
