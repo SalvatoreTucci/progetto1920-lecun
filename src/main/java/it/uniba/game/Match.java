@@ -180,8 +180,8 @@ class Match {
 					
 				}
 				else {
-					startPos.setRow(Math.abs((int) toParse.charAt(offsetDisambiguation) - Constants.ROW_OFFSET));
 					
+					startPos.setRow(Math.abs((int) toParse.charAt(offsetDisambiguation) - Constants.ROW_OFFSET));
 				}
 				
 			}
@@ -190,12 +190,12 @@ class Match {
 			
 		}
 		else {
-			return null;
 			
+			return null;
 		}
 	}
 	
-	private void findToMove(Move toMove) {
+	private void findToMove(Move toMove) throws MatchException {
 		
 		Vector<Coordinates> possibleSquares = toMove.getPiece().reverseMove(toMove);
 		
@@ -245,7 +245,7 @@ class Match {
 			//if there are no alternatives raise an exception
 			if (possibleSquares.size() == Constants.EMPTY_SIZE) {
 				
-				//exception-----------------------------------------------------------------
+				throw new MatchException(Constants.ERR_ILLEGAL_MOVE);
 			}
 
 			toMove.setStartingPos(possibleSquares.firstElement());
@@ -255,7 +255,7 @@ class Match {
 	}
 
 	//specific method which handles the situation where the move is a capture
-	private void findToMoveCapture(Move toMove, Vector<Coordinates> possibleSquares) {
+	private void findToMoveCapture(Move toMove, Vector<Coordinates> possibleSquares) throws MatchException {
 		
 		if (toMove.getPiece().getClass() == Pawn.class) {
 			
@@ -265,6 +265,7 @@ class Match {
 			
 			//to be expanded in further sprints
 			//At the moment this block will throw an exception, because we can only move pawns for now 
+			throw new MatchException(Constants.ERR_TEMP_BAD_MOVE);
 		}
 		
 	}
@@ -312,7 +313,7 @@ class Match {
 		return false;
 	}
 	
-	private void solveAmbiguousMoves(Vector<Coordinates> possibleSquares, Move toMove) {
+	private void solveAmbiguousMoves(Vector<Coordinates> possibleSquares, Move toMove) throws MatchException {
 		//solve possible ambiguous moves
 		
 		if (toMove.getStartingPos().getRow() != Constants.INVALID_POS) {
@@ -345,17 +346,19 @@ class Match {
 		} else {
 			
 			//exception-----------------------------------------------------------------
+			throw new MatchException(Constants.ERR_BAD_DISAMBIGUATION);
 		}
 		
 		//if there's still more than one alternative raise an exception
 		if (possibleSquares.size() > 1) {
 			
 			//exception-----------------------------------------------------------------
+			throw new MatchException(Constants.ERR_AMBIGUOUS_MOVE);
 		}
 		
 	}
 	
-	private void handlePawn(Move toMove, Vector<Coordinates> possibleSquares) {
+	private void handlePawn(Move toMove, Vector<Coordinates> possibleSquares) throws MatchException {
 		
 		if ( !field.getSquare(toMove.getEndingPos()).isOccupied() ) {
 			
@@ -381,11 +384,13 @@ class Match {
 				} else {
 					
 					//exception regarding the impossibility of doing an EnPassant move on the target pawn
+					throw new MatchException(Constants.ERR_EN_PASSANT);
 				}
 				
 			} else {
 				
 				//exception regarding an incorrect EnPassant move
+				throw new MatchException(Constants.ERR_EN_PASSANT_BAD_TARGET);
 			}
 			
 		} else if (( field.getSquare(toMove.getEndingPos()).getPiece().getColor() != toMove.getPiece().getColor() )) {
