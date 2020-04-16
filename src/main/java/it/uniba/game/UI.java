@@ -104,17 +104,38 @@ public class UI {
 	 */
 	private void quit() {
 	
-		System.out.println(Constants.QUIT_MESS);
+		quitGame = getConfirm(Constants.QUIT_MESS);
+		
+	}
+	
+	/*
+	 * asks the user whether to do something or not.
+	 * If the response is affirmative, returns true
+	 * else if it's negative negative, returns false
+	 * else the method keeps asking for a response.
+	 */
+	private boolean getConfirm(String question) {
+		
+		System.out.println(question);
 		Scanner keyboard = new Scanner(System.in);
 		String read;
 		do {
+			
 			read = keyboard.nextLine();
-			if(read.equals(Constants.YES)) {
-				quitGame = true;
-			} else if(!read.equals(Constants.NO)) {
-				System.out.println(Constants.INCORRECT_QUIT_RESPONSE);
+			read.toLowerCase();
+			read.trim();
+			
+			if (read.equals(Constants.YES)) {
+				
+				return true;
+			} else if (!read.equals(Constants.NO)) {
+				
+				System.out.println(Constants.ERR_INCORRECT_ANSWER);
 			}
+			
 		} while (!read.equals(Constants.YES) && !read.equals(Constants.NO));
+		
+		return false;
 		
 	}
 	
