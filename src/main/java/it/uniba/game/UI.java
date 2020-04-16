@@ -37,7 +37,10 @@ public class UI {
 					
 					startGame();
 				} else {
-					System.out.println(Constants.ERR_ALREADY_STARTED);
+					if (getConfirm(Constants.RESTART_MESS)) {
+						
+						startGame();
+					}
 				}
 				break;
 			case Constants.QUIT_COMMAND: 
@@ -122,8 +125,8 @@ public class UI {
 		do {
 			
 			read = keyboard.nextLine();
-			read.toLowerCase();
-			read.trim();
+			read = read.toLowerCase();
+			read = read.trim();
 			
 			if (read.equals(Constants.YES)) {
 				
