@@ -103,6 +103,6 @@ public final class Constants {
 	public final static String ERR_EN_PASSANT_BAD_TARGET = "Impossibile eseguire En Passant "
 			+ "sul pezzo selezionato";
 	public final static String ERR_BAD_TARGET = "Pezzo non catturabile";
-	public final static String ERR_TEMP_BAD_MOVE = "Pezzo utilizzabile in questa iterazione";
+	public final static String ERR_TEMP_BAD_MOVE = "Pezzo non utilizzabile in questa iterazione";
 	
 }
