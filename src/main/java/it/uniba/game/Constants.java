@@ -82,12 +82,12 @@ public final class Constants {
 	// Messages
 	public final static String WELCOME = W_KING + " Benvenuto! Per conoscere i comandi digita 'help' " + B_KNIGHT;
 	public final static String ERR_UNRECOGNIZED_COMMAND = "Comando Sconosciuto o non eseguibile (prova help)";
-	public final static String ERR_ALREADY_STARTED = "C'e' gia' un match aperto. ";
+	public final static String ERR_INCORRECT_ANSWER = "Non ho capito. Sei sicuro? (si/no)";
 	public final static String START_MESS = "Nuova Partita! Inizia il bianco: ";
-	public final static String QUIT_MESS = "Sei sicuro di voler uscire? (si/no) ";
-	public final static String INCORRECT_QUIT_RESPONSE = "Non ho capito. Sei sicuro? ";
+	public final static String RESTART_MESS = "Sei sicuro di voler ricominciare?";
+	public final static String QUIT_MESS = "Sei sicuro di voler uscire? ";
 	public final static String HELP = "\nhelp \nplay \nquit \n"
-			+ "Riconosciuti solo in-game: \nmoves \nboard \ncapture";
+			+ "Riconosciuti solo in-game: \nmoves \nboard \ncapture\n";
 		
 	//Other
 	public final static String YES = "si";
