@@ -258,6 +258,7 @@ class Match {
 			}
 		}
 
+		
 		// now possibleSquares contains the Coordinates where there's a possible piece to move in the field
 		
 		// if we're handling a capture, the control is passed to a more specific method
@@ -266,6 +267,7 @@ class Match {
 			
 			 this.findToMoveCapture(toMove, possibleSquares);
 		} else {
+			
 			
 			// checks whether there's a piece in the middle
 			int k = 0;
@@ -281,6 +283,7 @@ class Match {
 				}
 				
 			}
+			
 			
 			if (possibleSquares.size() > 1) {
 				

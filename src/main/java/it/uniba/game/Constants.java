@@ -30,8 +30,10 @@ public final class Constants {
 	// Constants for the pieces implementation
 	public final static int FIRST_ROW = 0;
 	public final static int LAST_ROW = 7;
+
 	public final static int FIRST_COLUMN = 0;
-	public final static int LAST_COLUMN = 0;
+	public final static int LAST_COLUMN = 7;
+
 	
 	
 	// Constants for the class ChessBoard
