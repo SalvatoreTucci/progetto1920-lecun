@@ -204,7 +204,7 @@ class Match {
 					}
 					
 					enPassant = true;
-					offsetFinalCoords = 5;
+					offsetFinalCoords = Constants.EN_PASSANT_COORDS_OFFSET;
 				}
 			}
 			

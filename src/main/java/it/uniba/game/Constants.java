@@ -61,6 +61,7 @@ public final class Constants {
 	public final static int CHAR_COLUMN_OFFSET = 97;
 	public final static int ROW_OFFSET = 8;
 	public final static String STRING_EN_PASSANT = "e.p.";
+	public final static int EN_PASSANT_COORDS_OFFSET = 5;
 	
 	
 	//Constants for adders 
