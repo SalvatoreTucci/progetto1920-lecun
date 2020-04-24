@@ -47,12 +47,12 @@ public final class Rook extends Piece {
 			
 			if(i != col) {
 				
-				possibleSquares.add(new Coordinates(col + i, row));
+				possibleSquares.add(new Coordinates(i, row));
 			}
 			
 			if(i != row) {
 				
-				possibleSquares.add(new Coordinates(col, row + i));
+				possibleSquares.add(new Coordinates(col, i));
 			}
 			
 		}
