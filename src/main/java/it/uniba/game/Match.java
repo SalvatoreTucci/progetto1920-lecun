@@ -113,7 +113,7 @@ class Match {
 			printableHistory += moves.elementAt(i);
 			
 			if (i % 2 == 0) {
-				printableHistory += ", ";
+				printableHistory += " ";
 			}
 			
 			i++;
