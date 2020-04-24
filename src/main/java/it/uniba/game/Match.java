@@ -153,16 +153,11 @@ class Match {
 	 * [Piece][Disambiguation coordinate][Capture][Landing square column][Landing square row]
 	 */ 
 	private Move parseMove(String toParse) throws MatchException {
-
-		
 		boolean validMove = Pattern.matches(Constants.GENERAL_MOVE_REGEX, toParse);
+		int offsetFinalCoords = 0;
 		
 		if (validMove) {
 			boolean capture = toParse.contains(Constants.MOVE_CAPTURE);
-			Coordinates finalPos = new Coordinates((int) (toParse.charAt(toParse.length() 
-					- Constants.MOVE_COLUMN_OFFSET) - Constants.CHAR_COLUMN_OFFSET),
-						Math.abs(Character.getNumericValue(toParse.charAt(toParse.length() 
-							- Constants.MOVE_ROW_OFFSET)) - Constants.ROW_OFFSET));
 			
 			Piece toMove = null;
 			int offsetDisambiguation = 0;
@@ -192,7 +187,7 @@ class Match {
 				
 				offsetDisambiguation = 1;
 				
-				if(toParse.contains("e.p.")) {
+				if(toParse.contains(Constants.STRING_EN_PASSANT)) {
 					
 					throw new MatchException(Constants.ERR_EN_PASSANT_BAD_TARGET);
 				}
@@ -201,7 +196,7 @@ class Match {
 				
 				toMove = new Pawn(currentPlayer);
 				
-				if(toParse.contains("e.p.")) {
+				if(toParse.contains(Constants.STRING_EN_PASSANT)) {
 					
 					if(!capture) {
 						
@@ -209,10 +204,15 @@ class Match {
 					}
 					
 					enPassant = true;
+					offsetFinalCoords = 5;
 				}
 			}
 			
 			Coordinates startPos = new Coordinates(Constants.INVALID_POS, Constants.INVALID_POS);
+			Coordinates finalPos = new Coordinates((int) (toParse.charAt(toParse.length() 
+					- Constants.MOVE_COLUMN_OFFSET - offsetFinalCoords) - Constants.CHAR_COLUMN_OFFSET),
+						Math.abs(Character.getNumericValue(toParse.charAt(toParse.length() 
+							- Constants.MOVE_ROW_OFFSET  - offsetFinalCoords)) - Constants.ROW_OFFSET));
 			
 			if (Pattern.matches(Constants.DISAMBIGUATION_REGEX, toParse)) {
 				
@@ -244,7 +244,6 @@ class Match {
 		
 		int i = 0;
 		while (i < possibleSquares.size()) {
-			
 			if (field.getSquare( possibleSquares.get(i) ).isOccupied() 
 					&& field.getSquare( possibleSquares.get(i) ).getPiece().equal(toMove.getPiece())) {
 				
