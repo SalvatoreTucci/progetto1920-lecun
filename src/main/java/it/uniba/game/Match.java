@@ -227,7 +227,11 @@ class Match {
 			}
 			
 			Move returnMove = new Move(toMove, startPos, finalPos, capture);
-			if(enPassant) returnMove.setEnPassant();
+			if (enPassant) {
+				
+				returnMove.setEnPassant();
+			}
+			
 			return returnMove;
 			
 		} else {
