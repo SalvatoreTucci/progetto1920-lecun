@@ -153,19 +153,15 @@ class Match {
 	 * [Piece][Disambiguation coordinate][Capture][Landing square column][Landing square row]
 	 */ 
 	private Move parseMove(String toParse) throws MatchException {
-
-		
 		boolean validMove = Pattern.matches(Constants.GENERAL_MOVE_REGEX, toParse);
+		int offsetFinalCoords = 0;
 		
 		if (validMove) {
 			boolean capture = toParse.contains(Constants.MOVE_CAPTURE);
-			Coordinates finalPos = new Coordinates((int) (toParse.charAt(toParse.length() 
-					- Constants.MOVE_COLUMN_OFFSET) - Constants.CHAR_COLUMN_OFFSET),
-						Math.abs(Character.getNumericValue(toParse.charAt(toParse.length() 
-							- Constants.MOVE_ROW_OFFSET)) - Constants.ROW_OFFSET));
 			
 			Piece toMove = null;
 			int offsetDisambiguation = 0;
+			boolean enPassant = false;
 			
 			if (Pattern.matches(Constants.PIECE_MOVE_REGEX, toParse)) {
 				
@@ -191,12 +187,32 @@ class Match {
 				
 				offsetDisambiguation = 1;
 				
+				if(toParse.contains(Constants.STRING_EN_PASSANT)) {
+					
+					throw new MatchException(Constants.ERR_EN_PASSANT_BAD_TARGET);
+				}
+				
 			} else {
 				
 				toMove = new Pawn(currentPlayer);
+				
+				if(toParse.contains(Constants.STRING_EN_PASSANT)) {
+					
+					if(!capture) {
+						
+						throw new MatchException(Constants.ERR_EN_PASSANT_NO_CAPTURE);
+					}
+					
+					enPassant = true;
+					offsetFinalCoords = Constants.EN_PASSANT_COORDS_OFFSET;
+				}
 			}
 			
 			Coordinates startPos = new Coordinates(Constants.INVALID_POS, Constants.INVALID_POS);
+			Coordinates finalPos = new Coordinates((int) (toParse.charAt(toParse.length() 
+					- Constants.MOVE_COLUMN_OFFSET - offsetFinalCoords) - Constants.CHAR_COLUMN_OFFSET),
+						Math.abs(Character.getNumericValue(toParse.charAt(toParse.length() 
+							- Constants.MOVE_ROW_OFFSET  - offsetFinalCoords)) - Constants.ROW_OFFSET));
 			
 			if (Pattern.matches(Constants.DISAMBIGUATION_REGEX, toParse)) {
 				
@@ -205,12 +221,18 @@ class Match {
 					startPos.setColumn((int) (toParse.charAt(offsetDisambiguation) - Constants.CHAR_COLUMN_OFFSET));	
 				} else {
 					
-					startPos.setRow(Math.abs((int) toParse.charAt(offsetDisambiguation) - Constants.ROW_OFFSET));
+					startPos.setRow(Math.abs(Character.getNumericValue(toParse.charAt(offsetDisambiguation)) - Constants.ROW_OFFSET));
 				}
 				
 			}
 			
-			return new Move(toMove, startPos, finalPos, capture);
+			Move returnMove = new Move(toMove, startPos, finalPos, capture);
+			if (enPassant) {
+				
+				returnMove.setEnPassant();
+			}
+			
+			return returnMove;
 			
 		} else {
 			
@@ -226,7 +248,6 @@ class Match {
 		
 		int i = 0;
 		while (i < possibleSquares.size()) {
-			
 			if (field.getSquare( possibleSquares.get(i) ).isOccupied() 
 					&& field.getSquare( possibleSquares.get(i) ).getPiece().equal(toMove.getPiece())) {
 				
@@ -237,6 +258,7 @@ class Match {
 			}
 		}
 
+		
 		// now possibleSquares contains the Coordinates where there's a possible piece to move in the field
 		
 		// if we're handling a capture, the control is passed to a more specific method
@@ -245,6 +267,7 @@ class Match {
 			
 			 this.findToMoveCapture(toMove, possibleSquares);
 		} else {
+			
 			
 			// checks whether there's a piece in the middle
 			int k = 0;
@@ -261,6 +284,7 @@ class Match {
 				
 			}
 			
+			
 			if (possibleSquares.size() > 1) {
 				
 				solveAmbiguousMoves(possibleSquares, toMove);
@@ -269,14 +293,7 @@ class Match {
 			// if there are no alternatives raise an exception
 			if (possibleSquares.isEmpty()) {
 				
-				if (toMove.getPiece().getClass() == Pawn.class) {
-					
 					throw new MatchException(Constants.ERR_ILLEGAL_MOVE);
-				} else { // note: this exception is temporary
-					
-					throw new MatchException(Constants.ERR_TEMP_BAD_MOVE);
-				}
-				
 			}
 
 			toMove.setStartingPos(possibleSquares.firstElement());
@@ -296,9 +313,38 @@ class Match {
 				&& (field.getSquare(toMove.getEndingPos()).getPiece().getColor() 
 						!= toMove.getPiece().getColor()) ) {
 			
-			// to be expanded in further sprints
-			// At the moment this block will throw an exception, because we can only move pawns for now 
-			throw new MatchException(Constants.ERR_TEMP_BAD_MOVE);
+			
+			if (toMove.getPiece().getClass() != Knight.class) {
+
+				int i = 0;
+				while (i < possibleSquares.size()) {
+				
+					
+					if (isObstructed(possibleSquares.get(i), toMove.getEndingPos())) {
+					
+						possibleSquares.remove(i);
+					} else {
+						
+						i++;
+					}
+				}
+			}
+			
+			if (possibleSquares.size() > 1) {
+			
+				solveAmbiguousMoves(possibleSquares, toMove);
+			}
+			
+			if (possibleSquares.isEmpty()) {
+				
+				throw new MatchException(Constants.ERR_ILLEGAL_MOVE);
+			}
+
+
+			toMove.setStartingPos(possibleSquares.firstElement());
+		} else {
+			
+			throw new MatchException(Constants.ERR_ILLEGAL_MOVE);
 		}
 		
 	}
@@ -440,7 +486,10 @@ class Match {
 			if (!possibleSquares.isEmpty()) {
 				
 				toMove.setStartingPos(possibleSquares.firstElement());
-				
+				if(toMove.getEnPassant()) {
+					
+					throw new MatchException(Constants.ERR_EN_PASSANT);
+				}
 			} else {
 				
 				throw new MatchException(Constants.ERR_ILLEGAL_MOVE);
