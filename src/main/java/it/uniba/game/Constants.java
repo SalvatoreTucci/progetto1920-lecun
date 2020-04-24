@@ -55,11 +55,13 @@ public final class Constants {
 	public final static int MOVE_COLUMN_OFFSET = 2;
 	public final static int MOVE_ROW_OFFSET = 1;
 	public final static int INVALID_POS = -1;
-	public final static String GENERAL_MOVE_REGEX = "([RDTAC])?([a-h]|[1-8])?(x)?([a-h])([1-8])";
+	public final static String GENERAL_MOVE_REGEX = "([RDTAC])?([a-h]|[1-8])?(x)?([a-h])([1-8])(\\se\\.p\\.)?";
 	public final static String PIECE_MOVE_REGEX = "([RDTAC]).*";
 	public final static String DISAMBIGUATION_REGEX = ".*([a-h]|[1-8])(x)?([a-h])([1-8])";
 	public final static int CHAR_COLUMN_OFFSET = 97;
 	public final static int ROW_OFFSET = 8;
+	public final static String STRING_EN_PASSANT = "e.p.";
+	public final static int EN_PASSANT_COORDS_OFFSET = 5;
 	
 	
 	//Constants for adders 
@@ -102,6 +104,7 @@ public final class Constants {
 	public final static String ERR_EN_PASSANT = "En passant non eseguibile";
 	public final static String ERR_EN_PASSANT_BAD_TARGET = "Impossibile eseguire En Passant "
 			+ "sul pezzo selezionato";
+	public final static String ERR_EN_PASSANT_NO_CAPTURE = "La mossa en passant deve essere una cattura.";
 	public final static String ERR_BAD_TARGET = "Pezzo non catturabile";
 	public final static String ERR_TEMP_BAD_MOVE = "Pezzo non utilizzabile in questa iterazione";
 	
