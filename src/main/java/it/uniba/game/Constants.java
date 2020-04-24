@@ -25,11 +25,15 @@ public final class Constants {
 	public final static int W_MID_ROW = 4;
 	public final static int B_DIRECTION_ROW = -1;
 	public final static int W_DIRECTION_ROW = 1;
-	public final static int FIRST_ROW = 0;
-	public final static int FIRST_COLUMN = 0;
-	public final static int LAST_ROW = 7;
-	public final static int LAST_COLUMN = 7;
 	public final static int LONG_MOVE_LENGTH = 2;
+	
+	// Constants for the pieces implementation
+	public final static int FIRST_ROW = 0;
+	public final static int LAST_ROW = 7;
+
+	public final static int FIRST_COLUMN = 0;
+	public final static int LAST_COLUMN = 0;
+
 	
 	
 	// Constants for the class ChessBoard
