@@ -246,8 +246,6 @@ class Match {
 		
 		// checking if there are possible pieces to move in the vector possibleSquares
 		
-		System.out.println(possibleSquares);
-		
 		int i = 0;
 		while (i < possibleSquares.size()) {
 			if (field.getSquare( possibleSquares.get(i) ).isOccupied() 
@@ -260,7 +258,6 @@ class Match {
 			}
 		}
 
-		System.out.println(possibleSquares);
 		
 		// now possibleSquares contains the Coordinates where there's a possible piece to move in the field
 		
@@ -271,7 +268,6 @@ class Match {
 			 this.findToMoveCapture(toMove, possibleSquares);
 		} else {
 			
-			System.out.println(possibleSquares);
 			
 			// checks whether there's a piece in the middle
 			int k = 0;
@@ -288,14 +284,11 @@ class Match {
 				
 			}
 			
-			System.out.println(possibleSquares);
 			
 			if (possibleSquares.size() > 1) {
 				
 				solveAmbiguousMoves(possibleSquares, toMove);
 			}
-			
-			System.out.println(possibleSquares);
 			
 			// if there are no alternatives raise an exception
 			if (possibleSquares.isEmpty()) {

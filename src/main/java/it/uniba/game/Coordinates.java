@@ -37,7 +37,8 @@ public class Coordinates {
     }
     
     public String toString() {
-    	return new String("(" + row +", "+ column + ")");
+    	
+    	return new String("(" + column + ", " + row + ")");
     }
     
 }
