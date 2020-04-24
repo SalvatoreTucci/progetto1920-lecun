@@ -166,6 +166,7 @@ class Match {
 			
 			Piece toMove = null;
 			int offsetDisambiguation = 0;
+			boolean enPassant = false;
 			
 			if (Pattern.matches(Constants.PIECE_MOVE_REGEX, toParse)) {
 				
@@ -191,9 +192,24 @@ class Match {
 				
 				offsetDisambiguation = 1;
 				
+				if(toParse.contains("e.p.")) {
+					
+					throw new MatchException(Constants.ERR_EN_PASSANT_BAD_TARGET);
+				}
+				
 			} else {
 				
 				toMove = new Pawn(currentPlayer);
+				
+				if(toParse.contains("e.p.")) {
+					
+					if(!capture) {
+						
+						throw new MatchException(Constants.ERR_EN_PASSANT_NO_CAPTURE);
+					}
+					
+					enPassant = true;
+				}
 			}
 			
 			Coordinates startPos = new Coordinates(Constants.INVALID_POS, Constants.INVALID_POS);
@@ -210,7 +226,9 @@ class Match {
 				
 			}
 			
-			return new Move(toMove, startPos, finalPos, capture);
+			Move returnMove = new Move(toMove, startPos, finalPos, capture);
+			if(enPassant) returnMove.setEnPassant();
+			return returnMove;
 			
 		} else {
 			
@@ -433,7 +451,10 @@ class Match {
 			if (!possibleSquares.isEmpty()) {
 				
 				toMove.setStartingPos(possibleSquares.firstElement());
-				
+				if(toMove.getEnPassant()) {
+					
+					throw new MatchException(Constants.ERR_EN_PASSANT);
+				}
 			} else {
 				
 				throw new MatchException(Constants.ERR_ILLEGAL_MOVE);
