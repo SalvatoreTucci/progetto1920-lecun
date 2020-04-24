@@ -60,6 +60,7 @@ public final class Constants {
 	public final static String DISAMBIGUATION_REGEX = ".*([a-h]|[1-8])(x)?([a-h])([1-8])";
 	public final static int CHAR_COLUMN_OFFSET = 97;
 	public final static int ROW_OFFSET = 8;
+	public final static String STRING_EN_PASSANT = "e.p.";
 	
 	
 	//Constants for adders 
