@@ -113,7 +113,7 @@ class Match {
 			printableHistory += moves.elementAt(i);
 			
 			if (i % 2 == 0) {
-				printableHistory += ", ";
+				printableHistory += " ";
 			}
 			
 			i++;
@@ -287,7 +287,14 @@ class Match {
 			// if there are no alternatives raise an exception
 			if (possibleSquares.isEmpty()) {
 				
-				throw new MatchException(Constants.ERR_ILLEGAL_MOVE);
+				if (toMove.getPiece().getClass() == Pawn.class) {
+					
+					throw new MatchException(Constants.ERR_ILLEGAL_MOVE);
+				} else { // note: this exception is temporary
+					
+					throw new MatchException(Constants.ERR_TEMP_BAD_MOVE);
+				}
+				
 			}
 
 			toMove.setStartingPos(possibleSquares.firstElement());
