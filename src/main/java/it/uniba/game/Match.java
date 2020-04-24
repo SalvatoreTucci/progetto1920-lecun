@@ -221,7 +221,7 @@ class Match {
 					startPos.setColumn((int) (toParse.charAt(offsetDisambiguation) - Constants.CHAR_COLUMN_OFFSET));	
 				} else {
 					
-					startPos.setRow(Math.abs((int) toParse.charAt(offsetDisambiguation) - Constants.ROW_OFFSET));
+					startPos.setRow(Math.abs(Character.getNumericValue(toParse.charAt(offsetDisambiguation)) - Constants.ROW_OFFSET));
 				}
 				
 			}
@@ -290,14 +290,7 @@ class Match {
 			// if there are no alternatives raise an exception
 			if (possibleSquares.isEmpty()) {
 				
-				if (toMove.getPiece().getClass() == Pawn.class) {
-					
 					throw new MatchException(Constants.ERR_ILLEGAL_MOVE);
-				} else { // note: this exception is temporary
-					
-					throw new MatchException(Constants.ERR_TEMP_BAD_MOVE);
-				}
-				
 			}
 
 			toMove.setStartingPos(possibleSquares.firstElement());
@@ -317,9 +310,38 @@ class Match {
 				&& (field.getSquare(toMove.getEndingPos()).getPiece().getColor() 
 						!= toMove.getPiece().getColor()) ) {
 			
-			// to be expanded in further sprints
-			// At the moment this block will throw an exception, because we can only move pawns for now 
-			throw new MatchException(Constants.ERR_TEMP_BAD_MOVE);
+			
+			if (toMove.getPiece().getClass() != Knight.class) {
+
+				int i = 0;
+				while (i < possibleSquares.size()) {
+				
+					
+					if (isObstructed(possibleSquares.get(i), toMove.getEndingPos())) {
+					
+						possibleSquares.remove(i);
+					} else {
+						
+						i++;
+					}
+				}
+			}
+			
+			if (possibleSquares.size() > 1) {
+			
+				solveAmbiguousMoves(possibleSquares, toMove);
+			}
+			
+			if (possibleSquares.isEmpty()) {
+				
+				throw new MatchException(Constants.ERR_ILLEGAL_MOVE);
+			}
+
+
+			toMove.setStartingPos(possibleSquares.firstElement());
+		} else {
+			
+			throw new MatchException(Constants.ERR_ILLEGAL_MOVE);
 		}
 		
 	}
