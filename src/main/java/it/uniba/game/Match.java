@@ -113,7 +113,7 @@ class Match {
 			printableHistory += moves.elementAt(i);
 			
 			if (i % 2 == 0) {
-				printableHistory += ", ";
+				printableHistory += " ";
 			}
 			
 			i++;
@@ -153,19 +153,15 @@ class Match {
 	 * [Piece][Disambiguation coordinate][Capture][Landing square column][Landing square row]
 	 */ 
 	private Move parseMove(String toParse) throws MatchException {
-
-		
 		boolean validMove = Pattern.matches(Constants.GENERAL_MOVE_REGEX, toParse);
+		int offsetFinalCoords = 0;
 		
 		if (validMove) {
 			boolean capture = toParse.contains(Constants.MOVE_CAPTURE);
-			Coordinates finalPos = new Coordinates((int) (toParse.charAt(toParse.length() 
-					- Constants.MOVE_COLUMN_OFFSET) - Constants.CHAR_COLUMN_OFFSET),
-						Math.abs(Character.getNumericValue(toParse.charAt(toParse.length() 
-							- Constants.MOVE_ROW_OFFSET)) - Constants.ROW_OFFSET));
 			
 			Piece toMove = null;
 			int offsetDisambiguation = 0;
+			boolean enPassant = false;
 			
 			if (Pattern.matches(Constants.PIECE_MOVE_REGEX, toParse)) {
 				
@@ -191,12 +187,32 @@ class Match {
 				
 				offsetDisambiguation = 1;
 				
+				if(toParse.contains(Constants.STRING_EN_PASSANT)) {
+					
+					throw new MatchException(Constants.ERR_EN_PASSANT_BAD_TARGET);
+				}
+				
 			} else {
 				
 				toMove = new Pawn(currentPlayer);
+				
+				if(toParse.contains(Constants.STRING_EN_PASSANT)) {
+					
+					if(!capture) {
+						
+						throw new MatchException(Constants.ERR_EN_PASSANT_NO_CAPTURE);
+					}
+					
+					enPassant = true;
+					offsetFinalCoords = Constants.EN_PASSANT_COORDS_OFFSET;
+				}
 			}
 			
 			Coordinates startPos = new Coordinates(Constants.INVALID_POS, Constants.INVALID_POS);
+			Coordinates finalPos = new Coordinates((int) (toParse.charAt(toParse.length() 
+					- Constants.MOVE_COLUMN_OFFSET - offsetFinalCoords) - Constants.CHAR_COLUMN_OFFSET),
+						Math.abs(Character.getNumericValue(toParse.charAt(toParse.length() 
+							- Constants.MOVE_ROW_OFFSET  - offsetFinalCoords)) - Constants.ROW_OFFSET));
 			
 			if (Pattern.matches(Constants.DISAMBIGUATION_REGEX, toParse)) {
 				
@@ -210,7 +226,13 @@ class Match {
 				
 			}
 			
-			return new Move(toMove, startPos, finalPos, capture);
+			Move returnMove = new Move(toMove, startPos, finalPos, capture);
+			if (enPassant) {
+				
+				returnMove.setEnPassant();
+			}
+			
+			return returnMove;
 			
 		} else {
 			
@@ -226,7 +248,6 @@ class Match {
 		
 		int i = 0;
 		while (i < possibleSquares.size()) {
-			
 			if (field.getSquare( possibleSquares.get(i) ).isOccupied() 
 					&& field.getSquare( possibleSquares.get(i) ).getPiece().equal(toMove.getPiece())) {
 				
@@ -440,7 +461,10 @@ class Match {
 			if (!possibleSquares.isEmpty()) {
 				
 				toMove.setStartingPos(possibleSquares.firstElement());
-				
+				if(toMove.getEnPassant()) {
+					
+					throw new MatchException(Constants.ERR_EN_PASSANT);
+				}
 			} else {
 				
 				throw new MatchException(Constants.ERR_ILLEGAL_MOVE);
