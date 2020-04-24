@@ -43,7 +43,7 @@ public final class Rook extends Piece {
 		int row = target.getEndingPos().getRow();
 		int col = target.getEndingPos().getColumn();
 		
-		for(int i = 0; i < Constants.LAST_ROW; i++) {
+		for(int i = 0; i <= Constants.LAST_ROW; i++) {
 			
 			if(i != col) {
 				
