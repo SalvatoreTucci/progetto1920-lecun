@@ -205,7 +205,7 @@ class Match {
 					startPos.setColumn((int) (toParse.charAt(offsetDisambiguation) - Constants.CHAR_COLUMN_OFFSET));	
 				} else {
 					
-					startPos.setRow(Math.abs((int) toParse.charAt(offsetDisambiguation) - Constants.ROW_OFFSET));
+					startPos.setRow(Math.abs(Character.getNumericValue(toParse.charAt(offsetDisambiguation)) - Constants.ROW_OFFSET));
 				}
 				
 			}
