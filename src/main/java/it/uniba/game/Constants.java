@@ -32,7 +32,7 @@ public final class Constants {
 	public final static int LAST_ROW = 7;
 
 	public final static int FIRST_COLUMN = 0;
-	public final static int LAST_COLUMN = 0;
+	public final static int LAST_COLUMN = 7;
 
 	
 	
