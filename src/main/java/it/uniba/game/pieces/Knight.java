@@ -35,22 +35,22 @@ public final class Knight extends Piece{
 		
 		if (endingR + 1 <= Constants.LAST_ROW) {
 			
-			if (endingC + 2 <= 7) {
+			if (endingC + 2 <= Constants.LAST_COLUMN) {
 				
 				possibleSquares.add( new Coordinates(endingC + 2, endingR +1 ) );
 			}
-			if (endingC - 2 >= 0) {
+			if (endingC - 2 >= Constants.FIRST_COLUMN) {
 				
 				possibleSquares.add( new Coordinates(endingC - 2, endingR + 1) );
 			}
 			
 			if (endingR + 2 <= Constants.LAST_ROW) {
 				
-				if (endingC + 1 <= 7) {
+				if (endingC + 1 <= Constants.LAST_COLUMN) {
 					
 					possibleSquares.add( new Coordinates(endingC + 1, endingR + 2) );
 				}
-				if (endingC - 1 >= 0) {
+				if (endingC - 1 >= Constants.FIRST_COLUMN) {
 					
 					possibleSquares.add( new Coordinates(endingC - 1, endingR + 2) );
 				}
@@ -60,22 +60,22 @@ public final class Knight extends Piece{
 		
 		if (endingR - 1 >= Constants.FIRST_ROW) {
 			
-			if (endingC + 2 <= 7) {
+			if (endingC + 2 <= Constants.LAST_COLUMN) {
 				
 				possibleSquares.add( new Coordinates(endingC + 2, endingR - 1) );
 			}
-			if (endingC - 2 >= 0) {
+			if (endingC - 2 >= Constants.FIRST_COLUMN) {
 				
 				possibleSquares.add( new Coordinates(endingC - 2, endingR - 1) );
 			}
 			
 			if (endingR - 2 >= Constants.FIRST_ROW) {
 				
-				if (endingC + 1 <= 7) {
+				if (endingC + 1 <= Constants.LAST_COLUMN) {
 					
 					possibleSquares.add( new Coordinates(endingC + 1, endingR - 2) );
 				}
-				if (endingC - 1 >= 0) {
+				if (endingC - 1 >= Constants.FIRST_COLUMN) {
 					
 					possibleSquares.add( new Coordinates(endingC - 1, endingR - 2) );
 				}

@@ -268,20 +268,22 @@ class Match {
 			 this.findToMoveCapture(toMove, possibleSquares);
 		} else {
 			
-			
+			if (toMove.getPiece().getClass() != Knight.class) {
 			// checks whether there's a piece in the middle
-			int k = 0;
-			while (k < possibleSquares.size()) {
-
-				if (isObstructed(possibleSquares.get(k), toMove.getEndingPos()) 
-						|| field.getSquare(toMove.getEndingPos()).isOccupied()) {
+				int k = 0;
+				while (k < possibleSquares.size()) {
+	
+					if (isObstructed(possibleSquares.get(k), toMove.getEndingPos()) 
+							|| field.getSquare(toMove.getEndingPos()).isOccupied()) {
+						
+						possibleSquares.remove(k);
+					} else {
+						
+						k++;
+					}
 					
-					possibleSquares.remove(k);
-				} else {
-					
-					k++;
 				}
-				
+			
 			}
 			
 			
