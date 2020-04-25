@@ -273,7 +273,7 @@ class Match {
 				int k = 0;
 				while (k < possibleSquares.size()) {
 	
-					if (isObstructed(possibleSquares.get(k), toMove.getEndingPos()) 
+					if ( (!getObstructingPieces(possibleSquares.get(k), toMove.getEndingPos()).isEmpty())
 							|| field.getSquare(toMove.getEndingPos()).isOccupied()) {
 						
 						possibleSquares.remove(k);
@@ -297,7 +297,15 @@ class Match {
 				
 					throw new MatchException(Constants.ERR_ILLEGAL_MOVE);
 			}
-
+			
+			if (toMove.getPiece().getClass() == King.class) {
+				
+				if (checkKingThreat(toMove)) {
+					
+					throw new MatchException(Constants.ERR_KING_THREAT);
+				}
+			} 
+			
 			toMove.setStartingPos(possibleSquares.firstElement());
 			
 		}
@@ -322,7 +330,7 @@ class Match {
 				while (i < possibleSquares.size()) {
 				
 					
-					if (isObstructed(possibleSquares.get(i), toMove.getEndingPos())) {
+					if ( !getObstructingPieces(possibleSquares.get(i), toMove.getEndingPos()).isEmpty() ) {
 					
 						possibleSquares.remove(i);
 					} else {
@@ -351,10 +359,12 @@ class Match {
 		
 	}
 	
-	private boolean isObstructed (Coordinates startingPos, Coordinates endingPos) {
+	private Vector<Piece> getObstructingPieces (Coordinates startingPos, Coordinates endingPos) {
 		
 		int addR;
 		int addC;
+		
+		Vector<Piece> toReturn = new Vector<Piece>(); 
 		
 		if (startingPos.getRow() == endingPos.getRow()) {
 			
@@ -384,11 +394,11 @@ class Match {
 			
 			if (field.getSquare(new Coordinates(j, i)).isOccupied()) {
 				
-				return true;
+				toReturn.add(field.getSquare(new Coordinates(j, i)).getPiece());
 			}
 			
 		}
-		return false;
+		return toReturn;
 		
 	}
 	
@@ -518,5 +528,108 @@ class Match {
 			((Pawn) toCheck.getPiece()).setEnPassant(false);
 		}
 		
+	}
+	
+	private Boolean checkKingThreat(Move toMove) {
+		
+		
+		
+		Vector<Coordinates> squaresToCheck;			//vector containing the coordinates for possibles threatning pieces 
+		squaresToCheck = Bishop.reverseBishopMove(toMove);	
+		
+		for (int i = 0; i < squaresToCheck.size(); i++) {
+	
+			if ( (field.getSquare(squaresToCheck.get(i)).getPiece() != null) 
+					&& (field.getSquare(squaresToCheck.get(i)).getPiece().getClass() == Bishop.class 
+					|| field.getSquare(squaresToCheck.get(i)).getPiece().getClass() == Queen.class)) {
+				
+				if (field.getSquare(squaresToCheck.get(i)).getPiece().getColor() != toMove.getPiece().getColor()) {
+					
+					Vector<Piece> obstructors = getObstructingPieces(squaresToCheck.get(i), toMove.getEndingPos());
+					
+					if (obstructors.isEmpty() || (obstructors.size() == 1 && (obstructors.firstElement().getClass()
+							== King.class) ) ) {
+					
+						return true;
+					}
+				}
+			}
+		}
+		
+		squaresToCheck = Rook.reverseRookMove(toMove);
+		
+		System.out.println(squaresToCheck.toString());
+		
+		for (int i = 0; i < squaresToCheck.size(); i++) {
+			
+			if ( (field.getSquare(squaresToCheck.get(i)).getPiece() != null) 
+					&& (field.getSquare(squaresToCheck.get(i)).getPiece().getClass() == Rook.class 
+					|| field.getSquare(squaresToCheck.get(i)).getPiece().getClass() == Queen.class)) {
+				
+				if (field.getSquare(squaresToCheck.get(i)).getPiece().getColor() != toMove.getPiece().getColor()) {
+					
+					Vector<Piece> obstructors = getObstructingPieces(squaresToCheck.get(i), toMove.getEndingPos());
+					
+					if(obstructors.isEmpty() || (obstructors.size() == 1 && (obstructors.firstElement().getClass()
+							== King.class) ) ) {
+					
+						return true;
+						
+					}
+				}
+			}
+		}
+		
+		squaresToCheck = Knight.reverseKnightMove(toMove);
+		
+		for (int i = 0; i < squaresToCheck.size(); i++) {
+			
+			if ( (field.getSquare(squaresToCheck.get(i)).getPiece() != null) 
+					&& (field.getSquare(squaresToCheck.get(i)).getPiece().getClass() == Knight.class) ) {
+				
+				if (field.getSquare(squaresToCheck.get(i)).getPiece().getColor() != toMove.getPiece().getColor()) {
+					
+					return true;
+				}
+			}
+		}
+		
+		int rowToCheck =  toMove.getEndingPos().getRow() + ((toMove.getPiece().getColor() == Piece.Color.BLACK) ? 1 : -1);
+		
+		
+		int firstColToCheck = toMove.getEndingPos().getColumn() - 1;
+		int secondColToCheck = toMove.getEndingPos().getColumn() + 1;
+		
+		if (rowToCheck >= Constants.FIRST_ROW && rowToCheck <= Constants.LAST_ROW) {
+			
+			if (firstColToCheck >= Constants.FIRST_COLUMN && firstColToCheck <= Constants.LAST_COLUMN) {
+				
+				if ( (field.getSquare(new Coordinates(firstColToCheck, rowToCheck)).getPiece() != null))  {
+					
+					if (field.getSquare(new Coordinates(firstColToCheck, rowToCheck)).getPiece().getClass() == Pawn.class 
+							&& field.getSquare(new Coordinates(firstColToCheck, rowToCheck)).getPiece().getColor() 
+							!= toMove.getPiece().getColor()) {
+						
+						return true;
+					}
+				}
+			}
+			
+			if (secondColToCheck >= Constants.FIRST_COLUMN && secondColToCheck <= Constants.LAST_COLUMN) {
+				
+				if ( !(field.getSquare(new Coordinates(secondColToCheck, rowToCheck)).getPiece() == null))  {
+					
+					if (field.getSquare(new Coordinates(secondColToCheck, rowToCheck)).getPiece().getClass() == Pawn.class 
+							&& field.getSquare(new Coordinates(secondColToCheck, rowToCheck)).getPiece().getColor() 
+							!= toMove.getPiece().getColor()) {
+						
+						return true;
+					}
+				}
+			}
+		}
+		
+		
+		return false;     
 	}
 }

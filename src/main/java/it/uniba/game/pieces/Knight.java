@@ -28,6 +28,11 @@ public final class Knight extends Piece{
 	
 	public Vector<Coordinates> reverseMove(Move target) {
 		
+		return reverseKnightMove(target);
+	}
+	
+	public static Vector<Coordinates> reverseKnightMove(Move target) {
+		
 		Vector<Coordinates> possibleSquares = new Vector<Coordinates>();
 		
 		int endingR = target.getEndingPos().getRow();
@@ -82,9 +87,8 @@ public final class Knight extends Piece{
 			}
 		
 		}
-		
-		
 		return possibleSquares;
 	}
+	
 	
 }
