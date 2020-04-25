@@ -600,11 +600,11 @@ class Match {
 		int firstColToCheck = toMove.getEndingPos().getColumn() - 1;
 		int secondColToCheck = toMove.getEndingPos().getColumn() + 1;
 		
-		if (rowToCheck <= Constants.FIRST_ROW && rowToCheck >= Constants.LAST_ROW) {
+		if (rowToCheck >= Constants.FIRST_ROW && rowToCheck <= Constants.LAST_ROW) {
 			
-			if (firstColToCheck <= Constants.FIRST_COLUMN && firstColToCheck >= Constants.LAST_COLUMN) {
+			if (firstColToCheck >= Constants.FIRST_COLUMN && firstColToCheck <= Constants.LAST_COLUMN) {
 				
-				if ( !(field.getSquare(new Coordinates(firstColToCheck, rowToCheck)) == null))  {
+				if ( (field.getSquare(new Coordinates(firstColToCheck, rowToCheck)).getPiece() != null))  {
 					
 					if (field.getSquare(new Coordinates(firstColToCheck, rowToCheck)).getPiece().getClass() == Pawn.class 
 							&& field.getSquare(new Coordinates(firstColToCheck, rowToCheck)).getPiece().getColor() 
@@ -615,9 +615,9 @@ class Match {
 				}
 			}
 			
-			if (secondColToCheck <= Constants.FIRST_COLUMN && secondColToCheck >= Constants.LAST_COLUMN) {
+			if (secondColToCheck >= Constants.FIRST_COLUMN && secondColToCheck <= Constants.LAST_COLUMN) {
 				
-				if ( !(field.getSquare(new Coordinates(secondColToCheck, rowToCheck)) == null))  {
+				if ( !(field.getSquare(new Coordinates(secondColToCheck, rowToCheck)).getPiece() == null))  {
 					
 					if (field.getSquare(new Coordinates(secondColToCheck, rowToCheck)).getPiece().getClass() == Pawn.class 
 							&& field.getSquare(new Coordinates(secondColToCheck, rowToCheck)).getPiece().getColor() 
