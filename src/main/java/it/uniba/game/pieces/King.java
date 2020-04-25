@@ -31,6 +31,25 @@ public final class King extends Piece {
 		
 		Vector<Coordinates> possibleSquares = new Vector<Coordinates>();
 		
+		int endColumn = target.getEndingPos().getColumn();
+		int endRow    = target.getEndingPos().getRow();
+		
+		for(int i = Constants.START_ROW_KING_REVERSE; i < Constants.MAX_ROW_KING_REVERSE; i++) {
+			
+			for(int j = Constants.START_COL_KING_REVERSE; j < Constants.MAX_COL_KING_REVERSE; j++) {
+				
+				if(endRow + i > Constants.LAST_ROW || endRow + i < Constants.FIRST_ROW
+						|| endColumn + j > Constants.LAST_COLUMN || endColumn + j < Constants.FIRST_COLUMN
+						|| (i == 0 && j == 0)) {
+					
+					continue;
+				}
+				
+				possibleSquares.add(new Coordinates(endColumn + j, endRow + i));
+			}
+			
+		}
+		
 		return possibleSquares;
 	}
 
