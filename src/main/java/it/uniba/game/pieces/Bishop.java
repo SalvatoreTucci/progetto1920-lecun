@@ -28,10 +28,10 @@ public final class Bishop extends Piece {
 	
 	public Vector<Coordinates> reverseMove(Move target) {
 		
-		return reverseBishopGeneral(target);
+		return reverseBishopMove(target);
 	}
 	
-	public static Vector<Coordinates> reverseBishopGeneral(Move target) {
+	public static Vector<Coordinates> reverseBishopMove(Move target) {
 		 
 		Vector<Coordinates> possibleSquares = new Vector<Coordinates>();
 		
