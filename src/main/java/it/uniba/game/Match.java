@@ -547,7 +547,7 @@ class Match {
 					
 					Vector<Piece> obstructors = getObstructingPieces(squaresToCheck.get(i), toMove.getEndingPos());
 					
-					if(obstructors.size() == 0 || (obstructors.size() == 1 && (obstructors.firstElement().getClass()
+					if (obstructors.isEmpty() || (obstructors.size() == 1 && (obstructors.firstElement().getClass()
 							== King.class) ) ) {
 					
 						return true;
@@ -570,7 +570,7 @@ class Match {
 					
 					Vector<Piece> obstructors = getObstructingPieces(squaresToCheck.get(i), toMove.getEndingPos());
 					
-					if(obstructors.size() == 0 || (obstructors.size() == 1 && (obstructors.firstElement().getClass()
+					if(obstructors.isEmpty() || (obstructors.size() == 1 && (obstructors.firstElement().getClass()
 							== King.class) ) ) {
 					
 						return true;
