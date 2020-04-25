@@ -27,8 +27,14 @@ public final class Queen extends Piece {
 	}
 	
 	public Vector<Coordinates> reverseMove(Move target){
+		/*
+		 *  The starting position of the Queen can be traced through the same checks done
+		 *  for the Rook and the Bishop
+		 */
 		
-		Vector<Coordinates> possibleSquares = new Vector<Coordinates>();
+		Vector<Coordinates> possibleSquares = Rook.reverseRookMove(target);
+		
+		possibleSquares.addAll(Bishop.reverseBishopMove(target));
 		
 		return possibleSquares;
 	}
