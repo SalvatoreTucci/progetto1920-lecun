@@ -273,7 +273,7 @@ class Match {
 				int k = 0;
 				while (k < possibleSquares.size()) {
 	
-					if (isObstructed(possibleSquares.get(k), toMove.getEndingPos()) 
+					if ( (!getObstructingPieces(possibleSquares.get(k), toMove.getEndingPos()).isEmpty())
 							|| field.getSquare(toMove.getEndingPos()).isOccupied()) {
 						
 						possibleSquares.remove(k);
@@ -330,7 +330,7 @@ class Match {
 				while (i < possibleSquares.size()) {
 				
 					
-					if (isObstructed(possibleSquares.get(i), toMove.getEndingPos())) {
+					if ( !getObstructingPieces(possibleSquares.get(i), toMove.getEndingPos()).isEmpty() ) {
 					
 						possibleSquares.remove(i);
 					} else {
@@ -359,10 +359,12 @@ class Match {
 		
 	}
 	
-	private boolean isObstructed (Coordinates startingPos, Coordinates endingPos) {
+	private Vector<Piece> getObstructingPieces (Coordinates startingPos, Coordinates endingPos) {
 		
 		int addR;
 		int addC;
+		
+		Vector<Piece> toReturn = new Vector<Piece>(); 
 		
 		if (startingPos.getRow() == endingPos.getRow()) {
 			
@@ -392,11 +394,11 @@ class Match {
 			
 			if (field.getSquare(new Coordinates(j, i)).isOccupied()) {
 				
-				return true;
+				toReturn.add(field.getSquare(new Coordinates(j, i)).getPiece());
 			}
 			
 		}
-		return false;
+		return toReturn;
 		
 	}
 	
@@ -537,13 +539,16 @@ class Match {
 		
 		for (int i = 0; i < squaresToCheck.size(); i++) {
 	
-			if ( !(field.getSquare(squaresToCheck.get(i)).getPiece() == null) 
+			if ( (field.getSquare(squaresToCheck.get(i)).getPiece() != null) 
 					&& (field.getSquare(squaresToCheck.get(i)).getPiece().getClass() == Bishop.class 
 					|| field.getSquare(squaresToCheck.get(i)).getPiece().getClass() == Queen.class)) {
 				
 				if (field.getSquare(squaresToCheck.get(i)).getPiece().getColor() != toMove.getPiece().getColor()) {
 					
-					if(!isObstructed(squaresToCheck.get(i), toMove.getEndingPos())) {
+					Vector<Piece> obstructors = getObstructingPieces(squaresToCheck.get(i), toMove.getEndingPos());
+					
+					if(obstructors.size() == 0 || (obstructors.size() == 1 && (obstructors.firstElement().getClass()
+							== King.class) ) ) {
 					
 						return true;
 					}
@@ -553,17 +558,23 @@ class Match {
 		
 		squaresToCheck = Rook.reverseRookMove(toMove);
 		
+		System.out.println(squaresToCheck.toString());
+		
 		for (int i = 0; i < squaresToCheck.size(); i++) {
 			
-			if ( !(field.getSquare(squaresToCheck.get(i)).getPiece() == null) 
+			if ( (field.getSquare(squaresToCheck.get(i)).getPiece() != null) 
 					&& (field.getSquare(squaresToCheck.get(i)).getPiece().getClass() == Rook.class 
 					|| field.getSquare(squaresToCheck.get(i)).getPiece().getClass() == Queen.class)) {
 				
 				if (field.getSquare(squaresToCheck.get(i)).getPiece().getColor() != toMove.getPiece().getColor()) {
 					
-					if(!isObstructed(squaresToCheck.get(i), toMove.getEndingPos())) {
+					Vector<Piece> obstructors = getObstructingPieces(squaresToCheck.get(i), toMove.getEndingPos());
+					
+					if(obstructors.size() == 0 || (obstructors.size() == 1 && (obstructors.firstElement().getClass()
+							== King.class) ) ) {
 					
 						return true;
+						
 					}
 				}
 			}
@@ -573,7 +584,7 @@ class Match {
 		
 		for (int i = 0; i < squaresToCheck.size(); i++) {
 			
-			if ( !(field.getSquare(squaresToCheck.get(i)).getPiece() == null) 
+			if ( (field.getSquare(squaresToCheck.get(i)).getPiece() != null) 
 					&& (field.getSquare(squaresToCheck.get(i)).getPiece().getClass() == Knight.class) ) {
 				
 				if (field.getSquare(squaresToCheck.get(i)).getPiece().getColor() != toMove.getPiece().getColor()) {
