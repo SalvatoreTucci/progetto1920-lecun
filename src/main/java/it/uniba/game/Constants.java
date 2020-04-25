@@ -113,5 +113,6 @@ public final class Constants {
 	public final static String ERR_EN_PASSANT_NO_CAPTURE = "La mossa en passant deve essere una cattura.";
 	public final static String ERR_BAD_TARGET = "Pezzo non catturabile";
 	public final static String ERR_TEMP_BAD_MOVE = "Pezzo non utilizzabile in questa iterazione";
+	public final static String ERR_KING_THREAT = "Mossa irregolare/illegale";
 	
 }

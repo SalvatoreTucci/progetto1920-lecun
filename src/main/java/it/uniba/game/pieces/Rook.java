@@ -37,7 +37,7 @@ public final class Rook extends Piece {
 	 * Method used to calculate all the possible starting squares in a rook
 	 * move, given the ending square
 	 */
-	static Vector<Coordinates> reverseRookMove(Move target) {
+	public static Vector<Coordinates> reverseRookMove(Move target) {
 		
 		Vector<Coordinates> possibleSquares = new Vector<Coordinates>();
 		int row = target.getEndingPos().getRow();
