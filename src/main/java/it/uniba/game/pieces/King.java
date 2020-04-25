@@ -34,9 +34,9 @@ public final class King extends Piece {
 		int endColumn = target.getEndingPos().getColumn();
 		int endRow    = target.getEndingPos().getRow();
 		
-		for(int i = Constants.START_ROW_KING_REVERSE; i < Constants.MAX_ROW_KING_REVERSE; i++) {
+		for(int i = Constants.START_ROW_KING_REVERSE; i <= Constants.MAX_ROW_KING_REVERSE; i++) {
 			
-			for(int j = Constants.START_COL_KING_REVERSE; j < Constants.MAX_COL_KING_REVERSE; j++) {
+			for(int j = Constants.START_COL_KING_REVERSE; j <= Constants.MAX_COL_KING_REVERSE; j++) {
 				
 				if(endRow + i > Constants.LAST_ROW || endRow + i < Constants.FIRST_ROW
 						|| endColumn + j > Constants.LAST_COLUMN || endColumn + j < Constants.FIRST_COLUMN
@@ -49,7 +49,7 @@ public final class King extends Piece {
 			}
 			
 		}
-		
+
 		return possibleSquares;
 	}
 

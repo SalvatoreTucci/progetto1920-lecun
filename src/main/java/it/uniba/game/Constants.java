@@ -104,8 +104,8 @@ public final class Constants {
 	public final static int START_ROW_KING_REVERSE = -1;
 	public final static int START_COL_KING_REVERSE = -1;
 	
-	public final static int MAX_ROW_KING_REVERSE = 3;
-	public final static int MAX_COL_KING_REVERSE = 3;
+	public final static int MAX_ROW_KING_REVERSE = 1;
+	public final static int MAX_COL_KING_REVERSE = 1;
 	
 	// Exception Messages
 	public final static String ERR_UNRECOGNIZED_MOVE = "La mossa o il comando inserito non "
