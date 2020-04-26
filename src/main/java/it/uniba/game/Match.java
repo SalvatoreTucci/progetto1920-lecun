@@ -31,28 +31,34 @@ class Match {
 	public void inputMove(String toParse) throws MatchException {
 
 		Move parsedMove = parseMove(toParse);
-		findToMove(parsedMove);
-		
-		if (parsedMove.getPiece().getClass() == Pawn.class) {
-		
-			setPawnEnPassantFlag(parsedMove);
-		}
-		else if (parsedMove.getPiece().getClass() == King.class) {
+		if (parsedMove.getCastling() == Move.Castling.NO_CASTLING) {
+			findToMove(parsedMove);
 			
-			((King) parsedMove.getPiece()).setMoved(true);
-		}
-		else if (parsedMove.getPiece().getClass() == Rook.class) {
+			if (parsedMove.getPiece().getClass() == Pawn.class) {
 			
-			((Rook) parsedMove.getPiece()).setMoved(true);
+				setPawnEnPassantFlag(parsedMove);
+			}
+			else if (parsedMove.getPiece().getClass() == King.class) {
+				
+				((King) parsedMove.getPiece()).setMoved(true);
+			}
+			else if (parsedMove.getPiece().getClass() == Rook.class) {
+				
+				((Rook) parsedMove.getPiece()).setMoved(true);
+			}
+			
+			if (parsedMove.getCaptureFlag()) {
+			
+				insertCapture(parsedMove);
+			}
+			
+			field.setMove(parsedMove);
+		
+		} else {
+			
+			handleCastling(parsedMove.getCastling());
 		}
-		
-		if (parsedMove.getCaptureFlag()) {
-		
-			insertCapture(parsedMove);
-		}
-		
-		field.setMove(parsedMove);
-		
+			
 		moves.add(toParse);
 
 	}
@@ -583,8 +589,6 @@ class Match {
 		
 		squaresToCheck = Rook.reverseRookMove(toMove);
 		
-		System.out.println(squaresToCheck.toString());
-		
 		for (int i = 0; i < squaresToCheck.size(); i++) {
 			
 			if ( (field.getSquare(squaresToCheck.get(i)).getPiece() != null) 
@@ -657,4 +661,83 @@ class Match {
 		
 		return false;     
 	}
+
+	private void handleCastling(Move.Castling castlingType) throws MatchException {
+		
+		Coordinates kingStartingPosition;
+		Coordinates rookStartingPosition;
+		Coordinates kingEndingPosition;
+		Coordinates rookEndingPosition;
+		
+		int rookStartingColumn = (castlingType == Move.Castling.KINGSIDE_CASTLING)
+				? Constants.LAST_COLUMN : Constants.FIRST_COLUMN;
+		int rookEndingColumn = (castlingType == Move.Castling.KINGSIDE_CASTLING)
+				? Constants.KS_ROOK_ENDING_COL : Constants.QS_ROOK_ENDING_COL;
+		int kingEndingColumn = (castlingType == Move.Castling.KINGSIDE_CASTLING) 
+				? Constants.KS_KING_ENDING_COL : Constants.QS_KING_ENDING_COL;
+		
+		if (currentPlayer == Piece.Color.WHITE) {
+			
+			kingStartingPosition = new Coordinates(Constants.KING_COL, Constants.LAST_ROW);
+			rookStartingPosition = new Coordinates(rookStartingColumn, Constants.LAST_ROW);
+			kingEndingPosition = new Coordinates(kingEndingColumn, Constants.LAST_ROW);
+			rookEndingPosition = new Coordinates(rookEndingColumn, Constants.LAST_ROW);
+		} else {
+			
+			kingStartingPosition = new Coordinates(Constants.KING_COL, Constants.FIRST_ROW);
+			rookStartingPosition = new Coordinates(rookStartingColumn, Constants.FIRST_ROW);
+			kingEndingPosition= new Coordinates(kingEndingColumn, Constants.FIRST_ROW);
+			rookEndingPosition = new Coordinates(rookEndingColumn, Constants.FIRST_ROW);
+		}
+		
+		if ( field.getSquare(kingStartingPosition).isOccupied() 
+				&& field.getSquare(kingStartingPosition).getPiece().getClass() == King.class
+				&& !(((King)field.getSquare(kingStartingPosition).getPiece()).isMoved())) {
+				// doesn't check the color since it would imply movement
+			
+			if ( field.getSquare(rookStartingPosition).isOccupied() 
+					&& field.getSquare(rookStartingPosition).getPiece().getClass() == Rook.class
+					&& !(((Rook)field.getSquare(rookStartingPosition).getPiece()).isMoved())) {	
+				
+				if (getObstructingPieces(kingStartingPosition, rookStartingPosition).isEmpty()) {
+					
+					King kingToPlace = new King(currentPlayer);
+					Move checkThreat1 = new Move(kingToPlace, null, kingStartingPosition, false); //move wrapper
+					Move checkThreat2 = new Move(kingToPlace, null, rookEndingPosition, false); //move wrapper
+					Move kingMove = new Move(kingToPlace, kingStartingPosition, kingEndingPosition, false); 
+					
+					if (!checkKingThreat(checkThreat1) 
+							&& !checkKingThreat(checkThreat2)
+							&& !checkKingThreat(kingMove)) {
+						
+						Rook rookToPlace = new Rook(currentPlayer);
+						Move rookMove = new Move(rookToPlace, rookStartingPosition, rookEndingPosition, false);
+						kingToPlace.setMoved(true);
+						rookToPlace.setMoved(true);
+						field.setMove(kingMove);
+						field.setMove(rookMove);
+						
+					} else {
+						
+						throw new MatchException(Constants.ERR_NC_KING_THREATENED);
+					}
+					
+				} else {
+
+					throw new MatchException(Constants.ERR_NC_PATH_OBSTR);
+				}			
+				
+			} else {
+				
+				throw new MatchException(Constants.ERR_NC_ROOK_MOVED);
+			}
+			
+		} else {
+
+			throw new MatchException(Constants.ERR_NC_KING_MOVED);
+		}		
+		
+	}
+	
+	
 }

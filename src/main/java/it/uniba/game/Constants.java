@@ -33,7 +33,7 @@ public final class Constants {
 
 	public final static int FIRST_COLUMN = 0;
 	public final static int LAST_COLUMN = 7;
-
+	
 	
 	
 	// Constants for the class ChessBoard
@@ -70,6 +70,13 @@ public final class Constants {
 	public final static int ROW_OFFSET = 8;
 	public final static String STRING_EN_PASSANT = "e.p.";
 	public final static int EN_PASSANT_COORDS_OFFSET = 5;
+	
+	// Constants for castling
+	public final static int KS_ROOK_ENDING_COL = 5;
+	public final static int QS_ROOK_ENDING_COL = 3;
+	public final static int KS_KING_ENDING_COL = 6;
+	public final static int QS_KING_ENDING_COL = 2;
+	public final static int KING_COL = 4;
 	
 	
 	//Constants for adders 
@@ -122,5 +129,11 @@ public final class Constants {
 	public final static String ERR_BAD_TARGET = "Pezzo non catturabile";
 	public final static String ERR_TEMP_BAD_MOVE = "Pezzo non utilizzabile in questa iterazione";
 	public final static String ERR_KING_THREAT = "Mossa irregolare/illegale";
+	public final static String ERR_NC_KING_THREATENED = "Arrocco non eseguibile: Re minacciato";
+	public final static String ERR_NC_KING_MOVED = "Arrocco non eseguibile: Re mosso";
+	public final static String ERR_NC_ROOK_MOVED = "Arrocco non eseguibile: Torre mossa";
+	public final static String ERR_NC_PATH_OBSTR = "Arrocco non eseguibile: pezzo/i nel mezzo";
+	
+	
 	
 }
