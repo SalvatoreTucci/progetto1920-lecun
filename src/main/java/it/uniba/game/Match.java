@@ -151,6 +151,9 @@ class Match {
 	 * Parses a move from a user entered string, following the algebraic notation
 	 * the general form for a recognized move is:
 	 * [Piece][Disambiguation coordinate][Capture][Landing square column][Landing square row]
+	 * 
+	 * @param toParse a string containing the move to be parsed
+	 * @return an instance of the class Move
 	 */ 
 	private Move parseMove(String toParse) throws MatchException {
 		boolean validMove = Pattern.matches(Constants.GENERAL_MOVE_REGEX, toParse);
@@ -230,6 +233,20 @@ class Match {
 			if (enPassant) {
 				
 				returnMove.setEnPassant();
+			}
+			
+			return returnMove;
+			
+		} else if (Pattern.matches(Constants.CASTLING_REGEX, toParse)) {
+			
+			Move returnMove = new Move(null, null, null, false);
+			
+			if (toParse.length() == Constants.KINGSIDE_STRING_LENGHT) {
+				
+				returnMove.setCastling(Castling.KINGSIDE_CASTLING);
+			} else {
+				
+				returnMove.setCastling(Castling.QUEENSIDE_CASTLING);
 			}
 			
 			return returnMove;
