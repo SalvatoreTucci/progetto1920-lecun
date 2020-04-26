@@ -250,7 +250,7 @@ class Match {
 			}
 			
 			return returnMove;
-			
+
 		} else {
 			
 			throw new MatchException(Constants.ERR_UNRECOGNIZED_MOVE);
