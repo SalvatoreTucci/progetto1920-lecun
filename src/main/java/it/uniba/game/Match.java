@@ -558,8 +558,6 @@ class Match {
 		
 		squaresToCheck = Rook.reverseRookMove(toMove);
 		
-		System.out.println(squaresToCheck.toString());
-		
 		for (int i = 0; i < squaresToCheck.size(); i++) {
 			
 			if ( (field.getSquare(squaresToCheck.get(i)).getPiece() != null) 
@@ -632,4 +630,74 @@ class Match {
 		
 		return false;     
 	}
+
+	private void handleCastling(Move.Castling castlingType) throws MatchException {
+		
+		Coordinates kingStartingPosition;
+		Coordinates rookStartingPosition;
+		Coordinates kingEndingPosition;
+		Coordinates rookEndingPosition;
+		int rookStartingColumn = (castlingType == Move.Castling.KINGSIDE_CASTLING) ? Constants.LAST_COLUMN : Constants.FIRST_COLUMN;
+		int rookEndingColumn = (castlingType == Move.Castling.KINGSIDE_CASTLING) ? 5 : 3;
+		int kingEndingColumn = (castlingType == Move.Castling.KINGSIDE_CASTLING) ? 6 : 2;
+		if (currentPlayer == Piece.Color.WHITE) {
+			
+			kingStartingPosition = new Coordinates(4, Constants.LAST_ROW);
+			rookStartingPosition = new Coordinates(rookStartingColumn, Constants.LAST_ROW);
+			kingEndingPosition = new Coordinates(kingEndingColumn, Constants.LAST_ROW);
+			rookEndingPosition = new Coordinates(rookEndingColumn, Constants.LAST_ROW);
+		} else {
+			
+			kingStartingPosition = new Coordinates(4, Constants.FIRST_ROW);
+			rookStartingPosition = new Coordinates(rookStartingColumn, Constants.FIRST_ROW);
+			kingEndingPosition= new Coordinates(kingEndingColumn, Constants.FIRST_ROW);
+			rookEndingPosition = new Coordinates(rookEndingColumn, Constants.FIRST_ROW);
+		}
+		
+		if ( field.getSquare(kingStartingPosition).isOccupied() 
+				&& field.getSquare(kingStartingPosition).getPiece().getClass() == King.class
+				&& !(((King)field.getSquare(kingStartingPosition).getPiece()).isMoved())) {
+				// doesn't check the color since it would imply movement
+			
+			if ( field.getSquare(rookStartingPosition).isOccupied() 
+					&& field.getSquare(rookStartingPosition).getPiece().getClass() == Rook.class
+					&& !(((Rook)field.getSquare(rookStartingPosition).getPiece()).isMoved())) {	
+				
+				if (!getObstructingPieces(kingStartingPosition, rookStartingPosition).isEmpty()) {
+					
+					King kingToPlace = new King(currentPlayer);
+					Move checkThreat1 = new Move(kingToPlace ,null, kingStartingPosition, false); //move wrapper
+					Move checkThreat2 = new Move(kingToPlace ,null, rookEndingPosition, false); //move wrapper
+					Move kingMove = new Move(kingToPlace , kingStartingPosition, kingEndingPosition, false); //move wrapper
+					if(!checkKingThreat(checkThreat1) 
+							&& !checkKingThreat(checkThreat2)
+							&& !checkKingThreat(kingMove)) {
+						Rook rookToPlace = new Rook(currentPlayer);
+						Move rookMove = new Move(rookToPlace, rookStartingPosition, rookEndingPosition, false);
+						kingToPlace.setMoved(true);
+						rookToPlace.setMoved(true);
+						field.setMove(kingMove);
+						field.setMove(rookMove);
+						
+					} else {
+						throw new MatchException("Re minacciato");
+					}
+					
+				} else {
+
+					throw new MatchException("Percorso Ostruito");
+				}			
+				
+			} else {
+				throw new MatchException("Torre Mossa");
+			}
+			
+		} else {
+
+			throw new MatchException("Re Mosso");
+		}		
+		
+	}
+	
+	
 }
