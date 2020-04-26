@@ -11,6 +11,8 @@ public final class Rook extends Piece {
 	 * the method reverseMove will be extended later
 	*/
 	
+	private boolean moved = false;
+	
 	// Constructor
 	public Rook(Color col) {
 		
@@ -23,7 +25,6 @@ public final class Rook extends Piece {
 			
 			symbol = Constants.W_ROOK;
 		}
-		
 	}
 	
 	public Vector<Coordinates> reverseMove(Move target) {
@@ -58,6 +59,16 @@ public final class Rook extends Piece {
 		}
 		
 		return possibleSquares;
+	}
+	
+	public boolean isMoved() {
+		
+		return moved;
+	}
+
+	public void setMoved(boolean moved) {
+		
+		this.moved = moved;
 	}
 
 }
