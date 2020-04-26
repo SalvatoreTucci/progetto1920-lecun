@@ -37,6 +37,14 @@ class Match {
 		
 			setPawnEnPassantFlag(parsedMove);
 		}
+		else if (parsedMove.getPiece().getClass() == King.class) {
+			
+			((King) parsedMove.getPiece()).setMoved(true);
+		}
+		else if (parsedMove.getPiece().getClass() == Rook.class) {
+			
+			((Rook) parsedMove.getPiece()).setMoved(true);
+		}
 		
 		if (parsedMove.getCaptureFlag()) {
 		

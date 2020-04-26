@@ -12,6 +12,8 @@ public final class King extends Piece {
 	 * also new attributes could be added
 	*/
 	
+	private boolean moved = false;
+	
 	//Constructor
 	public King(Color col) {
 		
@@ -51,6 +53,16 @@ public final class King extends Piece {
 		}
 
 		return possibleSquares;
+	}
+
+	public boolean isMoved() {
+		
+		return moved;
+	}
+
+	public void setMoved(boolean moved) {
+		
+		this.moved = moved;
 	}
 
 }
