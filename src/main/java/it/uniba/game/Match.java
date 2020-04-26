@@ -251,10 +251,10 @@ class Match {
 			
 			if (toParse.length() == Constants.KINGSIDE_STRING_LENGHT) {
 				
-				returnMove.setCastling(Castling.KINGSIDE_CASTLING);
+				returnMove.setCastling(Move.Castling.KINGSIDE_CASTLING);
 			} else {
 				
-				returnMove.setCastling(Castling.QUEENSIDE_CASTLING);
+				returnMove.setCastling(Move.Castling.QUEENSIDE_CASTLING);
 			}
 			
 			return returnMove;
