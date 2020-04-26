@@ -7,6 +7,13 @@ public class Move {
 	 * This class represent a generic move converted from the string inserted by the user
 	 * (there will be an external method which will do this particular conversion from string to Move)
 	*/
+	public enum Castling {
+		
+		NO_CASTLING,
+		KINGSIDE_CASTLING,
+		QUEENSIDE_CASTLING
+    }
+	
 	
 	// Attributes
 	private Piece toMove;
@@ -14,6 +21,7 @@ public class Move {
 	private Coordinates endingPos;
 	private boolean isCapture;
 	private boolean isEnPassant = false;
+	private Castling typeCastling = Castling.NO_CASTLING;
 	
 	// Methods
 	public Move(Piece pieceToSet, Coordinates startPos, Coordinates endPos, boolean cap) {
@@ -22,7 +30,6 @@ public class Move {
 		setStartingPos(startPos);
 		setEndingPos(endPos);
 		isCapture = cap;
-		
 	}
 	
 	public void setPiece(Piece pieceToSet) {
@@ -69,5 +76,15 @@ public class Move {
 	public void setEnPassant() {
 		
 		isEnPassant = true;
+	}
+	
+	public void setCastling(Castling newCastling) {
+		
+		typeCastling = newCastling;
+	}
+	
+	public Castling getCastling() {
+		
+		return typeCastling;
 	}
 }
