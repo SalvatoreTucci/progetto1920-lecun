@@ -1,3 +1,18 @@
+/**
+* MatchException
+* Class type : <<no ECB>>
+* Responsibilities :
+* 	Knows :
+* 		<ul>
+* 		</ul>
+*	Does : 
+*		<ul>
+*		<li> instances a possible exception to be used in the class Match </li>
+* 		</ul>
+*
+* @author LeCun group
+*/
+
 package it.uniba.game;
 
 

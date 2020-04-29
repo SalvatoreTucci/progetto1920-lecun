@@ -1,3 +1,18 @@
+/**
+* Constants
+* Class type : <<no ECB>>
+* Responsibilities :
+* 	Knows :
+* 		<ul>
+* 		<li>the values of the constants values used in the App</li>
+* 		</ul>
+*	Does : 
+*		<ul>
+* 		</ul>
+*
+* @author LeCun group
+*/
+
 package it.uniba.game;
 
 

@@ -1,3 +1,20 @@
+/**
+* AppMain
+* Class type : <<Boundary>>
+* Responsibilities :
+* 	Knows :
+* 		<ul>
+* 		<li>The interface of the App</li>
+* 		</ul>
+*	Does : 
+*		<ul>
+*		<li>Checks whether the App has to be closed </li>
+*		<li>Reads the user input from the keyboard</li>
+* 		</ul>
+*
+* @author LeCun group
+*/
+
 package it.uniba.main;
 
 import it.uniba.game.UI;

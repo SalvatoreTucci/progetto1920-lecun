@@ -1,3 +1,18 @@
+/**
+* Coordinates
+* Class type : <<Entity>>
+* Responsibilities :
+* 	Knows :
+* 		<ul>
+* 		<li>A pair of coordinates of a Cartesian-like plain (as the ChessBoard)</li>
+* 		</ul>
+*	Does : 
+*		<ul>
+* 		</ul>
+*
+* @author LeCun group
+*/
+
 package it.uniba.game;
 
 

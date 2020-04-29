@@ -1,3 +1,29 @@
+/**
+* Match
+* Class type : <<Control>>
+* Responsibilities :
+* 	Knows :
+* 		<ul>
+* 		<li>The current status of the ChessBoard</li>
+* 		<li>Captured pieces by each player</li>
+* 		<li>The history of the moves</li>
+* 		<li>The current player</li>
+* 		</ul>
+*	Does : 
+*		<ul>
+*		<li>Parsifies the move given an input string</li>
+*		<li>Establishes whether the move is a Castling, a Capture or a simple one</li>
+*		<li>Checks whether the established move is legal and not ambiguous</li>
+*		<li>Executes the move, if legal</li>
+*		<li>Updates the status of Pawns, Rooks and Kings in order to say if the former can be
+*			captured "en passant", or the latter can execute Castling</li> 
+*		<li>Records the captures done by the players</li>
+*		<li>Can update the current player</li>
+* 		</ul>
+*
+* @author LeCun group
+*/
+
 package it.uniba.game;
 
 import it.uniba.game.pieces.*;
