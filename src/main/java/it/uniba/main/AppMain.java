@@ -51,7 +51,7 @@ public final class AppMain {
 			
 		}
 		
-		UI gameUI = new UI();
+		UI gameUI = UI.getUI();
 		gameUI.printWelcome();
 		String command;
 		Scanner userInput = new Scanner(System.in);

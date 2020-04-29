@@ -11,7 +11,7 @@ public class UI {
 	// Attributes
 	private Match currentMatch;
 	private boolean quitGame;
-	
+	private static final UI SINGLETON = new UI();
 	// Methods
 
 	/*
@@ -23,6 +23,22 @@ public class UI {
 		return quitGame;
 	}
 
+	/*
+	 * private constructor, necessary in order to realize the singleton class
+	 * as the design pattern describes
+	 */
+	private UI() {
+		
+	}
+	
+	/*
+	 * get method in order to access the singleton class fields
+	 */
+	public static UI getUI() {
+		
+		return SINGLETON;
+	}
+	
 	/*
 	 * parses the command read from the keyboard and executes the correspondent routine
 	 */

@@ -7,8 +7,27 @@ import it.uniba.game.Move;
 
 public final class Pawn extends Piece {
 	/*
-	 * Subclass of Piece representing the Pawn
-	 */
+	 * Subclass of Piece representing the Pawn 
+	 * Class type: <<Entity>>
+	 * 
+	 * Responsibilities:
+	 * 
+	 * 	Knows: 
+	 * 		<ul>
+	 * 		<li>The symbol (and so the color) of the instance of
+	 * 			the Pawn</li>
+	 * 		<li>If it's possible to do the En Passant move
+	 * 			on an instance of a Pawn</li>
+	 * 		</ul>
+	 * 
+	 * 	Does:
+	 * 		<ul>
+	 * 		<li>Generates a list of coordinates where a Pawn could
+	 * 			possibly be found, given the 
+	 * 			target position</li>
+	 * 		</ul>
+	 * 
+	*/
 	
 	// Attributes
 	private boolean enPassant;
