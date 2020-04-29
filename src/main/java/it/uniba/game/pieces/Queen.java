@@ -26,18 +26,18 @@ import it.uniba.game.Move;
  * 
 */
 public final class Queen extends Piece {
-	
+
 	// Constructor
 	public Queen(Color col) {
 		
 		super(col);
 		
-		if (pieceColor == Color.BLACK) {
+		if (col == Color.BLACK) {
 			
-			symbol = Constants.B_QUEEN;
+			this.setSymbol(Constants.B_QUEEN);
 		} else {
 			
-			symbol = Constants.W_QUEEN;	
+			this.setSymbol(Constants.W_QUEEN);	
 		}
 		
 	}

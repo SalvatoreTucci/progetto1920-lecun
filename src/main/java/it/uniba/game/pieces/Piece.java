@@ -27,7 +27,12 @@ import it.uniba.game.Move;
  * 		</ul>
  * 
 */
+import it.uniba.game.Move;
+
 public abstract class Piece {
+    /*
+    Abstract class representing a generic chess piece
+     */
 
     public enum Color {
         // Enumerated type used to represent the color of the piece
@@ -36,13 +41,18 @@ public abstract class Piece {
     }
 
     // Attributes
-    Color pieceColor;
-    String symbol;
+    private Color pieceColor;
+    private String symbol;
 
     // Methods
     public Piece(Color col) {
 
         pieceColor = col;
+    }
+    
+    void setSymbol(String sym) {
+    	
+    	symbol = sym;
     }
     
     // will be specified in the sub-classes 
@@ -67,4 +77,5 @@ public abstract class Piece {
     	}
     	return false;
     }
+
 }

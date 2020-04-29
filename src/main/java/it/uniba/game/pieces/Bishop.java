@@ -32,12 +32,12 @@ public final class Bishop extends Piece {
 
 		super(col);
 		
-		if (pieceColor == Color.BLACK) {
+		if (col == Color.BLACK) {
 			
-			symbol = Constants.B_BISHOP;
+			this.setSymbol(Constants.B_BISHOP);
 		} else {
 			
-			symbol = Constants.W_BISHOP;
+			this.setSymbol(Constants.W_BISHOP);
 		}
 		
 	}

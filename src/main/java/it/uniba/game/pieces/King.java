@@ -36,12 +36,12 @@ public final class King extends Piece {
 		
 		super(col);
 		
-		if (pieceColor == Color.BLACK) {
+		if (col == Color.BLACK) {
 			
-			symbol = Constants.B_KING;
+			this.setSymbol(Constants.B_KING);
 		} else {
 			
-			symbol = Constants.W_KING;
+			this.setSymbol(Constants.W_KING);
 		}
 		//eventually there will be introduced other inits
 	}
