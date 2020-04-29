@@ -4,7 +4,7 @@
 * Responsibilities :
 * 	Knows :
 * 		<ul>
-* 		<li>the values of the constants values used in the App</li>
+* 		<li>The values of the constants values used in the App</li>
 * 		</ul>
 *	Does : 
 *		<ul>

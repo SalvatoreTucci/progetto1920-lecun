@@ -7,7 +7,7 @@
 * 		</ul>
 *	Does : 
 *		<ul>
-*		<li> instances a possible exception to be used in the class Match </li>
+*		<li>Instances a possible exception to be used in the class Match </li>
 * 		</ul>
 *
 * @author LeCun group
