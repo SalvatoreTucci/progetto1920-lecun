@@ -269,6 +269,12 @@ class Match {
 				
 			}
 			
+			if (toMove.getClass() == Pawn.class && startPos.getColumn() 
+					== Constants.INVALID_POS && capture) {
+				
+				throw new MatchException(Constants.ERR_UNRECOGNIZED_MOVE);
+			} 
+			
 			Move returnMove = new Move(toMove, startPos, finalPos, capture);
 			if (enPassant) {
 				
