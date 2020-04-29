@@ -39,7 +39,7 @@ public final class Pawn extends Piece {
 		 * If the color is WHITE, you can move the pawn up, so it will be W_DIRECTION_ROW
 		 */
 		int addInRow = (this.getColor() == Piece.Color.BLACK) 
-				? Constants.B_DIRECTION_ROW : Constants.W_DIRECTION_ROW;
+				? Constants.UP_DIRECTION : Constants.DOWN_DIRECTION;
 		
 		/*
 		 * If the color is BLACK, you can move the pawn, the first time, to the row B_MID_ROW

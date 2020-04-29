@@ -23,8 +23,6 @@ public final class Constants {
 	// Constants for the class Pawn
 	public final static int B_MID_ROW = 3;
 	public final static int W_MID_ROW = 4;
-	public final static int B_DIRECTION_ROW = -1;
-	public final static int W_DIRECTION_ROW = 1;
 	public final static int LONG_MOVE_LENGTH = 2;
 	
 	// Constants for the pieces implementation
