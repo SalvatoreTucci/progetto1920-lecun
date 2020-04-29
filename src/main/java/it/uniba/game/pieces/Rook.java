@@ -5,11 +5,29 @@ import it.uniba.game.Constants;
 import it.uniba.game.Coordinates;
 import it.uniba.game.Move;
 
+/**
+ * Subclass of Piece representing the Rook, 
+ * Class type: <<Entity>>
+ * 
+ * Responsibilities:
+ * 
+ * 	Knows: 
+ * 		<ul>
+ * 		<li>The symbol (and so the color) of the instance of
+ * 			the Rook</li>
+ * 		<li>If an instance of a Rook has been moved</li>
+ * 		</ul>
+ * 
+ * 	Does:
+ * 		<ul>
+ * 		<li>Generates a list of coordinates where a Rook could
+ * 			possibly be found, given the 
+ * 			target position</li>
+ * 		<li>Reports if an instance of Rook has been moved</li>
+ * 		</ul>
+ * 
+*/
 public final class Rook extends Piece {
-	/*
-	 * Subclass of Piece representing the Bishop, 
-	 * the method reverseMove will be extended later
-	*/
 	
 	private boolean moved = false;
 	

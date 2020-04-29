@@ -5,11 +5,27 @@ import it.uniba.game.Constants;
 import it.uniba.game.Move;
 import it.uniba.game.Coordinates;
 
-public final class Knight extends Piece{
-	/*
-	 * Subclass of Piece representing the Knight, 
-	 * the method reverseMove will be extended later
-	*/
+/**
+ * Subclass of Piece representing the Knight
+ * Class type: <<Entity>>
+ * 
+ * Responsibilities:
+ * 
+ * 	Knows: 
+ * 		<ul>
+ * 		<li>The symbol (and so the color) of the instance of
+ * 			the Knight</li>
+ * 		</ul>
+ * 
+ * 	Does:
+ * 		<ul>
+ * 		<li>Generates a list of coordinates where a Knight could
+ * 			possibly be found, given the 
+ * 			target position</li>
+ * 		</ul>
+ * 
+*/
+public final class Knight extends Piece{	
 	
 	// Constructor
 	public Knight(Color col) {

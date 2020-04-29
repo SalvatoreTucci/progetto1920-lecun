@@ -5,11 +5,27 @@ import it.uniba.game.Constants;
 import it.uniba.game.Coordinates;
 import it.uniba.game.Move;
 
+/**
+ * Subclass of Piece representing the Bishop
+ * Class type: <<Entity>>
+ * 
+ * Responsibilities:
+ * 
+ * 	Knows: 
+ * 		<ul>
+ * 		<li>The symbol (and so the color) of the instance of
+ * 			the Bishop</li>
+ * 		</ul>
+ * 
+ * 	Does:
+ * 		<ul>
+ * 		<li>Generates a list of coordinates where a Bishop could
+ * 			possibly be found, given the 
+ * 			target position</li>
+ * 		</ul>
+ * 
+*/
 public final class Bishop extends Piece {
-	/*
-	 * Subclass of Piece representing the Bishop, 
-	 * the method reverseMove will be extended later
-	*/
 	
 	// Constructor
 	public Bishop(Color col) {

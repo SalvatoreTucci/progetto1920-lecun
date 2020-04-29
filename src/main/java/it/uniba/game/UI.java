@@ -3,6 +3,29 @@ package it.uniba.game;
 import java.util.Scanner;
 import it.uniba.game.pieces.Piece;
 
+/**
+ * UI
+ * Class type : <<ECB>>
+ * 
+ * Responsibilities :
+ * 
+ * 	Knows :
+ * 		<ul>
+ * 			<li>Status of the current match</li>
+ *  		<li>If the user wants to quit the game</li>
+ * 		</ul>
+ * 
+ * 	Does :
+ * 		<ul>
+ *  		<li>Parsifies a command given an input</li>
+ *   		<li>Handles a command in game, such as "board", "moves", ... </li>
+ *     		<li>Starts a new Match</li>
+ *       	<li>Prints messages to the output stream</li>
+ *         	<li>Gets inputs from the user by the input stream</li>
+ * 		</ul>
+ *  
+ * @author LeCun group
+ */
 public class UI {
 	/*
 	 * Class for App-User interaction

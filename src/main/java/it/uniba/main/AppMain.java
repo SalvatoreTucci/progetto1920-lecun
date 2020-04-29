@@ -11,6 +11,22 @@ import java.io.UnsupportedEncodingException;
  * 
  * <b>DO NOT RENAME</b>
  */
+/**
+* AppMain
+* Class type : <<Boundary>>
+* Responsibilities :
+* 	Knows :
+* 		<ul>
+* 		<li></li>
+* 		</ul>
+*	Does : 
+*		<ul>
+*		<li>Checks whether the user wants to exit the app</li>
+*		<li>Reads the user input from the keyboard</li>
+* 		</ul>
+*
+* @author LeCun group
+*/
 public final class AppMain {
 
 	/**

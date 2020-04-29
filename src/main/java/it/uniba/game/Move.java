@@ -2,6 +2,34 @@ package it.uniba.game;
 
 import it.uniba.game.pieces.Piece;
 
+/**
+ * Move
+ * Class type : <<Entity>>
+ * 
+ * Responsibilities :
+ * 
+ * 	Knows :
+ * 		<ul>
+ * 			<li>The types of castling</li>
+ *			<li>The piece to move on the ChessBoard</li>
+ *			<li>The starting position of the piece to move</li>
+ *			<li>The ending position of the piece to move</li>
+ *			<li>If the piece to move captures a piece</li>
+ *			<li>If the move is "en passant"</li>
+ *			<li>If the move is a castling</li>
+ * 		</ul>
+ * 
+ * 	Does :
+ * 		<ul>
+ *			<li>Gets or changes the piece to move</li>
+ *			<li>Gets or changes the starting and ending position of the piece to move</li>
+ *			<li>Gets or changes if the move is a capture</li>
+ *			<li>Gets or changes if the move is "en passant"</li>
+ *			<li>Gets or changes if the move is a castling</li>
+ * 		</ul>
+ *  
+ * @author LeCun group
+ */
 public class Move {
 	/*
 	 * This class represent a generic move converted from the string inserted by the user

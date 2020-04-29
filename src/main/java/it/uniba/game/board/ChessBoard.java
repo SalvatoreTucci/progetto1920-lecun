@@ -3,6 +3,27 @@ package it.uniba.game.board;
 import it.uniba.game.pieces.*;
 import it.uniba.game.*;
 
+/**
+ * ChessBoard
+ * Class type : <<Entity>>
+ * 
+ * Responsibilities :
+ * 
+ * 	Knows :
+ * 		<ul>
+ *			<li>The squares of the field</li>
+ * 		</ul>
+ * 
+ * 	Does :
+ *  	<ul>
+ *			<li>Instantiates a ChessBoard</li>
+ *			<li>Sets a move on the ChessBoard</li>
+ *			<li>Gets a square, with the polar coordinates</li>
+ *			<li>Converts to string the ChessBoard</li>
+ * 		</ul>
+ *  
+ * @author LeCun group
+ */
 public class ChessBoard {
 	// Class used for represents the chessboard
 	
