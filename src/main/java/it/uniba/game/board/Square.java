@@ -1,3 +1,24 @@
+/**
+ * Square
+ * Class type : <<Entity>>
+ * 
+ * Responsibilities :
+ * 
+ * 	Knows :
+ * 		<ul>
+ *			<li>The piece placed on the square</li>
+ * 		</ul>
+ * 
+ * 	Does :
+ * 		<ul>
+ *			<li>Places a new piece on the square</li>
+ *			<li>Gets the piece placed on the square</li>
+ *			<li>Checks if there is a piece placed on the square</li>
+ * 		</ul>
+ *  
+ * @author LeCun group
+ */
+
 package it.uniba.game.board;
 
 import it.uniba.game.pieces.Piece;
