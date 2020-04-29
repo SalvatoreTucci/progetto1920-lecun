@@ -11,7 +11,7 @@ public class UI {
 	// Attributes
 	private Match currentMatch;
 	private boolean quitGame;
-	private static final UI singleton = new UI();
+	private static final UI SINGLETON = new UI();
 	// Methods
 
 	/*
@@ -36,7 +36,7 @@ public class UI {
 	 */
 	public static UI getUI() {
 		
-		return singleton;
+		return SINGLETON;
 	}
 	
 	/*
