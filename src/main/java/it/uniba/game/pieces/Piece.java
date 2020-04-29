@@ -27,7 +27,7 @@ import it.uniba.game.Move;
  * 		</ul>
  * 
 */
-import it.uniba.game.Move;
+
 
 public abstract class Piece {
     /*
