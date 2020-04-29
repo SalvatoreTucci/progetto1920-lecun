@@ -1,3 +1,5 @@
+package it.uniba.game;
+
 /**
 * MatchException
 * Class type : <<no ECB>>
@@ -7,16 +9,11 @@
 * 		</ul>
 *	Does : 
 *		<ul>
-*		<li>Instances a possible exception to be used in the class Match </li>
+*		<li>Specialization of the class Exception which will only be thrown in the class Match</li>
 * 		</ul>
 *
 * @author LeCun group
 */
-
-package it.uniba.game;
-
-
-
 class MatchException extends Exception {
 	
 	// Exception class threw from the class Move

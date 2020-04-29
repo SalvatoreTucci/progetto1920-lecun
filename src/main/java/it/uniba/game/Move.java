@@ -1,3 +1,7 @@
+package it.uniba.game;
+
+import it.uniba.game.pieces.Piece;
+
 /**
  * Move
  * Class type : <<Entity>>
@@ -26,11 +30,6 @@
  *  
  * @author LeCun group
  */
-
-package it.uniba.game;
-
-import it.uniba.game.pieces.Piece;
-
 public class Move {
 	/*
 	 * This class represent a generic move converted from the string inserted by the user

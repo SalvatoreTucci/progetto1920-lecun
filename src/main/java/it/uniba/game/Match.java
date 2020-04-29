@@ -1,3 +1,10 @@
+package it.uniba.game;
+
+import it.uniba.game.pieces.*;
+import it.uniba.game.board.ChessBoard;
+import java.util.Vector;
+import java.util.regex.Pattern;
+
 /**
 * Match
 * Class type : <<Control>>
@@ -23,14 +30,6 @@
 *
 * @author LeCun group
 */
-
-package it.uniba.game;
-
-import it.uniba.game.pieces.*;
-import it.uniba.game.board.ChessBoard;
-import java.util.Vector;
-import java.util.regex.Pattern;
-
 class Match {
 	/*
 	 * Class used to manage the flow of the game

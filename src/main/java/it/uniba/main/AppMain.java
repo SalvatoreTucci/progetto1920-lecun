@@ -1,20 +1,3 @@
-/**
-* AppMain
-* Class type : <<Boundary>>
-* Responsibilities :
-* 	Knows :
-* 		<ul>
-* 		<li>The interface of the App</li>
-* 		</ul>
-*	Does : 
-*		<ul>
-*		<li>Checks whether the App has to be closed </li>
-*		<li>Reads the user input from the keyboard</li>
-* 		</ul>
-*
-* @author LeCun group
-*/
-
 package it.uniba.main;
 
 import it.uniba.game.UI;
@@ -28,6 +11,22 @@ import java.io.UnsupportedEncodingException;
  * 
  * <b>DO NOT RENAME</b>
  */
+/**
+* AppMain
+* Class type : <<Boundary>>
+* Responsibilities :
+* 	Knows :
+* 		<ul>
+* 		<li></li>
+* 		</ul>
+*	Does : 
+*		<ul>
+*		<li>Checks whether the user wants to exit the app</li>
+*		<li>Reads the user input from the keyboard</li>
+* 		</ul>
+*
+* @author LeCun group
+*/
 public final class AppMain {
 
 	/**

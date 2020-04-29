@@ -1,3 +1,8 @@
+package it.uniba.game.board;
+
+import it.uniba.game.pieces.*;
+import it.uniba.game.*;
+
 /**
  * ChessBoard
  * Class type : <<Entity>>
@@ -12,19 +17,13 @@
  * 	Does :
  *  	<ul>
  *			<li>Instantiates a ChessBoard</li>
- *			<li>A move on the ChessBoard</li>
+ *			<li>Sets a move on the ChessBoard</li>
  *			<li>Gets a square, with the polar coordinates</li>
  *			<li>Converts to string the ChessBoard</li>
  * 		</ul>
  *  
  * @author LeCun group
  */
-
-package it.uniba.game.board;
-
-import it.uniba.game.pieces.*;
-import it.uniba.game.*;
-
 public class ChessBoard {
 	// Class used for represents the chessboard
 	

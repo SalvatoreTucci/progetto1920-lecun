@@ -1,3 +1,8 @@
+package it.uniba.game;
+
+import java.util.Scanner;
+import it.uniba.game.pieces.Piece;
+
 /**
  * UI
  * Class type : <<ECB>>
@@ -21,11 +26,6 @@
  *  
  * @author LeCun group
  */
-package it.uniba.game;
-
-import java.util.Scanner;
-import it.uniba.game.pieces.Piece;
-
 public class UI {
 	/*
 	 * Class for App-User interaction

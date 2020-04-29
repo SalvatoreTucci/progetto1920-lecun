@@ -1,3 +1,7 @@
+package it.uniba.game.board;
+
+import it.uniba.game.pieces.Piece;
+
 /**
  * Square
  * Class type : <<Entity>>
@@ -18,11 +22,6 @@
  *  
  * @author LeCun group
  */
-
-package it.uniba.game.board;
-
-import it.uniba.game.pieces.Piece;
-
 public class Square {
 	/* 
 	 * This class represents the single square of the chessboard,

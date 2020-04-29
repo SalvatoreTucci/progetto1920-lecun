@@ -1,3 +1,5 @@
+package it.uniba.game;
+
 /**
 * Constants
 * Class type : <<no ECB>>
@@ -12,11 +14,6 @@
 *
 * @author LeCun group
 */
-
-package it.uniba.game;
-
-
-
 public final class Constants {
 	/*
 	 * Class containing the constant values used in the application

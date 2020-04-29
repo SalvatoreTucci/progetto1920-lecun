@@ -1,3 +1,5 @@
+package it.uniba.game;
+
 /**
 * Coordinates
 * Class type : <<Entity>>
@@ -12,11 +14,6 @@
 *
 * @author LeCun group
 */
-
-package it.uniba.game;
-
-
-
 public class Coordinates {
     // Class used to represent a position in the ChessBoard
 
