@@ -3,6 +3,7 @@ package it.uniba.game;
 import it.uniba.game.pieces.*;
 import it.uniba.game.board.ChessBoard;
 import java.util.Vector;
+import java.util.Iterator;
 import java.util.regex.Pattern;
 
 class Match {
@@ -16,7 +17,7 @@ class Match {
 	private Vector<Piece> whiteCaptured;
 	private Vector<String> moves;
 	private Piece.Color currentPlayer;
-	
+
 	// Methods
 	public Match() {
 		
@@ -439,31 +440,28 @@ class Match {
 		
 		if (toMove.getStartingPos().getRow() != Constants.INVALID_POS) {
 			
-			int j = 0;
-			while (j < possibleSquares.size()) {
+			Iterator<Coordinates> j = possibleSquares.iterator();
+			while (j.hasNext()) {
 				
-				if (possibleSquares.get(j).getRow() != toMove.getStartingPos().getRow()) {
+				Coordinates toCompare = j.next();
+				if (toCompare.getRow() != toMove.getStartingPos().getRow()) {
 					
-					possibleSquares.remove(j);
-				} else {
-					
-					j++;
+					j.remove();
 				}
 			}
 			
 		} else if (toMove.getStartingPos().getColumn() != Constants.INVALID_POS) {
 			
-			int j = 0;
-			while (j < possibleSquares.size()) {
+			Iterator<Coordinates> j = possibleSquares.iterator();
+			while (j.hasNext()) {
 				
-				if (possibleSquares.get(j).getColumn() != toMove.getStartingPos().getColumn()) {
+				Coordinates toCompare = j.next();
+				if (toCompare.getColumn() != toMove.getStartingPos().getColumn()) {
 					
-					possibleSquares.remove(j);
-				} else {
-					
-					j++ ;
+					j.remove();
 				}
 			}
+
 		} else {
 			
 			throw new MatchException(Constants.ERR_BAD_DISAMBIGUATION);
@@ -568,15 +566,17 @@ class Match {
 		Vector<Coordinates> squaresToCheck;			//vector containing the coordinates for possibles threatning pieces 
 		squaresToCheck = Bishop.reverseBishopMove(toMove);	
 		
-		for (int i = 0; i < squaresToCheck.size(); i++) {
+		Iterator<Coordinates> i = squaresToCheck.iterator();
+		while (i.hasNext()) {
 	
-			if ( (field.getSquare(squaresToCheck.get(i)).getPiece() != null) 
-					&& (field.getSquare(squaresToCheck.get(i)).getPiece().getClass() == Bishop.class 
-					|| field.getSquare(squaresToCheck.get(i)).getPiece().getClass() == Queen.class)) {
+			Coordinates toCompare = i.next();
+			if ( (field.getSquare(toCompare).getPiece() != null) 
+					&& (field.getSquare(toCompare).getPiece().getClass() == Bishop.class 
+					|| field.getSquare(toCompare).getPiece().getClass() == Queen.class)) {
 				
-				if (field.getSquare(squaresToCheck.get(i)).getPiece().getColor() != toMove.getPiece().getColor()) {
+				if (field.getSquare(toCompare).getPiece().getColor() != toMove.getPiece().getColor()) {
 					
-					Vector<Piece> obstructors = getObstructingPieces(squaresToCheck.get(i), toMove.getEndingPos());
+					Vector<Piece> obstructors = getObstructingPieces(toCompare, toMove.getEndingPos());
 					
 					if (obstructors.isEmpty() || (obstructors.size() == 1 && (obstructors.firstElement().getClass()
 							== King.class) ) ) {
@@ -589,15 +589,17 @@ class Match {
 		
 		squaresToCheck = Rook.reverseRookMove(toMove);
 		
-		for (int i = 0; i < squaresToCheck.size(); i++) {
+		i = squaresToCheck.iterator();
+		while (i.hasNext()) {
 			
-			if ( (field.getSquare(squaresToCheck.get(i)).getPiece() != null) 
-					&& (field.getSquare(squaresToCheck.get(i)).getPiece().getClass() == Rook.class 
-					|| field.getSquare(squaresToCheck.get(i)).getPiece().getClass() == Queen.class)) {
+			Coordinates toCompare = i.next();
+			if ( (field.getSquare(toCompare).getPiece() != null) 
+					&& (field.getSquare(toCompare).getPiece().getClass() == Rook.class 
+					|| field.getSquare(toCompare).getPiece().getClass() == Queen.class)) {
 				
-				if (field.getSquare(squaresToCheck.get(i)).getPiece().getColor() != toMove.getPiece().getColor()) {
+				if (field.getSquare(toCompare).getPiece().getColor() != toMove.getPiece().getColor()) {
 					
-					Vector<Piece> obstructors = getObstructingPieces(squaresToCheck.get(i), toMove.getEndingPos());
+					Vector<Piece> obstructors = getObstructingPieces(toCompare, toMove.getEndingPos());
 					
 					if(obstructors.isEmpty() || (obstructors.size() == 1 && (obstructors.firstElement().getClass()
 							== King.class) ) ) {
@@ -611,12 +613,14 @@ class Match {
 		
 		squaresToCheck = Knight.reverseKnightMove(toMove);
 		
-		for (int i = 0; i < squaresToCheck.size(); i++) {
+		i = squaresToCheck.iterator();
+		while (i.hasNext()) {
 			
-			if ( (field.getSquare(squaresToCheck.get(i)).getPiece() != null) 
-					&& (field.getSquare(squaresToCheck.get(i)).getPiece().getClass() == Knight.class) ) {
+			Coordinates toCompare = i.next();
+			if ( (field.getSquare(toCompare).getPiece() != null) 
+					&& (field.getSquare(toCompare).getPiece().getClass() == Knight.class) ) {
 				
-				if (field.getSquare(squaresToCheck.get(i)).getPiece().getColor() != toMove.getPiece().getColor()) {
+				if (field.getSquare(toCompare).getPiece().getColor() != toMove.getPiece().getColor()) {
 					
 					return true;
 				}
