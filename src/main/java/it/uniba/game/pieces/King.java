@@ -7,9 +7,26 @@ import it.uniba.game.Move;
 
 public final class King extends Piece {
 	/*
-	 * Subclass of Piece representing the King, 
-	 * the method reverseMove will be extended later
-	 * also new attributes could be added
+	 * Subclass of Piece representing the King
+	 * Class type: <<Entity>>
+	 * 
+	 * Responsibilities:
+	 * 
+	 * 	Knows: 
+	 * 		<ul>
+	 * 		<li>The symbol (and so the color) of the instance of
+	 * 			the King</li>
+	 * 		<li>If an instance of a King has been moved</li>
+	 * 		</ul>
+	 * 
+	 * 	Does:
+	 * 		<ul>
+	 * 		<li>Generates a list of coordinates where a King could
+	 * 			possibly be found, given the 
+	 * 			target position</li>
+	 * 		<li>Reports if an instance of King has been moved</li>
+	 * 		</ul>
+	 * 
 	*/
 	
 	private boolean moved = false;
