@@ -16,12 +16,12 @@ public final class Knight extends Piece{
 
 		super(col);
 		
-		if (pieceColor == Color.BLACK) {
+		if (col == Color.BLACK) {
 			
-			symbol = Constants.B_KNIGHT;
+			this.setSymbol(Constants.B_KNIGHT);
 		} else {
 			
-			symbol = Constants.W_KNIGHT;
+			this.setSymbol(Constants.W_KNIGHT);
 		}
 		
 	}

@@ -18,12 +18,12 @@ public final class Rook extends Piece {
 		
 		super(col);
 		
-		if (pieceColor == Color.BLACK) {
+		if (col == Color.BLACK) {
 			
-			symbol = Constants.B_ROOK;
+			this.setSymbol(Constants.B_ROOK);
 		} else {
 			
-			symbol = Constants.W_ROOK;
+			this.setSymbol(Constants.W_ROOK);
 		}
 	}
 	
