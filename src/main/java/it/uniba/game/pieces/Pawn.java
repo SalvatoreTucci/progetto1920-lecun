@@ -20,10 +20,10 @@ public final class Pawn extends Piece {
 		
 		if (col == Piece.Color.BLACK) {
 			
-			this.symbol = Constants.B_PAWN;
+			this.setSymbol(Constants.B_PAWN);
 		} else {
 			
-			this.symbol = Constants.W_PAWN;
+			this.setSymbol(Constants.W_PAWN);
 		}
 		
 		enPassant = false;
@@ -38,19 +38,19 @@ public final class Pawn extends Piece {
 		 * If the color is BLACK, you can move the pawn down, so it will be B_DIRECTION_ROW
 		 * If the color is WHITE, you can move the pawn up, so it will be W_DIRECTION_ROW
 		 */
-		int addInRow = (pieceColor == Piece.Color.BLACK) 
+		int addInRow = (this.getColor() == Piece.Color.BLACK) 
 				? Constants.B_DIRECTION_ROW : Constants.W_DIRECTION_ROW;
 		
 		/*
 		 * If the color is BLACK, you can move the pawn, the first time, to the row B_MID_ROW
 		 * If the color is WHITE, you can move the pawn, the first time, to the row W_MID_ROW
 		 */
-		int initialMoveRow = (pieceColor == Piece.Color.BLACK) 
+		int initialMoveRow = (this.getColor() == Piece.Color.BLACK) 
 				? Constants.B_MID_ROW : Constants.W_MID_ROW;
 		
 		// Check if the pawn is moving in the right direction
-		if ((pieceColor == Piece.Color.BLACK && target.getEndingPos().getRow() == Constants.FIRST_ROW) 
-				|| (pieceColor == Piece.Color.WHITE && target.getEndingPos().getRow() == Constants.LAST_ROW)) {
+		if ((this.getColor() == Piece.Color.BLACK && target.getEndingPos().getRow() == Constants.FIRST_ROW) 
+				|| (this.getColor() == Piece.Color.WHITE && target.getEndingPos().getRow() == Constants.LAST_ROW)) {
 			
 			return startingPos;
 		}
