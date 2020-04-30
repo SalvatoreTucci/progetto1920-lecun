@@ -495,13 +495,13 @@ class Match {
 
 		} else {
 			
-			throw new MatchException(Constants.ERR_BAD_DISAMBIGUATION);
+			throw new MatchException(Constants.ERR_AMBIGUOUS_MOVE);
 		}
 		
 		// if there's still more than one alternative raise an exception
 		if (possibleSquares.size() > 1) {
 			
-			throw new MatchException(Constants.ERR_AMBIGUOUS_MOVE);
+			throw new MatchException(Constants.ERR_BAD_DISAMBIGUATION);
 		}
 		
 	}
