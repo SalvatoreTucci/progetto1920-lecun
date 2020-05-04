@@ -347,7 +347,16 @@ class Match {
 					
 				}
 			
+			} else {
+				
+				if (field.getSquare(toMove.getEndingPos()).isOccupied()) {
+					
+					throw new MatchException(Constants.ERR_ILLEGAL_MOVE);
+				}
+				
 			}
+			
+			
 			
 			
 			if (possibleSquares.size() > 1) {
