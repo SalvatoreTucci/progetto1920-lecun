@@ -31,43 +31,59 @@ public class ChessBoard {
 	
 	public ChessBoard() {
 		
-		elements = new Square[8][8];
+		elements = new Square[Constants.CB_DIMENSION][Constants.CB_DIMENSION];
 		
 		// Inizialize Rook pieces
-		elements[0][0] = new Square(new Rook(Piece.Color.BLACK));
-		elements[0][7] = new Square(new Rook(Piece.Color.BLACK));
-		elements[7][0] = new Square(new Rook(Piece.Color.WHITE));
-		elements[7][7] = new Square(new Rook(Piece.Color.WHITE));
+		elements[Constants.BLACK_SIDE_ROW][Constants.L_ROOK_COL] =
+															new Square(new Rook(Piece.Color.BLACK));
+		elements[Constants.BLACK_SIDE_ROW][Constants.R_ROOK_COL] = 
+															new Square(new Rook(Piece.Color.BLACK));
+		elements[Constants.WHITE_SIDE_ROW][Constants.L_ROOK_COL] = 
+															new Square(new Rook(Piece.Color.WHITE));
+		elements[Constants.WHITE_SIDE_ROW][Constants.R_ROOK_COL] = 
+															new Square(new Rook(Piece.Color.WHITE));
 		
 		// Inizialize Knight pieces
-		elements[0][1] = new Square(new Knight(Piece.Color.BLACK));
-		elements[0][6] = new Square(new Knight(Piece.Color.BLACK));
-		elements[7][1] = new Square(new Knight(Piece.Color.WHITE));
-		elements[7][6] = new Square(new Knight(Piece.Color.WHITE));
+		elements[Constants.BLACK_SIDE_ROW][Constants.L_KNIGHT_COL] = 
+															new Square(new Knight(Piece.Color.BLACK));
+		elements[Constants.BLACK_SIDE_ROW][Constants.R_KNIGHT_COL] = 
+															new Square(new Knight(Piece.Color.BLACK));
+		elements[Constants.WHITE_SIDE_ROW][Constants.L_KNIGHT_COL] =
+															new Square(new Knight(Piece.Color.WHITE));
+		elements[Constants.WHITE_SIDE_ROW][Constants.R_KNIGHT_COL] = 
+															new Square(new Knight(Piece.Color.WHITE));
 		
 		// Inizialize Bishop pieces
-		elements[0][2] = new Square(new Bishop(Piece.Color.BLACK));
-		elements[0][5] = new Square(new Bishop(Piece.Color.BLACK));
-		elements[7][2] = new Square(new Bishop(Piece.Color.WHITE));
-		elements[7][5] = new Square(new Bishop(Piece.Color.WHITE));
+		elements[Constants.BLACK_SIDE_ROW][Constants.L_BISHOP_COL] = 
+															new Square(new Bishop(Piece.Color.BLACK));
+		elements[Constants.BLACK_SIDE_ROW][Constants.R_BISHOP_COL] = 
+															new Square(new Bishop(Piece.Color.BLACK));
+		elements[Constants.WHITE_SIDE_ROW][Constants.L_BISHOP_COL] = 
+															new Square(new Bishop(Piece.Color.WHITE));
+		elements[Constants.WHITE_SIDE_ROW][Constants.R_BISHOP_COL] = 
+															new Square(new Bishop(Piece.Color.WHITE));
 		
 		// Inizialize King pieces
-		elements[0][4] = new Square(new King(Piece.Color.BLACK));
-		elements[7][4] = new Square(new King(Piece.Color.WHITE));
+		elements[Constants.BLACK_SIDE_ROW][Constants.KING_COL] =
+															new Square(new King(Piece.Color.BLACK));
+		elements[Constants.WHITE_SIDE_ROW][Constants.KING_COL] =
+															new Square(new King(Piece.Color.WHITE));
 		
 		// Inizialize Queen pieces
-		elements[0][3] = new Square(new Queen(Piece.Color.BLACK));
-		elements[7][3] = new Square(new Queen(Piece.Color.WHITE));
+		elements[Constants.BLACK_SIDE_ROW][Constants.QUEEN_COL] =
+															new Square(new Queen(Piece.Color.BLACK));
+		elements[Constants.WHITE_SIDE_ROW][Constants.QUEEN_COL] =
+															new Square(new Queen(Piece.Color.WHITE));
 		
 		// Inizialize Pawn pieces
-		for (int i = 0; i < 8; i++) {
-			elements[1][i] = new Square(new Pawn(Piece.Color.BLACK));
-			elements[6][i] = new Square(new Pawn(Piece.Color.WHITE));
+		for (int i = Constants.FIRST_COLUMN; i <= Constants.LAST_COLUMN; i++) {
+			elements[Constants.BLACK_PAWN_ROW][i] = new Square(new Pawn(Piece.Color.BLACK));
+			elements[Constants.WHITE_PAWN_ROW][i] = new Square(new Pawn(Piece.Color.WHITE));
 		}
 		
 		// Inizialize empty Squares
-		for (int i = 2; i < 6; i++) {
-			for (int j = 0; j < 8; j++) {
+		for (int i = Constants.BLACK_PAWN_ROW + 1; i < Constants.WHITE_PAWN_ROW; i++) {
+			for (int j = Constants.FIRST_COLUMN; j <= Constants.LAST_COLUMN; j++) {
 				elements[i][j] = new Square(null);
 			}
 		}
@@ -78,12 +94,12 @@ public class ChessBoard {
 		String res = Constants.CB_LETTERS_COORDS;
 		res += Constants.CB_FIRST_ROW;
 		
-		for (int i = 0; i < 8; i++) {
+		for (int i = Constants.FIRST_ROW; i <= Constants.LAST_ROW; i++) {
 			
-			for (int j = 0; j < 8; j++) {
+			for (int j = Constants.FIRST_COLUMN; j <= Constants.LAST_COLUMN; j++) {
 				if (j == 0) {
 					
-					res += Math.abs(i - 8) + " ";
+					res += Math.abs(i - Constants.CB_DIMENSION) + " ";
 				}
 				
 				res += Constants.CB_VERTICAL_SQUARE_SYMBOL;
@@ -93,13 +109,14 @@ public class ChessBoard {
 					
 				} else {
 					
-					res += Constants.CB_EMPY_SQUARE;
+					res += Constants.CB_EMPTY_SQUARE;
 				}
 				
 			}
 			
-			res += Constants.CB_VERTICAL_SQUARE_SYMBOL + " " + Math.abs(i - 8) + "\n";
-			if (i != 7) {
+			res += Constants.CB_VERTICAL_SQUARE_SYMBOL + " " + Math.abs(i - Constants.CB_DIMENSION) 
+					+ "\n";
+			if (i != Constants.LAST_ROW) {
 				
 				res += Constants.CB_MIDDLE_ROW_SQUARES;
 			}

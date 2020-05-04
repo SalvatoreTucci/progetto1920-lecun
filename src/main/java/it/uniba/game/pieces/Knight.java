@@ -54,51 +54,67 @@ public final class Knight extends Piece{
 		int endingR = target.getEndingPos().getRow();
 		int endingC = target.getEndingPos().getColumn();
 		
-		if (endingR + 1 <= Constants.LAST_ROW) {
+		if (endingR + Constants.DOWN_DIRECTION <= Constants.LAST_ROW) {
 			
-			if (endingC + 2 <= Constants.LAST_COLUMN) {
+			if (endingC + Constants.KN_RIGHT_DIRECTION <= Constants.LAST_COLUMN) {
 				
-				possibleSquares.add( new Coordinates(endingC + 2, endingR +1 ) );
+				possibleSquares.add( new Coordinates(endingC + Constants.KN_RIGHT_DIRECTION,
+						endingR + Constants.DOWN_DIRECTION ));
+				
 			}
-			if (endingC - 2 >= Constants.FIRST_COLUMN) {
+			if (endingC + Constants.KN_LEFT_DIRECTION >= Constants.FIRST_COLUMN) {
 				
-				possibleSquares.add( new Coordinates(endingC - 2, endingR + 1) );
+				possibleSquares.add( new Coordinates(endingC + Constants.KN_LEFT_DIRECTION, 
+						endingR + Constants.DOWN_DIRECTION));
+				
 			}
 			
-			if (endingR + 2 <= Constants.LAST_ROW) {
+			if (endingR + Constants.KN_DOWN_DIRECTION <= Constants.LAST_ROW) {
 				
-				if (endingC + 1 <= Constants.LAST_COLUMN) {
+				if (endingC + Constants.RIGHT_DIRECTION <= Constants.LAST_COLUMN) {
 					
-					possibleSquares.add( new Coordinates(endingC + 1, endingR + 2) );
+					possibleSquares.add( new Coordinates(endingC + Constants.RIGHT_DIRECTION, 
+							endingR + Constants.KN_DOWN_DIRECTION));
+					
 				}
-				if (endingC - 1 >= Constants.FIRST_COLUMN) {
+				if (endingC + Constants.LEFT_DIRECTION >= Constants.FIRST_COLUMN) {
 					
-					possibleSquares.add( new Coordinates(endingC - 1, endingR + 2) );
+					possibleSquares.add( new Coordinates(endingC + Constants.LEFT_DIRECTION, 
+							endingR + Constants.KN_DOWN_DIRECTION));
+					
 				}
 			}
 		
 		}
 		
-		if (endingR - 1 >= Constants.FIRST_ROW) {
+		if (endingR + Constants.UP_DIRECTION >= Constants.FIRST_ROW) {
 			
-			if (endingC + 2 <= Constants.LAST_COLUMN) {
+			if (endingC + Constants.KN_RIGHT_DIRECTION <= Constants.LAST_COLUMN) {
 				
-				possibleSquares.add( new Coordinates(endingC + 2, endingR - 1) );
+				possibleSquares.add( new Coordinates(endingC + Constants.KN_RIGHT_DIRECTION, 
+						endingR + Constants.UP_DIRECTION));
+				
 			}
-			if (endingC - 2 >= Constants.FIRST_COLUMN) {
+			if (endingC + Constants.KN_LEFT_DIRECTION >= Constants.FIRST_COLUMN) {
 				
-				possibleSquares.add( new Coordinates(endingC - 2, endingR - 1) );
+				possibleSquares.add( new Coordinates(endingC + Constants.KN_LEFT_DIRECTION, 
+						endingR + Constants.UP_DIRECTION));
+				
 			}
 			
-			if (endingR - 2 >= Constants.FIRST_ROW) {
+			if (endingR + Constants.KN_UP_DIRECTION >= Constants.FIRST_ROW) {
 				
-				if (endingC + 1 <= Constants.LAST_COLUMN) {
+				if (endingC + Constants.RIGHT_DIRECTION <= Constants.LAST_COLUMN) {
 					
-					possibleSquares.add( new Coordinates(endingC + 1, endingR - 2) );
+					possibleSquares.add( new Coordinates(endingC + Constants.RIGHT_DIRECTION, 
+							endingR + Constants.KN_UP_DIRECTION));
+					
 				}
-				if (endingC - 1 >= Constants.FIRST_COLUMN) {
+				if (endingC + Constants.LEFT_DIRECTION >= Constants.FIRST_COLUMN) {
 					
-					possibleSquares.add( new Coordinates(endingC - 1, endingR - 2) );
+					possibleSquares.add( new Coordinates(endingC + Constants.LEFT_DIRECTION,
+							endingR + Constants.KN_UP_DIRECTION));
+					
 				}
 			}
 		

@@ -658,11 +658,13 @@ class Match {
 			}
 		}
 		
-		int rowToCheck =  toMove.getEndingPos().getRow() + ((toMove.getPiece().getColor() == Piece.Color.BLACK) ? 1 : -1);
+		int rowToCheck =  toMove.getEndingPos().getRow() 
+				+ ((toMove.getPiece().getColor() == Piece.Color.BLACK) 
+						? Constants.DOWN_DIRECTION : Constants.UP_DIRECTION);
 		
 		
-		int firstColToCheck = toMove.getEndingPos().getColumn() - 1;
-		int secondColToCheck = toMove.getEndingPos().getColumn() + 1;
+		int firstColToCheck = toMove.getEndingPos().getColumn() + Constants.LEFT_DIRECTION;
+		int secondColToCheck = toMove.getEndingPos().getColumn() + Constants.RIGHT_DIRECTION;
 		
 		if (rowToCheck >= Constants.FIRST_ROW && rowToCheck <= Constants.LAST_ROW) {
 			
@@ -705,7 +707,7 @@ class Match {
 		Coordinates rookEndingPosition;
 		
 		int rookStartingColumn = (castlingType == Move.Castling.KINGSIDE_CASTLING)
-				? Constants.LAST_COLUMN : Constants.FIRST_COLUMN;
+				? Constants.R_ROOK_COL : Constants.L_ROOK_COL;
 		int rookEndingColumn = (castlingType == Move.Castling.KINGSIDE_CASTLING)
 				? Constants.KS_ROOK_ENDING_COL : Constants.QS_ROOK_ENDING_COL;
 		int kingEndingColumn = (castlingType == Move.Castling.KINGSIDE_CASTLING) 
@@ -713,16 +715,16 @@ class Match {
 		
 		if (currentPlayer == Piece.Color.WHITE) {
 			
-			kingStartingPosition = new Coordinates(Constants.KING_COL, Constants.LAST_ROW);
-			rookStartingPosition = new Coordinates(rookStartingColumn, Constants.LAST_ROW);
-			kingEndingPosition = new Coordinates(kingEndingColumn, Constants.LAST_ROW);
-			rookEndingPosition = new Coordinates(rookEndingColumn, Constants.LAST_ROW);
+			kingStartingPosition = new Coordinates(Constants.KING_COL, Constants.WHITE_SIDE_ROW);
+			rookStartingPosition = new Coordinates(rookStartingColumn, Constants.WHITE_SIDE_ROW);
+			kingEndingPosition = new Coordinates(kingEndingColumn, Constants.WHITE_SIDE_ROW);
+			rookEndingPosition = new Coordinates(rookEndingColumn, Constants.WHITE_SIDE_ROW);
 		} else {
 			
-			kingStartingPosition = new Coordinates(Constants.KING_COL, Constants.FIRST_ROW);
-			rookStartingPosition = new Coordinates(rookStartingColumn, Constants.FIRST_ROW);
-			kingEndingPosition= new Coordinates(kingEndingColumn, Constants.FIRST_ROW);
-			rookEndingPosition = new Coordinates(rookEndingColumn, Constants.FIRST_ROW);
+			kingStartingPosition = new Coordinates(Constants.KING_COL, Constants.BLACK_SIDE_ROW);
+			rookStartingPosition = new Coordinates(rookStartingColumn, Constants.BLACK_SIDE_ROW);
+			kingEndingPosition= new Coordinates(kingEndingColumn, Constants.BLACK_SIDE_ROW);
+			rookEndingPosition = new Coordinates(rookEndingColumn, Constants.BLACK_SIDE_ROW);
 		}
 		
 		if ( field.getSquare(kingStartingPosition).isOccupied() 
