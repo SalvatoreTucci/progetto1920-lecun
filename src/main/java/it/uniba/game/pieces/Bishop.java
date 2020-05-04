@@ -51,8 +51,8 @@ public final class Bishop extends Piece {
 		 
 		Vector<Coordinates> possibleSquares = new Vector<Coordinates>();
 		
-		int i = target.getEndingPos().getRow() + 1;
-		int j = target.getEndingPos().getColumn() + 1;
+		int i = target.getEndingPos().getRow() + Constants.RIGHT_DIRECTION;
+		int j = target.getEndingPos().getColumn() + Constants.DOWN_DIRECTION;
 		
 		while (i <= Constants.LAST_ROW && j <= Constants.LAST_COLUMN) {
 			
@@ -61,8 +61,8 @@ public final class Bishop extends Piece {
 			i++;
 		} 
 		
-		i = target.getEndingPos().getRow() - 1;
-		j = target.getEndingPos().getColumn() - 1;
+		i = target.getEndingPos().getRow() + Constants.LEFT_DIRECTION;
+		j = target.getEndingPos().getColumn() + Constants.UP_DIRECTION;
 		
 		while (i>= Constants.FIRST_ROW && j >= Constants.FIRST_COLUMN) {
 			
@@ -71,8 +71,8 @@ public final class Bishop extends Piece {
 			i--;
 		} 
 		
-		i = target.getEndingPos().getRow() + 1;
-		j = target.getEndingPos().getColumn() - 1;
+		i = target.getEndingPos().getRow() + Constants.RIGHT_DIRECTION;
+		j = target.getEndingPos().getColumn() + Constants.UP_DIRECTION;
 		
 		while (i <= Constants.LAST_ROW && j >= Constants.FIRST_COLUMN) {
 			
@@ -81,8 +81,8 @@ public final class Bishop extends Piece {
 			i++;
 		} 
 		
-		i = target.getEndingPos().getRow() - 1;
-		j = target.getEndingPos().getColumn() + 1;
+		i = target.getEndingPos().getRow() + Constants.LEFT_DIRECTION;
+		j = target.getEndingPos().getColumn() + Constants.DOWN_DIRECTION;
 		
 		while (i>= Constants.FIRST_ROW  && j <= Constants.LAST_COLUMN) {
 			

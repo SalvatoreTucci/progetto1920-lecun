@@ -18,6 +18,7 @@ public final class Constants {
 	/*
 	 * Class containing the constant values used in the application
 	 */
+	public final static String CHAR_STD = "UTF-8";
 	public final static String W_KING = "\u2654";
 	public final static String B_KING = "\u265A";
 	public final static String W_QUEEN = "\u2655";
@@ -38,15 +39,31 @@ public final class Constants {
 	public final static int LONG_MOVE_LENGTH = 2;
 	
 	// Constants for the pieces implementation
+
 	public final static int FIRST_ROW = 0;
 	public final static int LAST_ROW = 7;
+	
+	public final static int BLACK_SIDE_ROW = 0;
+	public final static int WHITE_SIDE_ROW = 7;
+	public final static int BLACK_PAWN_ROW = 1;
+	public final static int WHITE_PAWN_ROW = 6;
 
 	public final static int FIRST_COLUMN = 0;
 	public final static int LAST_COLUMN = 7;
 	
+	public final static int R_ROOK_COL = 7;
+	public final static int L_ROOK_COL = 0;
+	public final static int R_KNIGHT_COL = 6;
+	public final static int L_KNIGHT_COL = 1;
+	public final static int R_BISHOP_COL = 5;
+	public final static int L_BISHOP_COL = 2;
+	public final static int KING_COL = 4;
+	public final static int QUEEN_COL = 3;
+	
 	
 	
 	// Constants for the class ChessBoard
+	public final static int CB_DIMENSION = 8;
 	public final static String CB_LETTERS_COORDS = "    A   B   C   D   E   F   G   H\n";
 	public final static String CB_FIRST_ROW = "  +\u2014\u2014\u2014+\u2014\u2014\u2014+\u2014\u2014"
 			+ "\u2014+\u2014\u2014\u2014+\u2014\u2014\u2014+\u2014\u2014\u2014+\u2014\u2014\u2014+"
@@ -58,7 +75,7 @@ public final class Constants {
 	public final static String CB_LAST_ROW = "  +\u2014\u2014\u2014+\u2014\u2014\u2014+\u2014\u2014"
 			+ "\u2014+\u2014\u2014\u2014+\u2014\u2014\u2014+\u2014\u2014\u2014+\u2014\u2014\u2014+"
 			+ "\u2014\u2014\u2014+\n";
-	public final static String CB_EMPY_SQUARE = "   ";
+	public final static String CB_EMPTY_SQUARE = "   ";
 	
 	
 	// Constants for the class Match
@@ -86,15 +103,20 @@ public final class Constants {
 	public final static int QS_ROOK_ENDING_COL = 3;
 	public final static int KS_KING_ENDING_COL = 6;
 	public final static int QS_KING_ENDING_COL = 2;
-	public final static int KING_COL = 4;
+
 	
 	
-	//Constants for adders 
+	// Constants for adders 
 	public final static int UP_DIRECTION = -1;
 	public final static int DOWN_DIRECTION = 1;
 	public final static int LEFT_DIRECTION = -1;
 	public final static int RIGHT_DIRECTION = 1;
 	public final static int STILL_DIRECTION = 0;
+	// Knight constants
+	public final static int KN_UP_DIRECTION = -2;
+	public final static int KN_DOWN_DIRECTION = 2;
+	public final static int KN_LEFT_DIRECTION = -2;
+	public final static int KN_RIGHT_DIRECTION = 2;
 	
 	
 	// Constants containing Messages and for the class UI
@@ -116,7 +138,7 @@ public final class Constants {
 	public final static String HELP = "\nhelp \nplay \nquit \n"
 			+ "Riconosciuti solo in-game: \nmoves \nboard \ncapture\n";
 		
-	//Other
+	// Other
 	public final static String YES = "si";
 	public final static String NO = "no";
 	

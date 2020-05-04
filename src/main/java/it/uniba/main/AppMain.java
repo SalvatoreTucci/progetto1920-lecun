@@ -1,5 +1,6 @@
 package it.uniba.main;
 
+import it.uniba.game.Constants;
 import it.uniba.game.UI;
 import java.util.Scanner;
 import java.io.PrintStream;
@@ -44,7 +45,7 @@ public final class AppMain {
 		
 		try {
 			
-			PrintStream utf8Out = new PrintStream(System.out,false,"UTF-8");
+			PrintStream utf8Out = new PrintStream(System.out,false,Constants.CHAR_STD);
 			System.setOut(utf8Out);
 		} catch (UnsupportedEncodingException e) {
 			
