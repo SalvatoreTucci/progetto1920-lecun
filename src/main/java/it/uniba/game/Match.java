@@ -540,7 +540,7 @@ class Match {
 					&& ( field.getSquare(toCheck).getPiece().getColor() != toMove.getPiece().getColor() ) ) {
 				
 				Pawn enPass = (Pawn) field.getSquare(toCheck).getPiece();
-				System.out.println(enPass.isEnPassant());
+				
 				if (enPass.isEnPassant()) {
 					
 					if (possibleSquares.size() > 1) {
