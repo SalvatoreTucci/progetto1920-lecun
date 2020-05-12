@@ -378,12 +378,21 @@ class Match {
 			if (possibleSquares.size() > 1) {
 				
 				solveAmbiguousMoves(possibleSquares, toMove);
+				
 			}
 			
 			// if there are no alternatives raise an exception
 			if (possibleSquares.isEmpty()) {
 				
 					throw new MatchException(Constants.ERR_ILLEGAL_MOVE);
+					
+			} else if((toMove.getStartingPos().getColumn() != Constants.INVALID_POS
+					&& toMove.getStartingPos().getColumn() != possibleSquares.firstElement().getColumn())
+					|| (toMove.getStartingPos().getRow() != Constants.INVALID_POS
+					&& toMove.getStartingPos().getRow() != possibleSquares.firstElement().getRow())) {
+
+					//if the user tries to give a wrong disambiguation when not needed 
+					throw new MatchException(Constants.ERR_BAD_DISAMBIGUATION);
 			}
 			
 			if (toMove.getPiece().getClass() == King.class) {
@@ -436,6 +445,13 @@ class Match {
 			if (possibleSquares.isEmpty()) {
 				
 				throw new MatchException(Constants.ERR_ILLEGAL_MOVE);
+			} else if((toMove.getStartingPos().getColumn() != Constants.INVALID_POS
+					&& toMove.getStartingPos().getColumn() != possibleSquares.firstElement().getColumn())
+					|| (toMove.getStartingPos().getRow() != Constants.INVALID_POS
+					&& toMove.getStartingPos().getRow() != possibleSquares.firstElement().getRow())) {
+
+					//if the user tries to give a wrong disambiguation when not needed 
+					throw new MatchException(Constants.ERR_BAD_DISAMBIGUATION);
 			}
 
 
@@ -553,15 +569,21 @@ class Match {
 							solveAmbiguousMoves(possibleSquares, toMove);
 						}
 						
-						if (!possibleSquares.isEmpty()) {
-							
-							toMove.setStartingPos(possibleSquares.firstElement());
-							toMove.setEnPassant();
-							
-						} else {
+						if (possibleSquares.isEmpty()) {
 							
 							throw new MatchException(Constants.ERR_ILLEGAL_MOVE);
+							
+						} else if((toMove.getStartingPos().getColumn() != Constants.INVALID_POS
+								&& toMove.getStartingPos().getColumn() != possibleSquares.firstElement().getColumn())
+								|| (toMove.getStartingPos().getRow() != Constants.INVALID_POS
+								&& toMove.getStartingPos().getRow() != possibleSquares.firstElement().getRow())) {
+
+								//if the user tries to give a wrong disambiguation when not needed 
+								throw new MatchException(Constants.ERR_BAD_DISAMBIGUATION);
 						}
+						
+						toMove.setStartingPos(possibleSquares.firstElement());
+						toMove.setEnPassant();
 						
 					} else {
 						
@@ -589,17 +611,24 @@ class Match {
 				solveAmbiguousMoves(possibleSquares, toMove);
 			}
 			
-			if (!possibleSquares.isEmpty()) {
-				
-				toMove.setStartingPos(possibleSquares.firstElement());
-				if(toMove.getEnPassant()) {
-					
-					throw new MatchException(Constants.ERR_EN_PASSANT);
-				}
-			} else {
-				
+			if (possibleSquares.isEmpty()) {
 				throw new MatchException(Constants.ERR_ILLEGAL_MOVE);
+				
+			} else if((toMove.getStartingPos().getColumn() != Constants.INVALID_POS
+					&& toMove.getStartingPos().getColumn() != possibleSquares.firstElement().getColumn())
+					|| (toMove.getStartingPos().getRow() != Constants.INVALID_POS
+					&& toMove.getStartingPos().getRow() != possibleSquares.firstElement().getRow())) {
+
+					//if the user tries to give a wrong disambiguation when not needed 
+					throw new MatchException(Constants.ERR_BAD_DISAMBIGUATION);
 			}
+			
+			if(toMove.getEnPassant()) {
+				
+				throw new MatchException(Constants.ERR_EN_PASSANT);
+			}
+			
+			toMove.setStartingPos(possibleSquares.firstElement());
 			
 		} else {
 			
