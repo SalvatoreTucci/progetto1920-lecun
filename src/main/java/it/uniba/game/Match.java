@@ -1,6 +1,7 @@
 package it.uniba.game;
 
 import it.uniba.game.pieces.*;
+import it.uniba.game.pieces.Piece.Color;
 import it.uniba.game.board.ChessBoard;
 import java.util.Vector;
 import java.util.Iterator;
@@ -88,9 +89,9 @@ class Match {
 			if (parsedMove.getPiece().getClass() != King.class) {
 				
 				if ((parsedMove.getPiece().getColor() == Piece.Color.BLACK
-						&& checkKingThreat( new Move(null, null, blackKingPosition, false) ))
-						|| ((parsedMove.getPiece().getColor() == Piece.Color.WHITE)
-								&& checkKingThreat( new Move(null, null, whiteKingPosition, false) ))) {
+						&& checkKingThreat( new Move(new King(Color.BLACK), null, blackKingPosition, false) ))
+						|| ((parsedMove.getPiece().getColor() == Color.WHITE)
+								&& checkKingThreat( new Move(new King(Color.WHITE), null, whiteKingPosition, false) ))) {
 					
 					field.setMove(new Move(parsedMove.getPiece(), parsedMove.getEndingPos(), parsedMove.getStartingPos(), false));
 					throw new MatchException(Constants.ERR_KING_THREAT);
