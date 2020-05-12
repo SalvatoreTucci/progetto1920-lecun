@@ -86,7 +86,6 @@ class Match {
 			
 		} else {
 			
-			resetEnPassant();
 			handleCastling(parsedMove.getCastling());
 		}
 			
@@ -790,6 +789,8 @@ class Match {
 						Move rookMove = new Move(rookToPlace, rookStartingPosition, rookEndingPosition, false);
 						kingToPlace.setMoved(true);
 						rookToPlace.setMoved(true);
+						
+						resetEnPassant();
 						
 						field.setMove(kingMove);
 						field.setMove(rookMove);
