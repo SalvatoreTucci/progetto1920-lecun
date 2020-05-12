@@ -61,16 +61,8 @@ class Match {
 		Move parsedMove = parseMove(toParse);
 		if (parsedMove.getCastling() == Move.Castling.NO_CASTLING) {
 			findToMove(parsedMove);
-			if(!lastPawnLongMove.equals(Constants.EMPTY_COORD)) {
-
-				if(field.getSquare(lastPawnLongMove).isOccupied() 
-						&& field.getSquare(lastPawnLongMove).getPiece() instanceof Pawn) {
-					
-					((Pawn) field.getSquare(lastPawnLongMove).getPiece()).setEnPassant(false);
-					lastPawnLongMove = Constants.EMPTY_COORD;
-					
-				}
-			}
+			
+			resetEnPassant();
 			
 			if (parsedMove.getPiece().getClass() == Pawn.class) {
 			
@@ -94,11 +86,25 @@ class Match {
 			
 		} else {
 			
+			resetEnPassant();
 			handleCastling(parsedMove.getCastling());
 		}
 			
 		moves.add(toParse);
 
+	}
+	
+	private void resetEnPassant() {
+		if(!lastPawnLongMove.equals(Constants.EMPTY_COORD)) {
+
+			if(field.getSquare(lastPawnLongMove).isOccupied() 
+					&& field.getSquare(lastPawnLongMove).getPiece() instanceof Pawn) {
+				
+				((Pawn) field.getSquare(lastPawnLongMove).getPiece()).setEnPassant(false);
+				lastPawnLongMove = Constants.EMPTY_COORD;
+				
+			}
+		}
 	}
 	
 	void insertCapture(Move captureMove) {
@@ -784,6 +790,7 @@ class Match {
 						Move rookMove = new Move(rookToPlace, rookStartingPosition, rookEndingPosition, false);
 						kingToPlace.setMoved(true);
 						rookToPlace.setMoved(true);
+						
 						field.setMove(kingMove);
 						field.setMove(rookMove);
 						
