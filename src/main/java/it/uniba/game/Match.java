@@ -45,6 +45,9 @@ class Match {
 	private Piece.Color currentPlayer;
 	private Coordinates blackKingPosition;
 	private Coordinates whiteKingPosition;
+	private Coordinates lastPawnLongMove;
+	
+
 
 	// Methods
 	public Match() {
@@ -56,7 +59,8 @@ class Match {
 		field = new ChessBoard();
 		blackKingPosition = new Coordinates(Constants.KING_COL, Constants.BLACK_SIDE_ROW);
 		whiteKingPosition = new Coordinates(Constants.KING_COL, Constants.WHITE_SIDE_ROW);
-		
+		lastPawnLongMove = Constants.EMPTY_COORD;
+
 	}
 	
 	public void inputMove(String toParse) throws MatchException {
@@ -65,6 +69,8 @@ class Match {
 		if (parsedMove.getCastling() == Move.Castling.NO_CASTLING) {
 
 			findToMove(parsedMove);
+			
+			resetEnPassant();
 			
 			if (parsedMove.getPiece().getClass() == Pawn.class) {
 			
@@ -109,8 +115,8 @@ class Match {
 					whiteKingPosition.setRow(parsedMove.getEndingPos().getRow());
 					whiteKingPosition.setColumn(parsedMove.getEndingPos().getColumn());				
 				}
-			}
-			
+			}	
+
 		} else {
 			
 			handleCastling(parsedMove.getCastling());
@@ -118,6 +124,19 @@ class Match {
 			
 		moves.add(toParse);
 
+	}
+	
+	private void resetEnPassant() {
+		if(!lastPawnLongMove.equals(Constants.EMPTY_COORD)) {
+
+			if(field.getSquare(lastPawnLongMove).isOccupied() 
+					&& field.getSquare(lastPawnLongMove).getPiece() instanceof Pawn) {
+				
+				((Pawn) field.getSquare(lastPawnLongMove).getPiece()).setEnPassant(false);
+				lastPawnLongMove = Constants.EMPTY_COORD;
+				
+			}
+		}
 	}
 	
 	void insertCapture(Move captureMove) {
@@ -555,38 +574,48 @@ class Match {
 			
 			Coordinates toCheck = new Coordinates(toMove.getEndingPos().getColumn(), toMove.getEndingPos().getRow() + addR);
 			
-			if ( ( field.getSquare(toCheck).getPiece().getClass() == Pawn.class ) 
-					&& ( field.getSquare(toCheck).getPiece().getColor() != toMove.getPiece().getColor() ) ) {
+			if (field.getSquare(toCheck).isOccupied()) {
 				
-				Pawn enPass = (Pawn) field.getSquare(toCheck).getPiece();
-				
-				if (enPass.isEnPassant()) {
+				if (( field.getSquare(toCheck).getPiece().getClass() == Pawn.class ) 
+						&& ( field.getSquare(toCheck).getPiece().getColor() != toMove.getPiece().getColor() ) ) {
 					
-					if (possibleSquares.size() > 1) {
-						
-						solveAmbiguousMoves(possibleSquares, toMove);
-					}
+					Pawn enPass = (Pawn) field.getSquare(toCheck).getPiece();
 					
-					if (!possibleSquares.isEmpty()) {
+					if (enPass.isEnPassant()) {
 						
-						toMove.setStartingPos(possibleSquares.firstElement());
-						toMove.setEnPassant();
+						if (possibleSquares.size() > 1) {
+							
+							solveAmbiguousMoves(possibleSquares, toMove);
+						}
+						
+						if (!possibleSquares.isEmpty()) {
+							
+							toMove.setStartingPos(possibleSquares.firstElement());
+							toMove.setEnPassant();
+							
+						} else {
+							
+							throw new MatchException(Constants.ERR_ILLEGAL_MOVE);
+						}
+						
 					} else {
 						
-						throw new MatchException(Constants.ERR_ILLEGAL_MOVE);
+						// exception regarding the impossibility of doing an EnPassant move on the target pawn
+						throw new MatchException(Constants.ERR_EN_PASSANT);
 					}
 					
 				} else {
 					
-					// exception regarding the impossibility of doing an EnPassant move on the target pawn
-					throw new MatchException(Constants.ERR_EN_PASSANT);
+					// exception regarding an incorrect EnPassant move
+					throw new MatchException(Constants.ERR_EN_PASSANT_BAD_TARGET);
 				}
 				
 			} else {
 				
-				// exception regarding an incorrect EnPassant move
-				throw new MatchException(Constants.ERR_EN_PASSANT_BAD_TARGET);
+				throw new MatchException(Constants.ERR_ILLEGAL_MOVE);
 			}
+			
+
 			
 		} else if (( field.getSquare(toMove.getEndingPos()).getPiece().getColor() != toMove.getPiece().getColor() )) {
 			
@@ -622,6 +651,8 @@ class Match {
 			
 			
 			((Pawn) toCheck.getPiece()).setEnPassant(true);
+			lastPawnLongMove = new Coordinates(toCheck.getEndingPos().getColumn(),
+					toCheck.getEndingPos().getRow());
 			
 		} else {
 			
@@ -789,6 +820,9 @@ class Match {
 						Move rookMove = new Move(rookToPlace, rookStartingPosition, rookEndingPosition, false);
 						kingToPlace.setMoved(true);
 						rookToPlace.setMoved(true);
+						
+						resetEnPassant();
+						
 						field.setMove(kingMove);
 						field.setMove(rookMove);
 						
