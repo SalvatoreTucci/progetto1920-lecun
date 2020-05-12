@@ -90,7 +90,7 @@ class Match {
 				insertCapture(parsedMove);
 			}
 			
-			field.setMove(parsedMove);
+						field.setMove(parsedMove);
 			
 			if (parsedMove.getPiece().getClass() != King.class) {
 				
@@ -100,6 +100,19 @@ class Match {
 								&& checkKingThreat( new Move(new King(Color.WHITE), null, whiteKingPosition, false) ))) {
 					
 					field.setMove(new Move(parsedMove.getPiece(), parsedMove.getEndingPos(), parsedMove.getStartingPos(), false));
+					
+					if (parsedMove.getCaptureFlag()) {
+						
+						if(parsedMove.getPiece().getColor() == Color.BLACK) {
+							
+							field.setMove( new Move(blackCaptured.lastElement(), parsedMove.getEndingPos(), parsedMove.getEndingPos(), false));
+							blackCaptured.remove(blackCaptured.size() - 1);
+						} else {
+							
+							field.setMove( new Move(whiteCaptured.lastElement(), parsedMove.getEndingPos(), parsedMove.getEndingPos(), false));
+							whiteCaptured.remove(whiteCaptured.size() - 1);
+						}
+					}
 					throw new MatchException(Constants.ERR_KING_THREAT);
 				}
 				
@@ -477,6 +490,14 @@ class Match {
 		} else {
 			
 			throw new MatchException(Constants.ERR_ILLEGAL_MOVE);
+		}
+		
+		if (toMove.getPiece().getClass() == King.class) {
+			
+			if (checkKingThreat(toMove)) {
+				
+				throw new MatchException(Constants.ERR_KING_THREAT);
+			}
 		}
 		
 	}
