@@ -29,8 +29,6 @@ import it.uniba.game.Move;
 */
 public final class Pawn extends Piece {
 	
-	// Attributes
-	private boolean enPassant;
 	
 	// Constructor
 	public Pawn(Color col) {
@@ -44,8 +42,6 @@ public final class Pawn extends Piece {
 			
 			this.setSymbol(Constants.W_PAWN);
 		}
-		
-		enPassant = false;
 		
 	}
 	
@@ -107,16 +103,6 @@ public final class Pawn extends Piece {
 		}
 		
 		return startingPos;
-		
-	}
-
-	public boolean isEnPassant() {
-		return enPassant;
-		
-	}
-
-	public void setEnPassant(boolean enPassant) {
-		this.enPassant = enPassant;
 		
 	}
 	
