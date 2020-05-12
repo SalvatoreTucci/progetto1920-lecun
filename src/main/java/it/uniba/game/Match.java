@@ -42,6 +42,8 @@ class Match {
 	private Vector<Piece> whiteCaptured;
 	private Vector<String> moves;
 	private Piece.Color currentPlayer;
+	private Coordinates lastPawnLongMove;
+	
 
 	// Methods
 	public Match() {
@@ -51,7 +53,7 @@ class Match {
 		whiteCaptured = new Vector<Piece>();
 		moves = new Vector<String>();
 		field = new ChessBoard();
-		
+		lastPawnLongMove = Constants.EMPTY_COORD;
 	}
 	
 	public void inputMove(String toParse) throws MatchException {
@@ -59,6 +61,16 @@ class Match {
 		Move parsedMove = parseMove(toParse);
 		if (parsedMove.getCastling() == Move.Castling.NO_CASTLING) {
 			findToMove(parsedMove);
+			if(!lastPawnLongMove.equals(Constants.EMPTY_COORD)) {
+
+				if(field.getSquare(lastPawnLongMove).isOccupied() 
+						&& field.getSquare(lastPawnLongMove).getPiece() instanceof Pawn) {
+					
+					((Pawn) field.getSquare(lastPawnLongMove).getPiece()).setEnPassant(false);
+					lastPawnLongMove = Constants.EMPTY_COORD;
+					
+				}
+			}
 			
 			if (parsedMove.getPiece().getClass() == Pawn.class) {
 			
@@ -79,7 +91,7 @@ class Match {
 			}
 			
 			field.setMove(parsedMove);
-		
+			
 		} else {
 			
 			handleCastling(parsedMove.getCastling());
@@ -528,7 +540,7 @@ class Match {
 					&& ( field.getSquare(toCheck).getPiece().getColor() != toMove.getPiece().getColor() ) ) {
 				
 				Pawn enPass = (Pawn) field.getSquare(toCheck).getPiece();
-				
+				System.out.println(enPass.isEnPassant());
 				if (enPass.isEnPassant()) {
 					
 					if (possibleSquares.size() > 1) {
@@ -591,6 +603,8 @@ class Match {
 			
 			
 			((Pawn) toCheck.getPiece()).setEnPassant(true);
+			lastPawnLongMove = new Coordinates(toCheck.getEndingPos().getColumn(),
+					toCheck.getEndingPos().getRow());
 			
 		} else {
 			

@@ -167,5 +167,5 @@ public final class Constants {
 	public final static String ERR_NC_PATH_OBSTR = "Arrocco non eseguibile: pezzo/i nel mezzo";
 	
 	
-	
+	public final static Coordinates EMPTY_COORD = new Coordinates(-1, -1);
 }
