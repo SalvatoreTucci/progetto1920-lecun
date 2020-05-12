@@ -68,6 +68,7 @@ class Match {
 		Move parsedMove = parseMove(toParse);
 		if (parsedMove.getCastling() == Move.Castling.NO_CASTLING) {
 
+			boolean isRookMoved = false;
 			findToMove(parsedMove);
 			
 			resetEnPassant();
@@ -82,6 +83,7 @@ class Match {
 			}
 			else if (parsedMove.getPiece().getClass() == Rook.class) {
 				
+				isRookMoved = ((Rook) parsedMove.getPiece()).isMoved();
 				((Rook) parsedMove.getPiece()).setMoved(true);
 			}
 			
@@ -99,6 +101,11 @@ class Match {
 						|| ((parsedMove.getPiece().getColor() == Color.WHITE)
 								&& checkKingThreat( new Move(new King(Color.WHITE), null, whiteKingPosition, false) ))) {
 					
+					
+					if(parsedMove.getPiece().getClass() == Rook.class) {
+						
+						((Rook) parsedMove.getPiece()).setMoved(isRookMoved);
+					}
 					field.setMove(new Move(parsedMove.getPiece(), parsedMove.getEndingPos(), parsedMove.getStartingPos(), false));
 					
 					if (parsedMove.getCaptureFlag()) {
