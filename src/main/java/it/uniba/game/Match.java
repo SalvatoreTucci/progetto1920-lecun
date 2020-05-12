@@ -42,6 +42,8 @@ class Match {
 	private Vector<Piece> whiteCaptured;
 	private Vector<String> moves;
 	private Piece.Color currentPlayer;
+	private Coordinates blackKingPosition;
+	private Coordinates whiteKingPosition;
 
 	// Methods
 	public Match() {
@@ -51,6 +53,8 @@ class Match {
 		whiteCaptured = new Vector<Piece>();
 		moves = new Vector<String>();
 		field = new ChessBoard();
+		blackKingPosition = new Coordinates(Constants.KING_COL, Constants.BLACK_SIDE_ROW);
+		whiteKingPosition = new Coordinates(Constants.KING_COL, Constants.WHITE_SIDE_ROW);
 		
 	}
 	
@@ -58,6 +62,7 @@ class Match {
 
 		Move parsedMove = parseMove(toParse);
 		if (parsedMove.getCastling() == Move.Castling.NO_CASTLING) {
+
 			findToMove(parsedMove);
 			
 			if (parsedMove.getPiece().getClass() == Pawn.class) {
@@ -79,7 +84,32 @@ class Match {
 			}
 			
 			field.setMove(parsedMove);
-		
+			
+			if (parsedMove.getPiece().getClass() != King.class) {
+				
+				if ((parsedMove.getPiece().getColor() == Piece.Color.BLACK
+						&& checkKingThreat( new Move(null, null, blackKingPosition, false) ))
+						|| ((parsedMove.getPiece().getColor() == Piece.Color.WHITE)
+								&& checkKingThreat( new Move(null, null, whiteKingPosition, false) ))) {
+					
+					field.setMove(new Move(parsedMove.getPiece(), parsedMove.getEndingPos(), parsedMove.getStartingPos(), false));
+					throw new MatchException(Constants.ERR_KING_THREAT);
+				}
+				
+				
+			} else {
+				
+				if (parsedMove.getPiece().getColor() == Piece.Color.BLACK) {
+					
+					blackKingPosition.setRow(parsedMove.getEndingPos().getRow());
+					blackKingPosition.setColumn(parsedMove.getEndingPos().getColumn());
+				} else {
+
+					whiteKingPosition.setRow(parsedMove.getEndingPos().getRow());
+					whiteKingPosition.setColumn(parsedMove.getEndingPos().getColumn());				
+				}
+			}
+			
 		} else {
 			
 			handleCastling(parsedMove.getCastling());
@@ -376,7 +406,7 @@ class Match {
 					
 					throw new MatchException(Constants.ERR_KING_THREAT);
 				}
-			} 
+			}
 			
 			toMove.setStartingPos(possibleSquares.firstElement());
 			
@@ -601,10 +631,8 @@ class Match {
 	
 	private Boolean checkKingThreat(Move toMove) {
 		
-		
-		
 		Vector<Coordinates> squaresToCheck;			//vector containing the coordinates for possibles threatning pieces 
-		squaresToCheck = Bishop.reverseBishopMove(toMove);	
+		squaresToCheck = Bishop.reverseBishopMove(toMove);
 		
 		Iterator<Coordinates> i = squaresToCheck.iterator();
 		while (i.hasNext()) {
