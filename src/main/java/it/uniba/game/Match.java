@@ -1,6 +1,7 @@
 package it.uniba.game;
 
 import it.uniba.game.pieces.*;
+import it.uniba.game.pieces.Piece.Color;
 import it.uniba.game.board.ChessBoard;
 import java.util.Vector;
 import java.util.Iterator;
@@ -42,8 +43,11 @@ class Match {
 	private Vector<Piece> whiteCaptured;
 	private Vector<String> moves;
 	private Piece.Color currentPlayer;
+	private Coordinates blackKingPosition;
+	private Coordinates whiteKingPosition;
 	private Coordinates lastPawnLongMove;
 	
+
 
 	// Methods
 	public Match() {
@@ -53,13 +57,18 @@ class Match {
 		whiteCaptured = new Vector<Piece>();
 		moves = new Vector<String>();
 		field = new ChessBoard();
+		blackKingPosition = new Coordinates(Constants.KING_COL, Constants.BLACK_SIDE_ROW);
+		whiteKingPosition = new Coordinates(Constants.KING_COL, Constants.WHITE_SIDE_ROW);
 		lastPawnLongMove = Constants.EMPTY_COORD;
+
 	}
 	
 	public void inputMove(String toParse) throws MatchException {
 
 		Move parsedMove = parseMove(toParse);
 		if (parsedMove.getCastling() == Move.Castling.NO_CASTLING) {
+
+			boolean isRookMoved = false;
 			findToMove(parsedMove);
 			
 			resetEnPassant();
@@ -74,6 +83,7 @@ class Match {
 			}
 			else if (parsedMove.getPiece().getClass() == Rook.class) {
 				
+				isRookMoved = ((Rook) parsedMove.getPiece()).isMoved();
 				((Rook) parsedMove.getPiece()).setMoved(true);
 			}
 			
@@ -82,8 +92,51 @@ class Match {
 				insertCapture(parsedMove);
 			}
 			
-			field.setMove(parsedMove);
+						field.setMove(parsedMove);
 			
+			if (parsedMove.getPiece().getClass() != King.class) {
+				
+				if ((parsedMove.getPiece().getColor() == Piece.Color.BLACK
+						&& checkKingThreat( new Move(new King(Color.BLACK), null, blackKingPosition, false) ))
+						|| ((parsedMove.getPiece().getColor() == Color.WHITE)
+								&& checkKingThreat( new Move(new King(Color.WHITE), null, whiteKingPosition, false) ))) {
+					
+					
+					if(parsedMove.getPiece().getClass() == Rook.class) {
+						
+						((Rook) parsedMove.getPiece()).setMoved(isRookMoved);
+					}
+					field.setMove(new Move(parsedMove.getPiece(), parsedMove.getEndingPos(), parsedMove.getStartingPos(), false));
+					
+					if (parsedMove.getCaptureFlag()) {
+						
+						if(parsedMove.getPiece().getColor() == Color.BLACK) {
+							
+							field.setMove( new Move(blackCaptured.lastElement(), parsedMove.getEndingPos(), parsedMove.getEndingPos(), false));
+							blackCaptured.remove(blackCaptured.size() - 1);
+						} else {
+							
+							field.setMove( new Move(whiteCaptured.lastElement(), parsedMove.getEndingPos(), parsedMove.getEndingPos(), false));
+							whiteCaptured.remove(whiteCaptured.size() - 1);
+						}
+					}
+					throw new MatchException(Constants.ERR_KING_THREAT);
+				}
+				
+				
+			} else {
+				
+				if (parsedMove.getPiece().getColor() == Piece.Color.BLACK) {
+					
+					blackKingPosition.setRow(parsedMove.getEndingPos().getRow());
+					blackKingPosition.setColumn(parsedMove.getEndingPos().getColumn());
+				} else {
+
+					whiteKingPosition.setRow(parsedMove.getEndingPos().getRow());
+					whiteKingPosition.setColumn(parsedMove.getEndingPos().getColumn());				
+				}
+			}	
+
 		} else {
 			
 			handleCastling(parsedMove.getCastling());
@@ -401,7 +454,7 @@ class Match {
 					
 					throw new MatchException(Constants.ERR_KING_THREAT);
 				}
-			} 
+			}
 			
 			toMove.setStartingPos(possibleSquares.firstElement());
 			
@@ -459,6 +512,14 @@ class Match {
 		} else {
 			
 			throw new MatchException(Constants.ERR_ILLEGAL_MOVE);
+		}
+		
+		if (toMove.getPiece().getClass() == King.class) {
+			
+			if (checkKingThreat(toMove)) {
+				
+				throw new MatchException(Constants.ERR_KING_THREAT);
+			}
 		}
 		
 	}
@@ -652,10 +713,8 @@ class Match {
 	
 	private Boolean checkKingThreat(Move toMove) {
 		
-		
-		
 		Vector<Coordinates> squaresToCheck;			//vector containing the coordinates for possibles threatning pieces 
-		squaresToCheck = Bishop.reverseBishopMove(toMove);	
+		squaresToCheck = Bishop.reverseBishopMove(toMove);
 		
 		Iterator<Coordinates> i = squaresToCheck.iterator();
 		while (i.hasNext()) {

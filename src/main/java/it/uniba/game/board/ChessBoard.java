@@ -133,10 +133,9 @@ public class ChessBoard {
 		
 		Coordinates start = currentMove.getStartingPos();
 		Coordinates end   = currentMove.getEndingPos();
-		
-		elements[end.getRow()][end.getColumn()].setPiece(currentMove.getPiece());
 			
 		elements[start.getRow()][start.getColumn()].setPiece(null);
+		elements[end.getRow()][end.getColumn()].setPiece(currentMove.getPiece());
 			
 		
 		if (currentMove.getEnPassant()) {
