@@ -53,4 +53,9 @@ public class Coordinates {
     	return new String("(" + column + ", " + row + ")");
     }
     
+    public boolean equals(Coordinates toCheck) {
+    	
+    	return row == toCheck.row && column == toCheck.column;
+    }
+    
 }

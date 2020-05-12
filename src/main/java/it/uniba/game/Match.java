@@ -99,7 +99,6 @@ class Match {
 			if(field.getSquare(lastPawnLongMove).isOccupied() 
 					&& field.getSquare(lastPawnLongMove).getPiece() instanceof Pawn) {
 				
-				((Pawn) field.getSquare(lastPawnLongMove).getPiece()).setEnPassant(false);
 				lastPawnLongMove = Constants.EMPTY_COORD;
 				
 			}
@@ -546,9 +545,8 @@ class Match {
 				if (( field.getSquare(toCheck).getPiece().getClass() == Pawn.class ) 
 						&& ( field.getSquare(toCheck).getPiece().getColor() != toMove.getPiece().getColor() ) ) {
 					
-					Pawn enPass = (Pawn) field.getSquare(toCheck).getPiece();
 					
-					if (enPass.isEnPassant()) {
+					if (toCheck.equals(lastPawnLongMove)) {
 						
 						if (possibleSquares.size() > 1) {
 							
@@ -617,15 +615,10 @@ class Match {
 		if (Math.abs(toCheck.getStartingPos().getRow() - toCheck.getEndingPos().getRow()) == Constants.LONG_MOVE_LENGTH) {
 			
 			
-			((Pawn) toCheck.getPiece()).setEnPassant(true);
+			
 			lastPawnLongMove = new Coordinates(toCheck.getEndingPos().getColumn(),
 					toCheck.getEndingPos().getRow());
-			
-		} else {
-			
-			((Pawn) toCheck.getPiece()).setEnPassant(false);
 		}
-		
 	}
 	
 	private Boolean checkKingThreat(Move toMove) {
