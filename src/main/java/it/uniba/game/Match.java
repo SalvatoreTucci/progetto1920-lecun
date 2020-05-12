@@ -524,7 +524,8 @@ class Match {
 			
 			Coordinates toCheck = new Coordinates(toMove.getEndingPos().getColumn(), toMove.getEndingPos().getRow() + addR);
 			
-			if ( ( field.getSquare(toCheck).getPiece().getClass() == Pawn.class ) 
+			
+			if ( field.getSquare(toCheck).isOccupied() && ( field.getSquare(toCheck).getPiece().getClass() == Pawn.class ) 
 					&& ( field.getSquare(toCheck).getPiece().getColor() != toMove.getPiece().getColor() ) ) {
 				
 				Pawn enPass = (Pawn) field.getSquare(toCheck).getPiece();
