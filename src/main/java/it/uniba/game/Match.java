@@ -524,38 +524,48 @@ class Match {
 			
 			Coordinates toCheck = new Coordinates(toMove.getEndingPos().getColumn(), toMove.getEndingPos().getRow() + addR);
 			
-			if ( ( field.getSquare(toCheck).getPiece().getClass() == Pawn.class ) 
-					&& ( field.getSquare(toCheck).getPiece().getColor() != toMove.getPiece().getColor() ) ) {
+			if (field.getSquare(toCheck).isOccupied()) {
 				
-				Pawn enPass = (Pawn) field.getSquare(toCheck).getPiece();
-				
-				if (enPass.isEnPassant()) {
+				if (( field.getSquare(toCheck).getPiece().getClass() == Pawn.class ) 
+						&& ( field.getSquare(toCheck).getPiece().getColor() != toMove.getPiece().getColor() ) ) {
 					
-					if (possibleSquares.size() > 1) {
-						
-						solveAmbiguousMoves(possibleSquares, toMove);
-					}
+					Pawn enPass = (Pawn) field.getSquare(toCheck).getPiece();
 					
-					if (!possibleSquares.isEmpty()) {
+					if (enPass.isEnPassant()) {
 						
-						toMove.setStartingPos(possibleSquares.firstElement());
-						toMove.setEnPassant();
+						if (possibleSquares.size() > 1) {
+							
+							solveAmbiguousMoves(possibleSquares, toMove);
+						}
+						
+						if (!possibleSquares.isEmpty()) {
+							
+							toMove.setStartingPos(possibleSquares.firstElement());
+							toMove.setEnPassant();
+							
+						} else {
+							
+							throw new MatchException(Constants.ERR_ILLEGAL_MOVE);
+						}
+						
 					} else {
 						
-						throw new MatchException(Constants.ERR_ILLEGAL_MOVE);
+						// exception regarding the impossibility of doing an EnPassant move on the target pawn
+						throw new MatchException(Constants.ERR_EN_PASSANT);
 					}
 					
 				} else {
 					
-					// exception regarding the impossibility of doing an EnPassant move on the target pawn
-					throw new MatchException(Constants.ERR_EN_PASSANT);
+					// exception regarding an incorrect EnPassant move
+					throw new MatchException(Constants.ERR_EN_PASSANT_BAD_TARGET);
 				}
 				
 			} else {
 				
-				// exception regarding an incorrect EnPassant move
-				throw new MatchException(Constants.ERR_EN_PASSANT_BAD_TARGET);
+				throw new MatchException(Constants.ERR_ILLEGAL_MOVE);
 			}
+			
+
 			
 		} else if (( field.getSquare(toMove.getEndingPos()).getPiece().getColor() != toMove.getPiece().getColor() )) {
 			
