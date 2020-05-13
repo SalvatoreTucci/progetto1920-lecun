@@ -6,10 +6,10 @@ import it.uniba.game.Coordinates;
 import it.uniba.game.Move;
 
 /**
- * Subclass of Piece representing the Pawn 
- * Class type: <<Entity>>
+ * Subclass of Piece representing the Pawn <br>
+ * Class type: Entity
  * 
- * Responsibilities:
+ * Responsibilities: <br>
  * 
  * 	Knows: 
  * 		<ul>

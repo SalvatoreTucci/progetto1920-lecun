@@ -8,17 +8,17 @@ import java.util.Iterator;
 import java.util.regex.Pattern;
 
 /**
-* Match
-* Class type : <<Control>>
-* Responsibilities :
-* 	Knows :
+* Match <br>
+* Class type : Control <br>
+* Responsibilities : <br>
+* 	Knows : <br>
 * 		<ul>
 * 		<li>The current status of the ChessBoard</li>
 * 		<li>Captured pieces by each player</li>
 * 		<li>The history of the moves</li>
 * 		<li>The current player</li>
 * 		</ul>
-*	Does : 
+*	Does : <br>
 *		<ul>
 *		<li>Parsifies the move given an input string</li>
 *		<li>Establishes whether the move is a Castling, a Capture or a simple one</li>
@@ -30,11 +30,11 @@ import java.util.regex.Pattern;
 *		<li>Can update the current player</li>
 * 		</ul>
 *
-* @author LeCun group
+* @author LeCun group <br>
 */
 class Match {
 	/*
-	 * Class used to manage the flow of the game
+	 * Class used to manage the flow of the game <br>
 	 */
 
 	// Attributes
@@ -49,7 +49,7 @@ class Match {
 	
 
 
-	// Methods
+	// Methods <br>
 	public Match() {
 		
 		currentPlayer = Piece.Color.WHITE;
@@ -206,9 +206,9 @@ class Match {
 	}
 	
 	/*
-	 *  Returns a printable version of the move history, as in
-	 *  1. e3, b6
-	 *	2. c4, f6
+	 *  Returns a printable version of the move history, as in <br>
+	 *  1. e3, b6 <br>
+	 *	2. c4, f6 <br>
 	 */
 	public String getPrintableMoves() {
 
@@ -247,7 +247,7 @@ class Match {
 		return currentPlayer;
 	}
 	
-	// method used to proceed in the game flow
+	// method used to proceed in the game flow <br>
 	public void nextTurn() {
 
 		
@@ -262,12 +262,12 @@ class Match {
 	}
 
 	/* 
-	 * Parses a move from a user entered string, following the algebraic notation
-	 * the general form for a recognized move is:
-	 * [Piece][Disambiguation coordinate][Capture][Landing square column][Landing square row]
+	 * Parses a move from a user entered string, following the algebraic notation <br>
+	 * the general form for a recognized move is: <br>
+	 * [Piece][Disambiguation coordinate][Capture][Landing square column][Landing square row] <br>
 	 * 
-	 * @param toParse a string containing the move to be parsed
-	 * @return an instance of the class Move
+	 * @param toParse a string containing the move to be parsed <br>
+	 * @return an instance of the class Move <br>
 	 */ 
 	private Move parseMove(String toParse) throws MatchException {
 		boolean validMove = Pattern.matches(Constants.GENERAL_MOVE_REGEX, toParse);
@@ -395,6 +395,7 @@ class Match {
 		}
 
 		
+
 		// now possibleSquares contains the Coordinates where there's a possible piece to move in the field
 
 		//2. checks whether the target square is full when capturing, empty when moving
@@ -410,6 +411,7 @@ class Match {
 				throw new MatchException(Constants.ERR_ILLEGAL_MOVE);
 			}
 
+
 		} else {
 			
 			if(field.getSquare(toMove.getEndingPos()).isOccupied()) {
@@ -417,7 +419,7 @@ class Match {
 				throw new MatchException(Constants.ERR_ILLEGAL_MOVE);
 			}
 		}
-		
+	
 		
 		//3. checks whether there's a piece in the middle
 		if (toMove.getPiece().getClass() != Pawn.class &&
@@ -449,12 +451,12 @@ class Match {
 		if (possibleSquares.isEmpty()) {
 			
 				throw new MatchException(Constants.ERR_ILLEGAL_MOVE);
+
 				
 		} else if((toMove.getStartingPos().getColumn() != Constants.INVALID_POS
 				&& toMove.getStartingPos().getColumn() != possibleSquares.getFirst().getColumn())
 				|| (toMove.getStartingPos().getRow() != Constants.INVALID_POS
 				&& toMove.getStartingPos().getRow() != possibleSquares.getFirst().getRow())) {
-
 				//if the user tries to give a wrong disambiguation when not needed 
 				throw new MatchException(Constants.ERR_BAD_DISAMBIGUATION);
 		}
@@ -517,7 +519,10 @@ class Match {
 		
 	}
 	
-	// Solves possible ambiguous moves
+
+
+
+	// Solves possible ambiguous moves <br>
 	private void solveAmbiguousMoves(LinkedList<Coordinates> possibleSquares, Move toMove) throws MatchException {
 		
 		
@@ -550,7 +555,7 @@ class Match {
 			throw new MatchException(Constants.ERR_AMBIGUOUS_MOVE);
 		}
 		
-		// if there's still more than one alternative raise an exception
+		// if there's still more than one alternative raise an exception <br>
 		if (possibleSquares.size() > 1) {
 			
 			throw new MatchException(Constants.ERR_BAD_DISAMBIGUATION);
@@ -574,17 +579,17 @@ class Match {
 					
 					
 					if (toCheck.equals(lastPawnLongMove)) {
-						
+					
 						toMove.setEnPassant();
 					} else {
 						
-						// exception regarding the impossibility of doing an EnPassant move on the target pawn
+						// exception regarding the impossibility of doing an EnPassant move on the target pawn <br>
 						throw new MatchException(Constants.ERR_EN_PASSANT);
 					}
 					
 				} else {
 					
-					// exception regarding an incorrect EnPassant move
+					// exception regarding an incorrect EnPassant move <br>
 					throw new MatchException(Constants.ERR_EN_PASSANT_BAD_TARGET);
 				}
 				
@@ -604,7 +609,7 @@ class Match {
 			
 		} else {
 			
-			// exception regarding the wrong target piece which has to be captured
+			// exception regarding the wrong target piece which has to be captured <br>
 			throw new MatchException(Constants.ERR_BAD_TARGET);
 		}
 		
@@ -621,7 +626,7 @@ class Match {
 	}
 	
 	private Boolean checkKingThreat(Move toMove) {
-		
+
 		LinkedList<Coordinates> squaresToCheck;			
 		//LinkedList containing the coordinates for possibles threatning pieces 
 		squaresToCheck = Bishop.reverseBishopMove(toMove);

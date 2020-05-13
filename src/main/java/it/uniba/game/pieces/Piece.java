@@ -5,10 +5,10 @@ import it.uniba.game.Coordinates;
 import it.uniba.game.Move;
 
 /**
- * Abstract class representing a generic chess piece
- * Class type: <<Entity>>
+ * Abstract class representing a generic chess piece <br>
+ * Class type: Entity <br>
  * 
- * Responsibilities:
+ * Responsibilities: <br>
  * 
  * 	Knows: 
  * 		<ul>

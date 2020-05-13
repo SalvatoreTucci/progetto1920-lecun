@@ -14,8 +14,8 @@ import java.io.UnsupportedEncodingException;
  */
 /**
 * AppMain
-* Class type : <<Boundary>>
-* Responsibilities :
+* Class type : Boundary<br>
+* Responsibilities :<br>
 * 	Knows :
 * 		<ul>
 * 		<li></li>

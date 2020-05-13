@@ -3,10 +3,10 @@ package it.uniba.game.board;
 import it.uniba.game.pieces.Piece;
 
 /**
- * Square
- * Class type : <<Entity>>
+ * Class representing a single square of the chessboard <br>
+ * Class type : Entity <br>
  * 
- * Responsibilities :
+ * Responsibilities : <br>
  * 
  * 	Knows :
  * 		<ul>
