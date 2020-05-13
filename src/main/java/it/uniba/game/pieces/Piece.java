@@ -1,14 +1,14 @@
 package it.uniba.game.pieces;
 
-import java.util.Vector;
+import java.util.LinkedList;
 import it.uniba.game.Coordinates;
 import it.uniba.game.Move;
 
 /**
- * Abstract class representing a generic chess piece
- * Class type: <<Entity>>
+ * Abstract class representing a generic chess piece <br>
+ * Class type: Entity <br>
  * 
- * Responsibilities:
+ * Responsibilities: <br>
  * 
  * 	Knows: 
  * 		<ul>
@@ -56,7 +56,7 @@ public abstract class Piece {
     }
     
     // will be specified in the sub-classes 
-    abstract public Vector<Coordinates> reverseMove(Move target);
+    abstract public LinkedList<Coordinates> reverseMove(Move target);
 
     public Color getColor() {
 

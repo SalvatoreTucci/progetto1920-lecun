@@ -1,15 +1,15 @@
 package it.uniba.game.pieces;
 
-import java.util.Vector;
+import java.util.LinkedList;
 import it.uniba.game.Constants;
 import it.uniba.game.Coordinates;
 import it.uniba.game.Move;
 
 /**
- * Subclass of Piece representing the Bishop
- * Class type: <<Entity>>
+ * Subclass of Piece representing the Bishop <br>
+ * Class type: Entity <br>
  * 
- * Responsibilities:
+ * Responsibilities: <br>
  * 
  * 	Knows: 
  * 		<ul>
@@ -42,14 +42,14 @@ public final class Bishop extends Piece {
 		
 	}
 	
-	public Vector<Coordinates> reverseMove(Move target) {
+	public LinkedList<Coordinates> reverseMove(Move target) {
 		
 		return reverseBishopMove(target);
 	}
 	
-	public static Vector<Coordinates> reverseBishopMove(Move target) {
+	public static LinkedList<Coordinates> reverseBishopMove(Move target) {
 		 
-		Vector<Coordinates> possibleSquares = new Vector<Coordinates>();
+		LinkedList<Coordinates> possibleSquares = new LinkedList<Coordinates>();
 		
 		int i = target.getEndingPos().getRow() + Constants.RIGHT_DIRECTION;
 		int j = target.getEndingPos().getColumn() + Constants.DOWN_DIRECTION;

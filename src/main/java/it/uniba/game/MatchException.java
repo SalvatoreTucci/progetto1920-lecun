@@ -1,22 +1,22 @@
 package it.uniba.game;
 
 /**
-* MatchException
-* Class type : <<no ECB>>
-* Responsibilities :
-* 	Knows :
+* MatchException <br>
+* Class type : no ECB <br>
+* Responsibilities : <br>
+* 	Knows : <br>
 * 		<ul>
 * 		</ul>
-*	Does : 
+*	Does : <br>
 *		<ul>
 *		<li>Specialization of the class Exception which will only be thrown in the class Match</li>
 * 		</ul>
 *
-* @author LeCun group
+* @author LeCun group <br>
 */
 class MatchException extends Exception {
 	
-	// Exception class threw from the class Move
+	// Exception class threw from the class Move <br>
 	
 	public MatchException(String errorMessage) {
 		
