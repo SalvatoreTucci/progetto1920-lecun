@@ -71,13 +71,7 @@ class Match {
 			boolean isRookMoved = false;
 			findToMove(parsedMove);
 			
-			resetEnPassant();
-			
-			if (parsedMove.getPiece().getClass() == Pawn.class) {
-			
-				setPawnEnPassantFlag(parsedMove);
-			}
-			else if (parsedMove.getPiece().getClass() == King.class) {
+			if (parsedMove.getPiece().getClass() == King.class) {
 				
 				((King) parsedMove.getPiece()).setMoved(true);
 			}
@@ -92,7 +86,7 @@ class Match {
 				insertCapture(parsedMove);
 			}
 			
-						field.setMove(parsedMove);
+			field.setMove(parsedMove);
 			
 			if (parsedMove.getPiece().getClass() != King.class) {
 				
@@ -110,13 +104,18 @@ class Match {
 					
 					if (parsedMove.getCaptureFlag()) {
 						
+						Coordinates resetPos;
+						resetPos = (parsedMove.getEnPassant())? 
+								new Coordinates(lastPawnLongMove.getColumn(), lastPawnLongMove.getRow()) 
+								: new Coordinates(parsedMove.getEndingPos().getColumn(), parsedMove.getEndingPos().getRow());
+						
 						if(parsedMove.getPiece().getColor() == Color.BLACK) {
 							
-							field.setMove( new Move(blackCaptured.getLast(), parsedMove.getEndingPos(), parsedMove.getEndingPos(), false));
+							field.setMove( new Move(blackCaptured.getLast(), resetPos, resetPos, false));
 							blackCaptured.remove(blackCaptured.size() - 1);
 						} else {
 							
-							field.setMove( new Move(whiteCaptured.getLast(), parsedMove.getEndingPos(), parsedMove.getEndingPos(), false));
+							field.setMove( new Move(whiteCaptured.getLast(), resetPos, resetPos, false));
 							whiteCaptured.remove(whiteCaptured.size() - 1);
 						}
 					}
@@ -135,7 +134,13 @@ class Match {
 					whiteKingPosition.setRow(parsedMove.getEndingPos().getRow());
 					whiteKingPosition.setColumn(parsedMove.getEndingPos().getColumn());				
 				}
-			}	
+			}
+			
+			resetEnPassant();
+			if (parsedMove.getPiece().getClass() == Pawn.class) {
+				
+				setPawnEnPassantFlag(parsedMove);
+			}
 
 		} else {
 			
@@ -376,8 +381,7 @@ class Match {
 		
 		LinkedList<Coordinates> possibleSquares = toMove.getPiece().reverseMove(toMove);
 		
-		// checking if there are possible pieces to move in the LinkedList possibleSquares
-		
+		//1. checking if there are possible pieces to move in the LinkedList possibleSquares
 		int i = 0;
 		while (i < possibleSquares.size()) {
 			if (field.getSquare( possibleSquares.get(i) ).isOccupied() 
@@ -392,126 +396,67 @@ class Match {
 
 		
 		// now possibleSquares contains the Coordinates where there's a possible piece to move in the field
-		
-		// if we're handling a capture, the control is passed to a more specific method
-		
+
+		//2. checks whether the target square is full when capturing, empty when moving
 		if (toMove.getCaptureFlag()) {
-			
-			 this.findToMoveCapture(toMove, possibleSquares);
-		} else {
-			
-			if (toMove.getPiece().getClass() != Knight.class) {
-			// checks whether there's a piece in the middle
-				int k = 0;
-				while (k < possibleSquares.size()) {
-	
-					if ( (!getObstructingPieces(possibleSquares.get(k), toMove.getEndingPos()).isEmpty())
-							|| field.getSquare(toMove.getEndingPos()).isOccupied()) {
-						
-						possibleSquares.remove(k);
-					} else {
-						
-						k++;
-					}
-					
-				}
-			
-			} else {
+			if (toMove.getPiece().getClass() == Pawn.class) {
 				
-				if (field.getSquare(toMove.getEndingPos()).isOccupied()) {
-					
-					throw new MatchException(Constants.ERR_ILLEGAL_MOVE);
-				}
+				handlePawn(toMove, possibleSquares);
 				
-			}
-			
-			
-			
-			
-			if (possibleSquares.size() > 1) {
-				
-				solveAmbiguousMoves(possibleSquares, toMove);
-				
-			}
-			
-			// if there are no alternatives raise an exception
-			if (possibleSquares.isEmpty()) {
-				
-					throw new MatchException(Constants.ERR_ILLEGAL_MOVE);
-					
-			} else if((toMove.getStartingPos().getColumn() != Constants.INVALID_POS
-					&& toMove.getStartingPos().getColumn() != possibleSquares.getFirst().getColumn())
-					|| (toMove.getStartingPos().getRow() != Constants.INVALID_POS
-					&& toMove.getStartingPos().getRow() != possibleSquares.getFirst().getRow())) {
-
-					//if the user tries to give a wrong disambiguation when not needed 
-					throw new MatchException(Constants.ERR_BAD_DISAMBIGUATION);
-			}
-			
-			if (toMove.getPiece().getClass() == King.class) {
-				
-				if (checkKingThreat(toMove)) {
-					
-					throw new MatchException(Constants.ERR_KING_THREAT);
-				}
-			}
-			
-			toMove.setStartingPos(possibleSquares.getFirst());
-			
-		}
-
-	}
-
-	// specific method which handles the situation where the move is a capture
-	private void findToMoveCapture(Move toMove, LinkedList<Coordinates> possibleSquares) throws MatchException {
-		
-		if (toMove.getPiece().getClass() == Pawn.class) {
-			
-			handlePawn(toMove, possibleSquares);
-			
-		} else if ( field.getSquare(toMove.getEndingPos()).isOccupied() 
-				&& (field.getSquare(toMove.getEndingPos()).getPiece().getColor() 
-						!= toMove.getPiece().getColor()) ) {
-			
-			
-			if (toMove.getPiece().getClass() != Knight.class) {
-
-				int i = 0;
-				while (i < possibleSquares.size()) {
-				
-					
-					if ( !getObstructingPieces(possibleSquares.get(i), toMove.getEndingPos()).isEmpty() ) {
-					
-						possibleSquares.remove(i);
-					} else {
-						
-						i++;
-					}
-				}
-			}
-			
-			if (possibleSquares.size() > 1) {
-			
-				solveAmbiguousMoves(possibleSquares, toMove);
-			}
-			
-			if (possibleSquares.isEmpty()) {
+			} else if (!field.getSquare(toMove.getEndingPos()).isOccupied() 
+					|| (field.getSquare(toMove.getEndingPos()).getPiece().getColor() 
+							== toMove.getPiece().getColor()) ) {
 				
 				throw new MatchException(Constants.ERR_ILLEGAL_MOVE);
-			} else if((toMove.getStartingPos().getColumn() != Constants.INVALID_POS
-					&& toMove.getStartingPos().getColumn() != possibleSquares.getFirst().getColumn())
-					|| (toMove.getStartingPos().getRow() != Constants.INVALID_POS
-					&& toMove.getStartingPos().getRow() != possibleSquares.getFirst().getRow())) {
-
-					//if the user tries to give a wrong disambiguation when not needed 
-					throw new MatchException(Constants.ERR_BAD_DISAMBIGUATION);
 			}
 
-
-			toMove.setStartingPos(possibleSquares.getFirst());
 		} else {
 			
-			throw new MatchException(Constants.ERR_ILLEGAL_MOVE);
+			if(field.getSquare(toMove.getEndingPos()).isOccupied()) {
+
+				throw new MatchException(Constants.ERR_ILLEGAL_MOVE);
+			}
+		}
+		
+		
+		//3. checks whether there's a piece in the middle
+		if (toMove.getPiece().getClass() != Pawn.class &&
+				toMove.getPiece().getClass() != Knight.class) {
+			int k = 0;
+			while (k < possibleSquares.size()) {
+
+				if ( !getObstructingPieces(possibleSquares.get(k), 
+						toMove.getEndingPos()).isEmpty()) {
+				
+					possibleSquares.remove(k);
+				} else {
+				
+					k++;
+				}
+			
+			}
+		}
+			
+			
+		// 4. solves ambiguities	
+		if (possibleSquares.size() > 1) {
+			
+			solveAmbiguousMoves(possibleSquares, toMove);
+			
+		}
+		
+		// if there are no alternatives raise an exception
+		if (possibleSquares.isEmpty()) {
+			
+				throw new MatchException(Constants.ERR_ILLEGAL_MOVE);
+				
+		} else if((toMove.getStartingPos().getColumn() != Constants.INVALID_POS
+				&& toMove.getStartingPos().getColumn() != possibleSquares.getFirst().getColumn())
+				|| (toMove.getStartingPos().getRow() != Constants.INVALID_POS
+				&& toMove.getStartingPos().getRow() != possibleSquares.getFirst().getRow())) {
+
+				//if the user tries to give a wrong disambiguation when not needed 
+				throw new MatchException(Constants.ERR_BAD_DISAMBIGUATION);
 		}
 		
 		if (toMove.getPiece().getClass() == King.class) {
@@ -522,7 +467,12 @@ class Match {
 			}
 		}
 		
+		toMove.setStartingPos(possibleSquares.getFirst());
+		
 	}
+
+
+
 	
 	private LinkedList<Piece> getObstructingPieces (Coordinates startingPos, Coordinates endingPos) {
 		
@@ -625,27 +575,7 @@ class Match {
 					
 					if (toCheck.equals(lastPawnLongMove)) {
 						
-						if (possibleSquares.size() > 1) {
-							
-							solveAmbiguousMoves(possibleSquares, toMove);
-						}
-						
-						if (possibleSquares.isEmpty()) {
-							
-							throw new MatchException(Constants.ERR_ILLEGAL_MOVE);
-							
-						} else if((toMove.getStartingPos().getColumn() != Constants.INVALID_POS
-								&& toMove.getStartingPos().getColumn() != possibleSquares.getFirst().getColumn())
-								|| (toMove.getStartingPos().getRow() != Constants.INVALID_POS
-								&& toMove.getStartingPos().getRow() != possibleSquares.getFirst().getRow())) {
-
-								//if the user tries to give a wrong disambiguation when not needed 
-								throw new MatchException(Constants.ERR_BAD_DISAMBIGUATION);
-						}
-						
-						toMove.setStartingPos(possibleSquares.getFirst());
 						toMove.setEnPassant();
-						
 					} else {
 						
 						// exception regarding the impossibility of doing an EnPassant move on the target pawn
@@ -667,29 +597,10 @@ class Match {
 			
 		} else if (( field.getSquare(toMove.getEndingPos()).getPiece().getColor() != toMove.getPiece().getColor() )) {
 			
-			if (possibleSquares.size() > 1) {
-				
-				solveAmbiguousMoves(possibleSquares, toMove);
-			}
-			
-			if (possibleSquares.isEmpty()) {
-				throw new MatchException(Constants.ERR_ILLEGAL_MOVE);
-				
-			} else if((toMove.getStartingPos().getColumn() != Constants.INVALID_POS
-					&& toMove.getStartingPos().getColumn() != possibleSquares.getFirst().getColumn())
-					|| (toMove.getStartingPos().getRow() != Constants.INVALID_POS
-					&& toMove.getStartingPos().getRow() != possibleSquares.getFirst().getRow())) {
-
-					//if the user tries to give a wrong disambiguation when not needed 
-					throw new MatchException(Constants.ERR_BAD_DISAMBIGUATION);
-			}
-			
 			if(toMove.getEnPassant()) {
 				
 				throw new MatchException(Constants.ERR_EN_PASSANT);
 			}
-			
-			toMove.setStartingPos(possibleSquares.getFirst());
 			
 		} else {
 			
@@ -704,8 +615,6 @@ class Match {
 		
 		if (Math.abs(toCheck.getStartingPos().getRow() - toCheck.getEndingPos().getRow()) == Constants.LONG_MOVE_LENGTH) {
 			
-			
-			
 			lastPawnLongMove = new Coordinates(toCheck.getEndingPos().getColumn(),
 					toCheck.getEndingPos().getRow());
 		}
@@ -713,7 +622,8 @@ class Match {
 	
 	private Boolean checkKingThreat(Move toMove) {
 		
-		LinkedList<Coordinates> squaresToCheck;			//LinkedList containing the coordinates for possibles threatning pieces 
+		LinkedList<Coordinates> squaresToCheck;			
+		//LinkedList containing the coordinates for possibles threatning pieces 
 		squaresToCheck = Bishop.reverseBishopMove(toMove);
 		
 		Iterator<Coordinates> i = squaresToCheck.iterator();
