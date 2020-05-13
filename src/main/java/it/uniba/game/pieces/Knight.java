@@ -6,10 +6,10 @@ import it.uniba.game.Move;
 import it.uniba.game.Coordinates;
 
 /**
- * Subclass of Piece representing the Knight
- * Class type: <<Entity>>
+ * Subclass of Piece representing the Knight <br>
+ * Class type: Entity <br>
  * 
- * Responsibilities:
+ * Responsibilities: <br>
  * 
  * 	Knows: 
  * 		<ul>

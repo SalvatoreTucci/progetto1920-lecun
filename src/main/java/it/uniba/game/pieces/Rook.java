@@ -6,10 +6,10 @@ import it.uniba.game.Coordinates;
 import it.uniba.game.Move;
 
 /**
- * Subclass of Piece representing the Rook, 
- * Class type: <<Entity>>
+ * Subclass of Piece representing the Rook, <br>
+ * Class type: Entity <br>
  * 
- * Responsibilities:
+ * Responsibilities: <br>
  * 
  * 	Knows: 
  * 		<ul>
