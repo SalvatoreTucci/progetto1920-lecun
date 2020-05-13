@@ -4,10 +4,10 @@ import it.uniba.game.pieces.*;
 import it.uniba.game.*;
 
 /**
- * ChessBoard
- * Class type : Entity<br>
+ * Class representing the chessboard <br>
+ * Class type : Entity <br>
  * 
- * Responsibilities :<br>
+ * Responsibilities : <br>
  * 
  * 	Knows :
  * 		<ul>
