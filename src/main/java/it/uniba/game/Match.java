@@ -139,7 +139,7 @@ class Match {
 			resetEnPassant();
 			if (parsedMove.getPiece().getClass() == Pawn.class) {
 				
-				setPawnEnPassantFlag(parsedMove);
+				setEnPassantCondition(parsedMove);
 			}
 
 		} else {
@@ -611,7 +611,7 @@ class Match {
 	}
 	
 	
-	private void setPawnEnPassantFlag(Move toCheck) {
+	private void setEnPassantCondition(Move toCheck) {
 		
 		if (Math.abs(toCheck.getStartingPos().getRow() - toCheck.getEndingPos().getRow()) == Constants.LONG_MOVE_LENGTH) {
 			
