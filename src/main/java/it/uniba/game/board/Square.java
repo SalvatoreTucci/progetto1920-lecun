@@ -4,9 +4,9 @@ import it.uniba.game.pieces.Piece;
 
 /**
  * Square
- * Class type : <<Entity>>
+ * Class type : Entity<br>
  * 
- * Responsibilities :
+ * Responsibilities :<br>
  * 
  * 	Knows :
  * 		<ul>

@@ -5,9 +5,9 @@ import it.uniba.game.*;
 
 /**
  * ChessBoard
- * Class type : <<Entity>>
+ * Class type : Entity<br>
  * 
- * Responsibilities :
+ * Responsibilities :<br>
  * 
  * 	Knows :
  * 		<ul>
@@ -77,13 +77,16 @@ public class ChessBoard {
 		
 		// Inizialize Pawn pieces
 		for (int i = Constants.FIRST_COLUMN; i <= Constants.LAST_COLUMN; i++) {
+
 			elements[Constants.BLACK_PAWN_ROW][i] = new Square(new Pawn(Piece.Color.BLACK));
 			elements[Constants.WHITE_PAWN_ROW][i] = new Square(new Pawn(Piece.Color.WHITE));
 		}
 		
 		// Inizialize empty Squares
 		for (int i = Constants.BLACK_PAWN_ROW + 1; i < Constants.WHITE_PAWN_ROW; i++) {
+
 			for (int j = Constants.FIRST_COLUMN; j <= Constants.LAST_COLUMN; j++) {
+
 				elements[i][j] = new Square(null);
 			}
 		}
@@ -97,6 +100,7 @@ public class ChessBoard {
 		for (int i = Constants.FIRST_ROW; i <= Constants.LAST_ROW; i++) {
 			
 			for (int j = Constants.FIRST_COLUMN; j <= Constants.LAST_COLUMN; j++) {
+
 				if (j == 0) {
 					
 					res += Math.abs(i - Constants.CB_DIMENSION) + " ";
@@ -105,6 +109,7 @@ public class ChessBoard {
 				res += Constants.CB_VERTICAL_SQUARE_SYMBOL;
 				
 				if (elements[i][j].isOccupied()) {
+
 					res += " " + elements[i][j].getPiece().toString() + " ";
 					
 				} else {
@@ -114,8 +119,7 @@ public class ChessBoard {
 				
 			}
 			
-			res += Constants.CB_VERTICAL_SQUARE_SYMBOL + " " + Math.abs(i - Constants.CB_DIMENSION) 
-					+ "\n";
+			res += Constants.CB_VERTICAL_SQUARE_SYMBOL + " " + Math.abs(i - Constants.CB_DIMENSION) + "\n";
 			if (i != Constants.LAST_ROW) {
 				
 				res += Constants.CB_MIDDLE_ROW_SQUARES;
