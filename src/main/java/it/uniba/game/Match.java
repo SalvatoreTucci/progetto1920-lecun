@@ -3,7 +3,7 @@ package it.uniba.game;
 import it.uniba.game.pieces.*;
 import it.uniba.game.pieces.Piece.Color;
 import it.uniba.game.board.ChessBoard;
-import java.util.Vector;
+import java.util.LinkedList;
 import java.util.Iterator;
 import java.util.regex.Pattern;
 
@@ -39,9 +39,9 @@ class Match {
 
 	// Attributes
 	private ChessBoard field;
-	private Vector<Piece> blackCaptured;
-	private Vector<Piece> whiteCaptured;
-	private Vector<String> moves;
+	private LinkedList<Piece> blackCaptured;
+	private LinkedList<Piece> whiteCaptured;
+	private LinkedList<String> moves;
 	private Piece.Color currentPlayer;
 	private Coordinates blackKingPosition;
 	private Coordinates whiteKingPosition;
@@ -53,9 +53,9 @@ class Match {
 	public Match() {
 		
 		currentPlayer = Piece.Color.WHITE;
-		blackCaptured = new Vector<Piece>();
-		whiteCaptured = new Vector<Piece>();
-		moves = new Vector<String>();
+		blackCaptured = new LinkedList<Piece>();
+		whiteCaptured = new LinkedList<Piece>();
+		moves = new LinkedList<String>();
 		field = new ChessBoard();
 		blackKingPosition = new Coordinates(Constants.KING_COL, Constants.BLACK_SIDE_ROW);
 		whiteKingPosition = new Coordinates(Constants.KING_COL, Constants.WHITE_SIDE_ROW);
@@ -112,11 +112,11 @@ class Match {
 						
 						if(parsedMove.getPiece().getColor() == Color.BLACK) {
 							
-							field.setMove( new Move(blackCaptured.lastElement(), parsedMove.getEndingPos(), parsedMove.getEndingPos(), false));
+							field.setMove( new Move(blackCaptured.getLast(), parsedMove.getEndingPos(), parsedMove.getEndingPos(), false));
 							blackCaptured.remove(blackCaptured.size() - 1);
 						} else {
 							
-							field.setMove( new Move(whiteCaptured.lastElement(), parsedMove.getEndingPos(), parsedMove.getEndingPos(), false));
+							field.setMove( new Move(whiteCaptured.getLast(), parsedMove.getEndingPos(), parsedMove.getEndingPos(), false));
 							whiteCaptured.remove(whiteCaptured.size() - 1);
 						}
 					}
@@ -219,7 +219,7 @@ class Match {
 				j++;
 			}
 			
-			printableHistory += moves.elementAt(i);
+			printableHistory += moves.get(i);
 			
 			if (i % 2 == 0) {
 				printableHistory += " ";
@@ -374,9 +374,9 @@ class Match {
 	
 	private void findToMove(Move toMove) throws MatchException {
 		
-		Vector<Coordinates> possibleSquares = toMove.getPiece().reverseMove(toMove);
+		LinkedList<Coordinates> possibleSquares = toMove.getPiece().reverseMove(toMove);
 		
-		// checking if there are possible pieces to move in the vector possibleSquares
+		// checking if there are possible pieces to move in the LinkedList possibleSquares
 		
 		int i = 0;
 		while (i < possibleSquares.size()) {
@@ -440,9 +440,9 @@ class Match {
 					throw new MatchException(Constants.ERR_ILLEGAL_MOVE);
 					
 			} else if((toMove.getStartingPos().getColumn() != Constants.INVALID_POS
-					&& toMove.getStartingPos().getColumn() != possibleSquares.firstElement().getColumn())
+					&& toMove.getStartingPos().getColumn() != possibleSquares.getFirst().getColumn())
 					|| (toMove.getStartingPos().getRow() != Constants.INVALID_POS
-					&& toMove.getStartingPos().getRow() != possibleSquares.firstElement().getRow())) {
+					&& toMove.getStartingPos().getRow() != possibleSquares.getFirst().getRow())) {
 
 					//if the user tries to give a wrong disambiguation when not needed 
 					throw new MatchException(Constants.ERR_BAD_DISAMBIGUATION);
@@ -456,14 +456,14 @@ class Match {
 				}
 			}
 			
-			toMove.setStartingPos(possibleSquares.firstElement());
+			toMove.setStartingPos(possibleSquares.getFirst());
 			
 		}
 
 	}
 
 	// specific method which handles the situation where the move is a capture
-	private void findToMoveCapture(Move toMove, Vector<Coordinates> possibleSquares) throws MatchException {
+	private void findToMoveCapture(Move toMove, LinkedList<Coordinates> possibleSquares) throws MatchException {
 		
 		if (toMove.getPiece().getClass() == Pawn.class) {
 			
@@ -499,16 +499,16 @@ class Match {
 				
 				throw new MatchException(Constants.ERR_ILLEGAL_MOVE);
 			} else if((toMove.getStartingPos().getColumn() != Constants.INVALID_POS
-					&& toMove.getStartingPos().getColumn() != possibleSquares.firstElement().getColumn())
+					&& toMove.getStartingPos().getColumn() != possibleSquares.getFirst().getColumn())
 					|| (toMove.getStartingPos().getRow() != Constants.INVALID_POS
-					&& toMove.getStartingPos().getRow() != possibleSquares.firstElement().getRow())) {
+					&& toMove.getStartingPos().getRow() != possibleSquares.getFirst().getRow())) {
 
 					//if the user tries to give a wrong disambiguation when not needed 
 					throw new MatchException(Constants.ERR_BAD_DISAMBIGUATION);
 			}
 
 
-			toMove.setStartingPos(possibleSquares.firstElement());
+			toMove.setStartingPos(possibleSquares.getFirst());
 		} else {
 			
 			throw new MatchException(Constants.ERR_ILLEGAL_MOVE);
@@ -524,12 +524,12 @@ class Match {
 		
 	}
 	
-	private Vector<Piece> getObstructingPieces (Coordinates startingPos, Coordinates endingPos) {
+	private LinkedList<Piece> getObstructingPieces (Coordinates startingPos, Coordinates endingPos) {
 		
 		int addR;
 		int addC;
 		
-		Vector<Piece> toReturn = new Vector<Piece>(); 
+		LinkedList<Piece> toReturn = new LinkedList<Piece>(); 
 		
 		if (startingPos.getRow() == endingPos.getRow()) {
 			
@@ -568,7 +568,7 @@ class Match {
 	}
 	
 	// Solves possible ambiguous moves
-	private void solveAmbiguousMoves(Vector<Coordinates> possibleSquares, Move toMove) throws MatchException {
+	private void solveAmbiguousMoves(LinkedList<Coordinates> possibleSquares, Move toMove) throws MatchException {
 		
 		
 		if (toMove.getStartingPos().getRow() != Constants.INVALID_POS) {
@@ -608,7 +608,7 @@ class Match {
 		
 	}
 	
-	private void handlePawn(Move toMove, Vector<Coordinates> possibleSquares) throws MatchException {
+	private void handlePawn(Move toMove, LinkedList<Coordinates> possibleSquares) throws MatchException {
 		
 		if ( !field.getSquare(toMove.getEndingPos()).isOccupied() ) {
 			
@@ -635,15 +635,15 @@ class Match {
 							throw new MatchException(Constants.ERR_ILLEGAL_MOVE);
 							
 						} else if((toMove.getStartingPos().getColumn() != Constants.INVALID_POS
-								&& toMove.getStartingPos().getColumn() != possibleSquares.firstElement().getColumn())
+								&& toMove.getStartingPos().getColumn() != possibleSquares.getFirst().getColumn())
 								|| (toMove.getStartingPos().getRow() != Constants.INVALID_POS
-								&& toMove.getStartingPos().getRow() != possibleSquares.firstElement().getRow())) {
+								&& toMove.getStartingPos().getRow() != possibleSquares.getFirst().getRow())) {
 
 								//if the user tries to give a wrong disambiguation when not needed 
 								throw new MatchException(Constants.ERR_BAD_DISAMBIGUATION);
 						}
 						
-						toMove.setStartingPos(possibleSquares.firstElement());
+						toMove.setStartingPos(possibleSquares.getFirst());
 						toMove.setEnPassant();
 						
 					} else {
@@ -676,9 +676,9 @@ class Match {
 				throw new MatchException(Constants.ERR_ILLEGAL_MOVE);
 				
 			} else if((toMove.getStartingPos().getColumn() != Constants.INVALID_POS
-					&& toMove.getStartingPos().getColumn() != possibleSquares.firstElement().getColumn())
+					&& toMove.getStartingPos().getColumn() != possibleSquares.getFirst().getColumn())
 					|| (toMove.getStartingPos().getRow() != Constants.INVALID_POS
-					&& toMove.getStartingPos().getRow() != possibleSquares.firstElement().getRow())) {
+					&& toMove.getStartingPos().getRow() != possibleSquares.getFirst().getRow())) {
 
 					//if the user tries to give a wrong disambiguation when not needed 
 					throw new MatchException(Constants.ERR_BAD_DISAMBIGUATION);
@@ -689,7 +689,7 @@ class Match {
 				throw new MatchException(Constants.ERR_EN_PASSANT);
 			}
 			
-			toMove.setStartingPos(possibleSquares.firstElement());
+			toMove.setStartingPos(possibleSquares.getFirst());
 			
 		} else {
 			
@@ -713,7 +713,7 @@ class Match {
 	
 	private Boolean checkKingThreat(Move toMove) {
 		
-		Vector<Coordinates> squaresToCheck;			//vector containing the coordinates for possibles threatning pieces 
+		LinkedList<Coordinates> squaresToCheck;			//LinkedList containing the coordinates for possibles threatning pieces 
 		squaresToCheck = Bishop.reverseBishopMove(toMove);
 		
 		Iterator<Coordinates> i = squaresToCheck.iterator();
@@ -726,9 +726,9 @@ class Match {
 				
 				if (field.getSquare(toCompare).getPiece().getColor() != toMove.getPiece().getColor()) {
 					
-					Vector<Piece> obstructors = getObstructingPieces(toCompare, toMove.getEndingPos());
+					LinkedList<Piece> obstructors = getObstructingPieces(toCompare, toMove.getEndingPos());
 					
-					if (obstructors.isEmpty() || (obstructors.size() == 1 && (obstructors.firstElement().getClass()
+					if (obstructors.isEmpty() || (obstructors.size() == 1 && (obstructors.getFirst().getClass()
 							== King.class) ) ) {
 					
 						return true;
@@ -749,9 +749,9 @@ class Match {
 				
 				if (field.getSquare(toCompare).getPiece().getColor() != toMove.getPiece().getColor()) {
 					
-					Vector<Piece> obstructors = getObstructingPieces(toCompare, toMove.getEndingPos());
+					LinkedList<Piece> obstructors = getObstructingPieces(toCompare, toMove.getEndingPos());
 					
-					if(obstructors.isEmpty() || (obstructors.size() == 1 && (obstructors.firstElement().getClass()
+					if(obstructors.isEmpty() || (obstructors.size() == 1 && (obstructors.getFirst().getClass()
 							== King.class) ) ) {
 					
 						return true;

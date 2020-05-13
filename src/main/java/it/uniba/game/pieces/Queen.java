@@ -1,6 +1,6 @@
 package it.uniba.game.pieces;
 
-import java.util.Vector;
+import java.util.LinkedList;
 import it.uniba.game.Constants;
 import it.uniba.game.Coordinates;
 import it.uniba.game.Move;
@@ -42,13 +42,13 @@ public final class Queen extends Piece {
 		
 	}
 	
-	public Vector<Coordinates> reverseMove(Move target){
+	public LinkedList<Coordinates> reverseMove(Move target){
 		/*
 		 *  The starting position of the Queen can be traced through the same checks done
 		 *  for the Rook and the Bishop
 		 */
 		
-		Vector<Coordinates> possibleSquares = Rook.reverseRookMove(target);
+		LinkedList<Coordinates> possibleSquares = Rook.reverseRookMove(target);
 		
 		possibleSquares.addAll(Bishop.reverseBishopMove(target));
 		

@@ -1,6 +1,6 @@
 package it.uniba.game.pieces;
 
-import java.util.Vector;
+import java.util.LinkedList;
 import it.uniba.game.*;
 import it.uniba.game.Coordinates;
 import it.uniba.game.Move;
@@ -45,9 +45,9 @@ public final class Pawn extends Piece {
 		
 	}
 	
-	public Vector<Coordinates> reverseMove(Move target) {
+	public LinkedList<Coordinates> reverseMove(Move target) {
 		
-		Vector<Coordinates> startingPos = new Vector<Coordinates>();
+		LinkedList<Coordinates> startingPos = new LinkedList<Coordinates>();
 		
 		/*
 		 * If the color is BLACK, you can move the pawn down, so it will be B_DIRECTION_ROW

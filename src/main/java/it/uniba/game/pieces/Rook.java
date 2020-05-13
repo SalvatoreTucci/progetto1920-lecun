@@ -1,6 +1,6 @@
 package it.uniba.game.pieces;
 
-import java.util.Vector;
+import java.util.LinkedList;
 import it.uniba.game.Constants;
 import it.uniba.game.Coordinates;
 import it.uniba.game.Move;
@@ -45,9 +45,9 @@ public final class Rook extends Piece {
 		}
 	}
 	
-	public Vector<Coordinates> reverseMove(Move target) {
+	public LinkedList<Coordinates> reverseMove(Move target) {
 		
-		Vector<Coordinates> possibleSquares = reverseRookMove(target);
+		LinkedList<Coordinates> possibleSquares = reverseRookMove(target);
 		
 		return possibleSquares;
 	}
@@ -56,9 +56,9 @@ public final class Rook extends Piece {
 	 * Method used to calculate all the possible starting squares in a rook
 	 * move, given the ending square
 	 */
-	public static Vector<Coordinates> reverseRookMove(Move target) {
+	public static LinkedList<Coordinates> reverseRookMove(Move target) {
 		
-		Vector<Coordinates> possibleSquares = new Vector<Coordinates>();
+		LinkedList<Coordinates> possibleSquares = new LinkedList<Coordinates>();
 		int row = target.getEndingPos().getRow();
 		int col = target.getEndingPos().getColumn();
 		
