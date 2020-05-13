@@ -10,16 +10,17 @@ package it.uniba.game;
 * 		</ul>
 *	Does :
 *
-* @author LeCun group
+*
+* @author LeCun group <br>
 */
 public class Coordinates {
-    // Class used to represent a position in the ChessBoard
+    // Class used to represent a position in the ChessBoard <br>
 
-    // Attributes
+    // Attributes <br>
     private int row;
     private int column;
 
-    // Methods
+    // Methods <br>
     public Coordinates(int x, int y) {
 
     	setColumn(x);

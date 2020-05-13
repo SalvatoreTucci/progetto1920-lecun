@@ -4,18 +4,20 @@ import java.util.Scanner;
 import it.uniba.game.pieces.Piece;
 
 /**
- * UI
+ * 
+ * UI <br>
+ * 
  * Class type : ECB <br>
  * 
  * Responsibilities : <br>
  * 
- * 	Knows :
+ * 	Knows : <br>
  * 		<ul>
  * 			<li>Status of the current match</li>
  *  		<li>If the user wants to quit the game</li>
  * 		</ul>
  * 
- * 	Does :
+ * 	Does : <br>
  * 		<ul>
  *  		<li>Parsifies a command given an input</li>
  *   		<li>Handles a command in game, such as "board", "moves", ... </li>
@@ -24,22 +26,22 @@ import it.uniba.game.pieces.Piece;
  *         	<li>Gets inputs from the user by the input stream</li>
  * 		</ul>
  *  
- * @author LeCun group
+ * @author LeCun group <br>
  */
 public class UI {
 	/*
-	 * Class for App-User interaction
+	 * Class for App-User interaction <br>
 	 */
 	
 	// Attributes
 	private Match currentMatch;
 	private boolean quitGame;
 	private static final UI SINGLETON = new UI();
-	// Methods
+	// Methods <br>
 
 	/*
-	 * returns the required status of the application (true = to be closed,
-	 *  false = to be kept open)
+	 * returns the required status of the application (true = to be closed,<br>
+	 *  false = to be kept open) <br>
 	 */
 	public boolean getStatus() {
 		
@@ -47,15 +49,15 @@ public class UI {
 	}
 
 	/*
-	 * private constructor, necessary in order to realize the singleton class
-	 * as the design pattern describes
+	 * private constructor, necessary in order to realize the singleton class <br>
+	 * as the design pattern describes <br>
 	 */
 	private UI() {
 		
 	}
 	
 	/*
-	 * get method in order to access the singleton class fields
+	 * get method in order to access the singleton class fields <br>
 	 */
 	public static UI getUI() {
 		
@@ -63,11 +65,12 @@ public class UI {
 	}
 	
 	/*
-	 * parses the command read from the keyboard and executes the correspondent routine
+	 * parses the command read from the keyboard and executes the correspondent routine <br>
 	 */
 	public void parseCommand(String toParse) {
 		
 		switch (toParse) {
+		
 			case Constants.HELP_COMMAND:
 				printHelp();
 				break;
@@ -76,6 +79,7 @@ public class UI {
 					
 					startGame();
 				} else {
+					
 					if (getConfirm(Constants.RESTART_MESS)) {
 						
 						startGame();
@@ -93,9 +97,9 @@ public class UI {
 	}
 	
 	/*
-	 * Prosecution of parseCommand, delegated to handling commands during a match.
-	 * It checks whether a match is open before executing the respecting routine, otherwise
-	 * it will display an error.
+	 * Prosecution of parseCommand, delegated to handling commands during a match. <br>
+	 * It checks whether a match is open before executing the respecting routine, otherwise <br>
+	 * it will display an error. <br>
 	 */
 	private void handleInGameCommand(String toParse) {
 		
@@ -130,8 +134,8 @@ public class UI {
 	}
 	
 	/*
-	 * triggered by the command "play", print a welcome message 
-	 * and inits the currentMatch variable
+	 * triggered by the command "play", print a welcome message  <br>
+	 * and inits the currentMatch variable <br>
 	 */
 	private void startGame() {
 		
@@ -140,9 +144,9 @@ public class UI {
 	}
 	
 	/*
-	 * asks the user whether to quit or not the whole application. If
-	 * the response isn't affirmative nor negative, the method keeps
-	 * asking for a response.
+	 * asks the user whether to quit or not the whole application. If <br>
+	 * the response isn't affirmative nor negative, the method keeps <br>
+	 * asking for a response. <br>
 	 */
 	private void quit() {
 	
@@ -151,10 +155,10 @@ public class UI {
 	}
 	
 	/*
-	 * asks the user whether to do something or not.
-	 * If the response is affirmative, returns true
-	 * else if it's negative negative, returns false
-	 * else the method keeps asking for a response.
+	 * asks the user whether to do something or not. <br>
+	 * If the response is affirmative, returns true <br>
+	 * else if it's negative negative, returns false <br>
+	 * else the method keeps asking for a response. <br>
 	 */
 	private boolean getConfirm(String question) {
 		
@@ -183,7 +187,7 @@ public class UI {
 	
 	
 	/*
-	 * prints a list of commands on-screen
+	 * prints a list of commands on-screen <br>
 	 */
 	private void printHelp() {
 		
@@ -191,7 +195,7 @@ public class UI {
 	}
 	
 	/*
-	 * on command "board", it prints the current state of the board on screen   
+	 * on command "board", it prints the current state of the board on screen  <br>
 	 */
 	private void printBoard() {
 		
@@ -199,7 +203,7 @@ public class UI {
 	}
 	
 	/*
-	 * on command "moves", it prints the history of the moves, separated in couples
+	 * on command "moves", it prints the history of the moves, separated in couples <br>
 	 */
 	private void printMoves() {
 		
@@ -207,7 +211,7 @@ public class UI {
 	}
 	
 	/*
-	 * on command "capture", it prints the captured pieces 
+	 * on command "capture", it prints the captured pieces <br>
 	 */
 	private void printCaptures() {
 		
