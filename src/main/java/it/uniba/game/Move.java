@@ -3,12 +3,12 @@ package it.uniba.game;
 import it.uniba.game.pieces.Piece;
 
 /**
- * Move
- * Class type : <<Entity>>
+ * Move <br>
+ * Class type : Entity <br>
  * 
- * Responsibilities :
+ * Responsibilities :<br>
  * 
- * 	Knows :
+ * 	Knows :<br>
  * 		<ul>
  * 			<li>The types of castling</li>
  *			<li>The piece to move on the ChessBoard</li>
@@ -19,7 +19,7 @@ import it.uniba.game.pieces.Piece;
  *			<li>If the move is a castling</li>
  * 		</ul>
  * 
- * 	Does :
+ * 	Does :<br>
  * 		<ul>
  *			<li>Gets or changes the piece to move</li>
  *			<li>Gets or changes the starting and ending position of the piece to move</li>
@@ -28,12 +28,12 @@ import it.uniba.game.pieces.Piece;
  *			<li>Gets or changes if the move is a castling</li>
  * 		</ul>
  *  
- * @author LeCun group
+ * @author LeCun group<br>
  */
 public class Move {
 	/*
-	 * This class represent a generic move converted from the string inserted by the user
-	 * (there will be an external method which will do this particular conversion from string to Move)
+	 * This class represent a generic move converted from the string inserted by the user <br>
+	 * (there will be an external method which will do this particular conversion from string to Move)<br>
 	*/
 	public enum Castling {
 		
@@ -43,7 +43,7 @@ public class Move {
     }
 	
 	
-	// Attributes
+	// Attributes <br>
 	private Piece toMove;
 	private Coordinates startingPos;
 	private Coordinates endingPos;
@@ -51,7 +51,7 @@ public class Move {
 	private boolean isEnPassant = false;
 	private Castling typeCastling = Castling.NO_CASTLING;
 	
-	// Methods
+	// Methods <br>
 	public Move(Piece pieceToSet, Coordinates startPos, Coordinates endPos, boolean cap) {
 		
 		setPiece(pieceToSet);
