@@ -2,7 +2,7 @@ package it.uniba.game;
 
 /**
 * Constants
-* Class type : <<no ECB>>
+* Class type : no ECB
 * Responsibilities :
 * 	Knows :
 * 		<ul>
