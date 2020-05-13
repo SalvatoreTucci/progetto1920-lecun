@@ -1,15 +1,15 @@
 package it.uniba.game.pieces;
 
-import java.util.Vector;
+import java.util.LinkedList;
 import it.uniba.game.Constants;
 import it.uniba.game.Move;
 import it.uniba.game.Coordinates;
 
 /**
- * Subclass of Piece representing the Knight
- * Class type: <<Entity>>
+ * Subclass of Piece representing the Knight <br>
+ * Class type: Entity <br>
  * 
- * Responsibilities:
+ * Responsibilities: <br>
  * 
  * 	Knows: 
  * 		<ul>
@@ -42,14 +42,14 @@ public final class Knight extends Piece{
 		
 	}
 	
-	public Vector<Coordinates> reverseMove(Move target) {
+	public LinkedList<Coordinates> reverseMove(Move target) {
 		
 		return reverseKnightMove(target);
 	}
 	
-	public static Vector<Coordinates> reverseKnightMove(Move target) {
+	public static LinkedList<Coordinates> reverseKnightMove(Move target) {
 		
-		Vector<Coordinates> possibleSquares = new Vector<Coordinates>();
+		LinkedList<Coordinates> possibleSquares = new LinkedList<Coordinates>();
 		
 		int endingR = target.getEndingPos().getRow();
 		int endingC = target.getEndingPos().getColumn();
