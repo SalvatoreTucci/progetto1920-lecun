@@ -1,16 +1,14 @@
 package it.uniba.game;
 
 /**
-* Coordinates
-* Class type : <<Entity>>
-* Responsibilities :
+* Class representing the coordinates used when accessing the chessboard <br>
+* Class type : Entity <br>
+* Responsibilities : <br>
 * 	Knows :
 * 		<ul>
 * 		<li>A pair of coordinates of a Cartesian-like plain (as the ChessBoard)</li>
 * 		</ul>
-*	Does : 
-*		<ul>
-* 		</ul>
+*	Does :
 *
 * @author LeCun group
 */

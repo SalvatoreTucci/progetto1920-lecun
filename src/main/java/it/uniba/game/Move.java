@@ -3,10 +3,10 @@ package it.uniba.game;
 import it.uniba.game.pieces.Piece;
 
 /**
- * Move
- * Class type : <<Entity>>
+ * Class representing a game move <br>
+ * Class type : Entity <br>
  * 
- * Responsibilities :
+ * Responsibilities : <br>
  * 
  * 	Knows :
  * 		<ul>

@@ -5,9 +5,9 @@ import it.uniba.game.pieces.Piece;
 
 /**
  * UI
- * Class type : <<ECB>>
+ * Class type : ECB <br>
  * 
- * Responsibilities :
+ * Responsibilities : <br>
  * 
  * 	Knows :
  * 		<ul>

@@ -1,16 +1,15 @@
 package it.uniba.game;
 
 /**
-* Constants
-* Class type : no ECB<br>
-* Responsibilities :<br>
+* Constants <br>
+* Class type : no ECB <br>
+* Responsibilities : <br>
 * 	Knows :
 * 		<ul>
 * 		<li>The values of the constants values used in the App</li>
 * 		</ul>
 *	Does : 
-*		<ul>
-* 		</ul>
+
 *
 * @author LeCun group
 */
