@@ -1,9 +1,11 @@
 package it.uniba.game.pieces;
 
 import java.util.LinkedList;
-import it.uniba.game.*;
+
+import it.uniba.game.Constants;
 import it.uniba.game.Coordinates;
 import it.uniba.game.Move;
+
 
 /**
  * Subclass of Piece representing the Pawn <br>
