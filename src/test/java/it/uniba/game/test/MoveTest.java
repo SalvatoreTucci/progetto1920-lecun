@@ -7,6 +7,8 @@ import it.uniba.game.pieces.Piece;
 import it.uniba.game.pieces.Pawn;
 import it.uniba.game.pieces.Piece.Color;
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 import org.junit.jupiter.api.Test;
 
 public class MoveTest {
@@ -53,7 +55,7 @@ public class MoveTest {
 		Piece toSet = new Pawn(Color.WHITE);
 		
 		Move toTest = new Move(toSet, coord1, coord2, true);
-		assertEquals(true, toTest.getCaptureFlag());
+		assertTrue(toTest.getCaptureFlag());
 	}
 	
 	@Test
@@ -64,7 +66,7 @@ public class MoveTest {
 		Piece toSet = new Pawn(Color.WHITE);
 		
 		Move toTest = new Move(toSet, coord1, coord2, false);
-		assertEquals(false, toTest.getCaptureFlag());
+		assertFalse(toTest.getCaptureFlag());
 	}
 	
 	@Test
@@ -75,7 +77,7 @@ public class MoveTest {
 		Piece toSet = new Pawn(Color.WHITE);
 		
 		Move toTest = new Move(toSet, coord1, coord2, false);
-		assertEquals(false, toTest.getCaptureFlag());
+		assertFalse(toTest.getCaptureFlag());
 	}
 	
 	@Test
@@ -87,7 +89,7 @@ public class MoveTest {
 		
 		Move toTest = new Move(toSet, coord1, coord2, false);
 		toTest.setEnPassant();
-		assertEquals(true, toTest.getEnPassant());
+		assertTrue(toTest.getEnPassant());
 	}
 	
 	@Test
