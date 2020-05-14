@@ -3,9 +3,10 @@ package it.uniba.game.test;
 import it.uniba.game.Move;
 import it.uniba.game.Move.Castling;
 import it.uniba.game.Coordinates;
-import it.uniba.game.pieces.*;
+import it.uniba.game.pieces.Piece;
+import it.uniba.game.pieces.Pawn;
 import it.uniba.game.pieces.Piece.Color;
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import org.junit.jupiter.api.Test;
 
 public class MoveTest {
