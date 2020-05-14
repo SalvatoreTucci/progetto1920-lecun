@@ -1,7 +1,10 @@
 package it.uniba.game.board;
 
+import it.uniba.game.Constants;
+import it.uniba.game.Coordinates;
+import it.uniba.game.Move;
 import it.uniba.game.pieces.*;
-import it.uniba.game.*;
+
 
 /**
  * Class representing the chessboard <br>
