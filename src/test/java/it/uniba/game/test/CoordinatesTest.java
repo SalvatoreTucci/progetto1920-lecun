@@ -6,6 +6,85 @@ import it.uniba.game.Coordinates;
 
 public class CoordinatesTest {
 	
+	@Test
+	public void setRowPositiveValueTest() {
+		
+		Coordinates toTest = new Coordinates(3, 3);
+		toTest.setRow(4);
+		assertEquals(4, toTest.getRow());
+	}
+	
+	@Test
+	public void setRowNegativeValueTest() {
+		
+		Coordinates toTest = new Coordinates(3, 3);
+		toTest.setRow(-4);
+		assertEquals(-4, toTest.getRow());
+	}
+	
+	@Test
+	public void setRowZeroValueTest() {
+		
+		Coordinates toTest = new Coordinates(3, 3);
+		toTest.setRow(0);
+		assertEquals(0, toTest.getRow());
+	}
+	
+	@Test
+	public void setRowIntMaxTest() {
+		
+		Coordinates toTest = new Coordinates(3, 3);
+		toTest.setRow(Integer.MAX_VALUE);
+		assertEquals(Integer.MAX_VALUE, toTest.getRow());
+	}
+	
+	@Test
+	public void setRowIntMinTest() {
+		
+		Coordinates toTest = new Coordinates(3, 3);
+		toTest.setRow(Integer.MIN_VALUE);
+		assertEquals(Integer.MIN_VALUE, toTest.getRow());
+	}
+
+	@Test
+	public void setColumnPositiveValueTest() {
+		
+		Coordinates toTest = new Coordinates(3, 3);
+		toTest.setColumn(4);
+		assertEquals(4, toTest.getColumn());
+	}
+	
+	@Test
+	public void setColumnNegativeValueTest() {
+		
+		Coordinates toTest = new Coordinates(3, 3);
+		toTest.setColumn(-4);
+		assertEquals(-4, toTest.getColumn());
+	}
+	
+	@Test
+	public void setColumnZeroValueTest() {
+		
+		Coordinates toTest = new Coordinates(3, 3);
+		toTest.setColumn(0);
+		assertEquals(0, toTest.getColumn());
+	}
+	
+	@Test
+	public void setColumnIntMaxTest() {
+		
+		Coordinates toTest = new Coordinates(3, 3);
+		toTest.setColumn(Integer.MAX_VALUE);
+		assertEquals(Integer.MAX_VALUE, toTest.getColumn());
+	}
+	
+	@Test
+	public void setColumnIntMinTest() {
+		
+		Coordinates toTest = new Coordinates(3, 3);
+		toTest.setColumn(Integer.MIN_VALUE);
+		assertEquals(Integer.MIN_VALUE, toTest.getColumn());
+	}
 	
 	@Test
 	public void getRowPositiveValueTest() {
@@ -116,6 +195,5 @@ public class CoordinatesTest {
 			
 		assertFalse(firstToTest.equals(secondToTest));
 	}
-	
 	
 }

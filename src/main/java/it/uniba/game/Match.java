@@ -385,7 +385,7 @@ class Match {
 		int i = 0;
 		while (i < possibleSquares.size()) {
 			if (field.getSquare( possibleSquares.get(i) ).isOccupied() 
-					&& field.getSquare( possibleSquares.get(i) ).getPiece().equal(toMove.getPiece())) {
+					&& field.getSquare( possibleSquares.get(i) ).getPiece().equals(toMove.getPiece())) {
 				
 				i++ ;
 			} else {
