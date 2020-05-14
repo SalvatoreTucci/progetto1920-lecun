@@ -74,7 +74,7 @@ public class BishopTest {
 	}
 	
 	@Test
-	void reverseBishopMoveTopRightTest() {
+	void reverseBishopMoveBottomLeftTest() {
 		
 		// tests reverseBishopMove starting from the coordinate (0, 7)
 		Move inputMove = new Move(new Bishop(Color.BLACK), null, new Coordinates(0, 7), false);
@@ -91,7 +91,7 @@ public class BishopTest {
 	}
 	
 	@Test
-	void reverseBishopMoveBottomLeftTest() {
+	void reverseBishopMoveTopRightTest() {
 		
 		// tests reverseBishopMove starting from the coordinate (7, 0)
 		Move inputMove = new Move(new Bishop(Color.BLACK), null, new Coordinates(7, 0), false);
