@@ -131,7 +131,9 @@ public class BishopTest {
 		Move inputMove = new Move(new Bishop(Color.BLACK), null, new Coordinates(-1, -1), false);
 		LinkedList<Coordinates> startingSquares = testBishop.reverseMove(inputMove);
 		
-		// 
+		// due to the program structure, reverseMove will never be called with an invalid move
+		// nevertheless the method, when called with an invalid move, will return a list containing
+		// possible starting squares
 		assertFalse(startingSquares.isEmpty());
 	}
 }
