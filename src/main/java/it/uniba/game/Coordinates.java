@@ -52,9 +52,9 @@ public class Coordinates {
     	return new String("(" + column + ", " + row + ")");
     }
     
-    public boolean equals(Coordinates toCheck) {
+    public boolean equals(Object toCheck) {
     	
-    	return row == toCheck.row && column == toCheck.column;
+    	return ((row == ((Coordinates) toCheck).getRow()) && (column == ((Coordinates)toCheck).getColumn()));
     }
     
 }
