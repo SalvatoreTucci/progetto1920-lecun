@@ -69,9 +69,9 @@ public abstract class Piece {
     }
 
 
-    public boolean equal(Piece toCompare) {
+    public boolean equals(Object toCompare) {
     	
-    	if (this.toString().equals(toCompare.toString())) {
+    	if (this.toString().equals(((Piece)toCompare).toString())) {
     		
     		return true;
     	}
