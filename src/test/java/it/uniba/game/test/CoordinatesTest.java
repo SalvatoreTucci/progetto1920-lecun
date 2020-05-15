@@ -124,6 +124,7 @@ public class CoordinatesTest {
 		assertEquals(Integer.MIN_VALUE, toTest.getRow());
 	}
 	
+
 	@Test
 	public void getColumnPositiveValueTest() {
 		
@@ -199,4 +200,5 @@ public class CoordinatesTest {
 		assertFalse(firstToTest.equals(secondToTest));
 	}
 	
+
 }

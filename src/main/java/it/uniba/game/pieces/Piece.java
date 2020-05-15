@@ -3,6 +3,7 @@ package it.uniba.game.pieces;
 import java.util.LinkedList;
 import it.uniba.game.Coordinates;
 import it.uniba.game.Move;
+import it.uniba.game.Constants;
 
 /**
  * Abstract class representing a generic chess piece <br>
@@ -24,6 +25,7 @@ import it.uniba.game.Move;
  * 			target position</li>
  * 		<li>Converts a Piece object into his symbol (in UTF-8)</li>
  * 		<li>Computes if two Pieces are equal</li>
+ * 		<li>Can compute if a Piece had a target move out of bound</li>
  * 		</ul>
  * 
 */
@@ -76,6 +78,12 @@ public abstract class Piece {
     		return true;
     	}
     	return false;
+    }
+    
+    protected static Boolean checkOutOfBound(Move target) {
+    	
+    	return target.getEndingPos().getRow() > Constants.LAST_ROW || target.getEndingPos().getRow() < Constants.FIRST_ROW
+    			|| target.getEndingPos().getColumn() > Constants.LAST_COLUMN || target.getEndingPos().getColumn() < Constants.FIRST_COLUMN;
     }
 
 }
