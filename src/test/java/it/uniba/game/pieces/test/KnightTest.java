@@ -95,14 +95,77 @@ public class KnightTest {
 	}
 	
 	@Test
-	public void reverseMoveInvalidPositionTest() {
+	public void reverseMoveInvalidPosBothGreaterTest() {
 		
 		Knight toTest = new Knight(Piece.Color.WHITE);
 		Move targetMove = new Move(toTest, Constants.EMPTY_COORD, new Coordinates(8, 8), false);
 		Coordinates[] possibleCoord = {
 				
-			new Coordinates(6, 7),	
-			new Coordinates(7, 6)	
+		};
+		
+		Object[] arrayToCheck = toTest.reverseMove(targetMove).toArray();
+		assertArrayEquals(possibleCoord, arrayToCheck);
+	}
+	
+	@Test
+	public void reverseMoveInvalidPosFirstGreaterSecondLesserTest() {
+		
+		Knight toTest = new Knight(Piece.Color.WHITE);
+		Move targetMove = new Move(toTest, Constants.EMPTY_COORD, new Coordinates(8, -1), false);
+		Coordinates[] possibleCoord = {
+				
+		};
+		
+		Object[] arrayToCheck = toTest.reverseMove(targetMove).toArray();
+		assertArrayEquals(possibleCoord, arrayToCheck);
+	}
+	
+	@Test
+	public void reverseMoveInvalidPosFirstLesserSecondGreaterTest() {
+		
+		Knight toTest = new Knight(Piece.Color.WHITE);
+		Move targetMove = new Move(toTest, Constants.EMPTY_COORD, new Coordinates(-1, 8), false);
+		Coordinates[] possibleCoord = {
+				
+		};
+		
+		Object[] arrayToCheck = toTest.reverseMove(targetMove).toArray();
+		assertArrayEquals(possibleCoord, arrayToCheck);
+	}
+	
+	@Test
+	public void reverseMoveInvalidPosBothLesserTest() {
+		
+		Knight toTest = new Knight(Piece.Color.WHITE);
+		Move targetMove = new Move(toTest, Constants.EMPTY_COORD, new Coordinates(-1, -1), false);
+		Coordinates[] possibleCoord = {
+				
+		};
+		
+		Object[] arrayToCheck = toTest.reverseMove(targetMove).toArray();
+		assertArrayEquals(possibleCoord, arrayToCheck);
+	}
+	
+	@Test
+	public void reverseMoveInvalidPosIntMinTest() {
+		
+		Knight toTest = new Knight(Piece.Color.WHITE);
+		Move targetMove = new Move(toTest, Constants.EMPTY_COORD, new Coordinates(Integer.MIN_VALUE, Integer.MIN_VALUE), false);
+		Coordinates[] possibleCoord = {
+				
+		};
+		
+		Object[] arrayToCheck = toTest.reverseMove(targetMove).toArray();
+		assertArrayEquals(possibleCoord, arrayToCheck);
+	}
+	
+	@Test
+	public void reverseMoveInvalidPosIntMaxTest() {
+		
+		Knight toTest = new Knight(Piece.Color.WHITE);
+		Move targetMove = new Move(toTest, Constants.EMPTY_COORD, new Coordinates(Integer.MAX_VALUE, Integer.MAX_VALUE), false);
+		Coordinates[] possibleCoord = {
+				
 		};
 		
 		Object[] arrayToCheck = toTest.reverseMove(targetMove).toArray();
