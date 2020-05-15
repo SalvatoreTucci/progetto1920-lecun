@@ -80,7 +80,7 @@ public abstract class Piece {
 
     public boolean equals(Object toCompare) {
     	
-    	if (this.toString().equals(((Piece)toCompare).toString())) {
+    	if (toCompare != null && this.toString().equals(((Piece)toCompare).toString())) {
     		
     		return true;
     	}

@@ -56,4 +56,10 @@ public class PieceTest {
 		assertFalse(testBishop.equals(secondToTest));
 	}
 	
+	@Test
+	void equalsNullTest() {
+		
+		assertFalse(testBishop.equals(null));
+	}
+	
 }
