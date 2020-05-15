@@ -138,7 +138,7 @@ public class BishopTest {
 	void reverseBishopMoveColOutOfBoundsCoordTest() {
 		
 		// tests reverseBishopMove starting from the invalid coordinate (9, 3)
-		Move inputMove = new Move(new Bishop(Color.BLACK), null, new Coordinates(9, 3), false);
+		Move inputMove = new Move(testBishop, null, new Coordinates(9, 3), false);
 		LinkedList<Coordinates> startingSquares = testBishop.reverseMove(inputMove);
 	
 		assertTrue(startingSquares.isEmpty());
@@ -148,7 +148,7 @@ public class BishopTest {
 	void reverseBishopMoveRowOutOfBoundsCoordTest() {
 		
 		// tests reverseBishopMove starting from the invalid coordinate (5, 13)
-		Move inputMove = new Move(new Bishop(Color.BLACK), null, new Coordinates(5, 13), false);
+		Move inputMove = new Move(testBishop, null, new Coordinates(5, 13), false);
 		LinkedList<Coordinates> startingSquares = testBishop.reverseMove(inputMove);
 	
 		assertTrue(startingSquares.isEmpty());
@@ -158,7 +158,7 @@ public class BishopTest {
 	void reverseBishopMoveOutOfBoundsTest() {
 		
 		// tests reverseBishopMove starting from the invalid coordinate (13, 32)
-		Move inputMove = new Move(new Bishop(Color.BLACK), null, new Coordinates(13, 32), false);
+		Move inputMove = new Move(testBishop, null, new Coordinates(13, 32), false);
 		LinkedList<Coordinates> startingSquares = testBishop.reverseMove(inputMove);
 	
 		assertTrue(startingSquares.isEmpty());
@@ -168,7 +168,7 @@ public class BishopTest {
 	void reverseMoveInvalidPosIntMinTest() {
 		
 		// tests reverseBishopMove starting from the invalid coordinate with minimum integer values
-		Move inputMove = new Move(new Bishop(Color.BLACK), null, new Coordinates(Integer.MIN_VALUE, Integer.MIN_VALUE), false);
+		Move inputMove = new Move(testBishop, null, new Coordinates(Integer.MIN_VALUE, Integer.MIN_VALUE), false);
 		LinkedList<Coordinates> startingSquares = testBishop.reverseMove(inputMove);
 			
 		assertTrue(startingSquares.isEmpty());
@@ -178,7 +178,7 @@ public class BishopTest {
 	void reverseMoveInvalidPosIntMaxTest() {
 		
 		// tests reverseBishopMove starting from the invalid coordinate with maximum integer values
-		Move inputMove = new Move(new Bishop(Color.BLACK), null, new Coordinates(Integer.MAX_VALUE, Integer.MAX_VALUE), false);
+		Move inputMove = new Move(testBishop, null, new Coordinates(Integer.MAX_VALUE, Integer.MAX_VALUE), false);
 		LinkedList<Coordinates> startingSquares = testBishop.reverseMove(inputMove);
 			
 		assertTrue(startingSquares.isEmpty());
