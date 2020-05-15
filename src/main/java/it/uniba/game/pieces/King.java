@@ -50,6 +50,11 @@ public final class King extends Piece {
 		
 		LinkedList<Coordinates> possibleSquares = new LinkedList<Coordinates>();
 		
+		if (checkOutOfBound(target)) {
+			
+			return possibleSquares;
+		}
+		
 		int endColumn = target.getEndingPos().getColumn();
 		int endRow    = target.getEndingPos().getRow();
 		

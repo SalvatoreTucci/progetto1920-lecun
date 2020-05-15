@@ -51,6 +51,11 @@ public final class Knight extends Piece{
 		
 		LinkedList<Coordinates> possibleSquares = new LinkedList<Coordinates>();
 		
+		if (checkOutOfBound(target)) {
+			
+			return possibleSquares;
+		}
+		
 		int endingR = target.getEndingPos().getRow();
 		int endingC = target.getEndingPos().getColumn();
 		

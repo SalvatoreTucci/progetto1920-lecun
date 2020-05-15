@@ -51,6 +51,11 @@ public final class Pawn extends Piece {
 		
 		LinkedList<Coordinates> startingPos = new LinkedList<Coordinates>();
 		
+		if (checkOutOfBound(target)) {
+			
+			return startingPos;
+		}
+		
 		/*
 		 * If the color is BLACK, you can move the pawn down, so it will be B_DIRECTION_ROW
 		 * If the color is WHITE, you can move the pawn up, so it will be W_DIRECTION_ROW
