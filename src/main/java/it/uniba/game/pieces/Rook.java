@@ -59,6 +59,12 @@ public final class Rook extends Piece {
 	public static LinkedList<Coordinates> reverseRookMove(Move target) {
 		
 		LinkedList<Coordinates> possibleSquares = new LinkedList<Coordinates>();
+		
+		if (checkOutOfBound(target)) {
+			
+			return possibleSquares;
+		}
+		
 		int row = target.getEndingPos().getRow();
 		int col = target.getEndingPos().getColumn();
 		

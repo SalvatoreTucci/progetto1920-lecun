@@ -3,6 +3,7 @@ package it.uniba.game.pieces;
 import java.util.LinkedList;
 import it.uniba.game.Coordinates;
 import it.uniba.game.Move;
+import it.uniba.game.Constants;
 
 /**
  * Abstract class representing a generic chess piece <br>
@@ -76,6 +77,12 @@ public abstract class Piece {
     		return true;
     	}
     	return false;
+    }
+    
+    protected static Boolean checkOutOfBound(Move target) {
+    	
+    	return target.getEndingPos().getRow() > Constants.LAST_ROW || target.getEndingPos().getRow() < Constants.FIRST_ROW
+    			|| target.getEndingPos().getColumn() > Constants.LAST_COLUMN || target.getEndingPos().getColumn() < Constants.FIRST_COLUMN;
     }
 
 }
