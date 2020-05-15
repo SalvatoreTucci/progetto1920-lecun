@@ -4,6 +4,7 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 import static org.junit.jupiter.api.Assertions.assertArrayEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 import org.junit.jupiter.api.Test;
 
@@ -159,6 +160,71 @@ public class RookTest {
 		Object[] listToTest = rookToTest.reverseMove(moveToTest).toArray();
 		
 		assertArrayEquals(possibleCoord, listToTest);
+	}
+	
+	@Test
+	public void reverseMoveNullTest() {
+		
+		assertThrows(NullPointerException.class, () -> {
+			
+			rookToTest.reverseMove(null);
+		});
+	}
+	
+	@Test
+	public void reverseMoveNullPieceTest() {
+		
+		Move moveToTest = new Move(null, Constants.EMPTY_COORD, new Coordinates(3, 3), false);
+		
+		int offset = 0;
+		Coordinates[] possibleCoord = new Coordinates[14];
+		for(int i = 0; i < 7; i++) {
+			
+			if(i == 3) {
+				
+				offset = 1;
+			}
+			
+			possibleCoord[i * 2] = new Coordinates(i + offset, 3);
+			possibleCoord[(i * 2) + 1] = new Coordinates(3, i + offset);
+		}	
+		
+		Object[] listToTest = rookToTest.reverseMove(moveToTest).toArray();
+		assertArrayEquals(possibleCoord, listToTest);
+		
+	}
+	
+	@Test
+	public void reverseMoveNullStartTest() {
+		
+		Move moveToTest = new Move(rookToTest, null, new Coordinates(3, 3), false);
+		
+		int offset = 0;
+		Coordinates[] possibleCoord = new Coordinates[14];
+		for(int i = 0; i < 7; i++) {
+			
+			if(i == 3) {
+				
+				offset = 1;
+			}
+			
+			possibleCoord[i * 2] = new Coordinates(i + offset, 3);
+			possibleCoord[(i * 2) + 1] = new Coordinates(3, i + offset);
+		}	
+		
+		Object[] listToTest = rookToTest.reverseMove(moveToTest).toArray();
+		assertArrayEquals(possibleCoord, listToTest);
+	}
+	
+	@Test
+	public void reverseMoveNullEndTest() {
+		
+		Move moveToTest = new Move(rookToTest, Constants.EMPTY_COORD, null, false);
+		
+		assertThrows(NullPointerException.class, () -> {
+			
+			rookToTest.reverseMove(moveToTest); 
+		});
 	}
 	
 	@Test
