@@ -10,6 +10,7 @@ import it.uniba.game.Coordinates;
 import java.util.LinkedList;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.Assert.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertArrayEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
@@ -249,5 +250,99 @@ public class QueenTest {
 		Coordinates testCoord = new Coordinates(Integer.MAX_VALUE, Integer.MAX_VALUE);
 		assertTrue(testQueen.reverseMove(new Move(testQueen, null, testCoord, false)).isEmpty());
 	}
+
+	@Test
+	void reverseMoveNullPieceTest() {
+		
+		Coordinates testCoord = new Coordinates(3, 3);
+		Move testMove = new Move(null, Constants.EMPTY_COORD, testCoord, false);
+		LinkedList<Coordinates> possibleSquares = Rook.reverseRookMove(testMove);
+		possibleSquares.addAll(Bishop.reverseBishopMove(testMove));
+		
+		Coordinates[] squaresToCheck = {
+			new Coordinates(0, 3),
+			new Coordinates(3,0),
+			new Coordinates(1, 3),
+			new Coordinates(3, 1),
+			new Coordinates(2, 3),
+			new Coordinates(3, 2),
+			new Coordinates(4, 3),
+			new Coordinates(3, 4),
+			new Coordinates(5, 3),
+			new Coordinates(3, 5),
+			new Coordinates(6, 3),
+			new Coordinates(3, 6),
+			new Coordinates(7, 3),
+			new Coordinates(3, 7),
+			new Coordinates(4, 4),
+			new Coordinates(5, 5),
+			new Coordinates(6, 6),
+			new Coordinates(7, 7),
+			new Coordinates(2, 2),
+			new Coordinates(1, 1),
+			new Coordinates(0, 0),
+			new Coordinates(2, 4),
+			new Coordinates(1, 5),
+			new Coordinates(0, 6),
+			new Coordinates(4, 2),
+			new Coordinates(5, 1),
+			new Coordinates(6, 0),
+		};
+		
+		assertArrayEquals(squaresToCheck, possibleSquares.toArray());				
+	}
 	
+	@Test
+	void reverseMoveNullStartingPosTest() {
+		
+		Coordinates testCoord = new Coordinates(3, 3);
+		Move testMove = new Move(testQueen, null, testCoord, false);
+		LinkedList<Coordinates> possibleSquares = Rook.reverseRookMove(testMove);
+		possibleSquares.addAll(Bishop.reverseBishopMove(testMove));
+		
+		Coordinates[] squaresToCheck = {
+			new Coordinates(0, 3),
+			new Coordinates(3,0),
+			new Coordinates(1, 3),
+			new Coordinates(3, 1),
+			new Coordinates(2, 3),
+			new Coordinates(3, 2),
+			new Coordinates(4, 3),
+			new Coordinates(3, 4),
+			new Coordinates(5, 3),
+			new Coordinates(3, 5),
+			new Coordinates(6, 3),
+			new Coordinates(3, 6),
+			new Coordinates(7, 3),
+			new Coordinates(3, 7),
+			new Coordinates(4, 4),
+			new Coordinates(5, 5),
+			new Coordinates(6, 6),
+			new Coordinates(7, 7),
+			new Coordinates(2, 2),
+			new Coordinates(1, 1),
+			new Coordinates(0, 0),
+			new Coordinates(2, 4),
+			new Coordinates(1, 5),
+			new Coordinates(0, 6),
+			new Coordinates(4, 2),
+			new Coordinates(5, 1),
+			new Coordinates(6, 0),
+		};
+		
+		assertArrayEquals(squaresToCheck, possibleSquares.toArray());				
+	}
+	
+	@Test
+	void reverseMoveNullEndingPosTest() {
+		
+		Move testMove = new Move(null, Constants.EMPTY_COORD, null, false);
+		assertThrows(NullPointerException.class, () -> { testQueen.reverseMove(testMove); });				
+	}
+	
+	@Test
+	void reverseMoveNullMoveTest() {
+		
+		assertThrows(NullPointerException.class, () -> { testQueen.reverseMove(null); });
+	}
 }
