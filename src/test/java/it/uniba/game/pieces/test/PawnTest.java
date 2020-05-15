@@ -2,6 +2,7 @@ package it.uniba.game.pieces.test;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertArrayEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 import org.junit.jupiter.api.Test;
 
@@ -247,4 +248,54 @@ public class PawnTest {
 		
 		assertArrayEquals(possCoordinates, listToTest);
 	}
+	
+	@Test
+	public void reverseMoveNullTest() {
+		
+		assertThrows(NullPointerException.class, () -> {
+			
+			pawnToTestBlack.reverseMove(null);
+		});
+	}
+	
+	@Test
+	public void reverseMoveNullPieceTest() {
+		
+		Move moveToTest = new Move(null, Constants.EMPTY_COORD, new Coordinates(0, 4), false);
+		
+		Coordinates[] possibleCoordinates = {
+			new Coordinates(0, 3),
+		};
+		
+		Object[] listToTest = pawnToTestBlack.reverseMove(moveToTest).toArray();
+		
+		assertArrayEquals(possibleCoordinates, listToTest);
+		
+	}
+	
+	@Test
+	public void reverseMoveNullStartTest() {
+		
+		Move moveToTest = new Move(pawnToTestBlack, null, new Coordinates(0, 4), false);
+		
+		Coordinates[] possibleCoordinates = {
+			new Coordinates(0, 3),
+		};
+		
+		Object[] listToTest = pawnToTestBlack.reverseMove(moveToTest).toArray();
+		
+		assertArrayEquals(possibleCoordinates, listToTest);
+	}
+	
+	@Test
+	public void reverseMoveNullEndTest() {
+		
+		Move moveToTest = new Move(pawnToTestBlack, Constants.EMPTY_COORD, null, false);
+		
+		assertThrows(NullPointerException.class, () -> {
+			
+			pawnToTestBlack.reverseMove(moveToTest); 
+		});
+	}
+	
 }
