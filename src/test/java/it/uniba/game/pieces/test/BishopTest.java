@@ -164,4 +164,23 @@ public class BishopTest {
 		assertTrue(startingSquares.isEmpty());
 	}
 	
+	@Test
+	void reverseMoveInvalidPosIntMinTest() {
+		
+		// tests reverseBishopMove starting from the invalid coordinate with minimum integer values
+		Move inputMove = new Move(new Bishop(Color.BLACK), null, new Coordinates(Integer.MIN_VALUE, Integer.MIN_VALUE), false);
+		LinkedList<Coordinates> startingSquares = testBishop.reverseMove(inputMove);
+			
+		assertTrue(startingSquares.isEmpty());
+	}
+	
+	@Test
+	void reverseMoveInvalidPosIntMaxTest() {
+		
+		// tests reverseBishopMove starting from the invalid coordinate with maximum integer values
+		Move inputMove = new Move(new Bishop(Color.BLACK), null, new Coordinates(Integer.MAX_VALUE, Integer.MAX_VALUE), false);
+		LinkedList<Coordinates> startingSquares = testBishop.reverseMove(inputMove);
+			
+		assertTrue(startingSquares.isEmpty());
+	}
 }
