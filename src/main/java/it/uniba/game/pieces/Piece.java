@@ -25,6 +25,7 @@ import it.uniba.game.Constants;
  * 			target position</li>
  * 		<li>Converts a Piece object into his symbol (in UTF-8)</li>
  * 		<li>Computes if two Pieces are equal</li>
+ * 		<li>Can compute if a Piece had a target move out of bound</li>
  * 		</ul>
  * 
 */
