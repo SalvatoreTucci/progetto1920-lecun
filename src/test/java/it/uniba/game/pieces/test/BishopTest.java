@@ -8,7 +8,7 @@ import it.uniba.game.Move;
 import java.util.LinkedList;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.junit.jupiter.api.Assertions.assertArrayEquals;
 
 
@@ -125,15 +125,43 @@ public class BishopTest {
 	}
 	
 	@Test
-	void reverseBishopMoveInvalidCoordTest() {
+	void reverseBishopMoveNegativeCoordTest() {
 		
 		// tests reverseBishopMove starting from the invalid coordinate (-1, -1)
 		Move inputMove = new Move(new Bishop(Color.BLACK), null, new Coordinates(-1, -1), false);
 		LinkedList<Coordinates> startingSquares = testBishop.reverseMove(inputMove);
-		
-		// due to the program structure, reverseMove will never be called with an invalid move
-		// nevertheless the method, when called with an invalid move, will return a list containing
-		// possible starting squares
-		assertFalse(startingSquares.isEmpty());
+	
+		assertTrue(startingSquares.isEmpty());
 	}
+	
+	@Test
+	void reverseBishopMoveColOutOfBoundsCoordTest() {
+		
+		// tests reverseBishopMove starting from the invalid coordinate (9, 3)
+		Move inputMove = new Move(new Bishop(Color.BLACK), null, new Coordinates(9, 3), false);
+		LinkedList<Coordinates> startingSquares = testBishop.reverseMove(inputMove);
+	
+		assertTrue(startingSquares.isEmpty());
+	}
+	
+	@Test
+	void reverseBishopMoveRowOutOfBoundsCoordTest() {
+		
+		// tests reverseBishopMove starting from the invalid coordinate (5, 13)
+		Move inputMove = new Move(new Bishop(Color.BLACK), null, new Coordinates(5, 13), false);
+		LinkedList<Coordinates> startingSquares = testBishop.reverseMove(inputMove);
+	
+		assertTrue(startingSquares.isEmpty());
+	}
+	
+	@Test
+	void reverseBishopMoveOutOfBoundsTest() {
+		
+		// tests reverseBishopMove starting from the invalid coordinate (13, 32)
+		Move inputMove = new Move(new Bishop(Color.BLACK), null, new Coordinates(13, 32), false);
+		LinkedList<Coordinates> startingSquares = testBishop.reverseMove(inputMove);
+	
+		assertTrue(startingSquares.isEmpty());
+	}
+	
 }
