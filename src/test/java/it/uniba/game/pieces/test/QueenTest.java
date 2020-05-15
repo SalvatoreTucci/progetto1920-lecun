@@ -123,4 +123,18 @@ public class QueenTest {
 		assertTrue(testQueen.reverseMove(new Move(testQueen, null, testCoord, false)).isEmpty());
 	}
 	
+	@Test
+	void reverseMoveInvalidPosIntMinTest() {
+		
+		Coordinates testCoord = new Coordinates(Integer.MIN_VALUE, Integer.MIN_VALUE);
+		assertTrue(testQueen.reverseMove(new Move(testQueen, null, testCoord, false)).isEmpty());
+	}
+	
+	@Test
+	void reverseMoveInvalidPosIntMaxTest() {
+		
+		Coordinates testCoord = new Coordinates(Integer.MAX_VALUE, Integer.MAX_VALUE);
+		assertTrue(testQueen.reverseMove(new Move(testQueen, null, testCoord, false)).isEmpty());
+	}
+	
 }
