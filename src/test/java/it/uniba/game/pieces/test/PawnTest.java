@@ -1,6 +1,7 @@
 package it.uniba.game.pieces.test;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
 import static org.junit.jupiter.api.Assertions.assertArrayEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
@@ -64,7 +65,7 @@ public class PawnTest {
 		
 		Move moveToTest = new Move(pawnToTestBlack, Constants.EMPTY_COORD, new Coordinates(0, Constants.FIRST_ROW), false);	
 		
-		assertEquals(0, pawnToTestBlack.reverseMove(moveToTest).size());
+		assertTrue(pawnToTestBlack.reverseMove(moveToTest).isEmpty());
 	}
 	
 	@Test
@@ -72,7 +73,7 @@ public class PawnTest {
 		
 		Move moveToTest = new Move(pawnToTestWhite, Constants.EMPTY_COORD, new Coordinates(0, Constants.LAST_ROW), false);	
 		
-		assertEquals(0, pawnToTestWhite.reverseMove(moveToTest).size());
+		assertTrue(pawnToTestWhite.reverseMove(moveToTest).isEmpty());
 	}
 	
 	@Test
@@ -194,11 +195,7 @@ public class PawnTest {
 		
 		Move moveToTest = new Move(pawnToTestBlack, Constants.EMPTY_COORD, new Coordinates(4, 0), false);
 		
-		Coordinates[] possibCoordinates = {};
-		
-		Object[] listToTest = pawnToTestBlack.reverseMove(moveToTest).toArray();
-		
-		assertArrayEquals(possibCoordinates, listToTest);
+		assertTrue(pawnToTestBlack.reverseMove(moveToTest).isEmpty());
 	}
 	
 	@Test
@@ -206,11 +203,7 @@ public class PawnTest {
 		
 		Move moveToTest = new Move(pawnToTestWhite, Constants.EMPTY_COORD, new Coordinates(2, 7), false);
 		
-		Coordinates[] possiCoordinates = {};
-		
-		Object[] listToTest = pawnToTestWhite.reverseMove(moveToTest).toArray();
-		
-		assertArrayEquals(possiCoordinates, listToTest);
+		assertTrue(pawnToTestWhite.reverseMove(moveToTest).isEmpty());
 	}
 	
 	@Test
@@ -218,11 +211,7 @@ public class PawnTest {
 	
 		Move moveToTest = new Move(pawnToTestBlack, Constants.EMPTY_COORD, new Coordinates(1, -5), false);
 		
-		Coordinates[] possibCoordinates = {};
-		
-		Object[] listToTest = pawnToTestBlack.reverseMove(moveToTest).toArray();
-		
-		assertArrayEquals(possibCoordinates, listToTest);
+		assertTrue(pawnToTestBlack.reverseMove(moveToTest).isEmpty());
 	}
 	
 	@Test
@@ -230,11 +219,7 @@ public class PawnTest {
 		
 		Move moveToTest = new Move(pawnToTestWhite, Constants.EMPTY_COORD, new Coordinates(-5, 1), false);
 		
-		Coordinates[] possibCoordinates = {};
-		
-		Object[] listToTest = pawnToTestWhite.reverseMove(moveToTest).toArray();
-		
-		assertArrayEquals(possibCoordinates, listToTest);
+		assertTrue(pawnToTestWhite.reverseMove(moveToTest).isEmpty());
 	}
 	
 	@Test
@@ -242,11 +227,7 @@ public class PawnTest {
 		
 		Move moveToTest = new Move(pawnToTestBlack, Constants.EMPTY_COORD, new Coordinates(10, 10), false);
 		
-		Coordinates[] possCoordinates = {};
-	
-		Object[] listToTest = pawnToTestBlack.reverseMove(moveToTest).toArray();
-		
-		assertArrayEquals(possCoordinates, listToTest);
+		assertTrue(pawnToTestBlack.reverseMove(moveToTest).isEmpty());
 	}
 	
 	@Test
