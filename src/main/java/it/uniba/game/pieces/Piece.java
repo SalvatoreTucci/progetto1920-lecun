@@ -48,8 +48,15 @@ public abstract class Piece {
 
     // Methods
     public Piece(Color col) {
-
-        pieceColor = col;
+    	
+    	if (col == Color.BLACK) {
+    		
+    		pieceColor = col;
+    		
+    	} else {
+    		
+    		pieceColor = Color.WHITE;
+    	}
     }
     
     void setSymbol(String sym) {
@@ -73,7 +80,7 @@ public abstract class Piece {
 
     public boolean equals(Object toCompare) {
     	
-    	if (this.toString().equals(((Piece)toCompare).toString())) {
+    	if (toCompare != null && this.toString().equals(((Piece)toCompare).toString())) {
     		
     		return true;
     	}
