@@ -1,17 +1,30 @@
 package it.uniba.game.pieces.test;
 
 import static org.junit.jupiter.api.Assertions.assertArrayEquals;
-
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import org.junit.jupiter.api.Test;
 
 import it.uniba.game.Coordinates;
 import it.uniba.game.pieces.Knight;
 import it.uniba.game.pieces.Piece;
+import it.uniba.game.pieces.Piece.Color;
 import it.uniba.game.Move;
 import it.uniba.game.Constants;
 
 public class KnightTest {
+	
+	@Test
+	void constructorWhiteTest() {
+
+		assertEquals(Constants.W_KNIGHT, new Knight(Color.WHITE).toString());
+	}
+
+	@Test
+	void constructorBlackTest() {
+
+		assertEquals(Constants.B_KNIGHT, new Knight(Color.BLACK).toString());
+	}
 	
 	@Test
 	public void reverseMoveCorrectCentralTest() {
@@ -35,7 +48,7 @@ public class KnightTest {
 	}
 	
 	@Test
-	public void reverseMoveTopLeftCornerTest() {
+	public void reverseMoveTopLeftTest() {
 		
 		Knight toTest = new Knight(Piece.Color.WHITE);
 		Move targetMove = new Move(toTest, Constants.EMPTY_COORD, new Coordinates(0,0), false);
@@ -50,7 +63,7 @@ public class KnightTest {
 	}
 	
 	@Test
-	public void reverseMoveTopRightCornerTest() {
+	public void reverseMoveTopRightTest() {
 		
 		Knight toTest = new Knight(Piece.Color.WHITE);
 		Move targetMove = new Move(toTest, Constants.EMPTY_COORD, new Coordinates(7,0), false);
@@ -65,7 +78,7 @@ public class KnightTest {
 	}
 	
 	@Test
-	public void reverseMoveBottomLeftCornerTest() {
+	public void reverseMoveBottomLeftTest() {
 		
 		Knight toTest = new Knight(Piece.Color.WHITE);
 		Move targetMove = new Move(toTest, Constants.EMPTY_COORD, new Coordinates(0,7), false);
@@ -80,7 +93,7 @@ public class KnightTest {
 	}
 	
 	@Test
-	public void reverseMoveBottomRightCornerTest() {
+	public void reverseMoveBottomRightTest() {
 		
 		Knight toTest = new Knight(Piece.Color.WHITE);
 		Move targetMove = new Move(toTest, Constants.EMPTY_COORD, new Coordinates(7,7), false);
@@ -95,7 +108,7 @@ public class KnightTest {
 	}
 	
 	@Test
-	public void reverseMoveInvalidPosBothGreaterTest() {
+	public void reverseMoveBothOutOfBoundTest() {
 		
 		Knight toTest = new Knight(Piece.Color.WHITE);
 		Move targetMove = new Move(toTest, Constants.EMPTY_COORD, new Coordinates(8, 8), false);
@@ -108,10 +121,10 @@ public class KnightTest {
 	}
 	
 	@Test
-	public void reverseMoveInvalidPosFirstGreaterSecondLesserTest() {
+	public void reverseMoveColOutOfBoundTest() {
 		
 		Knight toTest = new Knight(Piece.Color.WHITE);
-		Move targetMove = new Move(toTest, Constants.EMPTY_COORD, new Coordinates(8, -1), false);
+		Move targetMove = new Move(toTest, Constants.EMPTY_COORD, new Coordinates(8, 1), false);
 		Coordinates[] possibleCoord = {
 				
 		};
@@ -121,10 +134,10 @@ public class KnightTest {
 	}
 	
 	@Test
-	public void reverseMoveInvalidPosFirstLesserSecondGreaterTest() {
+	public void reverseMoveRowOutOfBoundTest() {
 		
 		Knight toTest = new Knight(Piece.Color.WHITE);
-		Move targetMove = new Move(toTest, Constants.EMPTY_COORD, new Coordinates(-1, 8), false);
+		Move targetMove = new Move(toTest, Constants.EMPTY_COORD, new Coordinates(1, 8), false);
 		Coordinates[] possibleCoord = {
 				
 		};
@@ -134,7 +147,7 @@ public class KnightTest {
 	}
 	
 	@Test
-	public void reverseMoveInvalidPosBothLesserTest() {
+	public void reverseMoveNegativeCoordTest() {
 		
 		Knight toTest = new Knight(Piece.Color.WHITE);
 		Move targetMove = new Move(toTest, Constants.EMPTY_COORD, new Coordinates(-1, -1), false);
