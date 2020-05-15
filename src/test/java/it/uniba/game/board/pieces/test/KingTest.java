@@ -39,7 +39,7 @@ public class KingTest {
 	public void reverseMoveCorrectCentralTest() {		
 		
 		Object[] reverseMoveResult = testKing.reverseMove(new Move(testKing,
-				new Coordinates(Constants.WHITE_SIDE_ROW, Constants.KING_COL),
+				Constants.EMPTY_COORD,
 				new Coordinates(3,3), false)).toArray();
 				
 		Object[] expectedResult = {
@@ -60,7 +60,7 @@ public class KingTest {
 	public void reverseMoveTopLeftCornerTest() {
 		
 		Object[] reverseMoveResult = testKing.reverseMove(new Move(testKing,
-				new Coordinates(Constants.WHITE_SIDE_ROW, Constants.KING_COL),
+				Constants.EMPTY_COORD,
 				new Coordinates(0,0), false)).toArray();
 		
 		Object[] expectedResult = {
@@ -76,7 +76,7 @@ public class KingTest {
 	public void reverseMoveTopRightCornerTest() {
 		
 		Object[] reverseMoveResult = testKing.reverseMove(new Move(testKing,
-				new Coordinates(Constants.WHITE_SIDE_ROW, Constants.KING_COL),
+				Constants.EMPTY_COORD,
 				new Coordinates(7,0), false)).toArray();
 		
 		Object[] expectedResult = {
@@ -92,7 +92,7 @@ public class KingTest {
 	public void reverseMoveBottomRightCornerTest() {	
 		
 		Object[] reverseMoveResult = testKing.reverseMove(new Move(testKing,
-				new Coordinates(Constants.WHITE_SIDE_ROW, Constants.KING_COL),
+				Constants.EMPTY_COORD,
 				new Coordinates(7,7), false)).toArray();
 		
 		Object[] expectedResult = {
@@ -108,7 +108,7 @@ public class KingTest {
 	public void reverseMoveBottomLeftCornerTest() {	
 		
 		Object[] reverseMoveResult = testKing.reverseMove(new Move(testKing,
-				new Coordinates(Constants.WHITE_SIDE_ROW, Constants.KING_COL),
+				Constants.EMPTY_COORD,
 				new Coordinates(0,7), false)).toArray();
 		
 		Object[] expectedResult = {
@@ -124,7 +124,7 @@ public class KingTest {
 	public void reverseMoveOutOfBoundRowTest() {
 		
 		assertTrue(testKing.reverseMove(new Move(testKing,
-				new Coordinates(Constants.WHITE_SIDE_ROW, Constants.KING_COL),
+				Constants.EMPTY_COORD,
 				new Coordinates(7,-2), false)).isEmpty());
 	}
 	
@@ -132,7 +132,7 @@ public class KingTest {
 	public void reverseMoveOutOfBoundColumnTest() {	
 		
 		assertTrue(testKing.reverseMove(new Move(testKing,
-				new Coordinates(Constants.WHITE_SIDE_ROW, Constants.KING_COL),
+				Constants.EMPTY_COORD,
 				new Coordinates(8,0), false)).isEmpty());
 	}
 
@@ -141,7 +141,7 @@ public class KingTest {
 	public void reverseMoveOutOfBoundBothTest() {
 		
 		assertTrue(testKing.reverseMove(new Move(testKing,
-				new Coordinates(Constants.WHITE_SIDE_ROW, Constants.KING_COL),
+				Constants.EMPTY_COORD,
 				new Coordinates(-3,10), false)).isEmpty());
 	}
 	
@@ -155,7 +155,7 @@ public class KingTest {
 	public void reverseMoveNullPieceTest() {
 		
 		Object[] reverseMoveResult = testKing.reverseMove(new Move(null,
-				new Coordinates(Constants.WHITE_SIDE_ROW, Constants.KING_COL),
+				Constants.EMPTY_COORD,
 				new Coordinates(3,3), false)).toArray();
 		
 		Object[] expectedResult = {
@@ -195,7 +195,7 @@ public class KingTest {
 	public void reverseMoveEndMove() {
 		
 		assertThrows(NullPointerException.class, () ->testKing.reverseMove(new Move(testKing,
-				new Coordinates(Constants.WHITE_SIDE_ROW, Constants.KING_COL),
+				Constants.EMPTY_COORD,
 				null, false)));
 	}
 	
