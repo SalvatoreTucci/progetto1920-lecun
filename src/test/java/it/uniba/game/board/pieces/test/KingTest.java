@@ -146,7 +146,7 @@ public class KingTest {
 	}
 	
 	@Test
-	public void reverseMoveNullMove() {	
+	public void reverseMoveNullMoveTest() {	
 		
 		assertThrows(NullPointerException.class, () ->testKing.reverseMove(null));
 	}
@@ -192,7 +192,7 @@ public class KingTest {
 	}
 	
 	@Test
-	public void reverseMoveEndMove() {
+	public void reverseMoveEndMoveTest() {
 		
 		assertThrows(NullPointerException.class, () ->testKing.reverseMove(new Move(testKing,
 				Constants.EMPTY_COORD,
