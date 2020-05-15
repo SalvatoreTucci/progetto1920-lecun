@@ -10,6 +10,7 @@ import it.uniba.game.Coordinates;
 import java.util.LinkedList;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 
 public class QueenTest {
@@ -97,13 +98,29 @@ public class QueenTest {
 	void reverseMoveNegativeTest() {
 		
 		Coordinates testCoord = new Coordinates(-1, -1);
-		assertEquals(new LinkedList<Coordinates>(), testQueen.reverseMove(new Move(testQueen, null, testCoord, false)));
+		assertTrue(testQueen.reverseMove(new Move(testQueen, null, testCoord, false)).isEmpty());
+	}
+	
+	
+	@Test
+	void reverseMoveColOutOfBoundTest() {
+		
+		Coordinates testCoord = new Coordinates(15, 4);
+		assertTrue(testQueen.reverseMove(new Move(testQueen, null, testCoord, false)).isEmpty());
+	}
+	
+	@Test
+	void reverseMoveRowOutOfBoundTest() {
+		
+		Coordinates testCoord = new Coordinates(2, 21);
+		assertTrue(testQueen.reverseMove(new Move(testQueen, null, testCoord, false)).isEmpty());
 	}
 	
 	@Test
 	void reverseMoveOutOfBoundTest() {
 		
 		Coordinates testCoord = new Coordinates(9, 8);
-		assertEquals(new LinkedList<Coordinates>(), testQueen.reverseMove(new Move(testQueen, null, testCoord, false)));
+		assertTrue(testQueen.reverseMove(new Move(testQueen, null, testCoord, false)).isEmpty());
 	}
+	
 }
