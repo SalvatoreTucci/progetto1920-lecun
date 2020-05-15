@@ -48,8 +48,15 @@ public abstract class Piece {
 
     // Methods
     public Piece(Color col) {
-
-        pieceColor = col;
+    	
+    	if (col == Color.BLACK) {
+    		
+    		pieceColor = col;
+    		
+    	} else {
+    		
+    		pieceColor = Color.WHITE;
+    	}
     }
     
     void setSymbol(String sym) {
