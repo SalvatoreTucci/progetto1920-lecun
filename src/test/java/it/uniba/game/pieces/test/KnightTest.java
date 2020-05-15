@@ -3,6 +3,7 @@ package it.uniba.game.pieces.test;
 import static org.junit.jupiter.api.Assertions.assertArrayEquals;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import org.junit.jupiter.api.Test;
 
@@ -108,72 +109,48 @@ public class KnightTest {
 	public void reverseMoveBothOutOfBoundTest() {
 		
 		Move targetMove = new Move(testKnight, Constants.EMPTY_COORD, new Coordinates(8, 8), false);
-		Coordinates[] possibleCoord = {
-				
-		};
 		
-		Object[] arrayToCheck = testKnight.reverseMove(targetMove).toArray();
-		assertArrayEquals(possibleCoord, arrayToCheck);
+		assertTrue(testKnight.reverseMove(targetMove).isEmpty());
 	}
 	
 	@Test
 	public void reverseMoveColOutOfBoundTest() {
 		
 		Move targetMove = new Move(testKnight, Constants.EMPTY_COORD, new Coordinates(8, 1), false);
-		Coordinates[] possibleCoord = {
-				
-		};
 		
-		Object[] arrayToCheck = testKnight.reverseMove(targetMove).toArray();
-		assertArrayEquals(possibleCoord, arrayToCheck);
+		assertTrue(testKnight.reverseMove(targetMove).isEmpty());
 	}
 	
 	@Test
 	public void reverseMoveRowOutOfBoundTest() {
 		
 		Move targetMove = new Move(testKnight, Constants.EMPTY_COORD, new Coordinates(1, 8), false);
-		Coordinates[] possibleCoord = {
-				
-		};
-		
-		Object[] arrayToCheck = testKnight.reverseMove(targetMove).toArray();
-		assertArrayEquals(possibleCoord, arrayToCheck);
+	
+		assertTrue(testKnight.reverseMove(targetMove).isEmpty());
 	}
 	
 	@Test
 	public void reverseMoveNegativeCoordTest() {
 		
 		Move targetMove = new Move(testKnight, Constants.EMPTY_COORD, new Coordinates(-1, -1), false);
-		Coordinates[] possibleCoord = {
-				
-		};
 		
-		Object[] arrayToCheck = testKnight.reverseMove(targetMove).toArray();
-		assertArrayEquals(possibleCoord, arrayToCheck);
+		assertTrue(testKnight.reverseMove(targetMove).isEmpty());
 	}
 	
 	@Test
 	public void reverseMoveInvalidPosIntMinTest() {
 		
 		Move targetMove = new Move(testKnight, Constants.EMPTY_COORD, new Coordinates(Integer.MIN_VALUE, Integer.MIN_VALUE), false);
-		Coordinates[] possibleCoord = {
-				
-		};
 		
-		Object[] arrayToCheck = testKnight.reverseMove(targetMove).toArray();
-		assertArrayEquals(possibleCoord, arrayToCheck);
+		assertTrue(testKnight.reverseMove(targetMove).isEmpty());
 	}
 	
 	@Test
 	public void reverseMoveInvalidPosIntMaxTest() {
 		
 		Move targetMove = new Move(testKnight, Constants.EMPTY_COORD, new Coordinates(Integer.MAX_VALUE, Integer.MAX_VALUE), false);
-		Coordinates[] possibleCoord = {
-				
-		};
 		
-		Object[] arrayToCheck = testKnight.reverseMove(targetMove).toArray();
-		assertArrayEquals(possibleCoord, arrayToCheck);
+		assertTrue(testKnight.reverseMove(targetMove).isEmpty());
 	}
 	
 	@Test
