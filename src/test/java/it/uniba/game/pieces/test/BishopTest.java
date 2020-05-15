@@ -8,6 +8,7 @@ import it.uniba.game.Move;
 import java.util.LinkedList;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.junit.jupiter.api.Assertions.assertArrayEquals;
 
@@ -32,7 +33,7 @@ public class BishopTest {
 	void reverseBishopMoveCenterTest() {
 		
 		// tests reverseBishopMove from a central chessboard square
-		Move inputMove = new Move(new Bishop(Color.BLACK), null, new Coordinates(3, 3), false);
+		Move inputMove = new Move(new Bishop(Color.BLACK), Constants.EMPTY_COORD, new Coordinates(3, 3), false);
 		LinkedList<Coordinates> startingSquares = testBishop.reverseMove(inputMove);
 		
 		// these are the possible squares where the bishop can move starting from (3, 3)
@@ -60,7 +61,7 @@ public class BishopTest {
 	void reverseBishopMoveTopLeftTest() {
 		
 		// tests reverseBishopMove starting from the coordinate (0,0)
-		Move inputMove = new Move(new Bishop(Color.BLACK), null, new Coordinates(0, 0), false);
+		Move inputMove = new Move(new Bishop(Color.BLACK), Constants.EMPTY_COORD, new Coordinates(0, 0), false);
 		LinkedList<Coordinates> startingSquares = testBishop.reverseMove(inputMove);
 
 		Coordinates[] possibleCoord = new Coordinates[7];
@@ -77,7 +78,7 @@ public class BishopTest {
 	void reverseBishopMoveBottomLeftTest() {
 		
 		// tests reverseBishopMove starting from the coordinate (0, 7)
-		Move inputMove = new Move(new Bishop(Color.BLACK), null, new Coordinates(0, 7), false);
+		Move inputMove = new Move(new Bishop(Color.BLACK), Constants.EMPTY_COORD, new Coordinates(0, 7), false);
 		LinkedList<Coordinates> startingSquares = testBishop.reverseMove(inputMove);
 
 		Coordinates[] possibleCoord = new Coordinates[7];
@@ -94,7 +95,7 @@ public class BishopTest {
 	void reverseBishopMoveTopRightTest() {
 		
 		// tests reverseBishopMove starting from the coordinate (7, 0)
-		Move inputMove = new Move(new Bishop(Color.BLACK), null, new Coordinates(7, 0), false);
+		Move inputMove = new Move(new Bishop(Color.BLACK), Constants.EMPTY_COORD, new Coordinates(7, 0), false);
 		LinkedList<Coordinates> startingSquares = testBishop.reverseMove(inputMove);
 
 		Coordinates[] possibleCoord = new Coordinates[7];
@@ -111,7 +112,7 @@ public class BishopTest {
 	void reverseBishopMoveBottomRightTest() {
 		
 		// tests reverseBishopMove starting from the coordinate (7, 7)
-		Move inputMove = new Move(new Bishop(Color.BLACK), null, new Coordinates(7, 7), false);
+		Move inputMove = new Move(new Bishop(Color.BLACK), Constants.EMPTY_COORD, new Coordinates(7, 7), false);
 		LinkedList<Coordinates> startingSquares = testBishop.reverseMove(inputMove);
 
 		Coordinates[] possibleCoord = new Coordinates[7];
@@ -128,7 +129,7 @@ public class BishopTest {
 	void reverseBishopMoveNegativeCoordTest() {
 		
 		// tests reverseBishopMove starting from the invalid coordinate (-1, -1)
-		Move inputMove = new Move(new Bishop(Color.BLACK), null, new Coordinates(-1, -1), false);
+		Move inputMove = new Move(new Bishop(Color.BLACK), Constants.EMPTY_COORD, new Coordinates(-1, -1), false);
 		LinkedList<Coordinates> startingSquares = testBishop.reverseMove(inputMove);
 	
 		assertTrue(startingSquares.isEmpty());
@@ -138,7 +139,7 @@ public class BishopTest {
 	void reverseBishopMoveColOutOfBoundsCoordTest() {
 		
 		// tests reverseBishopMove starting from the invalid coordinate (9, 3)
-		Move inputMove = new Move(testBishop, null, new Coordinates(9, 3), false);
+		Move inputMove = new Move(testBishop, Constants.EMPTY_COORD, new Coordinates(9, 3), false);
 		LinkedList<Coordinates> startingSquares = testBishop.reverseMove(inputMove);
 	
 		assertTrue(startingSquares.isEmpty());
@@ -148,7 +149,7 @@ public class BishopTest {
 	void reverseBishopMoveRowOutOfBoundsCoordTest() {
 		
 		// tests reverseBishopMove starting from the invalid coordinate (5, 13)
-		Move inputMove = new Move(testBishop, null, new Coordinates(5, 13), false);
+		Move inputMove = new Move(testBishop, Constants.EMPTY_COORD, new Coordinates(5, 13), false);
 		LinkedList<Coordinates> startingSquares = testBishop.reverseMove(inputMove);
 	
 		assertTrue(startingSquares.isEmpty());
@@ -158,7 +159,7 @@ public class BishopTest {
 	void reverseBishopMoveOutOfBoundsTest() {
 		
 		// tests reverseBishopMove starting from the invalid coordinate (13, 32)
-		Move inputMove = new Move(testBishop, null, new Coordinates(13, 32), false);
+		Move inputMove = new Move(testBishop, Constants.EMPTY_COORD, new Coordinates(13, 32), false);
 		LinkedList<Coordinates> startingSquares = testBishop.reverseMove(inputMove);
 	
 		assertTrue(startingSquares.isEmpty());
@@ -182,5 +183,74 @@ public class BishopTest {
 		LinkedList<Coordinates> startingSquares = testBishop.reverseMove(inputMove);
 			
 		assertTrue(startingSquares.isEmpty());
+	}
+	
+	@Test
+	public void reverseMoveNullMoveTest() {	
+
+		assertThrows(NullPointerException.class, () ->testBishop.reverseMove(null));
+	}
+
+	@Test
+	public void reverseMoveNullPieceTest() {
+		
+		Move inputMove = new Move(null, Constants.EMPTY_COORD, new Coordinates(3, 3), false);
+		LinkedList<Coordinates> startingSquares = testBishop.reverseMove(inputMove);
+		
+		
+		Coordinates[] possibleCoord = {
+				new Coordinates(4, 4),
+				new Coordinates(5, 5),
+				new Coordinates(6, 6),
+				new Coordinates(7, 7),
+				new Coordinates(2, 2),
+				new Coordinates(1, 1),
+				new Coordinates(0, 0),
+				new Coordinates(2, 4),
+				new Coordinates(1, 5),
+				new Coordinates(0, 6),
+				new Coordinates(4, 2),
+				new Coordinates(5, 1),
+				new Coordinates(6, 0),
+		};
+		
+		Object[] arrayToCheck = startingSquares.toArray();
+		assertArrayEquals(possibleCoord, arrayToCheck);
+
+	}
+
+	@Test
+	public void reverseMoveNullStartTest() {
+
+		Move inputMove = new Move(testBishop, null, new Coordinates(3, 3), false);
+		LinkedList<Coordinates> startingSquares = testBishop.reverseMove(inputMove);
+		
+		
+		Coordinates[] possibleCoord = {
+				new Coordinates(4, 4),
+				new Coordinates(5, 5),
+				new Coordinates(6, 6),
+				new Coordinates(7, 7),
+				new Coordinates(2, 2),
+				new Coordinates(1, 1),
+				new Coordinates(0, 0),
+				new Coordinates(2, 4),
+				new Coordinates(1, 5),
+				new Coordinates(0, 6),
+				new Coordinates(4, 2),
+				new Coordinates(5, 1),
+				new Coordinates(6, 0),
+		};
+		
+		Object[] arrayToCheck = startingSquares.toArray();
+		assertArrayEquals(possibleCoord, arrayToCheck);
+	}
+
+	@Test
+	public void reverseMoveEndMoveTest() {
+		
+		assertThrows(NullPointerException.class, () ->testBishop.reverseMove(new Move(testBishop,
+				Constants.EMPTY_COORD,
+				null, false)));
 	}
 }

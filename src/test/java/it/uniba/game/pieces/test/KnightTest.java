@@ -2,17 +2,20 @@ package it.uniba.game.pieces.test;
 
 import static org.junit.jupiter.api.Assertions.assertArrayEquals;
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import org.junit.jupiter.api.Test;
 
 import it.uniba.game.Coordinates;
 import it.uniba.game.pieces.Knight;
-import it.uniba.game.pieces.Piece;
 import it.uniba.game.pieces.Piece.Color;
 import it.uniba.game.Move;
 import it.uniba.game.Constants;
 
 public class KnightTest {
+	
+	private final Knight testKnight = new Knight(Color.WHITE);
 	
 	@Test
 	void constructorWhiteTest() {
@@ -29,8 +32,7 @@ public class KnightTest {
 	@Test
 	public void reverseMoveCorrectCentralTest() {
 		
-		Knight toTest = new Knight(Piece.Color.BLACK);
-		Move targetMove = new Move(toTest, Constants.EMPTY_COORD, new Coordinates(3,4), false);
+		Move targetMove = new Move(testKnight, Constants.EMPTY_COORD, new Coordinates(3,4), false);
 		Coordinates[] possibleCoord = {
 				
 			new Coordinates(5, 5),
@@ -43,145 +45,166 @@ public class KnightTest {
 			new Coordinates(2, 2)
 		};
 		
-		Object[] arrayToCheck = toTest.reverseMove(targetMove).toArray();
+		Object[] arrayToCheck = testKnight.reverseMove(targetMove).toArray();
 		assertArrayEquals(possibleCoord, arrayToCheck);
 	}
 	
 	@Test
 	public void reverseMoveTopLeftTest() {
 		
-		Knight toTest = new Knight(Piece.Color.WHITE);
-		Move targetMove = new Move(toTest, Constants.EMPTY_COORD, new Coordinates(0,0), false);
+		Move targetMove = new Move(testKnight, Constants.EMPTY_COORD, new Coordinates(0,0), false);
 		Coordinates[] possibleCoord = {
 				
 			new Coordinates(2, 1),
 			new Coordinates(1, 2),
 		};
 		
-		Object[] arrayToCheck = toTest.reverseMove(targetMove).toArray();
+		Object[] arrayToCheck = testKnight.reverseMove(targetMove).toArray();
 		assertArrayEquals(possibleCoord, arrayToCheck);
 	}
 	
 	@Test
 	public void reverseMoveTopRightTest() {
 		
-		Knight toTest = new Knight(Piece.Color.WHITE);
-		Move targetMove = new Move(toTest, Constants.EMPTY_COORD, new Coordinates(7,0), false);
+		Move targetMove = new Move(testKnight, Constants.EMPTY_COORD, new Coordinates(7,0), false);
 		Coordinates[] possibleCoord = {
 				
 			new Coordinates(5, 1),
 			new Coordinates(6, 2),
 		};
 		
-		Object[] arrayToCheck = toTest.reverseMove(targetMove).toArray();
+		Object[] arrayToCheck = testKnight.reverseMove(targetMove).toArray();
 		assertArrayEquals(possibleCoord, arrayToCheck);
 	}
 	
 	@Test
 	public void reverseMoveBottomLeftTest() {
 		
-		Knight toTest = new Knight(Piece.Color.WHITE);
-		Move targetMove = new Move(toTest, Constants.EMPTY_COORD, new Coordinates(0,7), false);
+		Move targetMove = new Move(testKnight, Constants.EMPTY_COORD, new Coordinates(0,7), false);
 		Coordinates[] possibleCoord = {
 				
 			new Coordinates(2, 6),
 			new Coordinates(1, 5),
 		};
 		
-		Object[] arrayToCheck = toTest.reverseMove(targetMove).toArray();
+		Object[] arrayToCheck = testKnight.reverseMove(targetMove).toArray();
 		assertArrayEquals(possibleCoord, arrayToCheck);
 	}
 	
 	@Test
 	public void reverseMoveBottomRightTest() {
 		
-		Knight toTest = new Knight(Piece.Color.WHITE);
-		Move targetMove = new Move(toTest, Constants.EMPTY_COORD, new Coordinates(7,7), false);
+		Move targetMove = new Move(testKnight, Constants.EMPTY_COORD, new Coordinates(7,7), false);
 		Coordinates[] possibleCoord = {
 				
 			new Coordinates(5, 6),
 			new Coordinates(6, 5),
 		};
 		
-		Object[] arrayToCheck = toTest.reverseMove(targetMove).toArray();
+		Object[] arrayToCheck = testKnight.reverseMove(targetMove).toArray();
 		assertArrayEquals(possibleCoord, arrayToCheck);
 	}
 	
 	@Test
 	public void reverseMoveBothOutOfBoundTest() {
 		
-		Knight toTest = new Knight(Piece.Color.WHITE);
-		Move targetMove = new Move(toTest, Constants.EMPTY_COORD, new Coordinates(8, 8), false);
-		Coordinates[] possibleCoord = {
-				
-		};
+		Move targetMove = new Move(testKnight, Constants.EMPTY_COORD, new Coordinates(8, 8), false);
 		
-		Object[] arrayToCheck = toTest.reverseMove(targetMove).toArray();
-		assertArrayEquals(possibleCoord, arrayToCheck);
+		assertTrue(testKnight.reverseMove(targetMove).isEmpty());
 	}
 	
 	@Test
 	public void reverseMoveColOutOfBoundTest() {
 		
-		Knight toTest = new Knight(Piece.Color.WHITE);
-		Move targetMove = new Move(toTest, Constants.EMPTY_COORD, new Coordinates(8, 1), false);
-		Coordinates[] possibleCoord = {
-				
-		};
+		Move targetMove = new Move(testKnight, Constants.EMPTY_COORD, new Coordinates(8, 1), false);
 		
-		Object[] arrayToCheck = toTest.reverseMove(targetMove).toArray();
-		assertArrayEquals(possibleCoord, arrayToCheck);
+		assertTrue(testKnight.reverseMove(targetMove).isEmpty());
 	}
 	
 	@Test
 	public void reverseMoveRowOutOfBoundTest() {
 		
-		Knight toTest = new Knight(Piece.Color.WHITE);
-		Move targetMove = new Move(toTest, Constants.EMPTY_COORD, new Coordinates(1, 8), false);
-		Coordinates[] possibleCoord = {
-				
-		};
-		
-		Object[] arrayToCheck = toTest.reverseMove(targetMove).toArray();
-		assertArrayEquals(possibleCoord, arrayToCheck);
+		Move targetMove = new Move(testKnight, Constants.EMPTY_COORD, new Coordinates(1, 8), false);
+	
+		assertTrue(testKnight.reverseMove(targetMove).isEmpty());
 	}
 	
 	@Test
 	public void reverseMoveNegativeCoordTest() {
 		
-		Knight toTest = new Knight(Piece.Color.WHITE);
-		Move targetMove = new Move(toTest, Constants.EMPTY_COORD, new Coordinates(-1, -1), false);
-		Coordinates[] possibleCoord = {
-				
-		};
+		Move targetMove = new Move(testKnight, Constants.EMPTY_COORD, new Coordinates(-1, -1), false);
 		
-		Object[] arrayToCheck = toTest.reverseMove(targetMove).toArray();
-		assertArrayEquals(possibleCoord, arrayToCheck);
+		assertTrue(testKnight.reverseMove(targetMove).isEmpty());
 	}
 	
 	@Test
 	public void reverseMoveInvalidPosIntMinTest() {
 		
-		Knight toTest = new Knight(Piece.Color.WHITE);
-		Move targetMove = new Move(toTest, Constants.EMPTY_COORD, new Coordinates(Integer.MIN_VALUE, Integer.MIN_VALUE), false);
-		Coordinates[] possibleCoord = {
-				
-		};
+		Move targetMove = new Move(testKnight, Constants.EMPTY_COORD, new Coordinates(Integer.MIN_VALUE, Integer.MIN_VALUE), false);
 		
-		Object[] arrayToCheck = toTest.reverseMove(targetMove).toArray();
-		assertArrayEquals(possibleCoord, arrayToCheck);
+		assertTrue(testKnight.reverseMove(targetMove).isEmpty());
 	}
 	
 	@Test
 	public void reverseMoveInvalidPosIntMaxTest() {
 		
-		Knight toTest = new Knight(Piece.Color.WHITE);
-		Move targetMove = new Move(toTest, Constants.EMPTY_COORD, new Coordinates(Integer.MAX_VALUE, Integer.MAX_VALUE), false);
+		Move targetMove = new Move(testKnight, Constants.EMPTY_COORD, new Coordinates(Integer.MAX_VALUE, Integer.MAX_VALUE), false);
+		
+		assertTrue(testKnight.reverseMove(targetMove).isEmpty());
+	}
+	
+	@Test
+	public void reverseMoveNullMoveTest() {	
+
+		assertThrows(NullPointerException.class, () ->testKnight.reverseMove(null));
+	}
+
+	@Test
+	public void reverseMoveNullPieceTest() {
+
+		Move targetMove = new Move(null, Constants.EMPTY_COORD, new Coordinates(3,4), false);
 		Coordinates[] possibleCoord = {
 				
+			new Coordinates(5, 5),
+			new Coordinates(1, 5),
+			new Coordinates(4, 6),
+			new Coordinates(2, 6),
+			new Coordinates(5, 3),
+			new Coordinates(1, 3),
+			new Coordinates(4, 2),
+			new Coordinates(2, 2)
 		};
 		
-		Object[] arrayToCheck = toTest.reverseMove(targetMove).toArray();
+		Object[] arrayToCheck = testKnight.reverseMove(targetMove).toArray();
 		assertArrayEquals(possibleCoord, arrayToCheck);
+
+	}
+
+	@Test
+	public void reverseMoveNullStartTest() {
+
+		Move targetMove = new Move(testKnight, null, new Coordinates(3,4), false);
+		Coordinates[] possibleCoord = {
+				
+			new Coordinates(5, 5),
+			new Coordinates(1, 5),
+			new Coordinates(4, 6),
+			new Coordinates(2, 6),
+			new Coordinates(5, 3),
+			new Coordinates(1, 3),
+			new Coordinates(4, 2),
+			new Coordinates(2, 2)
+		};
+		
+		Object[] arrayToCheck = testKnight.reverseMove(targetMove).toArray();
+		assertArrayEquals(possibleCoord, arrayToCheck);
+	}
+
+	@Test
+	public void reverseMoveEndMoveTest() {
+		
+		assertThrows(NullPointerException.class, () ->testKnight.reverseMove(new Move(testKnight,
+				Constants.EMPTY_COORD,
+				null, false)));
 	}
 }
