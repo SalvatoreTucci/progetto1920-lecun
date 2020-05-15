@@ -51,6 +51,11 @@ public final class Bishop extends Piece {
 		 
 		LinkedList<Coordinates> possibleSquares = new LinkedList<Coordinates>();
 		
+		if (checkOutOfBound(target)) {
+			
+			return possibleSquares;
+		}
+		
 		int i = target.getEndingPos().getRow() + Constants.RIGHT_DIRECTION;
 		int j = target.getEndingPos().getColumn() + Constants.DOWN_DIRECTION;
 		
