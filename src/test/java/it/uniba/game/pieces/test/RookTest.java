@@ -30,12 +30,6 @@ public class RookTest {
 	}
 	
 	@Test
-	public void createNullTest() {
-		
-		assertEquals(Constants.W_ROOK, new Rook(null).toString());
-	}
-	
-	@Test
 	public void reverseMoveCenterTest() {
 
 		Move moveToTest = new Move(rookToTest, Constants.EMPTY_COORD, new Coordinates(3, 3), false);
