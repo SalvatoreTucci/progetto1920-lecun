@@ -20,38 +20,40 @@ public class PieceTest {
 	//The subclass Bishop will be used in order to do
 	//these tests
 	
+	private final Bishop testBishop = new Bishop(Color.WHITE);
+	
 	@Test
 	void constructorWhiteTest() {
-		Bishop toTest = new Bishop(Color.WHITE);
-		assertEquals(Color.WHITE, toTest.getColor());
+
+		assertEquals(Color.WHITE, testBishop.getColor());
 	}
 
 	@Test
 	void constructorBlackTest() {
 		
-		Bishop toTest = new Bishop(Color.BLACK);
-		assertEquals(Color.BLACK, toTest.getColor());
+		Bishop secondToTest = new Bishop(Color.BLACK);
+		assertEquals(Color.BLACK, secondToTest.getColor());
 	}
 	
 	@Test
 	void constructorNullTest() {
 		
-		Bishop toTest = new Bishop(null);
-		assertEquals(Color.WHITE, toTest.getColor());
+		Bishop secondToTest = new Bishop(null);
+		assertEquals(Color.WHITE, secondToTest.getColor());
 	}
 	
 	@Test
 	void equalsBothEqualsTest() {
-		Bishop firstToTest = new Bishop(Color.WHITE);
+
 		Bishop secondToTest = new Bishop(Color.WHITE);
-		assertTrue(firstToTest.equals(secondToTest));
+		assertTrue(testBishop.equals(secondToTest));
 	}
 	
 	@Test
 	void equalsDifferentTest() {
-		Bishop firstToTest = new Bishop(Color.WHITE);
+		
 		Bishop secondToTest = new Bishop(Color.BLACK);
-		assertFalse(firstToTest.equals(secondToTest));
+		assertFalse(testBishop.equals(secondToTest));
 	}
 	
 }
