@@ -7,7 +7,6 @@ import static org.junit.jupiter.api.Assertions.assertAll;
 
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.BeforeAll;
 
 import it.uniba.game.board.ChessBoard;
 import it.uniba.game.pieces.Pawn;
@@ -18,14 +17,9 @@ import it.uniba.game.Coordinates;
 import it.uniba.game.Move;
 
 public class ChessBoardTest {
-	private static ChessBoard cb;
-	private static Pawn dummyPiece;
 	
-	@BeforeAll
-	static public void PieceInit() {
-		
-		dummyPiece = new Pawn(Color.WHITE);
-	}
+	private static ChessBoard cb;
+	private final Pawn dummyPiece = new Pawn(Color.WHITE);
 	
 	@BeforeEach
 	public void ChessBoardInit() {
