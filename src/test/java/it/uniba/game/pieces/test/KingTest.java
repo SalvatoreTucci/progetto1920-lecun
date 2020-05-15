@@ -1,4 +1,4 @@
-package it.uniba.game.board.pieces.test;
+package it.uniba.game.pieces.test;
 
 import static org.junit.jupiter.api.Assertions.assertArrayEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
@@ -6,7 +6,6 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.BeforeAll;
 
 import it.uniba.game.Coordinates;
 import it.uniba.game.Move;
@@ -15,14 +14,9 @@ import it.uniba.game.pieces.Piece;
 import it.uniba.game.Constants;
 
 public class KingTest {
-	private static King testKing;
 	
-	@BeforeAll
-	public static void setUpAll() {
-		
-		testKing = new King(Piece.Color.WHITE);
-	}
-	
+	private final King testKing = new King(Piece.Color.WHITE);
+
 	@Test
 	void constructorWhiteTest() {
 
