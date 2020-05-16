@@ -75,20 +75,21 @@ public final class Knight extends Piece{
 			}
 			
 			
+			if (endingR + Constants.KN_DOWN_DIRECTION <= Constants.LAST_ROW) {	
 				
-			if (endingC + Constants.RIGHT_DIRECTION <= Constants.LAST_COLUMN) {
-				
-				possibleSquares.add( new Coordinates(endingC + Constants.RIGHT_DIRECTION, 
-						endingR + Constants.KN_DOWN_DIRECTION));
-				
+				if (endingC + Constants.RIGHT_DIRECTION <= Constants.LAST_COLUMN) {
+					
+					possibleSquares.add( new Coordinates(endingC + Constants.RIGHT_DIRECTION, 
+							endingR + Constants.KN_DOWN_DIRECTION));
+					
+				}
+				if (endingC + Constants.LEFT_DIRECTION >= Constants.FIRST_COLUMN) {
+					
+					possibleSquares.add( new Coordinates(endingC + Constants.LEFT_DIRECTION, 
+							endingR + Constants.KN_DOWN_DIRECTION));
+					
+				}
 			}
-			if (endingC + Constants.LEFT_DIRECTION >= Constants.FIRST_COLUMN) {
-				
-				possibleSquares.add( new Coordinates(endingC + Constants.LEFT_DIRECTION, 
-						endingR + Constants.KN_DOWN_DIRECTION));
-				
-			}
-			
 		
 		}
 		
@@ -108,20 +109,21 @@ public final class Knight extends Piece{
 			}
 			
 			
-			
-			if (endingC + Constants.RIGHT_DIRECTION <= Constants.LAST_COLUMN) {
+			if (endingR + Constants.KN_UP_DIRECTION >= Constants.FIRST_ROW) {
 				
-				possibleSquares.add( new Coordinates(endingC + Constants.RIGHT_DIRECTION, 
-						endingR + Constants.KN_UP_DIRECTION));
-				
+				if (endingC + Constants.RIGHT_DIRECTION <= Constants.LAST_COLUMN) {
+					
+					possibleSquares.add( new Coordinates(endingC + Constants.RIGHT_DIRECTION, 
+							endingR + Constants.KN_UP_DIRECTION));
+					
+				}
+				if (endingC + Constants.LEFT_DIRECTION >= Constants.FIRST_COLUMN) {
+					
+					possibleSquares.add( new Coordinates(endingC + Constants.LEFT_DIRECTION,
+							endingR + Constants.KN_UP_DIRECTION));
+					
+				}
 			}
-			if (endingC + Constants.LEFT_DIRECTION >= Constants.FIRST_COLUMN) {
-				
-				possibleSquares.add( new Coordinates(endingC + Constants.LEFT_DIRECTION,
-						endingR + Constants.KN_UP_DIRECTION));
-				
-			}
-			
 		
 		}
 		return possibleSquares;
