@@ -2,7 +2,7 @@ package it.uniba.game.test;
 
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.BeforeEach;
-import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.fail;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import it.uniba.game.Match;
 import it.uniba.game.MatchException;
@@ -27,6 +27,7 @@ public class MatchTest {
 			assertTrue(testMatch.getPrintableMoves().contains(testMove));
 		} catch(MatchException e) {
 			
+			fail();
 		}
 	}
 	
@@ -42,6 +43,7 @@ public class MatchTest {
 			assertTrue(testMatch.getPrintableMoves().contains(testMove));
 		} catch(MatchException e) {
 			
+			fail();
 		}
 	}
 	
@@ -55,6 +57,7 @@ public class MatchTest {
 			assertTrue(testMatch.getPrintableMoves().contains(testMove));
 		} catch(MatchException e) {
 			
+			fail();
 		}
 	}
 	
@@ -70,6 +73,7 @@ public class MatchTest {
 			assertTrue(testMatch.getPrintableMoves().contains(testMove));
 		} catch(MatchException e) {
 			
+			fail();
 		}
 	}
 	
@@ -87,6 +91,7 @@ public class MatchTest {
 			assertTrue(testMatch.getPrintableMoves().contains(testMove));
 		} catch(MatchException e) {
 			
+			fail();
 		}
 	}
 	
@@ -106,6 +111,7 @@ public class MatchTest {
 			assertTrue(testMatch.getPrintableMoves().contains(toParse));
 		} catch(MatchException e) {
 			
+			fail();
 		}
 	}
 	
@@ -123,6 +129,7 @@ public class MatchTest {
 			assertTrue(testMatch.getPrintableMoves().contains(toParse));
 		} catch(MatchException e) {
 			
+			fail();
 		}
 	}
 	
@@ -142,6 +149,7 @@ public class MatchTest {
 			assertTrue(testMatch.getPrintableMoves().contains(toParse));
 		} catch(MatchException e) {
 			
+			fail();
 		}
 	}
 	
@@ -159,6 +167,7 @@ public class MatchTest {
 			assertTrue(testMatch.getPrintableMoves().contains(toParse));
 		} catch(MatchException e) {
 			
+			fail();
 		}
 		
 	}
@@ -179,6 +188,7 @@ public class MatchTest {
 			assertTrue(testMatch.getPrintableMoves().contains(toParse));
 		} catch(MatchException e) {
 			
+			fail();
 		}
 	}
 	
@@ -196,6 +206,7 @@ public class MatchTest {
 			assertTrue(testMatch.getPrintableMoves().contains(toParse));
 		} catch(MatchException e) {
 			
+			fail();
 		}
 	}
 	
@@ -215,6 +226,7 @@ public class MatchTest {
 			assertTrue(testMatch.getPrintableMoves().contains(toParse));
 		} catch(MatchException e) {
 			
+			fail();
 		}
 	}
 	
@@ -248,7 +260,7 @@ public class MatchTest {
 			assertTrue(testMatch.getPrintableMoves().contains(toParse));
 		} catch(MatchException e) {
 			
-			
+			fail();
 		}
 	}
 	
@@ -282,7 +294,7 @@ public class MatchTest {
 			assertTrue(testMatch.getPrintableMoves().contains(toParse));
 		} catch(MatchException e) {
 			
-			
+			fail();
 		}
 	}
 	
@@ -308,7 +320,7 @@ public class MatchTest {
 			assertTrue(testMatch.getPrintableMoves().contains(toParse));
 		} catch(MatchException e) {
 			
-			
+			fail();
 		}
 	}
 	
@@ -334,7 +346,7 @@ public class MatchTest {
 			assertTrue(testMatch.getPrintableMoves().contains(toParse));
 		} catch(MatchException e) {
 			
-			
+			fail();
 		}
 	}
 	
@@ -370,7 +382,7 @@ public class MatchTest {
 			assertTrue(testMatch.getPrintableMoves().contains(toParse));
 		} catch(MatchException e) {
 			
-			
+			fail();
 		}
 	}
 	
@@ -406,7 +418,7 @@ public class MatchTest {
 			assertTrue(testMatch.getPrintableMoves().contains(toParse));
 		} catch(MatchException e) {
 			
-			
+			fail();
 		}
 	}
 	
@@ -434,7 +446,7 @@ public class MatchTest {
 			assertTrue(testMatch.getPrintableMoves().contains(toParse));
 		} catch(MatchException e) {
 			
-			
+			fail();
 		}
 	}
 	
@@ -462,7 +474,7 @@ public class MatchTest {
 			assertTrue(testMatch.getPrintableMoves().contains(toParse));
 		} catch(MatchException e) {
 			
-			
+			fail();
 		}
 	}
 	
@@ -505,6 +517,7 @@ public class MatchTest {
 			assertTrue(testMatch.getPrintableMoves().contains(toParse));
 		} catch(MatchException e) {
 			
+			fail();
 		}
 	}
 	
@@ -528,6 +541,7 @@ public class MatchTest {
 			assertTrue(testMatch.getPrintableMoves().contains(toParse));
 		} catch(MatchException e) {
 			
+			fail();
 		}
 	}
 	
@@ -551,6 +565,7 @@ public class MatchTest {
 			assertTrue(testMatch.getPrintableMoves().contains(toParse));
 		} catch(MatchException e) {
 			
+			fail();
 		}
 	}
 }
