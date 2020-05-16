@@ -314,12 +314,12 @@ public final class Match {
 				toMove = new Pawn(currentPlayer);
 				
 				if(toParse.contains(Constants.STRING_EN_PASSANT)) {
-					
+
 					if(!capture) {
 						
 						throw new MatchException(Constants.ERR_EN_PASSANT_NO_CAPTURE);
 					}
-					
+
 					enPassant = true;
 					offsetFinalCoords = Constants.EN_PASSANT_COORDS_OFFSET;
 				}
@@ -347,7 +347,7 @@ public final class Match {
 					== Constants.INVALID_POS && capture) {
 				
 				throw new MatchException(Constants.ERR_UNRECOGNIZED_MOVE);
-			} 
+			}
 			
 			Move returnMove = new Move(toMove, startPos, finalPos, capture);
 			if (enPassant) {
