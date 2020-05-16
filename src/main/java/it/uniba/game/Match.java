@@ -689,10 +689,14 @@ public final class Match {
 			}
 		}
 
-		int rowToCheck = toMove.getEndingPos().getRow() + Constants.UP_DIRECTION;
+		int rowToCheck;
+
 		if (toMove.getPiece().getColor() == Piece.Color.BLACK) {
 
 			rowToCheck = toMove.getEndingPos().getRow() + Constants.DOWN_DIRECTION;
+		} else {
+
+			rowToCheck = toMove.getEndingPos().getRow() + Constants.UP_DIRECTION;
 		}
 
 		int firstColToCheck = toMove.getEndingPos().getColumn() + Constants.LEFT_DIRECTION;
