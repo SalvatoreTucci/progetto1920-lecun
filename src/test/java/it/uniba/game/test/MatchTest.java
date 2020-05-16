@@ -5,6 +5,7 @@ import org.junit.jupiter.api.BeforeEach;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.junit.jupiter.api.Assertions.assertAll;
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertThrows;
 import static org.junit.jupiter.api.Assertions.fail;
 
@@ -767,7 +768,7 @@ public class MatchTest {
 			testMatch.nextTurn();
 			testMatch.inputMove("c5");
 			testMatch.nextTurn();
-			assertThrows(MatchException.class, () -> { testMatch.getPrintableMoves().contains(toParse); });
+			assertThrows(MatchException.class, () -> { testMatch.inputMove(toParse); });
 		} catch(MatchException e) {
 			
 			fail();
@@ -800,7 +801,7 @@ public class MatchTest {
 			testMatch.nextTurn();
 			testMatch.inputMove("Dh4");
 			testMatch.nextTurn();
-			assertThrows(MatchException.class, () -> { testMatch.getPrintableMoves().contains(toParse); });
+			assertThrows(MatchException.class, () -> { testMatch.inputMove(toParse); });
 		} catch(MatchException e) {
 			
 			fail();
@@ -837,7 +838,7 @@ public class MatchTest {
 			testMatch.nextTurn();
 			testMatch.inputMove("e5");
 			testMatch.nextTurn();
-			assertThrows(MatchException.class, () -> { testMatch.getPrintableMoves().contains(toParse); });
+			assertThrows(MatchException.class, () -> { testMatch.inputMove(toParse); });
 		} catch(MatchException e) {
 			
 			fail();
@@ -845,7 +846,7 @@ public class MatchTest {
 	}
 	
 	@Test
-	public void inputMoveFirstRookMoveThreadTest() {
+	public void inputMoveFirstRookMoveThreatTest() {
 
 		try {
 			
@@ -865,12 +866,80 @@ public class MatchTest {
 			testMatch.inputMove("f3");
 			testMatch.nextTurn();
 			testMatch.inputMove("Dh4");
-			assertThrows(MatchException.class, () -> { testMatch.getPrintableMoves().contains(toParse); });
+			assertThrows(MatchException.class, () -> { testMatch.inputMove(toParse); });
 		} catch(MatchException e) {
 			
 			fail();
 		}
 	}
+	
+	@Test
+	public void inputMoveWhiteCaptureThreatTest() {
+		
+		try {
+			
+			String toParse = "fxe5";
+			testMatch.inputMove("f4");
+			testMatch.nextTurn();
+			testMatch.inputMove("e5");
+			testMatch.nextTurn();
+			testMatch.inputMove("a3");
+			testMatch.nextTurn();
+			testMatch.inputMove("Dh4");
+			testMatch.nextTurn();
+			assertAll( () -> {
+						assertThrows(MatchException.class, () -> { testMatch.inputMove(toParse); });
+						assertFalse(testMatch.getPrintableCaptures(Color.WHITE).contains(Constants.B_PAWN));
+					});
+		} catch(MatchException e) {
+			
+			fail();
+		}
+	}
+	
+	@Test
+	public void inputMoveBlackCaptureThreatTest() {
+		
+		try {
+			
+			String toParse = "fxe4";
+			testMatch.inputMove("e4");
+			testMatch.nextTurn();
+			testMatch.inputMove("f5");
+			testMatch.nextTurn();
+			testMatch.inputMove("Dh5");
+			testMatch.nextTurn();
+			assertAll( () -> {
+				assertThrows(MatchException.class, () -> { testMatch.inputMove(toParse); });
+				assertFalse(testMatch.getPrintableCaptures(Color.WHITE).contains(Constants.W_PAWN));
+			});
+		} catch(MatchException e) {
+			
+			fail();
+		}
+	}
+	
+	@Test
+	public void inputMovePinnedRookFirstMoveTest() {
+		
+		try {
+			
+			String toParse = "Th2";
+			testMatch.inputMove("h4");
+			testMatch.nextTurn();
+			testMatch.inputMove("e5");
+			testMatch.nextTurn();
+			testMatch.inputMove("f3");
+			testMatch.nextTurn();
+			testMatch.inputMove("Dxh4");
+			testMatch.nextTurn();
+			assertThrows(MatchException.class, () -> { testMatch.inputMove(toParse); });
+		} catch(MatchException e) {
+			
+			fail();
+		}
+	}
+
 	
 	@Test
 	public void getPrintableCapturesWhiteEmptyTest() {
@@ -926,6 +995,7 @@ public class MatchTest {
 	}
 	
 	
+	@Test
 	public void getPrintableCapturesNullColorTest() {
 		try {
 			testMatch.inputMove("b4");
@@ -936,6 +1006,7 @@ public class MatchTest {
 			testMatch.nextTurn();
 			testMatch.inputMove("Cxb4");
 		} catch (MatchException e) {
+			
 			fail();
 		}
 		assertEquals("[" + Constants.W_PAWN +"]", testMatch.getPrintableCaptures(null));
