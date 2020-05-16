@@ -32,7 +32,7 @@ import java.util.regex.Pattern;
 *
 * @author LeCun group <br>
 */
-class Match {
+public final class Match {
 	/*
 	 * Class used to manage the flow of the game <br>
 	 */
@@ -163,7 +163,7 @@ class Match {
 		}
 	}
 	
-	void insertCapture(Move captureMove) {
+	private void insertCapture(Move captureMove) {
 		
 		Coordinates endingSquare;
 		
