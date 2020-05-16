@@ -55,6 +55,7 @@ public final class Match {
 
 	// Methods <br>
 	public Match() {
+
 		currentPlayer = Piece.Color.WHITE;
 		blackCaptured = new LinkedList<Piece>();
 		whiteCaptured = new LinkedList<Piece>();
@@ -66,26 +67,32 @@ public final class Match {
 	}
 
 	public void inputMove(final String toParse) throws MatchException {
+
 		Move parsedMove = parseMove(toParse);
+
 		if (parsedMove.getCastling() == Move.Castling.NO_CASTLING) {
 
 			boolean isRookMoved = false;
 			findToMove(parsedMove);
 
 			if (parsedMove.getPiece().getClass() == King.class) {
+
 				((King) parsedMove.getPiece()).setMoved(true);
 			} else if (parsedMove.getPiece().getClass() == Rook.class) {
+
 				isRookMoved = ((Rook) parsedMove.getPiece()).isMoved();
 				((Rook) parsedMove.getPiece()).setMoved(true);
 			}
 
 			if (parsedMove.getCaptureFlag()) {
+
 				insertCapture(parsedMove);
 			}
 
 			field.setMove(parsedMove);
 
 			if (parsedMove.getPiece().getClass() != King.class) {
+
 				if ((parsedMove.getPiece().getColor() == Piece.Color.BLACK
 					&& checkKingThreat(new Move(
 						new King(Color.BLACK), null, blackKingPosition, false)))
@@ -94,51 +101,64 @@ public final class Match {
 						new King(Color.WHITE), null, whiteKingPosition, false)))) {
 
 					if (parsedMove.getPiece().getClass() == Rook.class) {
+
 						((Rook) parsedMove.getPiece()).setMoved(isRookMoved);
 					}
 
 					field.setMove(new Move(parsedMove.getPiece(),
 							parsedMove.getEndingPos(), parsedMove.getStartingPos(), false));
 					if (parsedMove.getCaptureFlag()) {
+
 						Coordinates resetPos;
 
 						if (parsedMove.getEnPassant()) {
+
 							resetPos = new Coordinates(lastPawnLongMove.getColumn(),
 									lastPawnLongMove.getRow());
 						} else {
+
 							resetPos = new Coordinates(
 									parsedMove.getEndingPos().getColumn(),
 									parsedMove.getEndingPos().getRow());
 						}
 
 						if (parsedMove.getPiece().getColor() == Color.BLACK) {
+
 							field.setMove(new Move(blackCaptured.getLast(),
 									resetPos, resetPos, false));
 							blackCaptured.remove(blackCaptured.size() - 1);
 						} else {
+
 							field.setMove(new Move(whiteCaptured.getLast(),
 									resetPos, resetPos, false));
 							whiteCaptured.remove(whiteCaptured.size() - 1);
 						}
 					}
+
 					throw new MatchException(Constants.ERR_KING_THREAT);
 				}
 			} else {
+
 				if (parsedMove.getPiece().getColor() == Piece.Color.BLACK) {
+
 					blackKingPosition.setRow(parsedMove.getEndingPos().getRow());
 					blackKingPosition.setColumn(parsedMove.getEndingPos().getColumn());
 				} else {
+
 					whiteKingPosition.setRow(parsedMove.getEndingPos().getRow());
 					whiteKingPosition.setColumn(parsedMove.getEndingPos().getColumn());
 				}
 			}
 			resetEnPassant();
 			if (parsedMove.getPiece().getClass() == Pawn.class) {
+
 				setEnPassantCondition(parsedMove);
 			}
 		} else {
+
 			handleCastling(parsedMove.getCastling());
 		}
+
 		moves.add(toParse);
 	}
 
@@ -147,38 +167,48 @@ public final class Match {
 
 			if (field.getSquare(lastPawnLongMove).isOccupied()
 					&& field.getSquare(lastPawnLongMove).getPiece() instanceof Pawn) {
+
 				lastPawnLongMove = Constants.EMPTY_COORD;
 			}
 		}
 	}
-	
+
 	private void insertCapture(final Move captureMove) {
 		Coordinates endingSquare;
 
 		if (captureMove.getEnPassant()) {
+
 			int addR = Constants.UP_DIRECTION;
+
 			if (captureMove.getPiece().getColor() == Piece.Color.WHITE) {
+
 				addR = Constants.DOWN_DIRECTION;
 			}
+
 			endingSquare = new Coordinates(captureMove.getEndingPos().getColumn(),
 					captureMove.getEndingPos().getRow() + addR);
 		} else {
+
 			endingSquare = captureMove.getEndingPos();
 		}
 
 		Piece capturedPiece = field.getSquare(endingSquare).getPiece();
 
 		if (capturedPiece.getColor() == Piece.Color.BLACK) {
+
 			whiteCaptured.add(capturedPiece);
 		} else {
+
 			blackCaptured.add(capturedPiece);
 		}
 	}
 
 	public String getPrintableCaptures(final Piece.Color side) {
 		if (side == Piece.Color.WHITE) {
+
 			return whiteCaptured.toString();
 		} else {
+
 			return blackCaptured.toString();
 		}
 	}
@@ -189,6 +219,7 @@ public final class Match {
 	 *	2. c4, f6 <br>
 	 */
 	public String getPrintableMoves() {
+
 		String printableHistory = new String();
 
 		int i = 0;
@@ -196,6 +227,7 @@ public final class Match {
 		while (i < moves.size()) {
 
 			if (i % 2 == 0) {
+
 				printableHistory += "\n" + j + ". ";
 				j++;
 			}
@@ -203,6 +235,7 @@ public final class Match {
 			printableHistory += moves.get(i);
 
 			if (i % 2 == 0) {
+
 				printableHistory += " ";
 			}
 
@@ -213,18 +246,22 @@ public final class Match {
 	}
 
 	public String getPrintableChessBoard() {
+
 		return field.toString();
 	}
 
 	public Piece.Color getCurrentPlayer() {
+
 		return currentPlayer;
 	}
 
 	// method used to proceed in the game flow <br>
 	public void nextTurn() {
 		if (currentPlayer == Piece.Color.BLACK) {
+
 			currentPlayer = Piece.Color.WHITE;
 		} else {
+
 			currentPlayer = Piece.Color.BLACK;
 		}
 	}
@@ -238,10 +275,12 @@ public final class Match {
 	 * @return an instance of the class Move <br>
 	 */
 	private Move parseMove(final String toParse) throws MatchException {
+
 		boolean validMove = Pattern.matches(Constants.GENERAL_MOVE_REGEX, toParse);
 		int offsetFinalCoords = 0;
 
 		if (validMove) {
+
 			boolean capture = toParse.contains(Constants.MOVE_CAPTURE);
 
 			Piece toMove = null;
@@ -249,7 +288,9 @@ public final class Match {
 			boolean enPassant = false;
 
 			if (Pattern.matches(Constants.PIECE_MOVE_REGEX, toParse)) {
+
 				switch (toParse.charAt(0)) {
+
 					case Constants.CHAR_KING:
 						toMove = new King(currentPlayer);
 						break;
@@ -271,13 +312,17 @@ public final class Match {
 				offsetDisambiguation = 1;
 
 				if (toParse.contains(Constants.STRING_EN_PASSANT)) {
+
 					throw new MatchException(Constants.ERR_EN_PASSANT_BAD_TARGET);
 				}
 			} else {
+
 				toMove = new Pawn(currentPlayer);
 
 				if (toParse.contains(Constants.STRING_EN_PASSANT)) {
+
 					if (!capture) {
+
 						throw new MatchException(Constants.ERR_EN_PASSANT_NO_CAPTURE);
 					}
 
@@ -291,57 +336,73 @@ public final class Match {
 					- Constants.MOVE_COLUMN_OFFSET - offsetFinalCoords)
 					- Constants.CHAR_COLUMN_OFFSET),
 						Math.abs(Character.getNumericValue(toParse.charAt(toParse.length()
-							- Constants.MOVE_ROW_OFFSET  - offsetFinalCoords))
-								- Constants.ROW_OFFSET));
+						- Constants.MOVE_ROW_OFFSET  - offsetFinalCoords))
+						- Constants.ROW_OFFSET));
 
 			if (Pattern.matches(Constants.DISAMBIGUATION_REGEX, toParse)) {
+
 				if ((int) toParse.charAt(offsetDisambiguation) >= Constants.CHAR_COLUMN_OFFSET) {
+
 					startPos.setColumn((int) (toParse.charAt(offsetDisambiguation)
 							- Constants.CHAR_COLUMN_OFFSET));
 				} else {
+
 					startPos.setRow(Math.abs(Character.getNumericValue(
 							toParse.charAt(offsetDisambiguation))
 							- Constants.ROW_OFFSET));
 				}
 			}
 
-			if (toMove.getClass() == Pawn.class && startPos.getColumn()
-					== Constants.INVALID_POS && capture) {
+			if (toMove.getClass() == Pawn.class
+					&& startPos.getColumn() == Constants.INVALID_POS
+					&& capture) {
+
 				throw new MatchException(Constants.ERR_UNRECOGNIZED_MOVE);
 			}
 
 			Move returnMove = new Move(toMove, startPos, finalPos, capture);
+
 			if (enPassant) {
+
 				returnMove.setEnPassant();
 			}
 
 			return returnMove;
 		} else if (Pattern.matches(Constants.CASTLING_REGEX, toParse)) {
+
 			Move returnMove = new Move(null, null, null, false);
 
 			if (toParse.length() == Constants.KINGSIDE_STRING_LENGHT) {
+
 				returnMove.setCastling(Move.Castling.KINGSIDE_CASTLING);
 			} else {
+
 				returnMove.setCastling(Move.Castling.QUEENSIDE_CASTLING);
 			}
 
 			return returnMove;
 		} else {
+
 			throw new MatchException(Constants.ERR_UNRECOGNIZED_MOVE);
 		}
 	}
 
 	private void findToMove(final Move toMove) throws MatchException {
+
 		LinkedList<Coordinates> possibleSquares = toMove.getPiece().reverseMove(toMove);
 
 		//1. checking if there are possible pieces to move in the LinkedList possibleSquares
 		int i = 0;
+
 		while (i < possibleSquares.size()) {
+
 			if (field.getSquare(possibleSquares.get(i)).isOccupied()
 					&& field.getSquare(possibleSquares.get(i)).
 					getPiece().equals(toMove.getPiece())) {
+
 				i++;
 			} else {
+
 				possibleSquares.remove(i);
 			}
 		}
@@ -349,15 +410,19 @@ public final class Match {
 
 		//2. checks whether the target square is full when capturing, empty when moving
 		if (toMove.getCaptureFlag()) {
+
 			if (toMove.getPiece().getClass() == Pawn.class) {
+
 				handlePawn(toMove, possibleSquares);
 			} else if (!field.getSquare(toMove.getEndingPos()).isOccupied()
 					|| (field.getSquare(toMove.getEndingPos()).getPiece().getColor()
 							== toMove.getPiece().getColor())) {
+
 				throw new MatchException(Constants.ERR_ILLEGAL_MOVE);
 			}
 		} else {
 			if (field.getSquare(toMove.getEndingPos()).isOccupied()) {
+
 				throw new MatchException(Constants.ERR_ILLEGAL_MOVE);
 			}
 		}
@@ -365,12 +430,17 @@ public final class Match {
 		//3. checks whether there's a piece in the middle
 		if (toMove.getPiece().getClass() != Pawn.class
 				&& toMove.getPiece().getClass() != Knight.class) {
+
 			int k = 0;
+
 			while (k < possibleSquares.size()) {
+
 				if (!getObstructingPieces(possibleSquares.get(k),
 						toMove.getEndingPos()).isEmpty()) {
+
 					possibleSquares.remove(k);
 				} else {
+
 					k++;
 				}
 			}
@@ -378,54 +448,69 @@ public final class Match {
 
 		// 4. solves ambiguities
 		if (possibleSquares.size() > 1) {
+
 			solveAmbiguousMoves(possibleSquares, toMove);
 		}
 
 		// if there are no alternatives raise an exception
 		if (possibleSquares.isEmpty()) {
+
 				throw new MatchException(Constants.ERR_ILLEGAL_MOVE);
 		} else if ((toMove.getStartingPos().getColumn() != Constants.INVALID_POS
 				&& toMove.getStartingPos().getColumn() != possibleSquares.getFirst().getColumn())
 				|| (toMove.getStartingPos().getRow() != Constants.INVALID_POS
 				&& toMove.getStartingPos().getRow() != possibleSquares.getFirst().getRow())) {
+
 				//if the user tries to give a wrong disambiguation when not needed
 				throw new MatchException(Constants.ERR_BAD_DISAMBIGUATION);
 		}
 
 		if (toMove.getPiece().getClass() == King.class) {
+
 			if (checkKingThreat(toMove)) {
+
 				throw new MatchException(Constants.ERR_KING_THREAT);
 			}
 		}
+
 		toMove.setStartingPos(possibleSquares.getFirst());
 	}
 
 	private LinkedList<Piece> getObstructingPieces(final Coordinates startingPos, final Coordinates endingPos) {
+
 		int addR;
 		int addC;
 
 		LinkedList<Piece> toReturn = new LinkedList<Piece>();
 
 		if (startingPos.getRow() == endingPos.getRow()) {
+
 			addR = Constants.STILL_DIRECTION;
 		} else if (startingPos.getRow() > endingPos.getRow()) {
+
 			addR = Constants.UP_DIRECTION;
 		} else {
+
 			addR = Constants.DOWN_DIRECTION;
 		}
 
 		if (startingPos.getColumn() == endingPos.getColumn()) {
+
 			addC = Constants.STILL_DIRECTION;
 		} else if (startingPos.getColumn() > endingPos.getColumn()) {
+
 			addC = Constants.LEFT_DIRECTION;
 		} else {
+
 			addC = Constants.RIGHT_DIRECTION;
 		}
 
 		for (int i = startingPos.getRow() + addR, j = startingPos.getColumn() + addC;
 				i != endingPos.getRow() || j != endingPos.getColumn();
 				i += addR, j += addC) {
+
 			if (field.getSquare(new Coordinates(j, i)).isOccupied()) {
+
 				toReturn.add(field.getSquare(new Coordinates(j, i)).getPiece());
 			}
 		}
@@ -436,37 +521,51 @@ public final class Match {
 	// Solves possible ambiguous moves <br>
 	private void solveAmbiguousMoves(final LinkedList<Coordinates> possibleSquares,
 			final Move toMove) throws MatchException {
+
 		if (toMove.getStartingPos().getRow() != Constants.INVALID_POS) {
+
 			Iterator<Coordinates> j = possibleSquares.iterator();
+
 			while (j.hasNext()) {
+
 				Coordinates toCompare = j.next();
+
 				if (toCompare.getRow() != toMove.getStartingPos().getRow()) {
+
 					j.remove();
 				}
 			}
 		} else if (toMove.getStartingPos().getColumn() != Constants.INVALID_POS) {
+
 			Iterator<Coordinates> j = possibleSquares.iterator();
 			while (j.hasNext()) {
+
 				Coordinates toCompare = j.next();
 				if (toCompare.getColumn() != toMove.getStartingPos().getColumn()) {
+
 					j.remove();
 				}
 			}
 		} else {
+
 			throw new MatchException(Constants.ERR_AMBIGUOUS_MOVE);
 		}
 
 		// if there's still more than one alternative raise an exception <br>
 		if (possibleSquares.size() > 1) {
+
 			throw new MatchException(Constants.ERR_BAD_DISAMBIGUATION);
 		}
 	}
 
 	private void handlePawn(final Move toMove,
 			final LinkedList<Coordinates> possibleSquares) throws MatchException {
+
 		if (!field.getSquare(toMove.getEndingPos()).isOccupied()) {
+
 			int addR = Constants.UP_DIRECTION;
 			if (toMove.getPiece().getColor() == Piece.Color.WHITE) {
+
 				addR = Constants.DOWN_DIRECTION;
 			}
 
@@ -478,53 +577,67 @@ public final class Match {
 				if ((field.getSquare(toCheck).getPiece().getClass() == Pawn.class)
 						&& (field.getSquare(toCheck).getPiece().getColor()
 								!= toMove.getPiece().getColor())) {
+
 					if (toCheck.equals(lastPawnLongMove)) {
+
 						toMove.setEnPassant();
 					} else {
+
 						// exception regarding the impossibility of doing
 						// an EnPassant move on the target pawn <br>
 						throw new MatchException(Constants.ERR_EN_PASSANT);
 					}
 				} else {
+
 					// exception regarding an incorrect EnPassant move <br>
 					throw new MatchException(Constants.ERR_EN_PASSANT_BAD_TARGET);
 				}
 			} else {
+
 				throw new MatchException(Constants.ERR_ILLEGAL_MOVE);
 			}
 		} else if ((field.getSquare(toMove.getEndingPos()).getPiece().getColor()
 				!= toMove.getPiece().getColor())) {
+
 			if (toMove.getEnPassant()) {
+
 				throw new MatchException(Constants.ERR_EN_PASSANT);
 			}
 		} else {
+
 			// exception regarding the wrong target piece which has to be captured <br>
 			throw new MatchException(Constants.ERR_BAD_TARGET);
 		}
 	}
 
 	private void setEnPassantCondition(final Move toCheck) {
+
 		if (Math.abs(toCheck.getStartingPos().getRow()
 				- toCheck.getEndingPos().getRow()) == Constants.LONG_MOVE_LENGTH) {
+
 			lastPawnLongMove = new Coordinates(toCheck.getEndingPos().getColumn(),
 					toCheck.getEndingPos().getRow());
 		}
 	}
 
 	private Boolean checkKingThreat(final Move toMove) {
+
 		LinkedList<Coordinates> squaresToCheck;
 		//LinkedList containing the coordinates for possibles threatning pieces
 		squaresToCheck = Bishop.reverseBishopMove(toMove);
 
 		Iterator<Coordinates> i = squaresToCheck.iterator();
 		while (i.hasNext()) {
+
 			Coordinates toCompare = i.next();
 			if ((field.getSquare(toCompare).getPiece() != null)
 					&& (field.getSquare(toCompare).getPiece().getClass() == Bishop.class
 					|| field.getSquare(toCompare).getPiece().getClass() == Queen.class)) {
+
 				if (field.getSquare(toCompare).getPiece().getColor() != toMove.getPiece().getColor()) {
-					LinkedList<Piece> obstructors =
-							getObstructingPieces(toCompare, toMove.getEndingPos());
+
+					LinkedList<Piece> obstructors
+						= getObstructingPieces(toCompare, toMove.getEndingPos());
 					if (obstructors.isEmpty() || (obstructors.size() == 1
 							&& (obstructors.getFirst().getClass() == King.class))) {
 						return true;
@@ -537,15 +650,19 @@ public final class Match {
 
 		i = squaresToCheck.iterator();
 		while (i.hasNext()) {
+
 			Coordinates toCompare = i.next();
 			if ((field.getSquare(toCompare).getPiece() != null)
 					&& (field.getSquare(toCompare).getPiece().getClass() == Rook.class
 					|| field.getSquare(toCompare).getPiece().getClass() == Queen.class)) {
+
 				if (field.getSquare(toCompare).getPiece().getColor() != toMove.getPiece().getColor()) {
+
 					LinkedList<Piece> obstructors =
 							getObstructingPieces(toCompare, toMove.getEndingPos());
 					if (obstructors.isEmpty() || (obstructors.size() == 1
 							&& (obstructors.getFirst().getClass() == King.class))) {
+
 						return true;
 					}
 				}
@@ -556,10 +673,13 @@ public final class Match {
 
 		i = squaresToCheck.iterator();
 		while (i.hasNext()) {
+
 			Coordinates toCompare = i.next();
 			if ((field.getSquare(toCompare).getPiece() != null)
 					&& (field.getSquare(toCompare).getPiece().getClass() == Knight.class)) {
+
 				if (field.getSquare(toCompare).getPiece().getColor() != toMove.getPiece().getColor()) {
+
 					return true;
 				}
 			}
@@ -567,6 +687,7 @@ public final class Match {
 
 		int rowToCheck = toMove.getEndingPos().getRow() + Constants.UP_DIRECTION;
 		if (toMove.getPiece().getColor() == Piece.Color.BLACK) {
+
 			rowToCheck = toMove.getEndingPos().getRow() + Constants.DOWN_DIRECTION;
 		}
 
@@ -574,27 +695,33 @@ public final class Match {
 		int secondColToCheck = toMove.getEndingPos().getColumn() + Constants.RIGHT_DIRECTION;
 
 		if (rowToCheck >= Constants.FIRST_ROW && rowToCheck <= Constants.LAST_ROW) {
+
 			if (firstColToCheck >= Constants.FIRST_COLUMN && firstColToCheck <= Constants.LAST_COLUMN) {
+
 				if ((field.getSquare(new Coordinates(firstColToCheck,
 						rowToCheck)).getPiece() != null)) {
-					if (field.getSquare(new Coordinates(firstColToCheck,
-							rowToCheck)).getPiece().getClass() == Pawn.class
-							&& field.getSquare(new Coordinates(firstColToCheck,
-							rowToCheck)).getPiece().getColor()
-							!= toMove.getPiece().getColor()) {
+
+					if (field.getSquare(new Coordinates(firstColToCheck, rowToCheck))
+							.getPiece().getClass() == Pawn.class
+							&& field.getSquare(new Coordinates(firstColToCheck, rowToCheck))
+							.getPiece().getColor() != toMove.getPiece().getColor()) {
+
 						return true;
 					}
 				}
 			}
 
 			if (secondColToCheck >= Constants.FIRST_COLUMN && secondColToCheck <= Constants.LAST_COLUMN) {
+
 				if (!(field.getSquare(new Coordinates(secondColToCheck, rowToCheck))
 						.getPiece() == null)) {
+
 					if (field.getSquare(new Coordinates(secondColToCheck, rowToCheck))
 							.getPiece().getClass() == Pawn.class
 							&& field.getSquare(new Coordinates(secondColToCheck,
 							rowToCheck)).getPiece().getColor()
 							!= toMove.getPiece().getColor()) {
+
 						return true;
 					}
 				}
@@ -605,6 +732,7 @@ public final class Match {
 	}
 
 	private void handleCastling(final Move.Castling castlingType) throws MatchException {
+
 		Coordinates kingStartingPosition;
 		Coordinates rookStartingPosition;
 		Coordinates kingEndingPosition;
@@ -615,17 +743,20 @@ public final class Match {
 		int kingEndingColumn = Constants.QS_KING_ENDING_COL;
 
 		if (castlingType == Move.Castling.KINGSIDE_CASTLING) {
+
 			rookStartingColumn = Constants.R_ROOK_COL;
 			rookEndingColumn = Constants.KS_ROOK_ENDING_COL;
 			kingEndingColumn = Constants.KS_KING_ENDING_COL;
 		}
 
 		if (currentPlayer == Piece.Color.WHITE) {
+
 			kingStartingPosition = new Coordinates(Constants.KING_COL, Constants.WHITE_SIDE_ROW);
 			rookStartingPosition = new Coordinates(rookStartingColumn, Constants.WHITE_SIDE_ROW);
 			kingEndingPosition = new Coordinates(kingEndingColumn, Constants.WHITE_SIDE_ROW);
 			rookEndingPosition = new Coordinates(rookEndingColumn, Constants.WHITE_SIDE_ROW);
 		} else {
+
 			kingStartingPosition = new Coordinates(Constants.KING_COL, Constants.BLACK_SIDE_ROW);
 			rookStartingPosition = new Coordinates(rookStartingColumn, Constants.BLACK_SIDE_ROW);
 			kingEndingPosition = new Coordinates(kingEndingColumn, Constants.BLACK_SIDE_ROW);
@@ -635,11 +766,14 @@ public final class Match {
 		if (field.getSquare(kingStartingPosition).isOccupied()
 				&& field.getSquare(kingStartingPosition).getPiece().getClass() == King.class
 				&& !(((King) field.getSquare(kingStartingPosition).getPiece()).isMoved())) {
+
 				// doesn't check the color since it would imply movement
 			if (field.getSquare(rookStartingPosition).isOccupied()
 					&& field.getSquare(rookStartingPosition).getPiece().getClass() == Rook.class
 					&& !(((Rook) field.getSquare(rookStartingPosition).getPiece()).isMoved())) {
+
 				if (getObstructingPieces(kingStartingPosition, rookStartingPosition).isEmpty()) {
+
 					King kingToPlace = new King(currentPlayer);
 					Move checkThreat1 = new Move(kingToPlace, null,
 							kingStartingPosition, false); //move wrapper
@@ -665,15 +799,19 @@ public final class Match {
 						field.setMove(kingMove);
 						field.setMove(rookMove);
 					} else {
+
 						throw new MatchException(Constants.ERR_NC_KING_THREATENED);
 					}
 				} else {
+
 					throw new MatchException(Constants.ERR_NC_PATH_OBSTR);
 				}
 			} else {
+
 				throw new MatchException(Constants.ERR_NC_ROOK_MOVED);
 			}
 		} else {
+
 			throw new MatchException(Constants.ERR_NC_KING_MOVED);
 		}
 	}
