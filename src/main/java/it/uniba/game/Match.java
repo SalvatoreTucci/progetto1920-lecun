@@ -32,7 +32,7 @@ import java.util.regex.Pattern;
 *
 * @author LeCun group <br>
 */
-class Match {
+public final class Match {
 	/*
 	 * Class used to manage the flow of the game <br>
 	 */
@@ -682,7 +682,7 @@ class Match {
 		while (i.hasNext()) {
 			
 			Coordinates toCompare = i.next();
-			if ( (field.getSquare(toCompare).getPiece() != null) 
+			if ((field.getSquare(toCompare).isOccupied()) 
 					&& (field.getSquare(toCompare).getPiece().getClass() == Knight.class) ) {
 				
 				if (field.getSquare(toCompare).getPiece().getColor() != toMove.getPiece().getColor()) {
