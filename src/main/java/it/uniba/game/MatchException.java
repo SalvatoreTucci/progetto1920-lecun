@@ -14,7 +14,7 @@ package it.uniba.game;
 *
 * @author LeCun group <br>
 */
-class MatchException extends Exception {
+public class MatchException extends Exception {
 	
 	// Exception class threw from the class Move <br>
 	

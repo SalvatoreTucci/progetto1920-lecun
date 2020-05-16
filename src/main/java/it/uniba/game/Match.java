@@ -151,8 +151,8 @@ public final class Match {
 			}
 		}
 	}
-
-	void insertCapture(final Move captureMove) {
+	
+	private void insertCapture(final Move captureMove) {
 		Coordinates endingSquare;
 
 		if (captureMove.getEnPassant()) {

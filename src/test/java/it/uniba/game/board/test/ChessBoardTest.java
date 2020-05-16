@@ -182,27 +182,90 @@ public class ChessBoardTest {
 	
 	@Test
 	public void ToStringTest() {
-
-		assertEquals("    A   B   C   D   E   F   G   H\n" + 
-				"  +———+———+———+———+———+———+———+———+\n" + 
-				"8 │ ♜ │ ♞ │ ♝ │ ♛ │ ♚ │ ♝ │ ♞ │ ♜ │ 8\n" + 
-				"  +———+———+———+———+———+———+———+———+\n" + 
-				"7 │ ♟ │ ♟ │ ♟ │ ♟ │ ♟ │ ♟ │ ♟ │ ♟ │ 7\n" + 
-				"  +———+———+———+———+———+———+———+———+\n" + 
-				"6 │   │   │   │   │   │   │   │   │ 6\n" + 
-				"  +———+———+———+———+———+———+———+———+\n" + 
-				"5 │   │   │   │   │   │   │   │   │ 5\n" + 
-				"  +———+———+———+———+———+———+———+———+\n" + 
-				"4 │   │   │   │   │   │   │   │   │ 4\n" + 
-				"  +———+———+———+———+———+———+———+———+\n" + 
-				"3 │   │   │   │   │   │   │   │   │ 3\n" + 
-				"  +———+———+———+———+———+———+———+———+\n" + 
-				"2 │ ♙ │ ♙ │ ♙ │ ♙ │ ♙ │ ♙ │ ♙ │ ♙ │ 2\n" + 
-				"  +———+———+———+———+———+———+———+———+\n" + 
-				"1 │ ♖ │ ♘ │ ♗ │ ♕ │ ♔ │ ♗ │ ♘ │ ♖ │ 1\n" + 
-				"  +———+———+———+———+———+———+———+———+\n" + 
-				"    A   B   C   D   E   F   G   H\n"  
-				, cb.toString());
+		String expectedChessBoard = Constants.CB_LETTERS_COORDS 
+				+ Constants.CB_FIRST_ROW 
+				+ "8 " + Constants.CB_VERTICAL_SQUARE_SYMBOL + " " +Constants.B_ROOK + " "
+						+ Constants.CB_VERTICAL_SQUARE_SYMBOL + " " +Constants.B_KNIGHT + " "
+						+ Constants.CB_VERTICAL_SQUARE_SYMBOL + " " +Constants.B_BISHOP + " "
+						+ Constants.CB_VERTICAL_SQUARE_SYMBOL + " " +Constants.B_QUEEN + " "
+						+ Constants.CB_VERTICAL_SQUARE_SYMBOL + " " +Constants.B_KING + " "
+						+ Constants.CB_VERTICAL_SQUARE_SYMBOL + " " +Constants.B_BISHOP + " "
+						+ Constants.CB_VERTICAL_SQUARE_SYMBOL + " " +Constants.B_KNIGHT + " "
+						+ Constants.CB_VERTICAL_SQUARE_SYMBOL + " " +Constants.B_ROOK + " " 
+						+ Constants.CB_VERTICAL_SQUARE_SYMBOL + " 8\n"
+				+ Constants.CB_MIDDLE_ROW_SQUARES
+				+ "7 " + Constants.CB_VERTICAL_SQUARE_SYMBOL + " " +Constants.B_PAWN + " "
+					+ Constants.CB_VERTICAL_SQUARE_SYMBOL + " " +Constants.B_PAWN + " "	
+					+ Constants.CB_VERTICAL_SQUARE_SYMBOL + " " +Constants.B_PAWN + " "
+					+ Constants.CB_VERTICAL_SQUARE_SYMBOL + " " +Constants.B_PAWN + " "
+					+ Constants.CB_VERTICAL_SQUARE_SYMBOL + " " +Constants.B_PAWN + " "
+					+ Constants.CB_VERTICAL_SQUARE_SYMBOL + " " +Constants.B_PAWN + " "
+					+ Constants.CB_VERTICAL_SQUARE_SYMBOL + " " +Constants.B_PAWN + " "
+					+ Constants.CB_VERTICAL_SQUARE_SYMBOL + " " +Constants.B_PAWN + " " 
+					+ Constants.CB_VERTICAL_SQUARE_SYMBOL + " 7\n"
+				+ Constants.CB_MIDDLE_ROW_SQUARES 
+				+ "6 "+ Constants.CB_VERTICAL_SQUARE_SYMBOL + Constants.CB_EMPTY_SQUARE 
+					+ Constants.CB_VERTICAL_SQUARE_SYMBOL + Constants.CB_EMPTY_SQUARE
+					+ Constants.CB_VERTICAL_SQUARE_SYMBOL + Constants.CB_EMPTY_SQUARE
+					+ Constants.CB_VERTICAL_SQUARE_SYMBOL + Constants.CB_EMPTY_SQUARE
+					+ Constants.CB_VERTICAL_SQUARE_SYMBOL + Constants.CB_EMPTY_SQUARE
+					+ Constants.CB_VERTICAL_SQUARE_SYMBOL + Constants.CB_EMPTY_SQUARE
+					+ Constants.CB_VERTICAL_SQUARE_SYMBOL + Constants.CB_EMPTY_SQUARE
+					+ Constants.CB_VERTICAL_SQUARE_SYMBOL + Constants.CB_EMPTY_SQUARE
+					+ Constants.CB_VERTICAL_SQUARE_SYMBOL + " 6\n"
+				+ Constants.CB_MIDDLE_ROW_SQUARES
+				+ "5 "+ Constants.CB_VERTICAL_SQUARE_SYMBOL + Constants.CB_EMPTY_SQUARE 
+					+ Constants.CB_VERTICAL_SQUARE_SYMBOL + Constants.CB_EMPTY_SQUARE
+					+ Constants.CB_VERTICAL_SQUARE_SYMBOL + Constants.CB_EMPTY_SQUARE
+					+ Constants.CB_VERTICAL_SQUARE_SYMBOL + Constants.CB_EMPTY_SQUARE
+					+ Constants.CB_VERTICAL_SQUARE_SYMBOL + Constants.CB_EMPTY_SQUARE
+					+ Constants.CB_VERTICAL_SQUARE_SYMBOL + Constants.CB_EMPTY_SQUARE
+					+ Constants.CB_VERTICAL_SQUARE_SYMBOL + Constants.CB_EMPTY_SQUARE
+					+ Constants.CB_VERTICAL_SQUARE_SYMBOL + Constants.CB_EMPTY_SQUARE
+					+ Constants.CB_VERTICAL_SQUARE_SYMBOL + " 5\n"
+					+ Constants.CB_MIDDLE_ROW_SQUARES
+				+ "4 "+ Constants.CB_VERTICAL_SQUARE_SYMBOL + Constants.CB_EMPTY_SQUARE 
+					+ Constants.CB_VERTICAL_SQUARE_SYMBOL + Constants.CB_EMPTY_SQUARE
+					+ Constants.CB_VERTICAL_SQUARE_SYMBOL + Constants.CB_EMPTY_SQUARE
+					+ Constants.CB_VERTICAL_SQUARE_SYMBOL + Constants.CB_EMPTY_SQUARE
+					+ Constants.CB_VERTICAL_SQUARE_SYMBOL + Constants.CB_EMPTY_SQUARE
+					+ Constants.CB_VERTICAL_SQUARE_SYMBOL + Constants.CB_EMPTY_SQUARE
+					+ Constants.CB_VERTICAL_SQUARE_SYMBOL + Constants.CB_EMPTY_SQUARE
+					+ Constants.CB_VERTICAL_SQUARE_SYMBOL + Constants.CB_EMPTY_SQUARE
+					+ Constants.CB_VERTICAL_SQUARE_SYMBOL + " 4\n"
+				+ Constants.CB_MIDDLE_ROW_SQUARES
+				+ "3 "+ Constants.CB_VERTICAL_SQUARE_SYMBOL + Constants.CB_EMPTY_SQUARE 
+					+ Constants.CB_VERTICAL_SQUARE_SYMBOL + Constants.CB_EMPTY_SQUARE
+					+ Constants.CB_VERTICAL_SQUARE_SYMBOL + Constants.CB_EMPTY_SQUARE
+					+ Constants.CB_VERTICAL_SQUARE_SYMBOL + Constants.CB_EMPTY_SQUARE
+					+ Constants.CB_VERTICAL_SQUARE_SYMBOL + Constants.CB_EMPTY_SQUARE
+					+ Constants.CB_VERTICAL_SQUARE_SYMBOL + Constants.CB_EMPTY_SQUARE
+					+ Constants.CB_VERTICAL_SQUARE_SYMBOL + Constants.CB_EMPTY_SQUARE
+					+ Constants.CB_VERTICAL_SQUARE_SYMBOL + Constants.CB_EMPTY_SQUARE
+					+ Constants.CB_VERTICAL_SQUARE_SYMBOL + " 3\n"
+				+ Constants.CB_MIDDLE_ROW_SQUARES
+				+ "2 " + Constants.CB_VERTICAL_SQUARE_SYMBOL + " " +Constants.W_PAWN + " "
+					+ Constants.CB_VERTICAL_SQUARE_SYMBOL + " " +Constants.W_PAWN + " "	
+					+ Constants.CB_VERTICAL_SQUARE_SYMBOL + " " +Constants.W_PAWN + " "
+					+ Constants.CB_VERTICAL_SQUARE_SYMBOL + " " +Constants.W_PAWN + " "
+					+ Constants.CB_VERTICAL_SQUARE_SYMBOL + " " +Constants.W_PAWN + " "
+					+ Constants.CB_VERTICAL_SQUARE_SYMBOL + " " +Constants.W_PAWN + " "
+					+ Constants.CB_VERTICAL_SQUARE_SYMBOL + " " +Constants.W_PAWN + " "
+					+ Constants.CB_VERTICAL_SQUARE_SYMBOL + " " +Constants.W_PAWN + " " 
+					+ Constants.CB_VERTICAL_SQUARE_SYMBOL + " 2\n"
+				+ Constants.CB_MIDDLE_ROW_SQUARES
+				+ "1 " + Constants.CB_VERTICAL_SQUARE_SYMBOL + " " +Constants.W_ROOK + " "
+					+ Constants.CB_VERTICAL_SQUARE_SYMBOL + " " +Constants.W_KNIGHT + " "
+					+ Constants.CB_VERTICAL_SQUARE_SYMBOL + " " +Constants.W_BISHOP + " "
+					+ Constants.CB_VERTICAL_SQUARE_SYMBOL + " " +Constants.W_QUEEN + " "
+					+ Constants.CB_VERTICAL_SQUARE_SYMBOL + " " +Constants.W_KING + " "
+					+ Constants.CB_VERTICAL_SQUARE_SYMBOL + " " +Constants.W_BISHOP + " "
+					+ Constants.CB_VERTICAL_SQUARE_SYMBOL + " " +Constants.W_KNIGHT + " "
+					+ Constants.CB_VERTICAL_SQUARE_SYMBOL + " " +Constants.W_ROOK + " " 
+					+ Constants.CB_VERTICAL_SQUARE_SYMBOL + " 1\n"
+				+ Constants.CB_LAST_ROW
+				+ Constants.CB_LETTERS_COORDS;
+		assertEquals(expectedChessBoard, cb.toString());
 		
 		
 	}
