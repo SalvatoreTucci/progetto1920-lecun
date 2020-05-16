@@ -163,7 +163,7 @@ public final class Match {
 		}
 	}
 	
-	void insertCapture(Move captureMove) {
+	private void insertCapture(Move captureMove) {
 		
 		Coordinates endingSquare;
 		
