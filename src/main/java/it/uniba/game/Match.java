@@ -94,8 +94,8 @@ public final class Match {
 			if (parsedMove.getPiece().getClass() != King.class) {
 
 				if ((parsedMove.getPiece().getColor() == Piece.Color.BLACK
-					&& checkKingThreat(new Move(
-						new King(Color.BLACK), null, blackKingPosition, false)))
+					&& checkKingThreat(new Move(new King(Color.BLACK),
+						null, blackKingPosition, false)))
 					|| ((parsedMove.getPiece().getColor() == Color.WHITE)
 					&& checkKingThreat(new Move(
 						new King(Color.WHITE), null, whiteKingPosition, false)))) {
@@ -113,7 +113,8 @@ public final class Match {
 
 						if (parsedMove.getEnPassant()) {
 
-							resetPos = new Coordinates(lastPawnLongMove.getColumn(),
+							resetPos = new Coordinates(
+									lastPawnLongMove.getColumn(),
 									lastPawnLongMove.getRow());
 						} else {
 
@@ -348,8 +349,7 @@ public final class Match {
 				} else {
 
 					startPos.setRow(Math.abs(Character.getNumericValue(
-							toParse.charAt(offsetDisambiguation))
-							- Constants.ROW_OFFSET));
+							toParse.charAt(offsetDisambiguation)) - Constants.ROW_OFFSET));
 				}
 			}
 
@@ -397,8 +397,8 @@ public final class Match {
 		while (i < possibleSquares.size()) {
 
 			if (field.getSquare(possibleSquares.get(i)).isOccupied()
-					&& field.getSquare(possibleSquares.get(i)).
-					getPiece().equals(toMove.getPiece())) {
+					&& field.getSquare(possibleSquares.get(i))
+					.getPiece().equals(toMove.getPiece())) {
 
 				i++;
 			} else {
@@ -563,10 +563,14 @@ public final class Match {
 
 		if (!field.getSquare(toMove.getEndingPos()).isOccupied()) {
 
-			int addR = Constants.UP_DIRECTION;
+			int addR;
+
 			if (toMove.getPiece().getColor() == Piece.Color.WHITE) {
 
 				addR = Constants.DOWN_DIRECTION;
+			} else {
+
+				addR = Constants.UP_DIRECTION;
 			}
 
 			Coordinates toCheck = new Coordinates(toMove.getEndingPos().getColumn(),
@@ -738,15 +742,20 @@ public final class Match {
 		Coordinates kingEndingPosition;
 		Coordinates rookEndingPosition;
 
-		int rookStartingColumn = Constants.L_ROOK_COL;
-		int rookEndingColumn = Constants.QS_ROOK_ENDING_COL;
-		int kingEndingColumn = Constants.QS_KING_ENDING_COL;
+		int rookStartingColumn;
+		int rookEndingColumn;
+		int kingEndingColumn;
 
 		if (castlingType == Move.Castling.KINGSIDE_CASTLING) {
 
 			rookStartingColumn = Constants.R_ROOK_COL;
 			rookEndingColumn = Constants.KS_ROOK_ENDING_COL;
 			kingEndingColumn = Constants.KS_KING_ENDING_COL;
+		} else {
+
+			rookStartingColumn = Constants.L_ROOK_COL;
+			rookEndingColumn = Constants.QS_ROOK_ENDING_COL;
+			kingEndingColumn = Constants.QS_KING_ENDING_COL;
 		}
 
 		if (currentPlayer == Piece.Color.WHITE) {
