@@ -1,5 +1,4 @@
-# scacchi ![CI/CD](https://github.com/softeng1920-inf-uniba/progetto1920-lecun/workflows/CI/CD/badge.svg) [![Coverage Status](https://coveralls.io/repos/github/softeng1920-inf-uniba/progetto1920-lecun/badge.svg?branch=issue%238&t=Of79Y4)](https://coveralls.io/github/softeng1920-inf-uniba/progetto1920-lecun?branch=issue%238)
-
+# scacchi ![CI/CD](https://github.com/softeng1920-inf-uniba/progetto1920-lecun/workflows/CI/CD/badge.svg) [![Coverage Status](https://coveralls.io/repos/github/softeng1920-inf-uniba/progetto1920-lecun/badge.svg?branch=master&t=Of79Y4)](https://coveralls.io/github/softeng1920-inf-uniba/progetto1920-lecun?branch=master)
 La struttura della repository si presenta nel seguente modo:
 ```
 |-- .github
