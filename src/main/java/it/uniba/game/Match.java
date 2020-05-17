@@ -221,7 +221,7 @@ public final class Match {
 	 */
 	public String getPrintableMoves() {
 
-		String printableHistory = new String();
+		StringBuffer historyBuffer = new StringBuffer();
 
 		int i = 0;
 		int j = 1;
@@ -229,21 +229,21 @@ public final class Match {
 
 			if (i % 2 == 0) {
 
-				printableHistory += "\n" + j + ". ";
+				historyBuffer.append("\n" + j + ". ");
 				j++;
 			}
 
-			printableHistory += moves.get(i);
+			historyBuffer.append(moves.get(i));
 
 			if (i % 2 == 0) {
 
-				printableHistory += " ";
+				historyBuffer.append(" ");
 			}
 
 			i++;
 		}
 
-		return printableHistory;
+		return historyBuffer.toString();
 	}
 
 	public String getPrintableChessBoard() {
