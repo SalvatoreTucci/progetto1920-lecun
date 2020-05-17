@@ -681,9 +681,9 @@ public final class Match {
 
 			Coordinates toCompare = i.next();
 
-			if ((field.getSquare(toCompare).isOccupied()) 
-					&& (field.getSquare(toCompare).getPiece().getClass() == Knight.class) ) {
-				
+			if ((field.getSquare(toCompare).isOccupied())
+					&& (field.getSquare(toCompare).getPiece().getClass() == Knight.class)) {
+
 				if (field.getSquare(toCompare).getPiece().getColor() != toMove.getPiece().getColor()) {
 
 					return true;
