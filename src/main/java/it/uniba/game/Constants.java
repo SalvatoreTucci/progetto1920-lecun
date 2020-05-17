@@ -166,4 +166,5 @@ public final class Constants {
 
 
 	public static final Coordinates EMPTY_COORD = new Coordinates(-1, -1);
+	public static final int INVALID_HASHCODE = -1;
 }
