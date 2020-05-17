@@ -320,6 +320,7 @@ public final class Match {
 
 				toMove = new Pawn(currentPlayer);
 
+
 				if (toParse.contains(Constants.STRING_EN_PASSANT)) {
 
 					if (!capture) {
@@ -679,9 +680,10 @@ public final class Match {
 		while (i.hasNext()) {
 
 			Coordinates toCompare = i.next();
-			if ((field.getSquare(toCompare).getPiece() != null)
-					&& (field.getSquare(toCompare).getPiece().getClass() == Knight.class)) {
 
+			if ((field.getSquare(toCompare).isOccupied()) 
+					&& (field.getSquare(toCompare).getPiece().getClass() == Knight.class) ) {
+				
 				if (field.getSquare(toCompare).getPiece().getColor() != toMove.getPiece().getColor()) {
 
 					return true;

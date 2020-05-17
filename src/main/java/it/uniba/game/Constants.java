@@ -75,8 +75,8 @@ public final class Constants {
 	public static final String CB_LAST_ROW = "  +\u2014\u2014\u2014+\u2014\u2014\u2014+\u2014\u2014"
 			+ "\u2014+\u2014\u2014\u2014+\u2014\u2014\u2014+\u2014\u2014\u2014+\u2014\u2014\u2014+"
 			+ "\u2014\u2014\u2014+\n";
-	public static final String CB_EMPTY_SQUARE = "   ";
 
+	public static final String CB_EMPTY_SQUARE = "   ";
 
 	// Constants for the class Match <br>
 	public static final char CHAR_KING = 'R';
@@ -90,7 +90,7 @@ public final class Constants {
 	public static final int INVALID_POS = -1;
 	public static final String GENERAL_MOVE_REGEX = "([RDTAC])?([a-h]|[1-8])?(x)?([a-h])([1-8])(\\se\\.p\\.)?";
 	public static final String PIECE_MOVE_REGEX = "([RDTAC]).*";
-	public static final String DISAMBIGUATION_REGEX = ".*([a-h]|[1-8])(x)?([a-h])([1-8])";
+	public static final String DISAMBIGUATION_REGEX = ".*([a-h]|[1-8])(x)?([a-h])([1-8])(\\se\\.p\\.)?";
 	public static final String CASTLING_REGEX = "(0-0(-0)?)|(O-O(-O)?)";
 	public static final int KINGSIDE_STRING_LENGHT = 3;
 	public static final int CHAR_COLUMN_OFFSET = 97;
@@ -155,6 +155,7 @@ public final class Constants {
 	public static final String ERR_EN_PASSANT = "En passant non eseguibile";
 	public static final String ERR_EN_PASSANT_BAD_TARGET = "Impossibile eseguire En Passant "
 			+ "sul pezzo selezionato";
+
 	public static final String ERR_EN_PASSANT_NO_CAPTURE = "La mossa en passant deve essere una cattura.";
 	public static final String ERR_BAD_TARGET = "Pezzo non catturabile";
 	public static final String ERR_TEMP_BAD_MOVE = "Pezzo non utilizzabile in questa iterazione";
@@ -163,7 +164,6 @@ public final class Constants {
 	public static final String ERR_NC_KING_MOVED = "Arrocco non eseguibile: Re mosso";
 	public static final String ERR_NC_ROOK_MOVED = "Arrocco non eseguibile: Torre mossa";
 	public static final String ERR_NC_PATH_OBSTR = "Arrocco non eseguibile: pezzo/i nel mezzo";
-
 
 	public static final Coordinates EMPTY_COORD = new Coordinates(-1, -1);
 	public static final int INVALID_HASHCODE = -1;
