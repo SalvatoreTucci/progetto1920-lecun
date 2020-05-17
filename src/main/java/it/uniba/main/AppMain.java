@@ -20,7 +20,7 @@ import java.io.UnsupportedEncodingException;
 * 		<ul>
 * 		<li></li>
 * 		</ul>
-*	Does : 
+*	Does :
 *		<ul>
 *		<li>Checks whether the user wants to exit the app</li>
 *		<li>Reads the user input from the keyboard</li>
@@ -42,26 +42,25 @@ public final class AppMain {
 	 * @param args The command-line arguments.
 	 */
 	public static void main(final String[] args) {
-		
+
 		try {
-			
-			PrintStream utf8Out = new PrintStream(System.out,false,Constants.CHAR_STD);
+
+			PrintStream utf8Out = new PrintStream(System.out, false, Constants.CHAR_STD);
 			System.setOut(utf8Out);
 		} catch (UnsupportedEncodingException e) {
-			
+
 		}
-		
+
 		UI gameUI = UI.getUI();
 		gameUI.printWelcome();
 		String command;
 		Scanner userInput = new Scanner(System.in);
 		do {
-			
+
 			command = userInput.nextLine();
 			gameUI.parseCommand(command.trim());
 		} while (!gameUI.getStatus());
-		
+
 		userInput.close();
 	}
-
 }
