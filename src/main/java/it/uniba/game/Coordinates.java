@@ -49,12 +49,14 @@ public final class Coordinates {
 
     public String toString() {
 
-    	return new String("(" + column + ", " + row + ")");
+    	return "(" + column + ", " + row + ")";
     }
 
     public boolean equals(final Object toCheck) {
 
-    	return ((row == ((Coordinates) toCheck).getRow()) && (column == ((Coordinates) toCheck).getColumn()));
+    	return (toCheck != null) && (toCheck instanceof Coordinates)
+    			&& ((row == ((Coordinates) toCheck).getRow())
+    					&& (column == ((Coordinates) toCheck).getColumn()));
     }
 
     public int hashCode() {
