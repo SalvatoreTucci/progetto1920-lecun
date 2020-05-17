@@ -29,9 +29,9 @@ public class MatchTest {
 		
 		try {
 			
-			String testMove = "e4";
-			testMatch.inputMove(testMove);
-			assertTrue(testMatch.getPrintableMoves().contains(testMove));
+			String toParse = "e4";
+			testMatch.inputMove(toParse);
+			assertTrue(testMatch.getPrintableMoves().contains(toParse));
 		} catch(MatchException e) {
 			
 			fail();
@@ -43,11 +43,11 @@ public class MatchTest {
 		
 		try {
 			
-			String testMove = "e5";
+			String toParse = "e5";
 			testMatch.inputMove("e3");
 			testMatch.nextTurn();
-			testMatch.inputMove(testMove);
-			assertTrue(testMatch.getPrintableMoves().contains(testMove));
+			testMatch.inputMove(toParse);
+			assertTrue(testMatch.getPrintableMoves().contains(toParse));
 		} catch(MatchException e) {
 			
 			fail();
@@ -59,9 +59,9 @@ public class MatchTest {
 		
 		try {
 			
-			String testMove = "Cf3";
-			testMatch.inputMove(testMove);
-			assertTrue(testMatch.getPrintableMoves().contains(testMove));
+			String toParse = "Cf3";
+			testMatch.inputMove(toParse);
+			assertTrue(testMatch.getPrintableMoves().contains(toParse));
 		} catch(MatchException e) {
 			
 			fail();
@@ -73,11 +73,11 @@ public class MatchTest {
 		
 		try {
 			
-			String testMove = "Cc6";
+			String toParse = "Cc6";
 			testMatch.inputMove("e3");
 			testMatch.nextTurn();
-			testMatch.inputMove(testMove);
-			assertTrue(testMatch.getPrintableMoves().contains(testMove));
+			testMatch.inputMove(toParse);
+			assertTrue(testMatch.getPrintableMoves().contains(toParse));
 		} catch(MatchException e) {
 			
 			fail();
@@ -89,13 +89,13 @@ public class MatchTest {
 		
 		try {
 			
-			String testMove = "Ac4";
+			String toParse = "Ac4";
 			testMatch.inputMove("e3");
 			testMatch.nextTurn();
 			testMatch.inputMove("e5");
 			testMatch.nextTurn();
-			testMatch.inputMove(testMove);
-			assertTrue(testMatch.getPrintableMoves().contains(testMove));
+			testMatch.inputMove(toParse);
+			assertTrue(testMatch.getPrintableMoves().contains(toParse));
 		} catch(MatchException e) {
 			
 			fail();
@@ -866,7 +866,13 @@ public class MatchTest {
 			testMatch.inputMove("f3");
 			testMatch.nextTurn();
 			testMatch.inputMove("Dh4");
+			testMatch.nextTurn();
 			assertThrows(MatchException.class, () -> { testMatch.inputMove(toParse); });
+			testMatch.inputMove("g3");
+			testMatch.nextTurn();
+			testMatch.inputMove("g6");
+			testMatch.nextTurn();
+			testMatch.inputMove("0-0");
 		} catch(MatchException e) {
 			
 			fail();
@@ -1259,7 +1265,7 @@ public class MatchTest {
 	}
 	
 	@Test
-	public void invalidMoveIrregularRookThreatMoveTest() {
+	public void inputMoveIrregularRookThreatMoveTest() {
 		
 		try {
 			
@@ -1284,7 +1290,7 @@ public class MatchTest {
 	}
 	
 	@Test
-	public void invalidMoveIrregularRookThreatKingMoveTest() {
+	public void inputMoveIrregularRookThreatKingMoveTest() {
 		
 		try {
 			
@@ -1313,7 +1319,7 @@ public class MatchTest {
 	}
 	
 	@Test
-	public void invalidMoveIrregularKnightThreatMoveTest() {
+	public void inputMoveIrregularKnightThreatMoveTest() {
 		
 		try {
 			
@@ -1338,7 +1344,7 @@ public class MatchTest {
 	}
 	
 	@Test
-	public void invalidMoveIrregularPawnLeftThreatMoveTest() {
+	public void inputMoveIrregularPawnLeftThreatMoveTest() {
 		
 		try {
 			
@@ -1368,7 +1374,7 @@ public class MatchTest {
 	}
 	
 	@Test
-	public void invalidMoveIrregularPawnRightThreatMoveTest() {
+	public void inputMoveIrregularPawnRightThreatMoveTest() {
 		
 		try {
 			
@@ -1382,6 +1388,36 @@ public class MatchTest {
 			testMatch.inputMove("e6");
 			testMatch.nextTurn();
 			testMatch.inputMove("dxe6");
+			testMatch.nextTurn();
+			assertThrows(MatchException.class, () -> { testMatch.inputMove(toParse); });
+		} catch(MatchException e) {
+			
+			fail();
+		}
+	}
+	
+	
+	@Test
+	public void inputMoveBadDisambiguationTest() {
+		
+		try {
+			
+			String toParse = "T3d3";
+			testMatch.inputMove("h4");
+			testMatch.nextTurn();
+			testMatch.inputMove("h5");
+			testMatch.nextTurn();
+			testMatch.inputMove("a4");
+			testMatch.nextTurn();
+			testMatch.inputMove("a5");
+			testMatch.nextTurn();
+			testMatch.inputMove("Ta3");
+			testMatch.nextTurn();
+			testMatch.inputMove("b6");
+			testMatch.nextTurn();
+			testMatch.inputMove("Thh3");
+			testMatch.nextTurn();
+			testMatch.inputMove("d5");
 			testMatch.nextTurn();
 			assertThrows(MatchException.class, () -> { testMatch.inputMove(toParse); });
 		} catch(MatchException e) {

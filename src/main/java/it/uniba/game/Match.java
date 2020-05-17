@@ -555,6 +555,8 @@ public final class Match {
 		// if there's still more than one alternative raise an exception <br>
 		if (possibleSquares.size() > 1) {
 
+			// at the current state of the project, this exception can not be tested or
+			// handled because the piece promotion is not yet implemented
 			throw new MatchException(Constants.ERR_BAD_DISAMBIGUATION);
 		}
 	}
