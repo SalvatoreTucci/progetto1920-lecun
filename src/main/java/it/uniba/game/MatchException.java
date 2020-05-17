@@ -15,12 +15,11 @@ package it.uniba.game;
 * @author LeCun group <br>
 */
 public class MatchException extends Exception {
-	
+
 	// Exception class threw from the class Move <br>
-	
-	public MatchException(String errorMessage) {
-		
+
+	public MatchException(final String errorMessage) {
+
 		super(errorMessage);
 	}
-	
 }

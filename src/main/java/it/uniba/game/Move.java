@@ -28,22 +28,25 @@ import it.uniba.game.pieces.Piece;
  *			<li>Gets or changes if the move is "en passant"</li>
  *			<li>Gets or changes if the move is a castling</li>
  * 		</ul>
- *  
+ * 
  * @author LeCun group<br>
  */
-public class Move {
+public final class Move {
 	/*
 	 * This class represent a generic move converted from the string inserted by the user <br>
 	 * (there will be an external method which will do this particular conversion from string to Move)<br>
 	*/
+
+	/**
+	 *	Enumerated type used to represent the castling of the move
+	 */
 	public enum Castling {
-		
+
 		NO_CASTLING,
 		KINGSIDE_CASTLING,
 		QUEENSIDE_CASTLING
     }
-	
-	
+
 	// Attributes <br>
 	private Piece toMove;
 	private Coordinates startingPos;
@@ -51,69 +54,69 @@ public class Move {
 	private boolean isCapture;
 	private boolean isEnPassant = false;
 	private Castling typeCastling = Castling.NO_CASTLING;
-	
+
 	// Methods <br>
-	public Move(Piece pieceToSet, Coordinates startPos, Coordinates endPos, boolean cap) {
-		
+	public Move(final Piece pieceToSet, final Coordinates startPos,
+			final Coordinates endPos, final boolean cap) {
+
 		setPiece(pieceToSet);
 		setStartingPos(startPos);
 		setEndingPos(endPos);
 		isCapture = cap;
 	}
-	
-	public void setPiece(Piece pieceToSet) {
-		
+
+	public void setPiece(final Piece pieceToSet) {
+
 		this.toMove = pieceToSet;
 	}
-	
+
 	public Piece getPiece() {
-		
+
 		return this.toMove;
 	}
-	
+
 	public Coordinates getEndingPos() {
-		
+
 		return this.endingPos;
 	}
-	
-	public void setEndingPos(Coordinates posToSet) {
-		
+
+	public void setEndingPos(final Coordinates posToSet) {
+
 		this.endingPos = posToSet;
 	}
-	
+
 	public Coordinates getStartingPos() {
-		
+
 		return this.startingPos;
 	}
-	
-	public void setStartingPos(Coordinates posToSet) {
-		
+
+	public void setStartingPos(final Coordinates posToSet) {
+
 		this.startingPos = posToSet;
 	}
-	
-	
+
 	public boolean getCaptureFlag() {
-		
+
 		return this.isCapture;
 	}
-	
+
 	public boolean getEnPassant() {
-		
+
 		return isEnPassant;
 	}
-	
+
 	public void setEnPassant() {
-		
+
 		isEnPassant = true;
 	}
-	
-	public void setCastling(Castling newCastling) {
-		
+
+	public void setCastling(final Castling newCastling) {
+
 		typeCastling = newCastling;
 	}
-	
+
 	public Castling getCastling() {
-		
+
 		return typeCastling;
 	}
 }

@@ -13,7 +13,7 @@ package it.uniba.game;
 *
 * @author LeCun group <br>
 */
-public class Coordinates {
+public final class Coordinates {
     // Class used to represent a position in the ChessBoard <br>
 
     // Attributes <br>
@@ -21,7 +21,7 @@ public class Coordinates {
     private int column;
 
     // Methods <br>
-    public Coordinates(int x, int y) {
+    public Coordinates(final int x, final int y) {
 
     	setColumn(x);
         setRow(y);
@@ -37,24 +37,29 @@ public class Coordinates {
         return column;
     }
 
-    public void setRow(int y) {
+    public void setRow(final int y) {
 
         row = y;
     }
 
-    public void setColumn(int x) {
+    public void setColumn(final int x) {
 
         column = x;
     }
-    
+
     public String toString() {
-    	
+
     	return new String("(" + column + ", " + row + ")");
     }
-    
-    public boolean equals(Object toCheck) {
-    	
-    	return ((row == ((Coordinates) toCheck).getRow()) && (column == ((Coordinates)toCheck).getColumn()));
+
+    public boolean equals(final Object toCheck) {
+
+    	return ((row == ((Coordinates) toCheck).getRow()) && (column == ((Coordinates) toCheck).getColumn()));
     }
-    
+
+    public int hashCode() {
+
+    	assert false : "hashCode not designed";
+    	return Constants.INVALID_HASHCODE;
+    }
 }
