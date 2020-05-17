@@ -20,7 +20,7 @@ public final class Constants {
 	 */
 	private Constants() { }
 
-	public static final String CHAR_STD = "UTF-8";
+	// Pieces
 	public static final String W_KING = "\u2654";
 	public static final String B_KING = "\u265A";
 	public static final String W_QUEEN = "\u2655";
@@ -165,6 +165,11 @@ public final class Constants {
 	public static final String ERR_NC_ROOK_MOVED = "Arrocco non eseguibile: Torre mossa";
 	public static final String ERR_NC_PATH_OBSTR = "Arrocco non eseguibile: pezzo/i nel mezzo";
 
+	// Utility
+	public static final String CHAR_STD = "UTF-8";
+	public static final String ERR_UNSUPPORTED_ENCODING = "The system does not support the UTF-8 encoding,"
+			+ " exiting application";
 	public static final Coordinates EMPTY_COORD = new Coordinates(-1, -1);
 	public static final int INVALID_HASHCODE = -1;
+
 }

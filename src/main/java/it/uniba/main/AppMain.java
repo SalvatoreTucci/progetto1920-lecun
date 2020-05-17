@@ -49,12 +49,14 @@ public final class AppMain {
 			System.setOut(utf8Out);
 		} catch (UnsupportedEncodingException e) {
 
+			System.out.println(Constants.ERR_UNSUPPORTED_ENCODING);
+			System.exit(-1);
 		}
 
 		UI gameUI = UI.getUI();
 		gameUI.printWelcome();
 		String command;
-		Scanner userInput = new Scanner(System.in);
+		Scanner userInput = new Scanner(System.in, Constants.CHAR_STD);
 		do {
 
 			command = userInput.nextLine();
