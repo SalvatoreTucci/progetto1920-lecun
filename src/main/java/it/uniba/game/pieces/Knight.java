@@ -11,7 +11,7 @@ import it.uniba.game.Coordinates;
  * 
  * Responsibilities: <br>
  * 
- * 	Knows: 
+ * 	Knows:
  * 		<ul>
  * 		<li>The symbol (and so the color) of the instance of
  * 			the Knight</li>
@@ -20,114 +20,123 @@ import it.uniba.game.Coordinates;
  * 	Does:
  * 		<ul>
  * 		<li>Generates a list of coordinates where a Knight could
- * 			possibly be found, given the 
+ * 			possibly be found, given the
  * 			target position</li>
  * 		</ul>
  * 
 */
-public final class Knight extends Piece{	
-	
+public final class Knight extends Piece {
+
 	// Constructor
-	public Knight(Color col) {
+	public Knight(final Color col) {
 
 		super(col);
-		
+
 		if (col == Color.BLACK) {
-			
+
 			this.setSymbol(Constants.B_KNIGHT);
 		} else {
-			
+
 			this.setSymbol(Constants.W_KNIGHT);
 		}
-		
+
 	}
-	
-	public LinkedList<Coordinates> reverseMove(Move target) {
-		
+
+
+	public LinkedList<Coordinates> reverseMove(final Move target) {
+
 		return reverseKnightMove(target);
 	}
-	
-	public static LinkedList<Coordinates> reverseKnightMove(Move target) {
-		
+
+
+	public static LinkedList<Coordinates> reverseKnightMove(final Move target) {
+
 		LinkedList<Coordinates> possibleSquares = new LinkedList<Coordinates>();
-		
+
 		if (checkOutOfBound(target)) {
-			
+
 			return possibleSquares;
 		}
-		
+
 		int endingR = target.getEndingPos().getRow();
 		int endingC = target.getEndingPos().getColumn();
-		
+
 		if (endingR + Constants.DOWN_DIRECTION <= Constants.LAST_ROW) {
-			
+
 			if (endingC + Constants.KN_RIGHT_DIRECTION <= Constants.LAST_COLUMN) {
-				
-				possibleSquares.add( new Coordinates(endingC + Constants.KN_RIGHT_DIRECTION,
-						endingR + Constants.DOWN_DIRECTION ));
-				
-			}
-			if (endingC + Constants.KN_LEFT_DIRECTION >= Constants.FIRST_COLUMN) {
-				
-				possibleSquares.add( new Coordinates(endingC + Constants.KN_LEFT_DIRECTION, 
+
+				possibleSquares.add(new Coordinates(endingC + Constants.KN_RIGHT_DIRECTION,
 						endingR + Constants.DOWN_DIRECTION));
-				
+
 			}
-			
-			
-			if (endingR + Constants.KN_DOWN_DIRECTION <= Constants.LAST_ROW) {	
-				
-				if (endingC + Constants.RIGHT_DIRECTION <= Constants.LAST_COLUMN) {
-					
-					possibleSquares.add( new Coordinates(endingC + Constants.RIGHT_DIRECTION, 
-							endingR + Constants.KN_DOWN_DIRECTION));
-					
-				}
-				if (endingC + Constants.LEFT_DIRECTION >= Constants.FIRST_COLUMN) {
-					
-					possibleSquares.add( new Coordinates(endingC + Constants.LEFT_DIRECTION, 
-							endingR + Constants.KN_DOWN_DIRECTION));
-					
-				}
-			}
-		
-		}
-		
-		if (endingR + Constants.UP_DIRECTION >= Constants.FIRST_ROW) {
-			
-			if (endingC + Constants.KN_RIGHT_DIRECTION <= Constants.LAST_COLUMN) {
-				
-				possibleSquares.add( new Coordinates(endingC + Constants.KN_RIGHT_DIRECTION, 
-						endingR + Constants.UP_DIRECTION));
-				
-			}
+
 			if (endingC + Constants.KN_LEFT_DIRECTION >= Constants.FIRST_COLUMN) {
-				
-				possibleSquares.add( new Coordinates(endingC + Constants.KN_LEFT_DIRECTION, 
-						endingR + Constants.UP_DIRECTION));
-				
+
+				possibleSquares.add(new Coordinates(endingC + Constants.KN_LEFT_DIRECTION,
+						endingR + Constants.DOWN_DIRECTION));
+
 			}
-			
-			
-			if (endingR + Constants.KN_UP_DIRECTION >= Constants.FIRST_ROW) {
-				
+
+
+			if (endingR + Constants.KN_DOWN_DIRECTION <= Constants.LAST_ROW) {
+
 				if (endingC + Constants.RIGHT_DIRECTION <= Constants.LAST_COLUMN) {
-					
-					possibleSquares.add( new Coordinates(endingC + Constants.RIGHT_DIRECTION, 
-							endingR + Constants.KN_UP_DIRECTION));
-					
+
+					possibleSquares.add(new Coordinates(endingC + Constants.RIGHT_DIRECTION,
+							endingR + Constants.KN_DOWN_DIRECTION));
+
 				}
+
 				if (endingC + Constants.LEFT_DIRECTION >= Constants.FIRST_COLUMN) {
-					
-					possibleSquares.add( new Coordinates(endingC + Constants.LEFT_DIRECTION,
-							endingR + Constants.KN_UP_DIRECTION));
-					
+
+					possibleSquares.add(new Coordinates(endingC + Constants.LEFT_DIRECTION,
+							endingR + Constants.KN_DOWN_DIRECTION));
+
 				}
+
 			}
-		
+
 		}
+
+		if (endingR + Constants.UP_DIRECTION >= Constants.FIRST_ROW) {
+
+			if (endingC + Constants.KN_RIGHT_DIRECTION <= Constants.LAST_COLUMN) {
+
+				possibleSquares.add(new Coordinates(endingC + Constants.KN_RIGHT_DIRECTION,
+						endingR + Constants.UP_DIRECTION));
+
+			}
+
+			if (endingC + Constants.KN_LEFT_DIRECTION >= Constants.FIRST_COLUMN) {
+
+				possibleSquares.add(new Coordinates(endingC + Constants.KN_LEFT_DIRECTION,
+						endingR + Constants.UP_DIRECTION));
+
+			}
+
+
+			if (endingR + Constants.KN_UP_DIRECTION >= Constants.FIRST_ROW) {
+
+				if (endingC + Constants.RIGHT_DIRECTION <= Constants.LAST_COLUMN) {
+
+					possibleSquares.add(new Coordinates(endingC + Constants.RIGHT_DIRECTION,
+							endingR + Constants.KN_UP_DIRECTION));
+
+				}
+
+				if (endingC + Constants.LEFT_DIRECTION >= Constants.FIRST_COLUMN) {
+
+					possibleSquares.add(new Coordinates(endingC + Constants.LEFT_DIRECTION,
+							endingR + Constants.KN_UP_DIRECTION));
+
+				}
+
+			}
+
+		}
+
+
 		return possibleSquares;
 	}
-	
-	
+
 }
