@@ -34,7 +34,7 @@ public class MatchTest {
 			assertTrue(testMatch.getPrintableMoves().contains(toParse));
 		} catch(MatchException e) {
 			
-			fail();
+			fail(e.getMessage());
 		}
 	}
 	
@@ -50,7 +50,7 @@ public class MatchTest {
 			assertTrue(testMatch.getPrintableMoves().contains(toParse));
 		} catch(MatchException e) {
 			
-			fail();
+			fail(e.getMessage());
 		}
 	}
 	
@@ -64,7 +64,7 @@ public class MatchTest {
 			assertTrue(testMatch.getPrintableMoves().contains(toParse));
 		} catch(MatchException e) {
 			
-			fail();
+			fail(e.getMessage());
 		}
 	}
 	
@@ -80,7 +80,7 @@ public class MatchTest {
 			assertTrue(testMatch.getPrintableMoves().contains(toParse));
 		} catch(MatchException e) {
 			
-			fail();
+			fail(e.getMessage());
 		}
 	}
 	
@@ -98,7 +98,7 @@ public class MatchTest {
 			assertTrue(testMatch.getPrintableMoves().contains(toParse));
 		} catch(MatchException e) {
 			
-			fail();
+			fail(e.getMessage());
 		}
 	}
 	
@@ -118,7 +118,7 @@ public class MatchTest {
 			assertTrue(testMatch.getPrintableMoves().contains(toParse));
 		} catch(MatchException e) {
 			
-			fail();
+			fail(e.getMessage());
 		}
 	}
 	
@@ -136,7 +136,7 @@ public class MatchTest {
 			assertTrue(testMatch.getPrintableMoves().contains(toParse));
 		} catch(MatchException e) {
 			
-			fail();
+			fail(e.getMessage());
 		}
 	}
 	
@@ -156,7 +156,7 @@ public class MatchTest {
 			assertTrue(testMatch.getPrintableMoves().contains(toParse));
 		} catch(MatchException e) {
 			
-			fail();
+			fail(e.getMessage());
 		}
 	}
 	
@@ -174,7 +174,7 @@ public class MatchTest {
 			assertTrue(testMatch.getPrintableMoves().contains(toParse));
 		} catch(MatchException e) {
 			
-			fail();
+			fail(e.getMessage());
 		}
 		
 	}
@@ -195,7 +195,7 @@ public class MatchTest {
 			assertTrue(testMatch.getPrintableMoves().contains(toParse));
 		} catch(MatchException e) {
 			
-			fail();
+			fail(e.getMessage());
 		}
 	}
 	
@@ -213,7 +213,7 @@ public class MatchTest {
 			assertTrue(testMatch.getPrintableMoves().contains(toParse));
 		} catch(MatchException e) {
 			
-			fail();
+			fail(e.getMessage());
 		}
 	}
 	
@@ -233,7 +233,7 @@ public class MatchTest {
 			assertTrue(testMatch.getPrintableMoves().contains(toParse));
 		} catch(MatchException e) {
 			
-			fail();
+			fail(e.getMessage());
 		}
 	}
 	
@@ -267,7 +267,7 @@ public class MatchTest {
 			assertTrue(testMatch.getPrintableMoves().contains(toParse));
 		} catch(MatchException e) {
 			
-			fail();
+			fail(e.getMessage());
 		}
 	}
 	
@@ -301,7 +301,7 @@ public class MatchTest {
 			assertTrue(testMatch.getPrintableMoves().contains(toParse));
 		} catch(MatchException e) {
 			
-			fail();
+			fail(e.getMessage());
 		}
 	}
 	
@@ -327,7 +327,7 @@ public class MatchTest {
 			assertTrue(testMatch.getPrintableMoves().contains(toParse));
 		} catch(MatchException e) {
 			
-			fail();
+			fail(e.getMessage());
 		}
 	}
 	
@@ -353,7 +353,7 @@ public class MatchTest {
 			assertTrue(testMatch.getPrintableMoves().contains(toParse));
 		} catch(MatchException e) {
 			
-			fail();
+			fail(e.getMessage());
 		}
 	}
 	
@@ -389,7 +389,7 @@ public class MatchTest {
 			assertTrue(testMatch.getPrintableMoves().contains(toParse));
 		} catch(MatchException e) {
 			
-			fail();
+			fail(e.getMessage());
 		}
 	}
 	
@@ -425,7 +425,7 @@ public class MatchTest {
 			assertTrue(testMatch.getPrintableMoves().contains(toParse));
 		} catch(MatchException e) {
 			
-			fail();
+			fail(e.getMessage());
 		}
 	}
 	
@@ -453,7 +453,7 @@ public class MatchTest {
 			assertTrue(testMatch.getPrintableMoves().contains(toParse));
 		} catch(MatchException e) {
 			
-			fail();
+			fail(e.getMessage());
 		}
 	}
 	
@@ -481,7 +481,7 @@ public class MatchTest {
 			assertTrue(testMatch.getPrintableMoves().contains(toParse));
 		} catch(MatchException e) {
 			
-			fail();
+			fail(e.getMessage());
 		}
 	}
 	
@@ -524,7 +524,7 @@ public class MatchTest {
 			assertTrue(testMatch.getPrintableMoves().contains(toParse));
 		} catch(MatchException e) {
 			
-			fail();
+			fail(e.getMessage());
 		}
 	}
 	
@@ -548,7 +548,7 @@ public class MatchTest {
 			assertTrue(testMatch.getPrintableMoves().contains(toParse));
 		} catch(MatchException e) {
 			
-			fail();
+			fail(e.getMessage());
 		}
 	}
 	
@@ -572,7 +572,7 @@ public class MatchTest {
 			assertTrue(testMatch.getPrintableMoves().contains(toParse));
 		} catch(MatchException e) {
 			
-			fail();
+			fail(e.getMessage());
 		}
 	}
 	
@@ -591,7 +591,7 @@ public class MatchTest {
 			assertThrows(MatchException.class, () -> { testMatch.inputMove(toParse); });
 		} catch(MatchException e) {
 			
-			fail();
+			fail(e.getMessage());
 		}
 	}
 	
@@ -612,7 +612,7 @@ public class MatchTest {
 			assertThrows(MatchException.class, () -> { testMatch.inputMove(toParse); });
 		} catch(MatchException e) {
 			
-			fail();
+			fail(e.getMessage());
 		}
 	}
 	
@@ -652,7 +652,7 @@ public class MatchTest {
 			assertThrows(MatchException.class, () -> {testMatch.inputMove(toParse); } );
 		} catch(MatchException e) {
 			
-			fail();
+			fail(e.getMessage());
 		}
 	}
 	
@@ -693,7 +693,7 @@ public class MatchTest {
 			assertThrows(MatchException.class, () -> { testMatch.inputMove(toParse); });
 		} catch(MatchException e) {
 			
-			fail();
+			fail(e.getMessage());
 		}
 	}
 	
@@ -728,7 +728,7 @@ public class MatchTest {
 			assertThrows(MatchException.class, () -> { testMatch.inputMove(toParse); });
 		} catch(MatchException e) {
 			
-			fail();
+			fail(e.getMessage());
 		}
 	}
 	
@@ -771,7 +771,7 @@ public class MatchTest {
 			assertThrows(MatchException.class, () -> { testMatch.inputMove(toParse); });
 		} catch(MatchException e) {
 			
-			fail();
+			fail(e.getMessage());
 		}
 	}
 	
@@ -804,7 +804,7 @@ public class MatchTest {
 			assertThrows(MatchException.class, () -> { testMatch.inputMove(toParse); });
 		} catch(MatchException e) {
 			
-			fail();
+			fail(e.getMessage());
 		}
 	}
 	
@@ -841,7 +841,7 @@ public class MatchTest {
 			assertThrows(MatchException.class, () -> { testMatch.inputMove(toParse); });
 		} catch(MatchException e) {
 			
-			fail();
+			fail(e.getMessage());
 		}
 	}
 	
@@ -875,7 +875,7 @@ public class MatchTest {
 			testMatch.inputMove("0-0");
 		} catch(MatchException e) {
 			
-			fail();
+			fail(e.getMessage());
 		}
 	}
 	
@@ -899,7 +899,7 @@ public class MatchTest {
 					});
 		} catch(MatchException e) {
 			
-			fail();
+			fail(e.getMessage());
 		}
 	}
 	
@@ -921,7 +921,7 @@ public class MatchTest {
 			});
 		} catch(MatchException e) {
 			
-			fail();
+			fail(e.getMessage());
 		}
 	}
 	
@@ -942,7 +942,7 @@ public class MatchTest {
 			assertThrows(MatchException.class, () -> { testMatch.inputMove(toParse); });
 		} catch(MatchException e) {
 			
-			fail();
+			fail(e.getMessage());
 		}
 	}
 	
@@ -968,7 +968,7 @@ public class MatchTest {
 			assertTrue(testMatch.getPrintableMoves().contains(toParse));
 		} catch(MatchException e) {
 			
-			fail();
+			fail(e.getMessage());
 		}
 	}
 	
@@ -996,7 +996,7 @@ public class MatchTest {
 			assertThrows(MatchException.class, () -> { testMatch.inputMove(toParse); });			
 		} catch(MatchException e) {
 			
-			fail();
+			fail(e.getMessage());
 		}
 	}
 	
@@ -1013,7 +1013,7 @@ public class MatchTest {
 			assertThrows(MatchException.class, () -> { testMatch.inputMove(toParse); });
 		} catch(MatchException e) {
 			
-			fail();
+			fail(e.getMessage());
 		}
 	}
 	
@@ -1037,7 +1037,7 @@ public class MatchTest {
 			assertThrows(MatchException.class, () -> { testMatch.inputMove(toParse); });
 		} catch(MatchException e) {
 			
-			fail();
+			fail(e.getMessage());
 		}
 	}
 	
@@ -1058,7 +1058,7 @@ public class MatchTest {
 			assertThrows(MatchException.class, () -> { testMatch.inputMove(toParse); });
 		} catch(MatchException e) {
 			
-			fail();
+			fail(e.getMessage());
 		}
 	}
 	
@@ -1082,7 +1082,7 @@ public class MatchTest {
 			assertThrows(MatchException.class, () -> { testMatch.inputMove(toParse); });
 		} catch(MatchException e) {
 			
-			fail();
+			fail(e.getMessage());
 		}
 	}
 	
@@ -1107,7 +1107,7 @@ public class MatchTest {
 			assertThrows(MatchException.class, () -> { testMatch.inputMove(toParse); });
 		} catch(MatchException e) {
 			
-			fail();
+			fail(e.getMessage());
 		}
 	}
 	
@@ -1148,7 +1148,7 @@ public class MatchTest {
 			assertThrows(MatchException.class, () -> { testMatch.inputMove(toParse); });
 		} catch(MatchException e) {
 			
-			fail();
+			fail(e.getMessage());
 		}
 	}
 
@@ -1176,7 +1176,7 @@ public class MatchTest {
 			assertThrows(MatchException.class, () -> { testMatch.inputMove(toParse); });
 		} catch(MatchException e) {
 			
-			fail();
+			fail(e.getMessage());
 		}
 	}
 	
@@ -1201,7 +1201,7 @@ public class MatchTest {
 			assertThrows(MatchException.class, () -> { testMatch.inputMove(toParse); });
 		} catch(MatchException e) {
 			
-			fail();
+			fail(e.getMessage());
 		}
 	}
 	
@@ -1218,7 +1218,7 @@ public class MatchTest {
 			assertThrows(MatchException.class, () -> { testMatch.inputMove(toParse); });
 		} catch(MatchException e) {
 			
-			fail();
+			fail(e.getMessage());
 		}
 	}
 	
@@ -1239,7 +1239,7 @@ public class MatchTest {
 			assertThrows(MatchException.class, () -> { testMatch.inputMove(toParse); });
 		} catch(MatchException e) {
 			
-			fail();
+			fail(e.getMessage());
 		}
 	}
 	
@@ -1260,7 +1260,7 @@ public class MatchTest {
 			assertThrows(MatchException.class, () -> { testMatch.inputMove(toParse); });
 		} catch(MatchException e) {
 			
-			fail();
+			fail(e.getMessage());
 		}
 	}
 	
@@ -1285,7 +1285,7 @@ public class MatchTest {
 			assertThrows(MatchException.class, () -> { testMatch.inputMove(toParse); });
 		} catch(MatchException e) {
 			
-			fail();
+			fail(e.getMessage());
 		}
 	}
 	
@@ -1314,7 +1314,7 @@ public class MatchTest {
 			assertThrows(MatchException.class, () -> { testMatch.inputMove(toParse); });
 		} catch(MatchException e) {
 			
-			fail();
+			fail(e.getMessage());
 		}
 	}
 	
@@ -1339,7 +1339,7 @@ public class MatchTest {
 			assertThrows(MatchException.class, () -> { testMatch.inputMove(toParse); });
 		} catch(MatchException e) {
 			
-			fail();
+			fail(e.getMessage());
 		}
 	}
 	
@@ -1362,7 +1362,7 @@ public class MatchTest {
 			assertThrows(MatchException.class, () -> { testMatch.inputMove(toParse); });
 		} catch(MatchException e) {
 			
-			fail();
+			fail(e.getMessage());
 		}
 	}
 	
@@ -1392,7 +1392,7 @@ public class MatchTest {
 			assertThrows(MatchException.class, () -> { testMatch.inputMove(toParse); });
 		} catch(MatchException e) {
 			
-			fail();
+			fail(e.getMessage());
 		}
 	}
 	
@@ -1422,7 +1422,7 @@ public class MatchTest {
 			assertThrows(MatchException.class, () -> { testMatch.inputMove(toParse); });
 		} catch(MatchException e) {
 			
-			fail();
+			fail(e.getMessage());
 		}
 	}
 	
@@ -1453,7 +1453,7 @@ public class MatchTest {
 			testMatch.inputMove("exd6");
 		} catch (MatchException e) {
 			//the test fails if inputMove doesn't work as it should
-			fail();
+			fail(e.getMessage());
 		}
 		assertEquals("[" + Constants.B_PAWN +"]", testMatch.getPrintableCaptures(Color.WHITE));
 		
@@ -1474,7 +1474,7 @@ public class MatchTest {
 			testMatch.nextTurn();
 			testMatch.inputMove("cxd3");
 		} catch (MatchException e) {
-			fail();
+			fail(e.getMessage());
 		}
 		assertEquals("[" + Constants.W_PAWN +"]", testMatch.getPrintableCaptures(Color.BLACK));
 	}
@@ -1492,7 +1492,7 @@ public class MatchTest {
 			testMatch.inputMove("Cxb4");
 		} catch (MatchException e) {
 			
-			fail();
+			fail(e.getMessage());
 		}
 		assertEquals("[" + Constants.W_PAWN +"]", testMatch.getPrintableCaptures(null));
 	}
@@ -1518,7 +1518,7 @@ public class MatchTest {
 			testMatch.nextTurn();
 			testMatch.inputMove("dxc3");
 		} catch (MatchException e) {
-			fail();
+			fail(e.getMessage());
 		}
 		assertAll( ()->{
 			assertEquals("[" +Constants.W_KNIGHT +", "
@@ -1569,7 +1569,7 @@ public class MatchTest {
 			testMatch.nextTurn();
 			testMatch.inputMove("O-O");
 		} catch (MatchException e) {
-			fail();
+			fail(e.getMessage());
 		}
 		String expectedMoves = "\n1. Ch3 g5\n"
 				+ "2. Cxg5 d5\n"
