@@ -939,7 +939,456 @@ public class MatchTest {
 			fail();
 		}
 	}
+	
+	@Test
+	public void inputMoveRowDisambiguationTest() {
+		
+		try {
+			
+			String toParse = "T1a3";
+			testMatch.inputMove("h4");
+			testMatch.nextTurn();
+			testMatch.inputMove("e5");
+			testMatch.nextTurn();
+			testMatch.inputMove("Th3");
+			testMatch.nextTurn();
+			testMatch.inputMove("Ca6");
+			testMatch.nextTurn();
+			testMatch.inputMove("a4");
+			testMatch.nextTurn();
+			testMatch.inputMove("Cb4");
+			testMatch.nextTurn();
+			testMatch.inputMove(toParse);
+			assertTrue(testMatch.getPrintableMoves().contains(toParse));
+		} catch(MatchException e) {
+			
+			fail();
+		}
+	}
+	
+	@Test
+	public void inputMoveNotPawnEnPassantTest() {
+		
+		String toParse = "Ca3 e.p.";
+		assertThrows(MatchException.class, () -> { testMatch.inputMove(toParse); });
+	}
+	
+	@Test
+	public void inputMoveNotCaptureEnPassantTest() {
+		
+		try {
+			
+			String toParse = "d6 e.p.";
+			testMatch.inputMove("e4");
+			testMatch.nextTurn();
+			testMatch.inputMove("a6");
+			testMatch.nextTurn();
+			testMatch.inputMove("e5");
+			testMatch.nextTurn();
+			testMatch.inputMove("d5");
+			testMatch.nextTurn();
+			assertThrows(MatchException.class, () -> { testMatch.inputMove(toParse); });			
+		} catch(MatchException e) {
+			
+			fail();
+		}
+	}
+	
+	@Test
+	public void inputMovePawnCaptureNoColumnTest() {
+		
+		try {
+			
+			String toParse = "xe5";
+			testMatch.inputMove("d4");
+			testMatch.nextTurn();
+			testMatch.inputMove("e5");
+			testMatch.nextTurn();
+			assertThrows(MatchException.class, () -> { testMatch.inputMove(toParse); });
+		} catch(MatchException e) {
+			
+			fail();
+		}
+	}
+	
+	@Test
+	public void inputMoveInvalidMoveTest() {
+		
+		String toParse = "ammaccabanane";
+		assertThrows(MatchException.class, () -> { testMatch.inputMove(toParse); });
+	}
+	
+	@Test
+	public void inputMovePawnNoPieceToCaptureTest() {
+		
+		try {
+		
+			String toParse = "exd5";
+			testMatch.inputMove("e4");
+			testMatch.nextTurn();
+			testMatch.inputMove("e5");
+			testMatch.nextTurn();
+			assertThrows(MatchException.class, () -> { testMatch.inputMove(toParse); });
+		} catch(MatchException e) {
+			
+			fail();
+		}
+	}
+	
+	@Test
+	public void inputMovePawnSameColorCaptureTest() {
+		
+		try {
+		
+			String toParse = "dxe4";
+			testMatch.inputMove("e4");
+			testMatch.nextTurn();
+			testMatch.inputMove("e5");
+			testMatch.nextTurn();
+			testMatch.inputMove("d3");
+			testMatch.nextTurn();
+			testMatch.inputMove("a6");
+			testMatch.nextTurn();
+			assertThrows(MatchException.class, () -> { testMatch.inputMove(toParse); });
+		} catch(MatchException e) {
+			
+			fail();
+		}
+	}
+	
+	@Test
+	public void inputMoveNoPieceToCaptureTest() {
+		
+			String toParse = "Cxf3";
+			assertThrows(MatchException.class, () -> { testMatch.inputMove(toParse); });
+	}
+	
+	@Test
+	public void inputMoveSameColorCaptureTest() {
+		
+		try {
+		
+			String toParse = "Cxf3";
+			testMatch.inputMove("f3");
+			testMatch.nextTurn();
+			testMatch.inputMove("e5");
+			testMatch.nextTurn();
+			assertThrows(MatchException.class, () -> { testMatch.inputMove(toParse); });
+		} catch(MatchException e) {
+			
+			fail();
+		}
+	}
+	
+	@Test
+	public void inputMoveNoRowDisambiguationTest() {
+		
+		try {
+			
+			String toParse = "Ta3";
+			testMatch.inputMove("h4");
+			testMatch.nextTurn();
+			testMatch.inputMove("e5");
+			testMatch.nextTurn();
+			testMatch.inputMove("Th3");
+			testMatch.nextTurn();
+			testMatch.inputMove("Ca6");
+			testMatch.nextTurn();
+			testMatch.inputMove("a4");
+			testMatch.nextTurn();
+			testMatch.inputMove("Cb4");
+			testMatch.nextTurn();
+			assertThrows(MatchException.class, () -> { testMatch.inputMove(toParse); });
+		} catch(MatchException e) {
+			
+			fail();
+		}
+	}
+	
+	@Test
+	public void inputMoveBadColumnDisambiguationTest() {
+		
+		String toParse = "Cff3";
+		assertThrows(MatchException.class, () -> { testMatch.inputMove(toParse); });
+	}
+	
+	@Test
+	public void inputMoveBadRowDisambiguationTest() {
+		
+		String toParse = "C2f3";
+		assertThrows(MatchException.class, () -> { testMatch.inputMove(toParse); });
+	}
 
+	@Test
+	public void inputMoveKingThreatMoveTest() {
+		
+		try {
+			
+			String toParse = "Re6";
+			testMatch.inputMove("e4");
+			testMatch.nextTurn();
+			testMatch.inputMove("e5");
+			testMatch.nextTurn();
+			testMatch.inputMove("Dh5");
+			testMatch.nextTurn();
+			testMatch.inputMove("Cc6");
+			testMatch.nextTurn();
+			testMatch.inputMove("Ac4");
+			testMatch.nextTurn();
+			testMatch.inputMove("Re7");
+			testMatch.nextTurn();
+			testMatch.inputMove("a3");
+			testMatch.nextTurn();
+			assertThrows(MatchException.class, () -> { testMatch.inputMove(toParse); });
+		} catch(MatchException e) {
+			
+			fail();
+		}
+	}
+
+	@Test
+	public void inputMoveBadEnPassantTest() {
+		
+		String toParse = "exd3";
+		assertThrows(MatchException.class, () -> { testMatch.inputMove(toParse); });
+	}
+	
+	@Test
+	public void inputMoveMovedPawnEnPassantTest() {
+		
+		try {
+			
+			String toParse = "exd6";
+			testMatch.inputMove("e4");
+			testMatch.nextTurn();
+			testMatch.inputMove("d5");
+			testMatch.nextTurn();
+			testMatch.inputMove("e5");
+			testMatch.nextTurn();
+			testMatch.inputMove("a6");
+			testMatch.nextTurn();
+			assertThrows(MatchException.class, () -> { testMatch.inputMove(toParse); });
+		} catch(MatchException e) {
+			
+			fail();
+		}
+	}
+	
+	@Test
+	public void inputMoveEnPassantNoPawnCapturedTest() {
+		
+		try {
+			
+			String toParse = "exd6";
+			testMatch.inputMove("e4");
+			testMatch.nextTurn();
+			testMatch.inputMove("d5");
+			testMatch.nextTurn();
+			testMatch.inputMove("e5");
+			testMatch.nextTurn();
+			testMatch.inputMove("d4");
+			testMatch.nextTurn();
+			testMatch.inputMove("h3");
+			testMatch.nextTurn();
+			testMatch.inputMove("Dd5");
+			testMatch.nextTurn();
+			assertThrows(MatchException.class, () -> { testMatch.inputMove(toParse); });
+		} catch(MatchException e) {
+			
+			fail();
+		}
+	}
+	
+	@Test
+	public void inputMoveEnPassantNormalCaptureTest() {
+		
+		try {
+			
+			String toParse = "dxe5 e.p.";
+			testMatch.inputMove("d4");
+			testMatch.nextTurn();
+			testMatch.inputMove("e5");
+			testMatch.nextTurn();
+			assertThrows(MatchException.class, () -> { testMatch.inputMove(toParse); });
+		} catch(MatchException e) {
+			
+			fail();
+		}
+	}
+	
+	@Test
+	public void inputMoveKingThreatsHimselfTest() {
+		
+		try {
+			
+			String toParse = "Re1";
+			testMatch.inputMove("f4");
+			testMatch.nextTurn();
+			testMatch.inputMove("e5");
+			testMatch.nextTurn();
+			testMatch.inputMove("Rf2");
+			testMatch.nextTurn();
+			testMatch.inputMove("Dh4");
+			testMatch.nextTurn();
+			assertThrows(MatchException.class, () -> { testMatch.inputMove(toParse); });
+		} catch(MatchException e) {
+			
+			fail();
+		}
+	}
+	
+	@Test
+	public void inputMoveIrregularMoveTest() {
+		
+		try {
+			
+			String toParse = "a4";
+			testMatch.inputMove("f4");
+			testMatch.nextTurn();
+			testMatch.inputMove("e5");
+			testMatch.nextTurn();
+			testMatch.inputMove("a3");
+			testMatch.nextTurn();
+			testMatch.inputMove("Dh4");
+			testMatch.nextTurn();
+			assertThrows(MatchException.class, () -> { testMatch.inputMove(toParse); });
+		} catch(MatchException e) {
+			
+			fail();
+		}
+	}
+	
+	@Test
+	public void invalidMoveIrregularRookThreatMoveTest() {
+		
+		try {
+			
+			String toParse = "a3";
+			testMatch.inputMove("e4");
+			testMatch.nextTurn();
+			testMatch.inputMove("a5");
+			testMatch.nextTurn();
+			testMatch.inputMove("e5");
+			testMatch.nextTurn();
+			testMatch.inputMove("Ta6");
+			testMatch.nextTurn();
+			testMatch.inputMove("e6");
+			testMatch.nextTurn();
+			testMatch.inputMove("Txe6");
+			testMatch.nextTurn();
+			assertThrows(MatchException.class, () -> { testMatch.inputMove(toParse); });
+		} catch(MatchException e) {
+			
+			fail();
+		}
+	}
+	
+	@Test
+	public void invalidMoveIrregularRookThreatKingMoveTest() {
+		
+		try {
+			
+			String toParse = "Re2";
+			testMatch.inputMove("e4");
+			testMatch.nextTurn();
+			testMatch.inputMove("a5");
+			testMatch.nextTurn();
+			testMatch.inputMove("e5");
+			testMatch.nextTurn();
+			testMatch.inputMove("Ta6");
+			testMatch.nextTurn();
+			testMatch.inputMove("Re2");
+			testMatch.nextTurn();
+			testMatch.inputMove("Te6");
+			testMatch.nextTurn();
+			testMatch.inputMove("Re3");
+			testMatch.nextTurn();
+			testMatch.inputMove("Txe5");
+			testMatch.nextTurn();
+			assertThrows(MatchException.class, () -> { testMatch.inputMove(toParse); });
+		} catch(MatchException e) {
+			
+			fail();
+		}
+	}
+	
+	@Test
+	public void invalidMoveIrregularKnightThreatMoveTest() {
+		
+		try {
+			
+			String toParse = "e5";
+			testMatch.inputMove("e4");
+			testMatch.nextTurn();
+			testMatch.inputMove("Cc6");
+			testMatch.nextTurn();
+			testMatch.inputMove("d3");
+			testMatch.nextTurn();
+			testMatch.inputMove("Cd4");
+			testMatch.nextTurn();
+			testMatch.inputMove("Dg4");
+			testMatch.nextTurn();
+			testMatch.inputMove("Cxc2");
+			testMatch.nextTurn();
+			assertThrows(MatchException.class, () -> { testMatch.inputMove(toParse); });
+		} catch(MatchException e) {
+			
+			fail();
+		}
+	}
+	
+	@Test
+	public void invalidMoveIrregularPawnLeftThreatMoveTest() {
+		
+		try {
+			
+			String toParse = "Re7";
+			testMatch.inputMove("d4");
+			testMatch.nextTurn();
+			testMatch.inputMove("e5");
+			testMatch.nextTurn();
+			testMatch.inputMove("dxe5");
+			testMatch.nextTurn();
+			testMatch.inputMove("d6");
+			testMatch.nextTurn();
+			testMatch.inputMove("exd6");
+			testMatch.nextTurn();
+			assertThrows(MatchException.class, () -> { testMatch.inputMove(toParse); });
+		} catch(MatchException e) {
+			
+			fail();
+		}
+	}
+	
+	@Test
+	public void inputMoveObstructedCastlingTest() {
+		
+		String toParse = "0-0";
+		assertThrows(MatchException.class, () -> { testMatch.inputMove(toParse); });
+	}
+	
+	@Test
+	public void invalidMoveIrregularPawnRightThreatMoveTest() {
+		
+		try {
+			
+			String toParse = "Rd7";
+			testMatch.inputMove("e4");
+			testMatch.nextTurn();
+			testMatch.inputMove("d5");
+			testMatch.nextTurn();
+			testMatch.inputMove("exd5");
+			testMatch.nextTurn();
+			testMatch.inputMove("e6");
+			testMatch.nextTurn();
+			testMatch.inputMove("dxe6");
+			testMatch.nextTurn();
+			assertThrows(MatchException.class, () -> { testMatch.inputMove(toParse); });
+		} catch(MatchException e) {
+			
+			fail();
+		}
+	}
 	
 	@Test
 	public void getPrintableCapturesWhiteEmptyTest() {
