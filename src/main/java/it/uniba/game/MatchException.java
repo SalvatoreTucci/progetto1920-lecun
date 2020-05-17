@@ -14,6 +14,7 @@ package it.uniba.game;
 *
 * @author LeCun group <br>
 */
+@SuppressWarnings("serial")
 public class MatchException extends Exception {
 
 	// Exception class threw from the class Move <br>
