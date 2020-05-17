@@ -19,45 +19,37 @@ import it.uniba.game.pieces.Piece;
  *			<li>Gets the piece placed on the square</li>
  *			<li>Checks if there is a piece placed on the square</li>
  * 		</ul>
- *  
+ * 
  * @author LeCun group
  */
-public class Square {
-	/* 
+public final class Square {
+	/*
 	 * This class represents the single square of the chessboard,
 	 * where pieces are placed
 	*/
-	
+
 	// Attributes
 	private Piece placed;
-	
+
 	// Constructor
-	public Square(Piece toPlace) {
-		
+	public Square(final Piece toPlace) {
+
 		placed = toPlace;
 	}
-	
+
 	// Methods
 	public Piece getPiece() {
-		
+
 		return placed;
 	}
-	
-	void setPiece(Piece toPlace) {
-		
+
+	void setPiece(final Piece toPlace) {
+
 		placed = toPlace;
 	}
-	
-	
+
 	public boolean isOccupied() {
-		
-		if (getPiece() == null) {
-			
-			return false;
-		} else {
-			
-			return true;
-		}
+
+		return (getPiece() != null);
 	}
-	
 }
