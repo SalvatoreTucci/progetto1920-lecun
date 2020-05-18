@@ -22,7 +22,7 @@ public class ChessBoardTest {
 	private final Pawn dummyPiece = new Pawn(Color.WHITE);
 	
 	@BeforeEach
-	public void ChessBoardInit() {
+	public void chessBoardInit() {
 		
 		cb = new ChessBoard(); 
 	}
@@ -181,7 +181,7 @@ public class ChessBoardTest {
 	}
 	
 	@Test
-	public void ToStringTest() {
+	public void toStringTest() {
 		String expectedChessBoard = Constants.CB_LETTERS_COORDS 
 				+ Constants.CB_FIRST_ROW 
 				+ "8 " + Constants.CB_VERTICAL_SQUARE_SYMBOL + " " +Constants.B_ROOK + " "
