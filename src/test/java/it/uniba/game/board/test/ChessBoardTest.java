@@ -18,11 +18,11 @@ import it.uniba.game.Move;
 
 public class ChessBoardTest {
 	
-	private ChessBoard cb;
+	private static ChessBoard cb;
 	private final Pawn dummyPiece = new Pawn(Color.WHITE);
 	
 	@BeforeEach
-	public void chessBoardInit() {
+	public void ChessBoardInit() {
 		
 		cb = new ChessBoard(); 
 	}
@@ -181,7 +181,7 @@ public class ChessBoardTest {
 	}
 	
 	@Test
-	public void toStringTest() {
+	public void ToStringTest() {
 		String expectedChessBoard = Constants.CB_LETTERS_COORDS 
 				+ Constants.CB_FIRST_ROW 
 				+ "8 " + Constants.CB_VERTICAL_SQUARE_SYMBOL + " " +Constants.B_ROOK + " "
