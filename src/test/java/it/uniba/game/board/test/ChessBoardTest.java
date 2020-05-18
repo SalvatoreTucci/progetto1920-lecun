@@ -18,7 +18,7 @@ import it.uniba.game.Move;
 
 public class ChessBoardTest {
 	
-	private static ChessBoard cb;
+	private ChessBoard cb;
 	private final Pawn dummyPiece = new Pawn(Color.WHITE);
 	
 	@BeforeEach
