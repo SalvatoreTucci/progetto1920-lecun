@@ -16,7 +16,7 @@ import it.uniba.game.pieces.Piece.Color;
 
 public class MatchTest {
 	
-	private static Match testMatch;
+	private Match testMatch;
 	
 	@BeforeEach
 	public void matchSetup() {

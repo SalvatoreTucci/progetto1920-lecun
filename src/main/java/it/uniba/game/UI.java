@@ -153,10 +153,11 @@ public final class UI {
 	 * else if it's negative negative, returns false <br>
 	 * else the method keeps asking for a response. <br>
 	 */
+	@SuppressWarnings("resource")
 	private boolean getConfirm(final String question) {
 
 		System.out.println(question);
-		Scanner keyboard = new Scanner(System.in);
+		Scanner keyboard = new Scanner(System.in, Constants.CHAR_STD);
 		String read;
 		do {
 
