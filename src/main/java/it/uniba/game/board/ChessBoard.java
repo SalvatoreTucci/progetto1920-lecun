@@ -102,8 +102,9 @@ public final class ChessBoard {
 
 	public String toString() {
 
-		String res = Constants.CB_LETTERS_COORDS;
-		res += Constants.CB_FIRST_ROW;
+		StringBuffer resBuffer = new StringBuffer();
+		resBuffer.append(Constants.CB_LETTERS_COORDS);
+		resBuffer.append(Constants.CB_FIRST_ROW);
 
 		for (int i = Constants.FIRST_ROW; i <= Constants.LAST_ROW; i++) {
 
@@ -111,31 +112,32 @@ public final class ChessBoard {
 
 				if (j == 0) {
 
-					res += Math.abs(i - Constants.CB_DIMENSION) + " ";
+					resBuffer.append(Math.abs(i - Constants.CB_DIMENSION) + " ");
 				}
 
-				res += Constants.CB_VERTICAL_SQUARE_SYMBOL;
+				resBuffer.append(Constants.CB_VERTICAL_SQUARE_SYMBOL);
 
 				if (elements[i][j].isOccupied()) {
 
-					res += " " + elements[i][j].getPiece().toString() + " ";
+					resBuffer.append(" " + elements[i][j].getPiece().toString() + " ");
 				} else {
 
-					res += Constants.CB_EMPTY_SQUARE;
+					resBuffer.append(Constants.CB_EMPTY_SQUARE);
 				}
 			}
 
-			res += Constants.CB_VERTICAL_SQUARE_SYMBOL + " " + Math.abs(i - Constants.CB_DIMENSION) + "\n";
+			resBuffer.append(Constants.CB_VERTICAL_SQUARE_SYMBOL + " "
+					+ Math.abs(i - Constants.CB_DIMENSION) + "\n");
 			if (i != Constants.LAST_ROW) {
 
-				res += Constants.CB_MIDDLE_ROW_SQUARES;
+				resBuffer.append(Constants.CB_MIDDLE_ROW_SQUARES);
 			}
 		}
 
-		res += Constants.CB_LAST_ROW;
-		res += Constants.CB_LETTERS_COORDS;
+		resBuffer.append(Constants.CB_LAST_ROW);
+		resBuffer.append(Constants.CB_LETTERS_COORDS);
 
-		return res;
+		return resBuffer.toString();
 	}
 
 	public void setMove(final Move currentMove) {

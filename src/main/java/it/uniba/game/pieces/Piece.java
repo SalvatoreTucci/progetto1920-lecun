@@ -109,13 +109,8 @@ public abstract class Piece {
     @Override
     public boolean equals(final Object toCompare) {
 
-    	if (toCompare != null && this.toString().equals(((Piece) toCompare).toString())) {
-
-    		return true;
-    	}
-
-    	return false;
-
+    	return ((toCompare != null) && (toCompare instanceof Piece)
+    			&& this.toString().equals(((Piece) toCompare).toString()));
     }
 
     protected static Boolean checkOutOfBound(final Move target) {
