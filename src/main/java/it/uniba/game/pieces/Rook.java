@@ -7,9 +7,9 @@ import it.uniba.game.Move;
 
 /**
  * Subclass of Piece representing the Rook, <br>
- * Class type: Entity <br>
+ * Class type: &#60;Entity&#62; <br>
  * 
- * Responsibilities: <br>
+ * Responsibilities: <br><br>
  * 
  * 	Knows:
  * 		<ul>
@@ -26,12 +26,27 @@ import it.uniba.game.Move;
  * 		<li>Reports if an instance of Rook has been moved</li>
  * 		</ul>
  * 
+ * @author LeCun group <br>
 */
+
+
+
 public final class Rook extends Piece {
 
+	/**
+	 * <code>boolean</code> indicating whether the piece has been moved for the first time.
+	 * It's an important information for the <i>castling</i> moves.
+	 * It is initialized as <code>false</code>.
+	 */
 	private boolean moved = false;
 
-	// Constructor
+	/**
+	 * Constructor for the class rook. It initializes the piece's color and symbol,
+	 * If <code>col==null</code> then the set color is Color.WHITE and the symbol 
+	 * is Constants.W_ROOK.
+	 * 
+	 * @param col color of the piece. 
+	 */
 	public Rook(final Color col) {
 
 		super(col);
@@ -46,6 +61,14 @@ public final class Rook extends Piece {
 
 	}
 
+	/**
+	 * Wrapper method for the class method <i>reverseRookMove</i>.
+	 * 
+	 * @param target The move of a rook, which starting position has to be determined.
+	 * 
+	 * @return A LinkedList of possible starting Coordinates of a rook.
+	 * 
+	 */
 	public LinkedList<Coordinates> reverseMove(final Move target) {
 
 		LinkedList<Coordinates> possibleSquares = reverseRookMove(target);
@@ -54,9 +77,16 @@ public final class Rook extends Piece {
 
 	}
 
-	/*
-	 * Method used to calculate all the possible starting squares in a rook
-	 * move, given the ending square
+	/**
+	 * Method returning all the possible starting position of a rook on a chessboard
+	 * given the ending position in a List. If the ending position exceeds the bounds of the 
+	 * chessboard (from (0,0) to (7,7)), the returned list is empty. The method assumes
+	 * that <code>target</code> is a rook move.
+	 * 
+	 * @param target The move of a rook, which starting position has to be determined.
+	 * 
+	 * @return A LinkedList of possible starting Coordinates of a rook.
+	 * 
 	 */
 	public static LinkedList<Coordinates> reverseRookMove(final Move target) {
 
@@ -88,11 +118,22 @@ public final class Rook extends Piece {
 		return possibleSquares;
 	}
 
+	/**
+	 * Method returning the status of a rook piece.
+	 * 
+	 * @return true if the rook has been moved, false otherwise
+	 */
 	public boolean isMoved() {
 
 		return moved;
 	}
 
+	/**
+	 * Method setting the status of a rook piece.
+	 * 
+	 * @param hasMoved boolean indicating whether the rook has been moved (true) or not (false)
+	 * 		  for the first time, to set
+	 */
 	public void setMoved(final boolean hasMoved) {
 
 		this.moved = hasMoved;
