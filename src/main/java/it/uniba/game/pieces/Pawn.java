@@ -37,10 +37,10 @@ public final class Pawn extends Piece {
 
 	/**
 	 * Constructor for the class Pawn. It initializes the piece's color and symbol,
-	 * If <code>col==null</code> then the set color is Color.WHITE and the symbol 
+	 * If <code>col==null</code> then the set color is Color.WHITE and the symbol
 	 * is Constants.W_PAWN.
 	 * 
-	 * @param col color of the piece. 
+	 * @param col color of the piece.
 	 */
 	public Pawn(final Color col) {
 
@@ -58,7 +58,7 @@ public final class Pawn extends Piece {
 
 	/**
 	 * Method returning all the possible starting position of a pawn on a chessboard
-	 * given the ending position in a List. If the ending position exceeds the bounds of the 
+	 * given the ending position in a List. If the ending position exceeds the bounds of the
 	 * chessboard (from (0,0) to (7,7)), the returned list is empty. The method assumes
 	 * that <code>target</code> is a pawn move. Also it checks if the move is a capture or not.
 	 * 

@@ -42,10 +42,10 @@ public final class Rook extends Piece {
 
 	/**
 	 * Constructor for the class rook. It initializes the piece's color and symbol,
-	 * If <code>col==null</code> then the set color is Color.WHITE and the symbol 
+	 * If <code>col==null</code> then the set color is Color.WHITE and the symbol
 	 * is Constants.W_ROOK.
 	 * 
-	 * @param col color of the piece. 
+	 * @param col color of the piece.
 	 */
 	public Rook(final Color col) {
 
@@ -79,7 +79,7 @@ public final class Rook extends Piece {
 
 	/**
 	 * Method returning all the possible starting position of a rook on a chessboard
-	 * given the ending position in a List. If the ending position exceeds the bounds of the 
+	 * given the ending position in a List. If the ending position exceeds the bounds of the
 	 * chessboard (from (0,0) to (7,7)), the returned list is empty. The method assumes
 	 * that <code>target</code> is a rook move.
 	 * 
