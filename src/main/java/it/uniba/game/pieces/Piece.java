@@ -7,9 +7,9 @@ import it.uniba.game.Constants;
 
 /**
  * Abstract class representing a generic chess piece <br>
- * Class type: &#60;Entity&#62; <br>
+ * Class type: &#60;Entity&#62; <br><br>
  * 
- * Responsibilities: <br><br>
+ * Responsibilities: <br>
  * 
  * 	Knows:
  * 		<ul>

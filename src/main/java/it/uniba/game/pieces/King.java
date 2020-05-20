@@ -7,9 +7,9 @@ import it.uniba.game.Move;
 
 /**
  * Subclass of Piece representing the King <br>
- * Class type: &#60;Entity&#62; <br>
+ * Class type: &#60;Entity&#62; <br><br>
  * 
- * Responsibilities: <br><br>
+ * Responsibilities: <br>
  * 
  * 	Knows:
  * 		<ul>

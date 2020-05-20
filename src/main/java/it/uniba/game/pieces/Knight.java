@@ -7,9 +7,9 @@ import it.uniba.game.Coordinates;
 
 /**
  * Subclass of Piece representing the Knight <br>
- * Class type: &#60;Entity&#62; <br>
+ * Class type: &#60;Entity&#62; <br><br>
  * 
- * Responsibilities: <br><br>
+ * Responsibilities: <br>
  * 
  * 	Knows:
  * 		<ul>
