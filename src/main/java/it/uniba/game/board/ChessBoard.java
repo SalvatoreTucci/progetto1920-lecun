@@ -13,7 +13,7 @@ import it.uniba.game.pieces.Piece;
 
 /**
  * Class representing the chessboard <br>
- * Class type : Entity <br>
+ * Class type : &#60; Entity &#62; <br><br>
  * 
  * Responsibilities : <br>
  * 
@@ -37,6 +37,11 @@ public final class ChessBoard {
 
 	private Square[][] elements;
 
+	/**
+	 * Constructor for the class ChessBoard
+	 * 
+	 * Inizialize the ChessBoard at the initial state of a classic chess match.
+	 */
 	public ChessBoard() {
 
 		elements = new Square[Constants.CB_DIMENSION][Constants.CB_DIMENSION];
@@ -100,6 +105,10 @@ public final class ChessBoard {
 		}
 	}
 
+	/**
+	 * ChessBoard class' toString method
+	 * @return A string containing the current state of the ChessBoard
+	 */
 	public String toString() {
 
 		StringBuffer resBuffer = new StringBuffer();
@@ -140,6 +149,11 @@ public final class ChessBoard {
 		return resBuffer.toString();
 	}
 
+	/**
+	 * Method that executes the move passed by parameter on the ChessBoard.
+	 * 
+	 * @param currentMove the move to execute on the ChessBoard
+	 */
 	public void setMove(final Move currentMove) {
 
 		Coordinates start = currentMove.getStartingPos();
@@ -164,6 +178,11 @@ public final class ChessBoard {
 		}
 	}
 
+	/**
+	 * 
+	 * @param coord The coordinates from where we want to recover a Square.
+	 * @return the Square at the coordinates passed by argument on the ChessBoard.
+	 */
 	public Square getSquare(final Coordinates coord) {
 
 		return elements[coord.getRow()][coord.getColumn()];
