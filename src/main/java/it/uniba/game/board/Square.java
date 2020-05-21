@@ -23,12 +23,15 @@ import it.uniba.game.pieces.Piece;
  * @author LeCun group
  */
 public final class Square {
-	/*
+	/**
 	 * This class represents the single square of the chessboard,
 	 * where pieces are placed
 	 */
 
-	// Attributes
+	/**
+	 * <code> placed </code> represents the piece placed on the square. 
+	 * If the square is empty, placed is initialized to null.
+	 */
 	private Piece placed;
 
 	/**
