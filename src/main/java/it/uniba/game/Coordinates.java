@@ -8,7 +8,7 @@ package it.uniba.game;
 *
 * 	Knows :
 * 		<ul>
-* 			<li>A pair of coordinates of a Cartesian-like plain (as the ChessBoard)</li>
+* 		<li>A pair of coordinates of a Cartesian-like plain (as the ChessBoard)</li>
 * 		</ul>
 *	Does :
 *		<ul>
@@ -18,7 +18,6 @@ package it.uniba.game;
 * @author LeCun group <br>
 */
 public final class Coordinates {
-    // Class used to represent a position in the ChessBoard
 
 	/**
 	 * <code>row</code> holds the value of the vertical coordinate
