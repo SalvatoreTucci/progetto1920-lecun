@@ -78,7 +78,7 @@ Di seguito sono riportati i requisiti funzionali (in ordine cronologico rispetto
 
 - [Comando help](https://github.com/softeng1920-inf-uniba/progetto1920-lecun/issues/27)
 
-    L'utente può visualizzare l'elenco dei comandi disponibili tramite il comando <code>board</code>. 
+    L'utente può visualizzare l'elenco dei comandi disponibili tramite il comando <code>help</code>. 
     
      <b>Criteri di accettazione:</b>
     
@@ -134,6 +134,7 @@ Di seguito sono riportati i requisiti funzionali (in ordine cronologico rispetto
     - e4
     - f5
     - exf5
+    
     Esempi di mosse valide per l'en passant:
     - exf6
     - exf6 e.p.
@@ -265,7 +266,7 @@ Di seguito sono riportati i requisiti funzionali (in ordine cronologico rispetto
     L'applicazione è disponibile per le seguenti piattaforme:
     - terminale di Linux;
     - teminale di MacOS;
-    - terminal del sottosistema Windows per Linux;
+    - Windows Terminal;
     - Git Bash  (in questo caso il comando Docker ha come prefisso winpty; es:  
     <code>winpty docker -it ...</code>)
 
