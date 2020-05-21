@@ -4,7 +4,7 @@ import it.uniba.game.pieces.Piece;
 
 /**
  * Class representing a single square of the chessboard <br>
- * Class type : Entity <br>
+ * Class type : &#60; Entity &#62; <br><br>
  * 
  * Responsibilities : <br>
  * 
@@ -23,31 +23,53 @@ import it.uniba.game.pieces.Piece;
  * @author LeCun group
  */
 public final class Square {
-	/*
+	/**
 	 * This class represents the single square of the chessboard,
 	 * where pieces are placed
-	*/
+	 */
 
-	// Attributes
+	/**
+	 * <code> placed </code> represents the piece placed on the square. 
+	 * If the square is empty, placed is initialized to null.
+	 */
 	private Piece placed;
 
-	// Constructor
+	/**
+	 * Constructor for the class Square
+	 * @param toPlace piece to place on the Square
+	 */
 	public Square(final Piece toPlace) {
 
 		placed = toPlace;
 	}
 
 	// Methods
+	/**
+	 * 
+	 * @return the piece placed on the square
+	 */
 	public Piece getPiece() {
 
 		return placed;
 	}
 
+	/**
+	 * 
+	 * @param toPlace the new piece to place on the square
+	 */
 	void setPiece(final Piece toPlace) {
 
 		placed = toPlace;
 	}
 
+	/**
+	 * 
+	 * @return a boolean:
+	 * <ul> 
+	 * 		<li> true if there is a piece placed on the square
+	 * 		<li> false otherwise
+	 * </ul>
+	 */
 	public boolean isOccupied() {
 
 		return (getPiece() != null);
