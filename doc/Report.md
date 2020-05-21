@@ -104,7 +104,7 @@ Di seguito sono riportati i requisiti funzionali (in ordine cronologico rispetto
      
      
      il formato della scacchiera deve essere quello presente in <code>[Assegnazione progetto.md](../Assegnazione%20progetto.md)</code>. Tutti i pezzi sono rappresentati nel contesto della tastiera in UTF-8 con i caratteri specifici (es. ♔ e ♚ per re bianco e nero).
-     <center><img src ="./drawings/non uml/Scacchiera.png" width = 450></center>
+     <center><img src ="./drawings/nonuml/Scacchiera.png" width = 450></center>
 
 - [Mostrare le mosse giocate](https://github.com/softeng1920-inf-uniba/progetto1920-lecun/issues/29)
 
@@ -143,7 +143,7 @@ Di seguito sono riportati i requisiti funzionali (in ordine cronologico rispetto
     - exf6
     - exf6 e.p.
 
-    Se la mossa non è valida o è illegale viene mostrato a video un messaggio di errore. L'applicazione rimane in attesa di un nuovo comando.
+    <i>Se la mossa non è valida o è illegale viene mostrato a video un messaggio di errore. L'applicazione rimane in attesa di un nuovo comando.</i>
 
 - [Visualizzare le catture](https://github.com/softeng1920-inf-uniba/progetto1920-lecun/issues/31)
 
@@ -172,7 +172,7 @@ Di seguito sono riportati i requisiti funzionali (in ordine cronologico rispetto
     - Cc3
     - Cxd3
 
-    Se la mossa non è valida o è illegale viene mostrato a video un messaggio di errore. L'applicazione rimane in attesa di un nuovo comando.
+    <i>Se la mossa non è valida o è illegale viene mostrato a video un messaggio di errore. L'applicazione rimane in attesa di un nuovo comando.</i>
 
 - [Muovere un Alfiere](https://github.com/softeng1920-inf-uniba/progetto1920-lecun/issues/102)
 
@@ -190,6 +190,8 @@ Di seguito sono riportati i requisiti funzionali (in ordine cronologico rispetto
     - Ac4
     - Axa6
 
+    <i>Se la mossa non è valida o è illegale viene mostrato a video un messaggio di errore. L'applicazione rimane in attesa di un nuovo comando.</i>
+
 - [Muovere una Torre](https://github.com/softeng1920-inf-uniba/progetto1920-lecun/issues/103)
 
     L'utente può muovere una torre inserendo il comando in notazione algebrica abbreviata, rispettando
@@ -199,6 +201,8 @@ Di seguito sono riportati i requisiti funzionali (in ordine cronologico rispetto
 
     Con la torre l'utente può:
     - muoversi e catturare orizzontalmente e verticalmente (rispetto alla torre stessa), ammesso che le case siano libere;
+
+    <i>Se la mossa non è valida o è illegale viene mostrato a video un messaggio di errore. L'applicazione rimane in attesa di un nuovo comando.</i>
 
 - [Muovere una Donna](https://github.com/softeng1920-inf-uniba/progetto1920-lecun/issues/104)
 
@@ -214,6 +218,8 @@ Di seguito sono riportati i requisiti funzionali (in ordine cronologico rispetto
     - Dd4
     - Dxf5
 
+    <i>Se la mossa non è valida o è illegale viene mostrato a video un messaggio di errore. L'applicazione rimane in attesa di un nuovo comando.</i>
+
 - [Muovere un Re](https://github.com/softeng1920-inf-uniba/progetto1920-lecun/issues/107)
 
     L'utente può muovere un re inserendo il comando in notazione algebrica abbreviata, rispettando le regole degli scacchi. 
@@ -223,6 +229,8 @@ Di seguito sono riportati i requisiti funzionali (in ordine cronologico rispetto
     Con il re l'utente può:
     - muoversi in tutte le direzioni di una sola casella (rispetto a quella di partenza), ammesso che non sia ostruita;
     - non può muoversi in case minacciate da pezzi avversari (non deve mai rischiare la cattura);
+
+    <i>Se la mossa non è valida o è illegale viene mostrato a video un messaggio di errore. L'applicazione rimane in attesa di un nuovo comando.</i>
     
 - [Arroccare corto](https://github.com/softeng1920-inf-uniba/progetto1920-lecun/issues/115)
 
@@ -243,6 +251,7 @@ Di seguito sono riportati i requisiti funzionali (in ordine cronologico rispetto
     - 0-0
     - O-O
 
+    <i>Se la mossa non è valida o è illegale viene mostrato a video un messaggio di errore. L'applicazione rimane in attesa di un nuovo comando.</i>
 
 
 - [Arroccare lungo](https://github.com/softeng1920-inf-uniba/progetto1920-lecun/issues/116)
@@ -263,6 +272,8 @@ Di seguito sono riportati i requisiti funzionali (in ordine cronologico rispetto
     Esempi di arrocco lungo (lato donna):
     - 0-0-0
     - O-O-O
+
+    <i>Se la mossa non è valida o è illegale viene mostrato a video un messaggio di errore. L'applicazione rimane in attesa di un nuovo comando.</i>
 
  <br><br>
 
