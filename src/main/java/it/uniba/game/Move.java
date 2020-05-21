@@ -200,8 +200,10 @@ public final class Move {
 	 * @param newCastling 
 	 */
 	public void setCastling(final Castling newCastling) {
+		if (newCastling != null) {
 
-		typeCastling = newCastling;
+			typeCastling = newCastling;
+		}
 	}
 
 	/**
