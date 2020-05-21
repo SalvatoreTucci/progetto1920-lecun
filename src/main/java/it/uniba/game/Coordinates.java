@@ -42,7 +42,7 @@ public final class Coordinates {
     }
 
     /**
-     *  
+     *
      * @return the value of the row in the coordinate
      */
     public int getRow() {
