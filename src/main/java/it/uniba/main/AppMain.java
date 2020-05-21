@@ -7,19 +7,10 @@ import java.io.PrintStream;
 import java.io.UnsupportedEncodingException;
 
 /**
- * The main class for the project. It must be customized to meet the project
- * assignment specifications.
- * 
- * <b>DO NOT RENAME</b>
- */
-/**
-* AppMain
-* Class type : Boundary<br>
-* Responsibilities :<br>
-* 	Knows :
-* 		<ul>
-* 		<li></li>
-* 		</ul>
+* The main class for the project
+* Class type : &#60; Boundary &#62; <br><br>
+* Responsibilities : <br>
+* 	Knows : <br>
 *	Does :
 *		<ul>
 *		<li>Checks whether the user wants to exit the app</li>
@@ -31,7 +22,7 @@ import java.io.UnsupportedEncodingException;
 public final class AppMain {
 
 	/**
-	 * Private constructor. Change if needed.
+	 * Private constructor for the class
 	 */
 	private AppMain() {
 	}
@@ -39,7 +30,7 @@ public final class AppMain {
 	/**
 	 * 	 * This is the main entry of the application.
 	 *
-	 * @param args The command-line arguments.
+	 * @param args Command line arguments, not used at the moment in the project
 	 */
 	public static void main(final String[] args) {
 
