@@ -14,9 +14,11 @@ import java.util.Iterator;
 import java.util.regex.Pattern;
 
 /**
-* Match <br>
-* Class type : Control <br>
+* Class representing a chess match <br>
+* Class type : &#60; Control &#62; <br><br>
+* 
 * Responsibilities : <br>
+* 
 * 	Knows : <br>
 * 		<ul>
 * 		<li>The current status of the ChessBoard</li>
@@ -39,9 +41,6 @@ import java.util.regex.Pattern;
 * @author LeCun group
 */
 public final class Match {
-	/*
-	 * Class used to manage the flow of the game <br>
-	 */
 
 	/**
 	 * Represents the field of the match.
@@ -64,7 +63,7 @@ public final class Match {
 	private LinkedList<String> moves;
 
 	/**
-	 * Color of the current player turn.
+	 * Color of the current player.
 	 */
 	private Piece.Color currentPlayer;
 
@@ -101,10 +100,15 @@ public final class Match {
 	}
 
 	/**
+	 * Method used to execute a move entered by a player.
+	 * It checks whether the passed move is a castling, a normal move
+	 * or a capture. If a move is legal, it will be added to the history
+	 * of the moves, if it is a capture, the captured piece will be added
+	 * to the list of captures. Eventually, it will flag the rooks and the
+	 * king as "moved" (not capable of a castling).
 	 * 
-	 * 
-	 * @param toParse
-	 * @throws MatchException
+	 * @param toParse Player move represented as a string
+	 * @throws MatchException Raised if the user tries to enter an irregular move
 	 */
 	public void inputMove(final String toParse) throws MatchException {
 
@@ -349,6 +353,7 @@ public final class Match {
 	 * [Piece][Disambiguation coordinate][Capture][Landing square column][Landing square row].
 	 * 
 	 * @param toParse a string containing the move to be parsed
+	 * @throws MatchExcption Raised if the move represented as string is badly formatted
 	 * @return an instance of the class Move
 	 */
 	private Move parseMove(final String toParse) throws MatchException {
@@ -659,11 +664,14 @@ public final class Match {
 	}
 
 	/**
-	 *
+	 * Handles the various possibilities of a Pawn move.
+	 * It checks whether the move is an En Passant, and its legality.
+	 * Updates the attribute <code>lastPawnMove</code> if the pawn
+	 * does a long move.
 	 * 
-	 * @param toMove
-	 * @param possibleSquares
-	 * @throws MatchException
+	 * @param toMove Move parsed from the string entered by the user
+	 * @param possibleSquares Possible starting squares from where the pawn can be positioned
+	 * @throws MatchException Raised if the move is not legal
 	 */
 	private void handlePawn(final Move toMove,
 			final LinkedList<Coordinates> possibleSquares) throws MatchException {
@@ -700,7 +708,7 @@ public final class Match {
 					}
 				} else {
 
-					// exception regarding an incorrect EnPassant move <br>
+					// exception regarding an incorrect EnPassant move
 					throw new MatchException(Constants.ERR_EN_PASSANT_BAD_TARGET);
 				}
 			} else {
@@ -716,7 +724,7 @@ public final class Match {
 			}
 		} else {
 
-			// exception regarding the wrong target piece which has to be captured <br>
+			// exception regarding the wrong target piece which has to be captured
 			throw new MatchException(Constants.ERR_BAD_TARGET);
 		}
 	}
@@ -736,14 +744,16 @@ public final class Match {
 	}
 
 	/**
+	 * Checks if the king is threatened by a move of its own
+	 * (the move is irregular)
 	 * 
-	 * @param toMove
-	 * @return
+	 * @param toMove King move to be checked
+	 * @return Returns True if the king is threatened after the move execution, false if otherwise
 	 */
 	private Boolean checkKingThreat(final Move toMove) {
 
 		LinkedList<Coordinates> squaresToCheck;
-		//LinkedList containing the coordinates for possibles threatning pieces
+		//LinkedList containing the coordinates for possibles threatening pieces
 		squaresToCheck = Bishop.reverseBishopMove(toMove);
 
 		Iterator<Coordinates> i = squaresToCheck.iterator();
@@ -857,9 +867,11 @@ public final class Match {
 	}
 
 	/**
+	 * Checks if the executed castling is possible, if so
+	 * executes it.
 	 * 
-	 * @param castlingType
-	 * @throws MatchException
+	 * @param castlingType Type of the castling entered by the user
+	 * @throws MatchException Raised if the castling is not possible
 	 */
 	private void handleCastling(final Move.Castling castlingType) throws MatchException {
 
