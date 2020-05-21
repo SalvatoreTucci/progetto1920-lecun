@@ -195,9 +195,10 @@ public final class Move {
 	}
 
 	/**
-	 * Sets the type of the castling.
+	 * Sets the type of the castling. If <code>newCastling==null</code> then the method
+	 * does nothing.
 	 * 
-	 * @param newCastling 
+	 * @param newCastling Castling enumeration to be set
 	 */
 	public void setCastling(final Castling newCastling) {
 		if (newCastling != null) {
