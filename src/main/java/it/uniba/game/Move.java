@@ -76,7 +76,7 @@ public final class Move {
 
 	/**
 	 * Flag indicating if the move is a Castling or not (<code>Castling.NO_CASTLING</code>).
-	 * It is usually initialized as <code>Castling.NO_CASTLING</code>, otherwise it can 
+	 * It is usually initialized as <code>Castling.NO_CASTLING</code>, otherwise it can
 	 * indicate whether the castling is on the king side (<code>Castling.KINGSIDE_CASTLING</code>)
 	 * or on the queen side (<code>Castling.QUEENSIDE_CASTLING</code>).
 	 */
@@ -119,7 +119,7 @@ public final class Move {
 	/**
 	 * Getter method for the piece of the move
 	 * 
-	 * @return A reference the the piece being moved 
+	 * @return A reference the the piece being moved
 	 * 		   (which is usually different from the one on the chessboard)
 	 */
 	public Piece getPiece() {
