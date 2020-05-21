@@ -111,11 +111,10 @@ Di seguito sono riportati i requisiti funzionali (in ordine cronologico rispetto
 
     Tramite il comando <code>moves</code> viene stampata la successione di mosse effettuate nel corso della partita, in notazione algebrica abbreviata, secondo la sintassi:
    
-    <ol>
-    <li> e4 e5 </li>
-    <li> Cf3 Cc6 </li>
-    <li> d4 </li>
-    </ol>
+    <code>1. e4 e5</code> <br> 
+    <code>2. Cf3 Cc6 </code>  <br>
+    <code>3. d4 </code>  <br>
+    
 
     Come mostrato nel file <code>[Assegnazione progetto.md](../Assegnazione%20progetto.md)</code>.
 
