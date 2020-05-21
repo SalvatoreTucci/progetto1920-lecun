@@ -2,56 +2,96 @@ package it.uniba.game;
 
 /**
 * Class representing the coordinates used when accessing the chessboard <br>
-* Class type : Entity <br>
+* Class type : &#60; Entity &#62; <br>
+* 
 * Responsibilities : <br>
+* 
 * 	Knows :
 * 		<ul>
-* 		<li>A pair of coordinates of a Cartesian-like plain (as the ChessBoard)</li>
+* 			<li>A pair of coordinates of a Cartesian-like plain (as the ChessBoard)</li>
 * 		</ul>
 *	Does :
+*		<ul>
+*		</ul>
 *
 *
 * @author LeCun group <br>
 */
 public final class Coordinates {
-    // Class used to represent a position in the ChessBoard <br>
+    // Class used to represent a position in the ChessBoard
 
-    // Attributes <br>
+	/**
+	 * <code>row</code> holds the value of the vertical coordinate
+	 */
     private int row;
+
+    /**
+	 * <code>column</code> holds the value of the horizontal coordinate
+	 */
     private int column;
 
-    // Methods <br>
+    /**
+     * Constructor for the class Coordinates
+     * @param x value set to the <code>column</code> attribute
+     * @param y value set to the <code>row</code> attribute
+     */
     public Coordinates(final int x, final int y) {
 
     	setColumn(x);
         setRow(y);
     }
 
+    /**
+     *  
+     * @return the value of the row in the coordinate
+     */
     public int getRow() {
 
         return row;
     }
 
+    /**
+     * 
+     * @return the value of the column in the coordinate
+     */
     public int getColumn() {
 
         return column;
     }
 
+    /**
+     * Sets the value of the row
+     * @param y value set as the row in the coordinate
+     */
     public void setRow(final int y) {
 
         row = y;
     }
 
+    /**
+     * Sets the value of the column
+     * @param x value set as the column in the coordinate
+     */
     public void setColumn(final int x) {
 
         column = x;
     }
 
+    /**
+     * Returns a string representing the coordinate, in the format (column, row)
+     */
+    @Override
     public String toString() {
 
     	return "(" + column + ", " + row + ")";
     }
 
+    /**
+     * Compares the values of two coordinates
+     * @param toCheck object to compare to the coordinate
+     * @return true if the two coordinates are equal, false if otherwise
+     */
+    @Override
     public boolean equals(final Object toCheck) {
 
     	return (toCheck != null) && (toCheck instanceof Coordinates)
@@ -59,6 +99,7 @@ public final class Coordinates {
     					&& (column == ((Coordinates) toCheck).getColumn()));
     }
 
+    @Override
     public int hashCode() {
 
     	assert false : "hashCode not designed";
