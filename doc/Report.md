@@ -201,7 +201,30 @@ Di seguito sono riportati i requisiti funzionali (in ordine cronologico rispetto
     - 0-0-0
     - O-O-O
 
+ <br><br>
+
+[Torna all'indice](#Indice)
+
 ## Requisiti non funzionali 
+
+- ### Portabilità
+    L'applicazione è disponibile per le seguenti piattaforme:
+    - terminale di Linux;
+    - teminale di MacOS;
+    - terminal del sottosistema Windows per Linux;
+    - Git Bash  (in questo caso il comando Docker ha come prefisso winpty; es:  
+    <code>winpty docker -it ...</code>)
+
+- ### Affidabilità
+    L'applicazione è progettata per evitare eccezioni non gestite, le eccezioni vengono cattuarate
+    e gestite, inoltre per ogni situazione non valida è stampato un messaggio.
+
+- ### Manutenibilità
+
+    Il codice è stato suddiviso in diverse sottoclassi: 
+    - la presenza di una classe UI separa il comportamento effettivo del gioco dall'interfaccia,
+    rendendo possibile modificare la logica di business da quella di visualizzazione.
+
 
  <br><br>
 
