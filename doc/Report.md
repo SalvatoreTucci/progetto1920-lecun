@@ -59,7 +59,7 @@ Di seguito sono riportati i requisiti funzionali (in ordine cronologico rispetto
     Subito dopo sarà dunque possibile inserire la prima mossa di gioco (del bianco). 
     L'applicazione può anche ricevere altri comandi (di gioco) ad esempio <code>board</code> (per mostrare la scacchiera).
 
-    Criteri di accettazione:
+     <b>Criteri di accettazione:</b>
 
     All'immisione del comando <code>play</code> viene visualizzato il messaggio di inizio gioco: 
     <code>Nuova Partita! Inizia il bianco:</code>
@@ -69,7 +69,7 @@ Di seguito sono riportati i requisiti funzionali (in ordine cronologico rispetto
 
     L'utente può terminare l'applicazione tramite il comando <code>quit</code>, in tal caso viene chiesta conferma all'utente e 
 
-    Criteri di accettazione: 
+     <b>Criteri di accettazione:</b>
 
     All' immissione del comando <code>quit</code> viene visualizzato un messaggio che chiede conferma
     all'utente sulla chiusura del comando. Nel caso in cui l'utente risponda in modo affermativo, l'utente torna ad interagire con il sistema operativo. Se la risposta è negativa, continua ad interagire con l'applicazione.
@@ -80,7 +80,7 @@ Di seguito sono riportati i requisiti funzionali (in ordine cronologico rispetto
 
     L'utente può visualizzare l'elenco dei comandi disponibili tramite il comando <code>board</code>. 
     
-    Criteri di accettazione:
+     <b>Criteri di accettazione:</b>
     
     Eseguendo il comando <code>help
     </code>, il risultato è una lista di comandi, uno per riga, ovvero: <br>
@@ -98,16 +98,16 @@ Di seguito sono riportati i requisiti funzionali (in ordine cronologico rispetto
 
     L'utente può mostrare a schermo la scacchiera tramite il comando <code>board</code>.
     
-    Criteri di accettazione: 
+     <b>Criteri di accettazione:</b>
      
-     il formato della scacchiera deve essere quello presente in <code>[Assegnazione progetto.md](../Assegnazione-progetto.md)</code>. Tutti i pezzi sono rappresentati nel contesto della tastiera in UTF-8 con i caratteri specifici (es. ♔ e ♚ per re bianco e nero).
+     il formato della scacchiera deve essere quello presente in <code>[Assegnazione progetto.md](../Assegnazione&#32progetto.md)</code>. Tutti i pezzi sono rappresentati nel contesto della tastiera in UTF-8 con i caratteri specifici (es. ♔ e ♚ per re bianco e nero).
 
 - [Mostrare le mosse giocate](https://github.com/softeng1920-inf-uniba/progetto1920-lecun/issues/29)
 
     L'utente può visualizzare le mosse giocate (quindi riconosciute ed attuate dal programma)
     tramite il comando <code>moves</code>.
 
-    Criterio di accettazione:
+     <b>Criteri di accettazione:</b>
 
     Tramite il comando <code>moves</code> viene stampata la successione di mosse effettuate nel corso della partita, in notazione algebrica abbreviata, secondo la sintassi:
    
@@ -123,7 +123,7 @@ Di seguito sono riportati i requisiti funzionali (in ordine cronologico rispetto
     L'utente può muovere un pedone inserendo il comando in notazione algebrica abbreviata,
     rispettando le regole degli scacchi. 
     
-    Criteri di accettazione:
+     <b>Criteri di accettazione:</b>
 
     Con il pedone l'utente può:
     - muoversi in una sola direzione (a seconda del colore);
@@ -142,7 +142,7 @@ Di seguito sono riportati i requisiti funzionali (in ordine cronologico rispetto
 
     L'utente deve poter visualizzare le catture effettuate durante la partita tramite il comando <code>capture</code>.
     
-    Criteri di accettazione:
+     <b>Criteri di accettazione:</b>
 
     con il comando <code>capture</code> vengono stampate le catture sia del bianco che del nero, attraverso i relativi caratteri nella codifica Unicode, nel seguente modo:
     <code>
@@ -154,7 +154,7 @@ Di seguito sono riportati i requisiti funzionali (in ordine cronologico rispetto
 
     L'utente può muovere un cavallo inserendo il comando in notazione algebrica abbreviata, rispettando le regole degli scacchi. 
     
-    Criteri di accettazione:
+     <b>Criteri di accettazione:</b>
 
     Con il cavallo l'utente può:
     - muoversi e catturare alternativamente su case bianche e case nere. Il movimento di questo pezzo può essere descritto come due passi in orizzontale (verticale) seguito da un passo in verticale (orizzontale).
@@ -170,7 +170,7 @@ Di seguito sono riportati i requisiti funzionali (in ordine cronologico rispetto
     L'utente può muovere un alfiere inserendo il comando in notazione algebrica abbreviata, rispettando
     le regole degli scacchi. 
     
-    Criteri di accettazione:
+     <b>Criteri di accettazione:</b>
 
     Con l'alfiere l'utente può:
     - muoversi e catturare sulle case che si trovano lungo le diagonali (rispetto all'alfiere stesso),
@@ -186,7 +186,7 @@ Di seguito sono riportati i requisiti funzionali (in ordine cronologico rispetto
     L'utente può muovere una torre inserendo il comando in notazione algebrica abbreviata, rispettando
     le regole degli scacchi. 
     
-    Criteri di accettazione:
+     <b>Criteri di accettazione:</b>
 
     Con la torre l'utente può:
     - muoversi e catturare orizzontalmente e verticalmente (rispetto alla torre stessa), ammesso che le case siano libere;
@@ -195,7 +195,7 @@ Di seguito sono riportati i requisiti funzionali (in ordine cronologico rispetto
 
     L'utente può muovere una donna inserendo il comando in notazione algebrica abbreviata, rispettando le regole degli scacchi. 
     
-    Criteri di accettazione:
+     <b>Criteri di accettazione:</b>
 
     Con la donna l'utente può:
     - muoversi e catturare orizzontalmente e verticalmente ed in diagonale (rispetto alla donna stessa),
@@ -209,7 +209,7 @@ Di seguito sono riportati i requisiti funzionali (in ordine cronologico rispetto
 
     L'utente può muovere un re inserendo il comando in notazione algebrica abbreviata, rispettando le regole degli scacchi. 
     
-    Criteri di accettazione:
+     <b>Criteri di accettazione:</b>
 
     Con il re l'utente può:
     - muoversi in tutte le direzioni di una sola casella (rispetto a quella di partenza), ammesso che non sia ostruita;
@@ -219,7 +219,7 @@ Di seguito sono riportati i requisiti funzionali (in ordine cronologico rispetto
 
     L'utente può effettuare l' arrocco corto inserendo il comando in notazione algebrica abbreviata, rispettando le regole degli scacchi. 
 
-    Criteri di accettazione:
+     <b>Criteri di accettazione:</b>
 
     Al fine della corretta esecuzione dell' arrocco è necessario che lo stato del gioco rispetti i seguenti requisiti:
 
@@ -239,6 +239,9 @@ Di seguito sono riportati i requisiti funzionali (in ordine cronologico rispetto
 - [Arroccare lungo](https://github.com/softeng1920-inf-uniba/progetto1920-lecun/issues/116)
 
     L'utente può effettuare l' arrocco lungo inserendo il comando in notazione algebrica abbreviata, rispettando le regole degli scacchi. 
+
+    <b>Criteri di accettazione:</b>
+
     Al fine della corretta esecuzione dell' arrocco è necessario che lo stato del gioco rispetti i seguenti requisiti:
 
     - il giocatore non ha mai mosso il re;
