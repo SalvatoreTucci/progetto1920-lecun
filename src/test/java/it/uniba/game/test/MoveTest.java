@@ -235,4 +235,12 @@ public class MoveTest {
 		assertEquals(Castling.KINGSIDE_CASTLING, toTest.getCastling());
 	}
 	
+	@Test
+	void getCastlingNullTest() {
+
+		Move toTest = new Move(null, null, null, false);
+		toTest.setCastling(null);
+		assertEquals(Castling.NO_CASTLING, toTest.getCastling());
+	}
+	
 }
