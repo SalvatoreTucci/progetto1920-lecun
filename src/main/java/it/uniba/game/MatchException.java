@@ -15,6 +15,7 @@ package it.uniba.game;
 public class MatchException extends Exception {
 
 	/**
+	 * Constructor for the class MatchException
 	 * 
 	 * @param errorMessage Message explaining why the exception has been raised
 	 */
