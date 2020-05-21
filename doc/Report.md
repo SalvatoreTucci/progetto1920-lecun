@@ -100,7 +100,7 @@ Di seguito sono riportati i requisiti funzionali (in ordine cronologico rispetto
     
      <b>Criteri di accettazione:</b>
      
-     il formato della scacchiera deve essere quello presente in <code>[Assegnazione progetto.md](../Assegnazione&#32progetto.md)</code>. Tutti i pezzi sono rappresentati nel contesto della tastiera in UTF-8 con i caratteri specifici (es. ♔ e ♚ per re bianco e nero).
+     il formato della scacchiera deve essere quello presente in <code>[Assegnazione progetto.md](../Assegnazione%20progetto.md)</code>. Tutti i pezzi sono rappresentati nel contesto della tastiera in UTF-8 con i caratteri specifici (es. ♔ e ♚ per re bianco e nero).
 
 - [Mostrare le mosse giocate](https://github.com/softeng1920-inf-uniba/progetto1920-lecun/issues/29)
 
@@ -117,7 +117,7 @@ Di seguito sono riportati i requisiti funzionali (in ordine cronologico rispetto
     <li> d4 </li>
     </ol>
 
-    Come mostrato nel file <code>[Assegnazione progetto.md](../Assegnazione&#32progetto.md)</code>.
+    Come mostrato nel file <code>[Assegnazione progetto.md](../Assegnazione%20progetto.md)</code>.
 
 - [Muovere un Pedone](https://github.com/softeng1920-inf-uniba/progetto1920-lecun/issues/30)
 
