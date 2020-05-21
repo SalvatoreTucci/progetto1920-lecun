@@ -34,7 +34,7 @@ Il progetto è stato realizzato durante il corso di Ingegneria del Software dal 
 - [Giuseppe Lamantea](https://github.com/llamandtea)
 - [Raffaele Disabato](https://github.com/Raffo99)
 - [Giovanni Pio Delvecchio](https://github.com/GiovanniPioDelvecchio)
-- [Domenico Dell' Olio](https://github.com/DomMcOyle) <br><br>
+- [Domenico Dell'Olio](https://github.com/DomMcOyle) <br><br>
 
 
 [Torna all'indice](#Indice)
@@ -134,7 +134,7 @@ Di seguito sono riportati i requisiti funzionali (in ordine cronologico rispetto
     - e4
     - f5
     - exf5
-    
+
     Esempi di mosse valide per l'en passant:
     - exf6
     - exf6 e.p.
