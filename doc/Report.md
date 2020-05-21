@@ -69,7 +69,7 @@ Di seguito sono riportati i requisiti funzionali (in ordine cronologico rispetto
 
 - [Chiudere il gioco](https://github.com/softeng1920-inf-uniba/progetto1920-lecun/issues/26)
 
-    L'utente può terminare l'applicazione tramite il comando <code>quit</code>, in tal caso viene chiesta conferma all'utente e 
+    L'utente può terminare l'applicazione tramite il comando <code>quit</code>.
 
     <b>Criteri di accettazione:</b>
 
