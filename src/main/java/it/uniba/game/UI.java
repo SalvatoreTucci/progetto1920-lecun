@@ -4,9 +4,7 @@ import java.util.Scanner;
 import it.uniba.game.pieces.Piece;
 
 /**
- * 
- * UI <br>
- * 
+ * Class singleton used as User Interface <br>
  * Class type : &#60; ECB &#62; <br><br>
  * 
  * Responsibilities : <br>
