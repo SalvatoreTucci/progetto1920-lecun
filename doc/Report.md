@@ -59,17 +59,19 @@ Di seguito sono riportati i requisiti funzionali (in ordine cronologico rispetto
     Subito dopo sarà dunque possibile inserire la prima mossa di gioco (del bianco). 
     L'applicazione può anche ricevere altri comandi (di gioco) ad esempio <code>board</code> (per mostrare la scacchiera).
 
-     <b>Criteri di accettazione:</b>
+    <b>Criteri di accettazione:</b>
 
     All'immisione del comando <code>play</code> viene visualizzato il messaggio di inizio gioco: 
     <code>Nuova Partita! Inizia il bianco:</code>
     ed il programma si predisone a mostrare un comando o una mossa valida.
+    Nel caso in cui l' utente scriva <code>play</code> mentre una partita è in corso viene stampato un messaggio di conferma. Se l'utente conferma comincia una nuova partita,
+    in caso contrario rimane accessibile quella corrente.
 
 - [Chiudere il gioco](https://github.com/softeng1920-inf-uniba/progetto1920-lecun/issues/26)
 
     L'utente può terminare l'applicazione tramite il comando <code>quit</code>, in tal caso viene chiesta conferma all'utente e 
 
-     <b>Criteri di accettazione:</b>
+    <b>Criteri di accettazione:</b>
 
     All' immissione del comando <code>quit</code> viene visualizzato un messaggio che chiede conferma
     all'utente sulla chiusura del comando. Nel caso in cui l'utente risponda in modo affermativo, l'utente torna ad interagire con il sistema operativo. Se la risposta è negativa, continua ad interagire con l'applicazione.
@@ -100,7 +102,9 @@ Di seguito sono riportati i requisiti funzionali (in ordine cronologico rispetto
     
      <b>Criteri di accettazione:</b>
      
+     
      il formato della scacchiera deve essere quello presente in <code>[Assegnazione progetto.md](../Assegnazione%20progetto.md)</code>. Tutti i pezzi sono rappresentati nel contesto della tastiera in UTF-8 con i caratteri specifici (es. ♔ e ♚ per re bianco e nero).
+     <center><img src ="./drawings/non uml/Scacchiera.png" width = 450></center>
 
 - [Mostrare le mosse giocate](https://github.com/softeng1920-inf-uniba/progetto1920-lecun/issues/29)
 
@@ -139,6 +143,8 @@ Di seguito sono riportati i requisiti funzionali (in ordine cronologico rispetto
     - exf6
     - exf6 e.p.
 
+    Se la mossa non è valida o è illegale viene mostrato a video un messaggio di errore. L'applicazione rimane in attesa di un nuovo comando.
+
 - [Visualizzare le catture](https://github.com/softeng1920-inf-uniba/progetto1920-lecun/issues/31)
 
     L'utente deve poter visualizzare le catture effettuate durante la partita tramite il comando <code>capture</code>.
@@ -165,6 +171,8 @@ Di seguito sono riportati i requisiti funzionali (in ordine cronologico rispetto
     Esempi di mosse valide per il cavallo:
     - Cc3
     - Cxd3
+
+    Se la mossa non è valida o è illegale viene mostrato a video un messaggio di errore. L'applicazione rimane in attesa di un nuovo comando.
 
 - [Muovere un Alfiere](https://github.com/softeng1920-inf-uniba/progetto1920-lecun/issues/102)
 
