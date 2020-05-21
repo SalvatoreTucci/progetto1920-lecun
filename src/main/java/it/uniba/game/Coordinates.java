@@ -99,6 +99,11 @@ public final class Coordinates {
     					&& (column == ((Coordinates) toCheck).getColumn()));
     }
 
+    /**
+     * hashCode override's definition
+     * it will be not implemented for now, but it must be written in
+     * order to conform the style as required
+     */
     @Override
     public int hashCode() {
 
