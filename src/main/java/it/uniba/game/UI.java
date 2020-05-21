@@ -4,10 +4,8 @@ import java.util.Scanner;
 import it.uniba.game.pieces.Piece;
 
 /**
- * 
- * UI <br>
- * 
- * Class type : ECB <br>
+ * Class singleton used as User Interface <br>
+ * Class type : &#60; ECB &#62; <br><br>
  * 
  * Responsibilities : <br>
  * 
@@ -29,41 +27,46 @@ import it.uniba.game.pieces.Piece;
  * @author LeCun group <br>
  */
 public final class UI {
-	/*
-	 * Class for App-User interaction <br>
-	 */
 
-	// Attributes
+	/**
+	 * currentMatch, is the ongoing match, if there is no match ongoing, it is null.
+	 * quitGame is true if the application needs to be closed, false otherwise.
+	 * SINGLETON is the unique instance of the class UI.
+	 */
 	private Match currentMatch;
 	private boolean quitGame;
 	private static final UI SINGLETON = new UI();
-	// Methods <br>
 
-	/*
-	 * returns the required status of the application (true = to be closed,<br>
-	 *  false = to be kept open) <br>
+	/**
+	 * Gets the required status of the application.
+	 * 
+	 * @return the required status of the application (true = to be closed, false = to be kept open)
 	 */
 	public boolean getStatus() {
 
 		return quitGame;
 	}
 
-	/*
-	 * private constructor, necessary in order to realize the singleton class <br>
-	 * as the design pattern describes <br>
+	/**
+	 * Private constructor, necessary in order to realize the singleton class
+	 * as the design pattern describes
 	 */
 	private UI() { }
 
-	/*
-	 * get method in order to access the singleton class fields <br>
+	/**
+	 * Gets the unique instance of the class UI.
+	 * 
+	 * @return the singleton class
 	 */
 	public static UI getUI() {
 
 		return SINGLETON;
 	}
 
-	/*
-	 * parses the command read from the keyboard and executes the correspondent routine <br>
+	/**
+	 * Parses the command read from the keyboard and executes the correspondent routine
+	 * 
+	 * @param toParse the command inputed by the user that needs to be parsed.
 	 */
 	public void parseCommand(final String toParse) {
 
@@ -92,10 +95,12 @@ public final class UI {
 		}
 	}
 
-	/*
-	 * Prosecution of parseCommand, delegated to handling commands during a match. <br>
-	 * It checks whether a match is open before executing the respecting routine, otherwise <br>
-	 * it will display an error. <br>
+	/**
+	 * Prosecution of parseCommand, delegated to handling commands during a match.
+	 * It checks whether a match is open before executing the respecting routine, otherwise
+	 * it will display an error.
+	 * 
+	 * @param toParse the command inputed by the user that needs to be parsed.
 	 */
 	private void handleInGameCommand(final String toParse) {
 
@@ -127,9 +132,9 @@ public final class UI {
 		}
 	}
 
-	/*
-	 * triggered by the command "play", print a welcome message  <br>
-	 * and inits the currentMatch variable <br>
+	/**
+	 * triggered by the command "play", print a welcome message
+	 * and inits the currentMatch variable
 	 */
 	private void startGame() {
 
@@ -137,21 +142,28 @@ public final class UI {
 		currentMatch = new Match();
 	}
 
-	/*
-	 * asks the user whether to quit or not the whole application. If <br>
-	 * the response isn't affirmative nor negative, the method keeps <br>
-	 * asking for a response. <br>
+	/**
+	 * asks the user whether to quit or not the whole application.
+	 * If the response isn't affirmative nor negative, the method keeps
+	 * asking for a response.
 	 */
 	private void quit() {
 
 		quitGame = getConfirm(Constants.QUIT_MESS);
 	}
 
-	/*
-	 * asks the user whether to do something or not. <br>
-	 * If the response is affirmative, returns true <br>
-	 * else if it's negative negative, returns false <br>
-	 * else the method keeps asking for a response. <br>
+	/**
+	 * Asks the user whether to do something or not.
+	 * If the response is affirmative, returns true
+	 * else if it's negative negative, returns false
+	 * else the method keeps asking for a response.
+	 * 
+	 * @param question the question that needs to be printed.
+	 * @return a boolean:
+	 * <ul>
+	 * 	<li> true, if the user answers yes to the question
+	 *  <li> false, otherwise
+	 * </ul>
 	 */
 	@SuppressWarnings("resource")
 	private boolean getConfirm(final String question) {
@@ -178,32 +190,32 @@ public final class UI {
 		return false;
 	}
 
-	/*
-	 * prints a list of commands on-screen <br>
+	/**
+	 * on command "help", prints a list of commands on-screen.
 	 */
 	private void printHelp() {
 
 		System.out.println(Constants.HELP);
 	}
 
-	/*
-	 * on command "board", it prints the current state of the board on screen  <br>
+	/**
+	 * on command "board", it prints the current state of the board on screen.
 	 */
 	private void printBoard() {
 
 		System.out.println(currentMatch.getPrintableChessBoard() + "\n");
 	}
 
-	/*
-	 * on command "moves", it prints the history of the moves, separated in couples <br>
+	/**
+	 * on command "moves", it prints the history of the moves, separated in couples.
 	 */
 	private void printMoves() {
 
 		System.out.println(currentMatch.getPrintableMoves() + "\n");
 	}
 
-	/*
-	 * on command "capture", it prints the captured pieces <br>
+	/**
+	 * on command "capture", it prints the captured pieces.
 	 */
 	private void printCaptures() {
 
@@ -211,6 +223,9 @@ public final class UI {
 		System.out.println(currentMatch.getPrintableCaptures(Piece.Color.BLACK) + "\n");
 	}
 
+	/**
+	 * It prints a welcome message.
+	 */
 	public void printWelcome() {
 
 		System.out.println(Constants.WELCOME);
