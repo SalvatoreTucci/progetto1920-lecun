@@ -1,7 +1,7 @@
 package it.uniba.game;
 
 /**
-* Exception raised from the class Match in case of game errors
+* Exception raised from the class Match in case of game errors <br>
 * Class type : &#60; no ECB &#62; <br><br>
 * 
 * Responsibilities : <br>
