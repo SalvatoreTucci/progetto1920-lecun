@@ -29,7 +29,7 @@ public final class Square {
 	 */
 
 	/**
-	 * <code> placed </code> represents the piece placed on the square. 
+	 * <code> placed </code> represents the piece placed on the square.
 	 * If the square is empty, placed is initialized to null.
 	 */
 	private Piece placed;
@@ -65,7 +65,7 @@ public final class Square {
 	/**
 	 * 
 	 * @return a boolean:
-	 * <ul> 
+	 * <ul>
 	 * 		<li> true if there is a piece placed on the square
 	 * 		<li> false otherwise
 	 * </ul>

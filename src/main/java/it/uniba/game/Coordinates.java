@@ -3,9 +3,9 @@ package it.uniba.game;
 /**
 * Class representing the coordinates used when accessing the chessboard <br>
 * Class type : &#60; Entity &#62; <br>
-* 
+*
 * Responsibilities : <br>
-* 
+*
 * 	Knows :
 * 		<ul>
 * 			<li>A pair of coordinates of a Cartesian-like plain (as the ChessBoard)</li>
