@@ -111,12 +111,13 @@ Di seguito sono riportati i requisiti funzionali (in ordine cronologico rispetto
 
     Tramite il comando <code>moves</code> viene stampata la successione di mosse effettuate nel corso della partita, in notazione algebrica abbreviata, secondo la sintassi:
    
-    1. e4 e5
-    2. Cf3 Cc6 
-    3. d4
-    
+    <ol>
+    <li> e4 e5 </li>
+    <li> Cf3 Cc6 </li>
+    <li> d4 </li>
+    </ol>
 
-    Come mostrato nel file <code>[Assegnazione progetto.md](../Assegnazione-progetto.md)</code>.
+    Come mostrato nel file <code>[Assegnazione progetto.md](../Assegnazione&#32progetto.md)</code>.
 
 - [Muovere un Pedone](https://github.com/softeng1920-inf-uniba/progetto1920-lecun/issues/30)
 
