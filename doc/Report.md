@@ -85,9 +85,12 @@ Di seguito sono riportati i requisiti funzionali (in ordine cronologico rispetto
 
     L'utente può visualizzare le mosse giocate (quindi riconosciute ed attuate dal programma).
     Tramite il comando <code>moves</code> viene stampata la successione di mosse effettuate nel corso della partita, in notazione algebrica abbreviata, secondo la sintassi:
-    1. e4 e5 
-    2. Cf3 Cc6
-    3. d4 
+   
+    <code>
+    1. e4 e5 <br>
+    2. Cf3 Cc6 <br>
+    3. d4
+    </code>
 
     Come mostrato nel file <code>[Assegnazione progetto.md](#../Assegnazione-progetto.md)</code>.
 
