@@ -10,12 +10,10 @@ package it.uniba.game;
 * 		<ul>
 * 		<li>A pair of coordinates of a Cartesian-like plain (as the ChessBoard)</li>
 * 		</ul>
-*	Does :
-*		<ul>
-*		</ul>
+*	Does : <br>
 *
 *
-* @author LeCun group <br>
+* @author LeCun group
 */
 public final class Coordinates {
 
