@@ -84,15 +84,15 @@ Di seguito sono riportati i requisiti funzionali (in ordine cronologico rispetto
     
     Eseguendo il comando <code>help
     </code>, il risultato è una lista di comandi, uno per riga, ovvero: <br>
-    <code>
-    help <br>
-    play <br>
-    quit <br>
-    Riconosciuti solo in-game: <br>
-    moves <br>
-    board <br>
-    capture <br>
-    </code>
+    
+    <code>help  </code> <br>
+    <code>play </code><br>
+   <code> quit </code><br>
+   <code> Riconosciuti solo in-game: </code><br>
+   <code> moves </code><br>
+    <code>board </code><br>
+    <code>capture </code><br>
+    
 
 - [Mostrare scacchiera](https://github.com/softeng1920-inf-uniba/progetto1920-lecun/issues/28)
 
@@ -146,10 +146,10 @@ Di seguito sono riportati i requisiti funzionali (in ordine cronologico rispetto
      <b>Criteri di accettazione:</b>
 
     con il comando <code>capture</code> vengono stampate le catture sia del bianco che del nero, attraverso i relativi caratteri nella codifica Unicode, nel seguente modo:
-    <code>
-    - [♟, ♟, ♟]
-    - [♗, ♕, ♘, ♖]
-    </code>
+    
+    <code> [♟, ♟, ♟] </code> <br>
+    <code> [♗, ♕, ♘, ♖] </code> <br>
+    
 
 - [Muovere un Cavallo](https://github.com/softeng1920-inf-uniba/progetto1920-lecun/issues/101)
 
