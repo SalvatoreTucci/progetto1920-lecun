@@ -111,8 +111,10 @@ public final class Move {
 	}
 
 	public void setCastling(final Castling newCastling) {
+		if (newCastling != null) {
 
-		typeCastling = newCastling;
+			typeCastling = newCastling;
+		}
 	}
 
 	public Castling getCastling() {
