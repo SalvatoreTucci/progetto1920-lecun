@@ -5,9 +5,9 @@
 1. [Introduzione](#Introduzione)
 2. [Modello di dominio](#Modello-di-dominio)
 3. [Requisiti specifici](#Requisiti-specifici) <br>
-<t>a. [Requisiti funzionali](#Requisiti-funzionali) <br>
+a. [Requisiti funzionali](#Requisiti-funzionali) <br>
 b. [Requisiti non funzionali](#Requisiti-non-funzionali)
-</t>
+
 4. [System Design](#System-Design)
     - [Stile architetturale adottato](#Stile-architetturale-adottato)
     - [Diagramma dei package](#Diagramma-dei-package)
