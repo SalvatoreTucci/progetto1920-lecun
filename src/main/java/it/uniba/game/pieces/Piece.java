@@ -7,7 +7,7 @@ import it.uniba.game.Constants;
 
 /**
  * Abstract class representing a generic chess piece <br>
- * Class type: Entity <br>
+ * Class type: &#60;Entity&#62; <br><br>
  * 
  * Responsibilities: <br>
  * 
@@ -28,13 +28,12 @@ import it.uniba.game.Constants;
  * 		<li>Can compute if a Piece had a target move out of bound</li>
  * 		</ul>
  * 
+ * @author LeCun group <br>
 */
 
 
+
 public abstract class Piece {
-    /*
-     * Abstract class representing a generic chess piece
-     */
 
 	/**
 	 *  Enumerated type used to represent the color of the piece
@@ -47,10 +46,28 @@ public abstract class Piece {
     }
 
     // Attributes
+
+    /**
+     * The piece's color
+     */
     private Color pieceColor;
+
+    /**
+     * The piece's distinctive symbol. Since it is the attribute on which
+     * each piece is evaluated, each piece of a specific color must have a different
+     * symbol.
+     */
     private String symbol;
 
     // Methods
+
+	/**
+	 * Constructor for the class Piece. It is applied in each sub-class constructor.
+	 * It initializes the piece's color. If <code>col==null</code> then the set color
+	 * is Color.WHITE.
+	 * 
+	 * @param col color of the piece.
+	 */
     public Piece(final Color col) {
 
     	if (col == Color.BLACK) {
@@ -73,11 +90,21 @@ public abstract class Piece {
     	symbol = sym;
     }
 
-    // will be specified in the sub-classes
+    /**
+     * Abstract method returning the list of possible starting position of a piece being moved
+     * given the Coordinates of its ending position, contained in <code>target</code>.
+     * If <code>target</code>'s ending position is out of the chessboard bounds (from (0,0)
+     * to (7,7)), then the returned list is empty.
+     * 
+     * @param target The piece's move, which starting position has to be determined.
+     * 
+     * @return A LinkedList of Coordinates of the possible starting positions
+     */
     public abstract LinkedList<Coordinates> reverseMove(Move target);
 
     /**
      * Gets the color of the piece.
+     * 
      * @return this piece's color.
      */
     public Color getColor() {
@@ -88,6 +115,7 @@ public abstract class Piece {
 
     /**
      * Piece class' toString method
+     * 
      * @return A string containing the piece's symbol, assuming it is different
      * 		   for each color.
      */

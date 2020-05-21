@@ -7,7 +7,7 @@ import it.uniba.game.Coordinates;
 
 /**
  * Subclass of Piece representing the Knight <br>
- * Class type: Entity <br>
+ * Class type: &#60;Entity&#62; <br><br>
  * 
  * Responsibilities: <br>
  * 
@@ -24,10 +24,20 @@ import it.uniba.game.Coordinates;
  * 			target position</li>
  * 		</ul>
  * 
+ * @author LeCun group <br>
 */
+
+
+
 public final class Knight extends Piece {
 
-	// Constructor
+	/**
+	 * Constructor for the class Knight. It initializes the piece's color and symbol.
+	 * If <code>col==null</code> then the set color is Color.WHITE and the symbol
+	 * is Constants.W_KNIGHT
+	 * .
+	 * @param col color of the piece.
+	 */
 	public Knight(final Color col) {
 
 		super(col);
@@ -42,13 +52,30 @@ public final class Knight extends Piece {
 
 	}
 
-
+	/**
+	 * Wrapper method for the class method <i>reverseKnightMove</i>.
+	 * 
+	 * @param target The move of a knight, which starting position has to be determined.
+	 * 
+	 * @return A LinkedList of possible starting Coordinates of a knight.
+	 * 
+	 */
 	public LinkedList<Coordinates> reverseMove(final Move target) {
 
 		return reverseKnightMove(target);
 	}
 
-
+	/**
+	 * Method returning all the possible starting position of a knight on a chessboard
+	 * given the ending position in a List. If the ending position exceeds the bounds of the
+	 * chessboard (from (0,0) to (7,7)), the returned list is empty. The method assumes
+	 * that <code>target</code> is a knight move.
+	 * 
+	 * @param target The move of a knight, which starting position has to be determined.
+	 * 
+	 * @return A LinkedList of possible starting Coordinates of a knight.
+	 * 
+	 */
 	public static LinkedList<Coordinates> reverseKnightMove(final Move target) {
 
 		LinkedList<Coordinates> possibleSquares = new LinkedList<Coordinates>();

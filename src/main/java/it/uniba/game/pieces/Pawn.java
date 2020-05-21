@@ -6,10 +6,9 @@ import it.uniba.game.Constants;
 import it.uniba.game.Coordinates;
 import it.uniba.game.Move;
 
-
 /**
  * Subclass of Piece representing the Pawn <br>
- * Class type: Entity
+ * Class type: &#60;Entity&#62; <br><br>
  * 
  * Responsibilities: <br>
  * 
@@ -17,7 +16,7 @@ import it.uniba.game.Move;
  * 		<ul>
  * 		<li>The symbol (and so the color) of the instance of
  * 			the Pawn</li>
- * 		<li>If it's possible to do the En Passant move
+ * 		<li>If it's possible to do the <i>En Passant</i> move
  * 			on an instance of a Pawn</li>
  * 		</ul>
  * 
@@ -28,11 +27,21 @@ import it.uniba.game.Move;
  * 			target position</li>
  * 		</ul>
  * 
+ * @author LeCun group <br>
 */
+
+
+
 public final class Pawn extends Piece {
 
 
-	// Constructor
+	/**
+	 * Constructor for the class Pawn. It initializes the piece's color and symbol,
+	 * If <code>col==null</code> then the set color is Color.WHITE and the symbol
+	 * is Constants.W_PAWN.
+	 * 
+	 * @param col color of the piece.
+	 */
 	public Pawn(final Color col) {
 
 		super(col);
@@ -47,6 +56,17 @@ public final class Pawn extends Piece {
 
 	}
 
+	/**
+	 * Method returning all the possible starting position of a pawn on a chessboard
+	 * given the ending position in a List. If the ending position exceeds the bounds of the
+	 * chessboard (from (0,0) to (7,7)), the returned list is empty. The method assumes
+	 * that <code>target</code> is a pawn move. Also it checks if the move is a capture or not.
+	 * 
+	 * @param target The move of a pawn, which starting position has to be determined.
+	 * 
+	 * @return A LinkedList of possible starting Coordinates of a pawn.
+	 * 
+	 */
 	public LinkedList<Coordinates> reverseMove(final Move target) {
 
 		LinkedList<Coordinates> startingPos = new LinkedList<Coordinates>();
