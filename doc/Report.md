@@ -384,6 +384,62 @@ Di seguito sono riportati i requisiti funzionali (in ordine cronologico rispetto
 
 # Processo di sviluppo e organizzazione del lavoro
 
+- ## Processo di sviluppo
+    Il processo di sviluppo di questa applicazione è avvenuto in modo iterativo ed incrementale,
+    secondo il modello [Scrum](https://it.wikipedia.org/wiki/Scrum_%28informatica%29), prevedendo quattro Sprint separati, ciascuno dei quali avente uno <b>Sprint Goal</b>.
+
+
+- ## Piattaforma adottata
+    Il nostro gruppo ha adottato, per conferenze e condivisione dello schermo, la piattaforma
+    <b>[Discord](https://discord.com/) </b>, perché permette di effettuare conferenze di qualità audio e video alta e di effettuare l'upload di files. <br>
+    Abbiamo deciso di rimanere in conferenza per tutta la durata delle sessioni di lavoro, come se fossimo nella stessa stanza e potessimo liberalmente alzarci per controllare ciò che stanno facendo i colleghi. <br>
+
+<center><img src =  "./drawings/nonuml/esempio_schermata.png"></center>
+
+- ## WorkFlow utilizzato
+    E' stato adottato il <b>GitHub Flow</b>:
+    ogni issue è stata creata in base ai compiti assegnati per ogni sprint, tale issue
+    veniva:
+    - assegnata ad un membro del team se non ulteriormente decomponibile;
+    - suddivisa in issue minori se il task da completare era particolarmente complesso;
+    - assegnata a coppie per il pair programming se il task era mediamente complesso o serviva
+    particolare attenzione e/o ragionamento;
+    - assegnata a tutti per motivi quali complessità di realizzazione o necessità di pareri espressi esplicitamente.
+
+- ## Suddivisione dei compiti
+    Fin dalla creazione del gruppo la divisione dei compiti da svolgere è stata effettuata con l'obiettivo di essere quanto più equi ed onesti possibile. <br>
+    In particolare durante gli scrum meetings giornalieri tenuti durante i primi dieci-quindici minuti abbiamo ripartito i task delle issue tra i membri, in modo da allocare i compiti in base alle seguenti caratteristiche di ogni membro:
+    - lavoro svolto durante le giornate precedenti;
+    - lavoro ancora da svolgere per soddisfare il definition of done;
+    - propensione di uno o più componenti del gruppo nei confronti della risoluzione di un determinato task;
+    Giornalmente venivano anche stabilite le priorità dei task da portare a termine. <br>
+    Il lavoro è stato suddiviso anche dandosi delle deadlines con cadenza settimanale, in base
+    a ciò che era stato assegnato per ogni milestone. <br>
+
+
+- ## Pair programming e revisione
+    Per tasks più o meno grandi, la scelta delle coppie per il pair programming è stata effettuata cercando di non mantenere sempre gli stessi membri, ma scegliendo di lavorare formando tutte le sei combinazioni, riportando nelle pull request e nelle issues tale suddivisione. <br>
+    Per via di questa organizzazione è capitato più di una volta che qualcuno finisse prima degli altri, in tal caso chi doveva ancora completare la issue, avviava la condivisione dello schermo per poter ricevere assistenza, in ogni momento, da chi aveva già completato i suoi tasks. <br>
+    Anche il lavoro di revisione è stato effettuato subito dopo il completamento di ogni task
+    tramite condivisione schermo e/o commentando la pull request per tenere traccia dei punti salienti della discussione. <br>
+
+
+- ## Uso delle boards
+    La board in stile kamban ci ha aiutati per quanto riguarda il recupero del lavoro 
+    quando un task non veniva portato a termine entro la giornata stessa. <br> Tale board, fornita da <b>GitHub</b> è stata popolata con i vari issues, che sotto forma di <i>cards</i> possono essere posti su <i>5</i> colonne:
+    - <b>TO DO</b> dove finivano automaticamente le issue appena create, da svolgere;
+    - <b>IN PROGRESS</b> dove si trovavano issue su cui qualcuno sta lavorando;
+    - <b>REVIEW</b> dove venivano collocate le issues da revisionare dai componenti del team;
+    - <b>READY</b> dove si posizionavano le issues da revisionare da parte dei docenti;
+    - <b>DONE</b> dove si aggiungevano le issues portate a termine e ufficialmente chiusi;
+
+    E' stata creata una [project board di progetto](https://github.com/softeng1920-inf-uniba/progetto1920-lecun/projects/3) (per le user stories) e le seguenti sprint boards:
+    - [Sprint 0](https://github.com/softeng1920-inf-uniba/progetto1920-lecun/projects/1) 
+    - [Sprint 1](https://github.com/softeng1920-inf-uniba/progetto1920-lecun/projects/2) 
+    - [Sprint 2](https://github.com/softeng1920-inf-uniba/progetto1920-lecun/projects/4) 
+    - [Sprint 3](https://github.com/softeng1920-inf-uniba/progetto1920-lecun/projects/5)
+
+
  <br><br>
 
 [Torna all'indice](#Indice)
