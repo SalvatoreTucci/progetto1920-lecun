@@ -361,11 +361,34 @@ Di seguito sono riportati i requisiti funzionali (in ordine cronologico rispetto
 
 ## Design pattern
 
+Nel progetto sono stati applicati i seguenti Design Pattern appartenenti al paradigma orientato
+agli oggetti:
+- Singleton (pattern di creazione)
+- Chain of Responsabilities (pattern comportamentale)
 
+Il pattern di creazione **Singleton** è stato applicato nella classe `UI`. Questa scelta è stata
+fatta poiché a livello implementativo è necessaria la presenza di una sola istanza di essa che
+interagirà con l'utente.
+
+Il pattern comportamentale **Chain of Responsabilities** è invece utilizzato per garantire un
+basso accoppiamento fra classi, assegnando ad ogni classe una particolare responsabilità nella
+gestione di una richiesta da parte di un giocatore. Un esempio può essere ritrovato nel
+diagramma di sequenza associato alla user story "Mostrare la scacchiera": a conoscere la
+modalità di richiesta di visualizzazione della scacchiera è solo `UI`, che a sua volta 
+presenterà l'output del metodo `getPrintableChessBoard()` fornito dall'istanza della classe 
+`Match`.
 
 ## Commenti
 
- <br><br>
+Lo sviluppo dell'applicazione è partito da una sessione di *forward engineering*, che ha definito
+la sua struttura iniziale. Ogni componente del team ha collaborato all'ideazione di questa 
+bozza di progetto, che durante lo sviluppo ha ovviamente subìto cambiamenti, dovuti alle
+necessità emerse in corso d'opera.
+
+### Diagramma delle classi con prospettiva software (bozza effettuata in forward engineering)
+<center><img src = "./drawings/diagramma_classi_bozza.png"></center>
+
+<br><br>
 
 [Torna all'indice](#Indice)
 
