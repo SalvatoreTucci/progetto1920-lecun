@@ -35,7 +35,7 @@ import java.util.regex.Pattern;
 *		<li>Updates the status of Pawns, Rooks and Kings in order to say if the former can be
 *		captured "en passant", or the latter can execute Castling</li>
 *		<li>Records the captures done by the players</li>
-*		<li>Can update the current player</li>
+*		<li>Updates the color of the current player according to the flow of the game</li>
 * 		</ul>
 *
 * @author LeCun group
@@ -100,7 +100,7 @@ public final class Match {
 	}
 
 	/**
-	 * Method used to execute a move entered by a player.
+	 * Method used to execute a move entered by a player.<br>
 	 * It checks whether the passed move is a castling, a normal move
 	 * or a capture. If a move is legal, it will be added to the history
 	 * of the moves, if it is a capture, the captured piece will be added
