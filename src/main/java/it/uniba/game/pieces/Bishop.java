@@ -7,7 +7,7 @@ import it.uniba.game.Move;
 
 /**
  * Subclass of Piece representing the Bishop <br>
- * Class type: &#60;Entity&#62; <br><br>
+ * Class type: &#60; Entity &#62; <br><br>
  * 
  * Responsibilities: <br>
  * 
@@ -58,7 +58,6 @@ public final class Bishop extends Piece {
 	 * @param target The move of a bishop, which starting position has to be determined.
 	 * 
 	 * @return A LinkedList of possible starting Coordinates of a bishop.
-	 * 
 	 */
 	public LinkedList<Coordinates> reverseMove(final Move target) {
 
@@ -74,7 +73,6 @@ public final class Bishop extends Piece {
 	 * @param target The move of a bishop, which starting position has to be determined.
 	 * 
 	 * @return A LinkedList of possible starting Coordinates of a bishop.
-	 * 
 	 */
 	public static LinkedList<Coordinates> reverseBishopMove(final Move target) {
 
@@ -93,7 +91,6 @@ public final class Bishop extends Piece {
 			possibleSquares.add(new Coordinates(j, i));
 			j++;
 			i++;
-
 		}
 
 		i = target.getEndingPos().getRow() + Constants.LEFT_DIRECTION;
@@ -104,7 +101,6 @@ public final class Bishop extends Piece {
 			possibleSquares.add(new Coordinates(j, i));
 			j--;
 			i--;
-
 		}
 
 		i = target.getEndingPos().getRow() + Constants.RIGHT_DIRECTION;
@@ -115,7 +111,6 @@ public final class Bishop extends Piece {
 			possibleSquares.add(new Coordinates(j, i));
 			j--;
 			i++;
-
 		}
 
 		i = target.getEndingPos().getRow() + Constants.LEFT_DIRECTION;
@@ -126,9 +121,7 @@ public final class Bishop extends Piece {
 			possibleSquares.add(new Coordinates(j, i));
 			j++;
 			i--;
-
 		}
-
 
 		return possibleSquares;
 	}

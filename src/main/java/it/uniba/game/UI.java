@@ -26,21 +26,30 @@ import it.uniba.game.pieces.Piece;
  * 
  * @author LeCun group <br>
  */
+
+
+
 public final class UI {
 
 	/**
-	 * currentMatch, is the ongoing match, if there is no match ongoing, it is null.
-	 * quitGame is true if the application needs to be closed, false otherwise.
-	 * SINGLETON is the unique instance of the class UI.
+	 * It is the ongoing match, if there is no match ongoing, it is null.
 	 */
 	private Match currentMatch;
+
+	/**
+	 * True if the application needs to be closed, false otherwise.
+	 */
 	private boolean quitGame;
+
+	/**
+	 * It is the unique instance of the class UI.
+	 */
 	private static final UI SINGLETON = new UI();
 
 	/**
 	 * Gets the required status of the application.
 	 * 
-	 * @return the required status of the application (true = to be closed, false = to be kept open)
+	 * @return the required status of the application (true = to be closed, false = to be kept open).
 	 */
 	public boolean getStatus() {
 
@@ -49,14 +58,14 @@ public final class UI {
 
 	/**
 	 * Private constructor, necessary in order to realize the singleton class
-	 * as the design pattern describes
+	 * as the design pattern describes.
 	 */
 	private UI() { }
 
 	/**
 	 * Gets the unique instance of the class UI.
 	 * 
-	 * @return the singleton class
+	 * @return the singleton class.
 	 */
 	public static UI getUI() {
 
@@ -64,7 +73,7 @@ public final class UI {
 	}
 
 	/**
-	 * Parses the command read from the keyboard and executes the correspondent routine
+	 * Parses the command read from the keyboard and executes the correspondent routine.
 	 * 
 	 * @param toParse the command inputed by the user that needs to be parsed.
 	 */
@@ -134,7 +143,7 @@ public final class UI {
 
 	/**
 	 * triggered by the command "play", print a welcome message
-	 * and inits the currentMatch variable
+	 * and inits the currentMatch variable.
 	 */
 	private void startGame() {
 
@@ -161,8 +170,8 @@ public final class UI {
 	 * @param question the question that needs to be printed.
 	 * @return a boolean:
 	 * <ul>
-	 * 	<li> true, if the user answers yes to the question
-	 *  <li> false, otherwise
+	 * 	<li> true, if the user answers yes to the question;
+	 *  <li> false, otherwise;
 	 * </ul>
 	 */
 	@SuppressWarnings("resource")

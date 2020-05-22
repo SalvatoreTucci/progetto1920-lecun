@@ -7,7 +7,7 @@ import it.uniba.game.Move;
 
 /**
  * Subclass of Piece representing the King <br>
- * Class type: &#60;Entity&#62; <br><br>
+ * Class type: &#60; Entity &#62; <br><br>
  * 
  * Responsibilities: <br>
  * 
@@ -98,20 +98,17 @@ public final class King extends Piece {
 				}
 
 				possibleSquares.add(new Coordinates(endColumn + j, endRow + i));
-
 			}
 
 		}
 
-
 		return possibleSquares;
-
 	}
 
 	/**
 	 * Method returning the status of a king piece.
 	 * 
-	 * @return true if the king has been moved, false otherwise
+	 * @return true if the king has been moved, false otherwise.
 	 */
 	public boolean isMoved() {
 
@@ -122,7 +119,7 @@ public final class King extends Piece {
 	 * Method setting the status of a king piece.
 	 * 
 	 * @param hasMoved boolean indicating whether the king has been moved (true) or not (false)
-	 * 		  for the first time, to set
+	 * 		  for the first time, to set.
 	 */
 	public void setMoved(final boolean hasMoved) {
 

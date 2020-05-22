@@ -33,13 +33,16 @@ import java.util.regex.Pattern;
 *		<li>Checks whether the established move is legal and not ambiguous</li>
 *		<li>Executes the move, if legal</li>
 *		<li>Updates the status of Pawns, Rooks and Kings in order to say if the former can be
-*		captured "en passant", or the latter can execute Castling</li>
+*		captured <i>en passant</i>, or the latter can execute Castling</li>
 *		<li>Records the captures done by the players</li>
 *		<li>Updates the color of the current player according to the flow of the game</li>
 * 		</ul>
 *
 * @author LeCun group
 */
+
+
+
 public final class Match {
 
 	/**
@@ -108,8 +111,9 @@ public final class Match {
 	 * to the list of captures. Eventually, it will flag the rooks and the
 	 * king as "moved" (not capable of a castling).
 	 * 
-	 * @param toParse Player move represented as a string
-	 * @throws MatchException Raised if the user tries to enter an irregular or incorrect move
+	 * @param toParse Player move represented as a string.
+	 * 
+	 * @throws MatchException Raised if the user tries to enter an irregular or incorrect move.
 	 */
 	public void inputMove(final String toParse) throws MatchException {
 
@@ -230,7 +234,7 @@ public final class Match {
 	 * Then, it takes the captured piece from the chessboard with the ending coordinate and
 	 * adds it into the correct list of captured pieces.
 	 * 
-	 * @param captureMove move that triggers a capture
+	 * @param captureMove move that triggers a capture.
 	 */
 	private void insertCapture(final Move captureMove) {
 		Coordinates endingSquare;
@@ -266,6 +270,7 @@ public final class Match {
 	 * Return a string that contains the pieces captured by the side's color.
 	 * 
 	 * @param side Color of the player we want the captures.
+	 * 
 	 * @return a string that contains the pieces captured by the side's color.
 	 */
 	public String getPrintableCaptures(final Piece.Color side) {
@@ -284,6 +289,7 @@ public final class Match {
 	 *  	<li> e3, b6
 	 *		<li> c4, f6
 	 *	</ol>
+	 *
 	 *	@return a string that contains the move history.
 	 */
 	public String getPrintableMoves() {
@@ -335,7 +341,7 @@ public final class Match {
 
 	/**
 	 * If the current player color is black, it changes currentPlayer to the color WHITE
-	 * else, it changes currentPlayer to the color BLACK
+	 * else, it changes currentPlayer to the color BLACK.
 	 */
 	public void nextTurn() {
 
@@ -353,9 +359,11 @@ public final class Match {
 	 * the general form for a recognized move is: <br>
 	 * [Piece][Disambiguation coordinate][Capture][Landing square column][Landing square row].
 	 * 
-	 * @param toParse a string containing the move to be parsed
-	 * @throws MatchExcption Raised if the move represented as string is badly formatted
-	 * @return an instance of the class Move
+	 * @param toParse a string containing the move to be parsed.
+	 * 
+	 * @return an instance of the class Move.
+	 * 
+	 * @throws MatchExcption Raised if the move represented as string is badly formatted.
 	 */
 	private Move parseMove(final String toParse) throws MatchException {
 
@@ -474,7 +482,8 @@ public final class Match {
 	 * Sets the starting position of the move passed by argument, checking
 	 * the possible coordinates that return the reverseMove of the piece to move.
 	 * 
-	 * @param toMove move that needs a starting position
+	 * @param toMove move that needs a starting position.
+	 * 
 	 * @throws MatchException if the move is illegal, irregular or ambiguous, with a specific message.
 	 */
 	private void findToMove(final Move toMove) throws MatchException {
@@ -574,6 +583,7 @@ public final class Match {
 	 * 
 	 * @param startingPos coordinate from which to start looking for pieces.
 	 * @param endingPos coordinate in which to stop the search for pieces.
+	 * 
 	 * @return a list of pieces that are between the startingPos and the endingPos.
 	 */
 	private LinkedList<Piece> getObstructingPieces(final Coordinates startingPos, final Coordinates endingPos) {
@@ -625,6 +635,7 @@ public final class Match {
 	 * 
 	 * @param possibleSquares list of possible starting coordinates for the move toMove.
 	 * @param toMove the move that needs a starting coordinate.
+	 * 
 	 * @throws MatchException if the move is illegal or irregular, or if the list of possible
 	 * starting positions, at the end of the function, has more of one coordinate.
 	 */
@@ -673,9 +684,10 @@ public final class Match {
 	 * Updates the attribute <code>lastPawnMove</code> if the pawn
 	 * does a long move.
 	 * 
-	 * @param toMove Move parsed from the string entered by the user
-	 * @param possibleSquares Possible starting squares from where the pawn can be positioned
-	 * @throws MatchException Raised if the move is not legal
+	 * @param toMove Move parsed from the string entered by the user.
+	 * @param possibleSquares Possible starting squares from where the pawn can be positioned.
+	 * 
+	 * @throws MatchException Raised if the move is not legal.
 	 */
 	private void handlePawn(final Move toMove,
 			final LinkedList<Coordinates> possibleSquares) throws MatchException {
@@ -752,10 +764,11 @@ public final class Match {
 
 	/**
 	 * Checks if the king is threatened by a move of its own
-	 * (the move is irregular)
+	 * (the move is irregular).
 	 * 
-	 * @param toMove King move to be checked
-	 * @return Returns True if the king is threatened after the move execution, false if otherwise
+	 * @param toMove King move to be checked.
+	 * 
+	 * @return Returns True if the king is threatened after the move execution, false if otherwise.
 	 */
 	private Boolean checkKingThreat(final Move toMove) {
 
@@ -877,8 +890,9 @@ public final class Match {
 	 * Checks if the executed castling is possible, if so
 	 * executes it.
 	 * 
-	 * @param castlingType Type of the castling entered by the user
-	 * @throws MatchException Raised if the castling is not possible
+	 * @param castlingType Type of the castling entered by the user.
+	 * 
+	 * @throws MatchException Raised if the castling is not possible.
 	 */
 	private void handleCastling(final Move.Castling castlingType) throws MatchException {
 

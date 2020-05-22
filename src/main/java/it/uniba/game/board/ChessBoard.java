@@ -32,13 +32,15 @@ import it.uniba.game.pieces.Piece;
  *
  * @author LeCun group
  */
+
+
+
 public final class ChessBoard {
-	// Class used for represents the chessboard
 
 	private Square[][] elements;
 
 	/**
-	 * Constructor for the class ChessBoard
+	 * Constructor for the class ChessBoard.
 	 * 
 	 * Inizialize the ChessBoard at the initial state of a classic chess match.
 	 */
@@ -106,8 +108,9 @@ public final class ChessBoard {
 	}
 
 	/**
-	 * ChessBoard class' toString method
-	 * @return A string containing the current state of the ChessBoard
+	 * ChessBoard class' toString method.
+	 * 
+	 * @return A string containing the current state of the ChessBoard.
 	 */
 	public String toString() {
 
@@ -152,7 +155,7 @@ public final class ChessBoard {
 	/**
 	 * Method that executes the move passed by parameter on the ChessBoard.
 	 * 
-	 * @param currentMove the move to execute on the ChessBoard
+	 * @param currentMove the move to execute on the ChessBoard.
 	 */
 	public void setMove(final Move currentMove) {
 
@@ -179,8 +182,10 @@ public final class ChessBoard {
 	}
 
 	/**
+	 * Getter method for a Square in the ChessBoard, with a coordinate.
 	 * 
 	 * @param coord The coordinates from where we want to recover a Square.
+	 * 
 	 * @return the Square at the coordinates passed by argument on the ChessBoard.
 	 */
 	public Square getSquare(final Coordinates coord) {

@@ -15,20 +15,24 @@ package it.uniba.game;
 *
 * @author LeCun group
 */
+
+
+
 public final class Coordinates {
 
 	/**
-	 * <code>row</code> holds the value of the vertical coordinate
+	 * <code>row</code> holds the value of the vertical coordinate.
 	 */
     private int row;
 
     /**
-	 * <code>column</code> holds the value of the horizontal coordinate
+	 * <code>column</code> holds the value of the horizontal coordinate.
 	 */
     private int column;
 
     /**
      * Constructor for the class Coordinates
+     * 
      * @param x value set to the <code>column</code> attribute
      * @param y value set to the <code>row</code> attribute
      */
@@ -39,8 +43,9 @@ public final class Coordinates {
     }
 
     /**
+     * Getter method for the attribute row.
      *
-     * @return the value of the row in the coordinate
+     * @return the value of the row in the coordinate.
      */
     public int getRow() {
 
@@ -48,8 +53,9 @@ public final class Coordinates {
     }
 
     /**
+     * Getter method for the attribute column.
      * 
-     * @return the value of the column in the coordinate
+     * @return the value of the column in the coordinate.
      */
     public int getColumn() {
 
@@ -57,8 +63,9 @@ public final class Coordinates {
     }
 
     /**
-     * Sets the value of the row
-     * @param y value set as the row in the coordinate
+     * Sets the value of the row.
+     * 
+     * @param y value set as the row in the coordinate.
      */
     public void setRow(final int y) {
 
@@ -66,8 +73,9 @@ public final class Coordinates {
     }
 
     /**
-     * Sets the value of the column
-     * @param x value set as the column in the coordinate
+     * Sets the value of the column.
+     * 
+     * @param x value set as the column in the coordinate.
      */
     public void setColumn(final int x) {
 
@@ -75,7 +83,9 @@ public final class Coordinates {
     }
 
     /**
-     * Returns a string representing the coordinate, in the format (column, row)
+     * toString Override for the class Coordinates.
+     * 
+     * @return a string representing the coordinate, in the format (column, row).
      */
     @Override
     public String toString() {
@@ -84,9 +94,10 @@ public final class Coordinates {
     }
 
     /**
-     * Compares the values of two coordinates
-     * @param toCheck object to compare to the coordinate
-     * @return true if the two coordinates are equal, false if otherwise
+     * Compares the values of two coordinates.
+     * 
+     * @param toCheck object to compare to the coordinate.
+     * @return true if the two coordinates are equal, false if otherwise.
      */
     @Override
     public boolean equals(final Object toCheck) {
@@ -99,7 +110,9 @@ public final class Coordinates {
     /**
      * hashCode override's definition
      * it will be not implemented for now, but it must be written in
-     * order to conform the style as required
+     * order to conform the style as required.
+     * 
+     * @return Constants.INVALID_HASHCODE
      */
     @Override
     public int hashCode() {
