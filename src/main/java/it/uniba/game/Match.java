@@ -101,6 +101,7 @@ public final class Match {
 
 	/**
 	 * Method used to execute a move entered by a player.<br>
+	 * The move must be entered in correct Italian algebraic notation.
 	 * It checks whether the passed move is a castling, a normal move
 	 * or a capture. If a move is legal, it will be added to the history
 	 * of the moves, if it is a capture, the captured piece will be added
