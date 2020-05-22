@@ -13,7 +13,7 @@ import it.uniba.game.pieces.King;
 import it.uniba.game.pieces.Piece;
 import it.uniba.game.Constants;
 
-public class KingTest {
+class KingTest {
 	
 	private final King testKing = new King(Piece.Color.WHITE);
 
@@ -30,7 +30,7 @@ public class KingTest {
 	}
 	
 	@Test
-	public void reverseMoveCorrectCentralTest() {		
+	void reverseMoveCorrectCentralTest() {		
 		
 		Object[] reverseMoveResult = testKing.reverseMove(new Move(testKing,
 				Constants.EMPTY_COORD,
@@ -51,7 +51,7 @@ public class KingTest {
 	}
 	
 	@Test
-	public void reverseMoveTopLeftCornerTest() {
+	void reverseMoveTopLeftCornerTest() {
 		
 		Object[] reverseMoveResult = testKing.reverseMove(new Move(testKing,
 				Constants.EMPTY_COORD,
@@ -67,7 +67,7 @@ public class KingTest {
 	}
 	
 	@Test
-	public void reverseMoveTopRightCornerTest() {
+	void reverseMoveTopRightCornerTest() {
 		
 		Object[] reverseMoveResult = testKing.reverseMove(new Move(testKing,
 				Constants.EMPTY_COORD,
@@ -83,7 +83,7 @@ public class KingTest {
 	}
 	
 	@Test
-	public void reverseMoveBottomRightCornerTest() {	
+	void reverseMoveBottomRightCornerTest() {	
 		
 		Object[] reverseMoveResult = testKing.reverseMove(new Move(testKing,
 				Constants.EMPTY_COORD,
@@ -99,7 +99,7 @@ public class KingTest {
 	}
 	
 	@Test
-	public void reverseMoveBottomLeftCornerTest() {	
+	void reverseMoveBottomLeftCornerTest() {	
 		
 		Object[] reverseMoveResult = testKing.reverseMove(new Move(testKing,
 				Constants.EMPTY_COORD,
@@ -115,7 +115,7 @@ public class KingTest {
 	}
 	
 	@Test
-	public void reverseMoveOutOfBoundRowTest() {
+	void reverseMoveOutOfBoundRowTest() {
 		
 		assertTrue(testKing.reverseMove(new Move(testKing,
 				Constants.EMPTY_COORD,
@@ -123,7 +123,7 @@ public class KingTest {
 	}
 	
 	@Test
-	public void reverseMoveOutOfBoundColumnTest() {	
+	void reverseMoveOutOfBoundColumnTest() {	
 		
 		assertTrue(testKing.reverseMove(new Move(testKing,
 				Constants.EMPTY_COORD,
@@ -132,7 +132,7 @@ public class KingTest {
 
 	
 	@Test
-	public void reverseMoveOutOfBoundBothTest() {
+	void reverseMoveOutOfBoundBothTest() {
 		
 		assertTrue(testKing.reverseMove(new Move(testKing,
 				Constants.EMPTY_COORD,
@@ -140,13 +140,13 @@ public class KingTest {
 	}
 	
 	@Test
-	public void reverseMoveNullMoveTest() {	
+	void reverseMoveNullMoveTest() {	
 		
 		assertThrows(NullPointerException.class, () ->testKing.reverseMove(null));
 	}
 	
 	@Test
-	public void reverseMoveNullPieceTest() {
+	void reverseMoveNullPieceTest() {
 		
 		Object[] reverseMoveResult = testKing.reverseMove(new Move(null,
 				Constants.EMPTY_COORD,
@@ -166,7 +166,7 @@ public class KingTest {
 	}
 	
 	@Test
-	public void reverseMoveNullStartTest() {
+	void reverseMoveNullStartTest() {
 		
 		Object[] reverseMoveResult = testKing.reverseMove(new Move(testKing,
 				null,
@@ -186,7 +186,7 @@ public class KingTest {
 	}
 	
 	@Test
-	public void reverseMoveEndMoveTest() {
+	void reverseMoveEndMoveTest() {
 		
 		assertThrows(NullPointerException.class, () ->testKing.reverseMove(new Move(testKing,
 				Constants.EMPTY_COORD,
@@ -194,13 +194,13 @@ public class KingTest {
 	}
 	
 	@Test
-	public void isMovedTest() {
+	void isMovedTest() {
 		
 		assertFalse(new King(Piece.Color.BLACK).isMoved());
 	}
 	
 	@Test
-	public void setMovedTrueTest() {
+	void setMovedTrueTest() {
 		
 		King movedKing = new King(Piece.Color.BLACK);
 		movedKing.setMoved(true);

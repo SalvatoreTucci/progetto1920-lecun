@@ -16,19 +16,19 @@ import it.uniba.game.Constants;
 import it.uniba.game.Coordinates;
 import it.uniba.game.Move;
 
-public class ChessBoardTest {
+class ChessBoardTest {
 	
 	private ChessBoard cb;
 	private final Pawn dummyPiece = new Pawn(Color.WHITE);
 	
 	@BeforeEach
-	public void chessBoardInit() {
+	void chessBoardInit() {
 		
 		cb = new ChessBoard(); 
 	}
 	
 	@Test
-	public void setMoveCorrectTest() {
+	void setMoveCorrectTest() {
 		
 		Coordinates start = new Coordinates(0, Constants.WHITE_PAWN_ROW);
 		Coordinates end = new Coordinates(0, 5); 
@@ -42,13 +42,13 @@ public class ChessBoardTest {
 	
 	
 	@Test
-	public void setMoveMoveNullTest() {
+	void setMoveMoveNullTest() {
 
 		assertThrows(NullPointerException.class,() -> cb.setMove(null));
 	}
 	
 	@Test
-	public void setMovePieceNullTest() {
+	void setMovePieceNullTest() {
 		
 		Coordinates start = new Coordinates(1, Constants.WHITE_PAWN_ROW);
 		Coordinates end = new Coordinates(1, 5); 
@@ -61,7 +61,7 @@ public class ChessBoardTest {
 	}
 	
 	@Test
-	public void setMoveStartNullTest() {
+	void setMoveStartNullTest() {
 		
 		Coordinates end = new Coordinates(0, 5); 
 		
@@ -70,7 +70,7 @@ public class ChessBoardTest {
 	}
 	
 	@Test
-	public void setMoveEndNullTest() {
+	void setMoveEndNullTest() {
 		
 		Coordinates start = new Coordinates(4, Constants.WHITE_PAWN_ROW); 
 
@@ -79,7 +79,7 @@ public class ChessBoardTest {
 	}
 	
 	@Test
-	public void setMoveWrongStartColumnTest() {
+	void setMoveWrongStartColumnTest() {
 		
 		Coordinates start = new Coordinates(-1, Constants.WHITE_PAWN_ROW);
 		Coordinates end = new Coordinates(0, 5); 
@@ -89,7 +89,7 @@ public class ChessBoardTest {
 	}
 	
 	@Test
-	public void setMoveWrongStartRowTest() {
+	void setMoveWrongStartRowTest() {
 		
 		Coordinates start = new Coordinates(0, 8);
 		Coordinates end = new Coordinates(0, 5); 
@@ -99,7 +99,7 @@ public class ChessBoardTest {
 	}
 	
 	@Test
-	public void setMoveWrongStartBothTest() {
+	void setMoveWrongStartBothTest() {
 		
 		Coordinates start = new Coordinates(8, -1);
 		Coordinates end = new Coordinates(0, 5); 
@@ -109,7 +109,7 @@ public class ChessBoardTest {
 	}
 	
 	@Test
-	public void setMoveWrongEndRowTest() {
+	void setMoveWrongEndRowTest() {
 		
 		Coordinates start = new Coordinates(0, Constants.WHITE_PAWN_ROW);
 		Coordinates end = new Coordinates(7, 8); 
@@ -119,7 +119,7 @@ public class ChessBoardTest {
 	}
 	
 	@Test
-	public void setMoveWrongEndColumnTest() {
+	void setMoveWrongEndColumnTest() {
 		
 		Coordinates start = new Coordinates(0, 7);
 		Coordinates end = new Coordinates(-1, 7); 
@@ -129,7 +129,7 @@ public class ChessBoardTest {
 	}
 	
 	@Test
-	public void setMoveWrongEndBothTest() {
+	void setMoveWrongEndBothTest() {
 		
 		Coordinates start = new Coordinates(0, Constants.WHITE_PAWN_ROW);
 		Coordinates end = new Coordinates(8, -1); 
@@ -138,7 +138,7 @@ public class ChessBoardTest {
 	}
 	
 	@Test
-	public void setMoveEnPassantWhiteCorrectTest() {
+	void setMoveEnPassantWhiteCorrectTest() {
 		
 		Coordinates whitePawnStart = new Coordinates(1, 3);
 		Coordinates whitePawnEnd = new Coordinates(0, 2);
@@ -159,7 +159,7 @@ public class ChessBoardTest {
 	}
 	
 	@Test
-	public void setMoveEnPassantBlackCorrectTest() {
+	void setMoveEnPassantBlackCorrectTest() {
 		
 		Coordinates blackPawnStart = new Coordinates(6, 4);
 		Coordinates blackPawnEnd = new Coordinates(7, 5);
@@ -181,7 +181,7 @@ public class ChessBoardTest {
 	}
 	
 	@Test
-	public void toStringTest() {
+	void toStringTest() {
 		String expectedChessBoard = Constants.CB_LETTERS_COORDS 
 				+ Constants.CB_FIRST_ROW 
 				+ "8 " + Constants.CB_VERTICAL_SQUARE_SYMBOL + " " +Constants.B_ROOK + " "

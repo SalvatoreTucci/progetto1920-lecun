@@ -13,7 +13,7 @@ import it.uniba.game.pieces.Piece.Color;
 import it.uniba.game.Move;
 import it.uniba.game.Constants;
 
-public class KnightTest {
+class KnightTest {
 	
 	private final Knight testKnight = new Knight(Color.WHITE);
 	
@@ -30,7 +30,7 @@ public class KnightTest {
 	}
 	
 	@Test
-	public void reverseMoveCorrectCentralTest() {
+	void reverseMoveCorrectCentralTest() {
 		
 		Move targetMove = new Move(testKnight, Constants.EMPTY_COORD, new Coordinates(3,4), false);
 		Coordinates[] possibleCoord = {
@@ -50,7 +50,7 @@ public class KnightTest {
 	}
 	
 	@Test
-	public void reverseMoveTopLeftTest() {
+	void reverseMoveTopLeftTest() {
 		
 		Move targetMove = new Move(testKnight, Constants.EMPTY_COORD, new Coordinates(0,0), false);
 		Coordinates[] possibleCoord = {
@@ -64,7 +64,7 @@ public class KnightTest {
 	}
 	
 	@Test
-	public void reverseMoveTopRightTest() {
+	void reverseMoveTopRightTest() {
 		
 		Move targetMove = new Move(testKnight, Constants.EMPTY_COORD, new Coordinates(7,0), false);
 		Coordinates[] possibleCoord = {
@@ -78,7 +78,7 @@ public class KnightTest {
 	}
 	
 	@Test
-	public void reverseMoveBottomLeftTest() {
+	void reverseMoveBottomLeftTest() {
 		
 		Move targetMove = new Move(testKnight, Constants.EMPTY_COORD, new Coordinates(0,7), false);
 		Coordinates[] possibleCoord = {
@@ -92,7 +92,7 @@ public class KnightTest {
 	}
 	
 	@Test
-	public void reverseMoveBottomRightTest() {
+	void reverseMoveBottomRightTest() {
 		
 		Move targetMove = new Move(testKnight, Constants.EMPTY_COORD, new Coordinates(7,7), false);
 		Coordinates[] possibleCoord = {
@@ -106,7 +106,7 @@ public class KnightTest {
 	}
 	
 	@Test
-	public void reverseMoveBothOutOfBoundTest() {
+	void reverseMoveBothOutOfBoundTest() {
 		
 		Move targetMove = new Move(testKnight, Constants.EMPTY_COORD, new Coordinates(8, 8), false);
 		
@@ -114,7 +114,7 @@ public class KnightTest {
 	}
 	
 	@Test
-	public void reverseMoveColOutOfBoundTest() {
+	void reverseMoveColOutOfBoundTest() {
 		
 		Move targetMove = new Move(testKnight, Constants.EMPTY_COORD, new Coordinates(8, 1), false);
 		
@@ -122,7 +122,7 @@ public class KnightTest {
 	}
 	
 	@Test
-	public void reverseMoveRowOutOfBoundTest() {
+	void reverseMoveRowOutOfBoundTest() {
 		
 		Move targetMove = new Move(testKnight, Constants.EMPTY_COORD, new Coordinates(1, 8), false);
 	
@@ -130,7 +130,7 @@ public class KnightTest {
 	}
 	
 	@Test
-	public void reverseMoveNegativeCoordTest() {
+	void reverseMoveNegativeCoordTest() {
 		
 		Move targetMove = new Move(testKnight, Constants.EMPTY_COORD, new Coordinates(-1, -1), false);
 		
@@ -138,7 +138,7 @@ public class KnightTest {
 	}
 	
 	@Test
-	public void reverseMoveInvalidPosIntMinTest() {
+	void reverseMoveInvalidPosIntMinTest() {
 		
 		Move targetMove = new Move(testKnight, Constants.EMPTY_COORD, new Coordinates(Integer.MIN_VALUE, Integer.MIN_VALUE), false);
 		
@@ -146,7 +146,7 @@ public class KnightTest {
 	}
 	
 	@Test
-	public void reverseMoveInvalidPosIntMaxTest() {
+	void reverseMoveInvalidPosIntMaxTest() {
 		
 		Move targetMove = new Move(testKnight, Constants.EMPTY_COORD, new Coordinates(Integer.MAX_VALUE, Integer.MAX_VALUE), false);
 		
@@ -154,13 +154,13 @@ public class KnightTest {
 	}
 	
 	@Test
-	public void reverseMoveNullMoveTest() {	
+	void reverseMoveNullMoveTest() {	
 
 		assertThrows(NullPointerException.class, () ->testKnight.reverseMove(null));
 	}
 
 	@Test
-	public void reverseMoveNullPieceTest() {
+	void reverseMoveNullPieceTest() {
 
 		Move targetMove = new Move(null, Constants.EMPTY_COORD, new Coordinates(3,4), false);
 		Coordinates[] possibleCoord = {
@@ -181,7 +181,7 @@ public class KnightTest {
 	}
 
 	@Test
-	public void reverseMoveNullStartTest() {
+	void reverseMoveNullStartTest() {
 
 		Move targetMove = new Move(testKnight, null, new Coordinates(3,4), false);
 		Coordinates[] possibleCoord = {
@@ -201,7 +201,7 @@ public class KnightTest {
 	}
 
 	@Test
-	public void reverseMoveEndMoveTest() {
+	void reverseMoveEndMoveTest() {
 		
 		assertThrows(NullPointerException.class, () ->testKnight.reverseMove(new Move(testKnight,
 				Constants.EMPTY_COORD,

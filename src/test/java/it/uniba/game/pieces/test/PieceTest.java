@@ -10,7 +10,7 @@ import it.uniba.game.pieces.Bishop;
 import it.uniba.game.pieces.Piece.Color;
 
 
-public class PieceTest {
+class PieceTest {
 	
 	//this is an abstract class, but some methods are public
 	//and so they have to be tested: 

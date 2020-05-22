@@ -14,18 +14,18 @@ import it.uniba.game.Match;
 import it.uniba.game.MatchException;
 import it.uniba.game.pieces.Piece.Color;
 
-public class MatchTest {
+class MatchTest {
 	
 	private Match testMatch;
 	
 	@BeforeEach
-	public void matchSetup() {
+	void matchSetup() {
 		
 		testMatch = new Match();
 	}
 
 	@Test
-	public void inputMoveWhitePawnMoveTest() {
+	void inputMoveWhitePawnMoveTest() {
 		
 		try {
 			
@@ -39,7 +39,7 @@ public class MatchTest {
 	}
 	
 	@Test
-	public void inputMoveBlackPawnMoveTest() {
+	void inputMoveBlackPawnMoveTest() {
 		
 		try {
 			
@@ -55,7 +55,7 @@ public class MatchTest {
 	}
 	
 	@Test
-	public void inputMoveWhiteKnightMoveTest() {
+	void inputMoveWhiteKnightMoveTest() {
 		
 		try {
 			
@@ -69,7 +69,7 @@ public class MatchTest {
 	}
 	
 	@Test
-	public void inputMoveBlackKnightMoveTest() {
+	void inputMoveBlackKnightMoveTest() {
 		
 		try {
 			
@@ -85,7 +85,7 @@ public class MatchTest {
 	}
 	
 	@Test
-	public void inputMoveWhiteBishopMoveTest() {
+	void inputMoveWhiteBishopMoveTest() {
 		
 		try {
 			
@@ -103,7 +103,7 @@ public class MatchTest {
 	}
 	
 	@Test
-	public void inputMoveBlackBishopMoveTest() {
+	void inputMoveBlackBishopMoveTest() {
 		
 		try {
 			
@@ -123,7 +123,7 @@ public class MatchTest {
 	}
 	
 	@Test
-	public void inputMoveWhiteRookMoveTest() {
+	void inputMoveWhiteRookMoveTest() {
 		
 		try {
 			
@@ -141,7 +141,7 @@ public class MatchTest {
 	}
 	
 	@Test
-	public void inputMoveBlackRookMoveTest() {
+	void inputMoveBlackRookMoveTest() {
 		
 		try {
 			
@@ -161,7 +161,7 @@ public class MatchTest {
 	}
 	
 	@Test
-	public void inputMoveWhiteQueenMoveTest() {
+	void inputMoveWhiteQueenMoveTest() {
 		
 		try {
 			
@@ -180,7 +180,7 @@ public class MatchTest {
 	}
 	
 	@Test
-	public void inputMoveBlackQueenMoveTest() {
+	void inputMoveBlackQueenMoveTest() {
 		
 		try {
 			
@@ -200,7 +200,7 @@ public class MatchTest {
 	}
 	
 	@Test
-	public void inputMoveWhiteKingMoveTest() {
+	void inputMoveWhiteKingMoveTest() {
 		
 		try {
 			
@@ -218,7 +218,7 @@ public class MatchTest {
 	}
 	
 	@Test
-	public void inputMoveBlackKingMoveTest() {
+	void inputMoveBlackKingMoveTest() {
 		
 		try {
 			
@@ -238,7 +238,7 @@ public class MatchTest {
 	}
 	
 	@Test
-	public void inputMoveWhiteQueenSideCastlingTest() {
+	void inputMoveWhiteQueenSideCastlingTest() {
 		
 		try {
 			
@@ -272,7 +272,7 @@ public class MatchTest {
 	}
 	
 	@Test
-	public void inputMoveWhiteQueenSideCastlingAlternativeTest() {
+	void inputMoveWhiteQueenSideCastlingAlternativeTest() {
 		
 		try {
 			
@@ -306,7 +306,7 @@ public class MatchTest {
 	}
 	
 	@Test
-	public void inputMoveWhiteKingSideCastlingTest() {
+	void inputMoveWhiteKingSideCastlingTest() {
 		
 		try {
 			
@@ -332,7 +332,7 @@ public class MatchTest {
 	}
 	
 	@Test
-	public void inputMoveWhiteKingSideCastlingAlternativeTest() {
+	void inputMoveWhiteKingSideCastlingAlternativeTest() {
 		
 		try {
 			
@@ -358,7 +358,7 @@ public class MatchTest {
 	}
 	
 	@Test
-	public void inputMoveBlackQueenSideCastlingTest() {
+	void inputMoveBlackQueenSideCastlingTest() {
 		
 		try {
 			
@@ -394,7 +394,7 @@ public class MatchTest {
 	}
 	
 	@Test
-	public void inputMoveBlackQueenSideCastlingAlternativeTest() {
+	void inputMoveBlackQueenSideCastlingAlternativeTest() {
 		
 		try {
 			
@@ -430,7 +430,7 @@ public class MatchTest {
 	}
 	
 	@Test
-	public void inputMoveBlackKingSideCastlingTest() {
+	void inputMoveBlackKingSideCastlingTest() {
 		
 		try {
 			
@@ -458,7 +458,7 @@ public class MatchTest {
 	}
 	
 	@Test
-	public void inputMoveBlackKingSideCastlingAlternativeTest() {
+	void inputMoveBlackKingSideCastlingAlternativeTest() {
 		
 		try {
 			
@@ -486,7 +486,7 @@ public class MatchTest {
 	}
 	
 	@Test
-	public void inputMoveWhiteEnPassantTest() {
+	void inputMoveWhiteEnPassantTest() {
 		
 		try {
 			
@@ -507,7 +507,7 @@ public class MatchTest {
 	}
 	
 	@Test
-	public void inputMoveWhiteEnPassantAlternativeTest() {
+	void inputMoveWhiteEnPassantAlternativeTest() {
 		
 		try {
 			
@@ -529,7 +529,7 @@ public class MatchTest {
 	}
 	
 	@Test
-	public void inputMoveBlackEnPassantTest() {
+	void inputMoveBlackEnPassantTest() {
 		
 		try {
 			
@@ -553,7 +553,7 @@ public class MatchTest {
 	}
 	
 	@Test
-	public void inputMoveBlackEnPassantAlternativeTest() {
+	void inputMoveBlackEnPassantAlternativeTest() {
 		
 		try {
 			
@@ -577,7 +577,7 @@ public class MatchTest {
 	}
 	
 	@Test
-	public void inputMoveWhitePinnedPieceTest() {
+	void inputMoveWhitePinnedPieceTest() {
 		
 		try {
 			
@@ -596,7 +596,7 @@ public class MatchTest {
 	}
 	
 	@Test
-	public void inputMoveBlackPinnedPieceTest() {
+	void inputMoveBlackPinnedPieceTest() {
 		
 		try {
 			
@@ -617,14 +617,14 @@ public class MatchTest {
 	}
 	
 	@Test
-	public void inputMoveInvalidTest() {
+	void inputMoveInvalidTest() {
 
 			String toParse = "Th8";
 			assertThrows(MatchException.class, () -> { testMatch.inputMove(toParse); });
 	}
 	
 	@Test
-	public void inputMoveWhiteInvalidKingSideCastlingTest() {
+	void inputMoveWhiteInvalidKingSideCastlingTest() {
 		
 		try {
 			
@@ -657,7 +657,7 @@ public class MatchTest {
 	}
 	
 	@Test
-	public void inputMoveWhiteInvalidQueenSideCastlingTest() {
+	void inputMoveWhiteInvalidQueenSideCastlingTest() {
 		
 		try {
 			
@@ -698,7 +698,7 @@ public class MatchTest {
 	}
 	
 	@Test
-	public void inputMoveBlackInvalidKingSideCastlingTest() {
+	void inputMoveBlackInvalidKingSideCastlingTest() {
 		
 		try {
 			
@@ -733,7 +733,7 @@ public class MatchTest {
 	}
 	
 	@Test
-	public void inputMoveBlackInvalidQueenSideCastlingTest() {
+	void inputMoveBlackInvalidQueenSideCastlingTest() {
 		
 		try {
 			
@@ -776,7 +776,7 @@ public class MatchTest {
 	}
 	
 	@Test
-	public void inputMoveThreatCastlingTest() {
+	void inputMoveThreatCastlingTest() {
 		
 		try {
 			
@@ -809,7 +809,7 @@ public class MatchTest {
 	}
 	
 	@Test
-	public void inputMoveEnPassantPinnedTest() {
+	void inputMoveEnPassantPinnedTest() {
 		
 		try {
 			
@@ -846,7 +846,7 @@ public class MatchTest {
 	}
 	
 	@Test
-	public void inputMoveFirstRookMoveThreatTest() {
+	void inputMoveFirstRookMoveThreatTest() {
 
 		try {
 			
@@ -880,7 +880,7 @@ public class MatchTest {
 	}
 	
 	@Test
-	public void inputMoveWhiteCaptureThreatTest() {
+	void inputMoveWhiteCaptureThreatTest() {
 		
 		try {
 			
@@ -904,7 +904,7 @@ public class MatchTest {
 	}
 	
 	@Test
-	public void inputMoveBlackCaptureThreatTest() {
+	void inputMoveBlackCaptureThreatTest() {
 		
 		try {
 			
@@ -926,7 +926,7 @@ public class MatchTest {
 	}
 	
 	@Test
-	public void inputMovePinnedRookFirstMoveTest() {
+	void inputMovePinnedRookFirstMoveTest() {
 		
 		try {
 			
@@ -947,7 +947,7 @@ public class MatchTest {
 	}
 	
 	@Test
-	public void inputMoveRowDisambiguationTest() {
+	void inputMoveRowDisambiguationTest() {
 		
 		try {
 			
@@ -973,14 +973,14 @@ public class MatchTest {
 	}
 	
 	@Test
-	public void inputMoveNotPawnEnPassantTest() {
+	void inputMoveNotPawnEnPassantTest() {
 		
 		String toParse = "Ca3 e.p.";
 		assertThrows(MatchException.class, () -> { testMatch.inputMove(toParse); });
 	}
 	
 	@Test
-	public void inputMoveNotCaptureEnPassantTest() {
+	void inputMoveNotCaptureEnPassantTest() {
 		
 		try {
 			
@@ -1001,7 +1001,7 @@ public class MatchTest {
 	}
 	
 	@Test
-	public void inputMovePawnCaptureNoColumnTest() {
+	void inputMovePawnCaptureNoColumnTest() {
 		
 		try {
 			
@@ -1018,14 +1018,14 @@ public class MatchTest {
 	}
 	
 	@Test
-	public void inputMoveInvalidMoveTest() {
+	void inputMoveInvalidMoveTest() {
 		
 		String toParse = "ammaccabanane";
 		assertThrows(MatchException.class, () -> { testMatch.inputMove(toParse); });
 	}
 	
 	@Test
-	public void inputMovePawnNoPieceToCaptureTest() {
+	void inputMovePawnNoPieceToCaptureTest() {
 		
 		try {
 		
@@ -1042,7 +1042,7 @@ public class MatchTest {
 	}
 	
 	@Test
-	public void inputMovePawnSameColorCaptureTest() {
+	void inputMovePawnSameColorCaptureTest() {
 		
 		try {
 		
@@ -1063,14 +1063,14 @@ public class MatchTest {
 	}
 	
 	@Test
-	public void inputMoveNoPieceToCaptureTest() {
+	void inputMoveNoPieceToCaptureTest() {
 		
 			String toParse = "Cxf3";
 			assertThrows(MatchException.class, () -> { testMatch.inputMove(toParse); });
 	}
 	
 	@Test
-	public void inputMoveSameColorCaptureTest() {
+	void inputMoveSameColorCaptureTest() {
 		
 		try {
 		
@@ -1087,7 +1087,7 @@ public class MatchTest {
 	}
 	
 	@Test
-	public void inputMoveNoRowDisambiguationTest() {
+	void inputMoveNoRowDisambiguationTest() {
 		
 		try {
 			
@@ -1112,21 +1112,21 @@ public class MatchTest {
 	}
 	
 	@Test
-	public void inputMoveBadColumnDisambiguationTest() {
+	void inputMoveBadColumnDisambiguationTest() {
 		
 		String toParse = "Cff3";
 		assertThrows(MatchException.class, () -> { testMatch.inputMove(toParse); });
 	}
 	
 	@Test
-	public void inputMoveBadRowDisambiguationTest() {
+	void inputMoveBadRowDisambiguationTest() {
 		
 		String toParse = "C2f3";
 		assertThrows(MatchException.class, () -> { testMatch.inputMove(toParse); });
 	}
 
 	@Test
-	public void inputMoveKingThreatMoveTest() {
+	void inputMoveKingThreatMoveTest() {
 		
 		try {
 			
@@ -1153,14 +1153,14 @@ public class MatchTest {
 	}
 
 	@Test
-	public void inputMoveBadEnPassantTest() {
+	void inputMoveBadEnPassantTest() {
 		
 		String toParse = "exd3";
 		assertThrows(MatchException.class, () -> { testMatch.inputMove(toParse); });
 	}
 	
 	@Test
-	public void inputMoveMovedPawnEnPassantTest() {
+	void inputMoveMovedPawnEnPassantTest() {
 		
 		try {
 			
@@ -1181,7 +1181,7 @@ public class MatchTest {
 	}
 	
 	@Test
-	public void inputMoveEnPassantNoPawnCapturedTest() {
+	void inputMoveEnPassantNoPawnCapturedTest() {
 		
 		try {
 			
@@ -1206,7 +1206,7 @@ public class MatchTest {
 	}
 	
 	@Test
-	public void inputMoveEnPassantNormalCaptureTest() {
+	void inputMoveEnPassantNormalCaptureTest() {
 		
 		try {
 			
@@ -1223,7 +1223,7 @@ public class MatchTest {
 	}
 	
 	@Test
-	public void inputMoveKingThreatsHimselfTest() {
+	void inputMoveKingThreatsHimselfTest() {
 		
 		try {
 			
@@ -1244,7 +1244,7 @@ public class MatchTest {
 	}
 	
 	@Test
-	public void inputMoveIrregularMoveTest() {
+	void inputMoveIrregularMoveTest() {
 		
 		try {
 			
@@ -1265,7 +1265,7 @@ public class MatchTest {
 	}
 	
 	@Test
-	public void inputMoveIrregularRookThreatMoveTest() {
+	void inputMoveIrregularRookThreatMoveTest() {
 		
 		try {
 			
@@ -1290,7 +1290,7 @@ public class MatchTest {
 	}
 	
 	@Test
-	public void inputMoveIrregularRookThreatKingMoveTest() {
+	void inputMoveIrregularRookThreatKingMoveTest() {
 		
 		try {
 			
@@ -1319,7 +1319,7 @@ public class MatchTest {
 	}
 	
 	@Test
-	public void inputMoveIrregularKnightThreatMoveTest() {
+	void inputMoveIrregularKnightThreatMoveTest() {
 		
 		try {
 			
@@ -1344,7 +1344,7 @@ public class MatchTest {
 	}
 	
 	@Test
-	public void inputMoveIrregularPawnLeftThreatMoveTest() {
+	void inputMoveIrregularPawnLeftThreatMoveTest() {
 		
 		try {
 			
@@ -1367,14 +1367,14 @@ public class MatchTest {
 	}
 	
 	@Test
-	public void inputMoveObstructedCastlingTest() {
+	void inputMoveObstructedCastlingTest() {
 		
 		String toParse = "0-0";
 		assertThrows(MatchException.class, () -> { testMatch.inputMove(toParse); });
 	}
 	
 	@Test
-	public void inputMoveIrregularPawnRightThreatMoveTest() {
+	void inputMoveIrregularPawnRightThreatMoveTest() {
 		
 		try {
 			
@@ -1398,7 +1398,7 @@ public class MatchTest {
 	
 	
 	@Test
-	public void inputMoveBadDisambiguationTest() {
+	void inputMoveBadDisambiguationTest() {
 		
 		try {
 			
@@ -1427,20 +1427,20 @@ public class MatchTest {
 	}
 	
 	@Test
-	public void getPrintableCapturesWhiteEmptyTest() {
+	void getPrintableCapturesWhiteEmptyTest() {
 		
 		assertEquals("[]", testMatch.getPrintableCaptures(Color.WHITE));
 		
 	}
 	
 	@Test
-	public void getPrintableCapturesBlackEmptyTest() {
+	void getPrintableCapturesBlackEmptyTest() {
 		
 		assertEquals("[]", testMatch.getPrintableCaptures(Color.BLACK));
 	}
 	
 	@Test
-	public void getPrintableCapturesWhiteNonEmptyTest() {
+	void getPrintableCapturesWhiteNonEmptyTest() {
 		try {
 			testMatch.inputMove("e4");
 			testMatch.nextTurn();
@@ -1460,7 +1460,7 @@ public class MatchTest {
 	}
 	
 	@Test
-	public void getPrintableCapturesBlackNonEmptyTest() {
+	void getPrintableCapturesBlackNonEmptyTest() {
 		try {
 			testMatch.inputMove("a4");
 			testMatch.nextTurn();
@@ -1481,7 +1481,7 @@ public class MatchTest {
 	
 	
 	@Test
-	public void getPrintableCapturesNullColorTest() {
+	void getPrintableCapturesNullColorTest() {
 		try {
 			testMatch.inputMove("b4");
 			testMatch.nextTurn();
@@ -1498,7 +1498,7 @@ public class MatchTest {
 	}
 	
 	@Test
-	public void getPrintableCapturesBothGenericTest() {
+	void getPrintableCapturesBothGenericTest() {
 		try {
 			testMatch.inputMove("Cc3");
 			testMatch.nextTurn();
@@ -1533,23 +1533,23 @@ public class MatchTest {
 	}
 	
 	@Test
-	public void getCurrentPlayerTest() {
+	void getCurrentPlayerTest() {
 		assertEquals(Color.WHITE, testMatch.getCurrentPlayer());
 	}
 	
 	@Test
-	public void nextTurnTest() {
+	void nextTurnTest() {
 		testMatch.nextTurn();
 		assertEquals(Color.BLACK, testMatch.getCurrentPlayer());
 	}
 	
 	@Test
-	public void getPrintableMovesEmptyTest() {
+	void getPrintableMovesEmptyTest() {
 		assertTrue(testMatch.getPrintableMoves().isEmpty());
 	}
 	
 	@Test
-	public void getPrintableMovesNotEmptyTest() {
+	void getPrintableMovesNotEmptyTest() {
 		try {
 			testMatch.inputMove("Ch3");
 			testMatch.nextTurn();
