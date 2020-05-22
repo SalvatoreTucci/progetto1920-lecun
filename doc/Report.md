@@ -350,6 +350,7 @@ I tre componenti che implementano questa architettura sono:
     <code>Match</code> lancia messaggi di errore e modifica le strutture dati, tuttavia non interagisce mai direttamente con l'utente, poiché è <code>UI</code> a catturare le <code>MatchException</code> lanciate e stampare tramite CLI i relativi messaggi, ed è sempre <code>UI</code> a stampare scacchiera, mosse effettuate, pezzi catturati ed help.
 
 
+
 ## Diagramma dei package
 
 <center><img src = "./drawings/diagramma_package.png"></center>
