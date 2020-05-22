@@ -16,9 +16,9 @@ import java.util.regex.Pattern;
 /**
 * Class representing a chess match <br>
 * Class type : &#60; Control &#62; <br><br>
-* 
+*
 * Responsibilities : <br>
-* 
+*
 * 	Knows : <br>
 * 		<ul>
 * 		<li>The current status of the ChessBoard</li>
@@ -108,7 +108,7 @@ public final class Match {
 	 * king as "moved" (not capable of a castling).
 	 * 
 	 * @param toParse Player move represented as a string
-	 * @throws MatchException Raised if the user tries to enter an irregular move
+	 * @throws MatchException Raised if the user tries to enter an irregular or incorrect move
 	 */
 	public void inputMove(final String toParse) throws MatchException {
 
@@ -474,7 +474,7 @@ public final class Match {
 	 * the possible coordinates that return the reverseMove of the piece to move.
 	 * 
 	 * @param toMove move that needs a starting position
-	 * @throws MatchException if the move is illegal or irregular, with a specific message.
+	 * @throws MatchException if the move is illegal, irregular or ambiguous, with a specific message.
 	 */
 	private void findToMove(final Move toMove) throws MatchException {
 
@@ -566,7 +566,10 @@ public final class Match {
 	}
 
 	/**
-	 * Return a list of pieces that are between the startingPos and the endingPos.
+	 * Return a list of pieces that are between the startingPos and the endingPos,
+	 * in horizontally if the coordinates have the same row,
+	 * in vertically if the coordinates have the same column
+	 * or diagonally if the coordinates have different column and row.
 	 * 
 	 * @param startingPos coordinate from which to start looking for pieces.
 	 * @param endingPos coordinate in which to stop the search for pieces.
@@ -730,8 +733,11 @@ public final class Match {
 	}
 
 	/**
+	 * Checks if the move is a long move of a pawn, and if so,
+	 * saves the ending position of the move in lastPawnLongMove, for
+	 * a future en passant move.
 	 * 
-	 * @param toCheck
+	 * @param toCheck the move to check if it's a long pawn move.
 	 */
 	private void setEnPassantCondition(final Move toCheck) {
 
