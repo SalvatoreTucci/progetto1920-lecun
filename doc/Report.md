@@ -347,7 +347,7 @@ I tre componenti che implementano questa architettura sono:
 
     L'interazione con l'utente avviene tramite la classe <code>UI</code> che chiede direttamente le conferme all'utente, ma riceve dalla classe AppMain la stringa corrispondente al comando inserito. <br>
     A <code>UI</code> sono demandati i compiti di acquisizione dei comandi e stampa a video (sulla CLI) dei messaggi corrispondenti ad ogni comando. <br>
-    <code>Match</code> lancia messaggi di errore e modifica le strutture dati, tuttavia non interagisce mai direttamente con l'interfaccia Command Line, poiché è <code>UI</code> a catturare le <code>MatchException</code> lanciate e stampare i relativi messaggi, ed è sempre <code>UI</code> a stampare scacchiera, mosse effettuate, pezzi catturati ed help.
+    <code>Match</code> lancia messaggi di errore e modifica le strutture dati, tuttavia non interagisce mai direttamente con l'utente, poiché è <code>UI</code> a catturare le <code>MatchException</code> lanciate e stampare tramite CLI i relativi messaggi, ed è sempre <code>UI</code> a stampare scacchiera, mosse effettuate, pezzi catturati ed help.
 
 
 ## Diagramma dei package
