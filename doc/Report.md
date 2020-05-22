@@ -326,6 +326,24 @@ Di seguito sono riportati i requisiti funzionali (in ordine cronologico rispetto
 # System Design
 
 ## Stile architetturale adottato
+E' stato adottato lo stile architetturale Model-View-Controller, per via della caratteristica, presentata anche fra i requisiti non funzionali, di separare la logica di business dalla presentazione. 
+
+I tre componenti che implementano questa architettura sono:
+
+- <b>Model</b>
+
+    La logica di business è concentrata quasi del tutto all'interno della classe <code>Match</code>.
+    Essa espone, infatti, i metodi necessari per modellare il comportamento di una partita a scacchi, gestendo le strutture dati utilizzate per rappresentare la scacchiera, aggiornandole in base all'input (ammesso che siano stati inseriti comandi corretti)
+    proveniente da UI (controller). La classe <code>Match</code> non interagisce mai con l'interfaccia CLI su cui sono stampati i messaggi.
+
+- <b>View</b> 
+
+    E' possibile visualizzare i risultati delle elaborazioni tramite l'interfaccia CLI (Command Line Interface) adottata per realizzare questo progetto. Tutto ciò che viene mostrato su tale interfaccia è stampato tramite la classe <code>UI</code>, dunque l'interfaccia CLI non interagisce mai con la classe <code>Match</code> se non attraverso <code>UI</code>.
+
+
+- <b>Controller</b>
+
+    L'interazione con l'utente avviene tramite la classe UI, alla quale sono demandati i compiti di acquisizione dei comandi e stampa a video (sulla CLI) dei messaggi corrispondenti ad ogni comando. <code>Match</code> lancia messaggi di errore e modifica le strutture dati, tuttavia non interagisce mai direttamente con l'interfaccia Command Line, poiché è <code>UI</code> a catturare le <code>MatchException</code> lanciate e stampare i relativi messaggi, ed è sempre <code>UI</code> a stampare scacchiera, mosse effettuate, pezzi catturati ed help.
 
 
 ## Diagramma dei package
