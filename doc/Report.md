@@ -371,6 +371,16 @@ Di seguito sono riportati i requisiti funzionali (in ordine cronologico rispetto
 
 # Riepilogo dei test
 ## Tabella riassuntiva
+Qui di seguito presentiamo la tabella riassuntiva del coverage generata da JaCoCo...<center><img src =  "./drawings/nonuml/tabella_jacoco.png"></center>
+
+...il report sul numero di test eseguiti...
+<center><img src =  "./drawings/nonuml/tabella_numero_test.png"></center>
+
+...ed infine il report di Coveralls, consultabile al seguente [indirizzo](https://coveralls.io/github/softeng1920-inf-uniba/progetto1920-lecun?branch=master).
+
+<center><img src =  "./drawings/nonuml/coveralls_1.png"></center>
+<center><img src =  "./drawings/nonuml/coveralls_2.png"></center>
+
 
  <br><br>
 
