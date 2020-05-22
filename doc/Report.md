@@ -134,16 +134,18 @@ Di seguito sono riportati i requisiti funzionali (in ordine cronologico rispetto
     - catturare normalmente ed en passant (per quest' ultimo caso è possibile aggiungere 
     e.p. nel comando, in conformità con la notazione).
 
-    Esempi di mosse valide per un pedone:
+    All'immissione di una mossa valida come:
     - e4
     - f5
     - exf5
 
-    Esempi di mosse valide per l'en passant:
+    il programma aggiorna lo stato della scacchiera, altrimenti viene visualizzato un messaggio di errore e
+    l'applicazione rimane in attesa di un nuovo comando.
+
+    Sono anche valide le catture en passant:
     - exf6
     - exf6 e.p.
 
-    <i>Se la mossa non è valida o è illegale viene mostrato a video un messaggio di errore. L'applicazione rimane in attesa di un nuovo comando.</i>
 
 - [Visualizzare le catture](https://github.com/softeng1920-inf-uniba/progetto1920-lecun/issues/31)
 
@@ -168,11 +170,12 @@ Di seguito sono riportati i requisiti funzionali (in ordine cronologico rispetto
     Questo movimento forma idealmente una "L";
     - ignorare i pezzi lungo il suo percorso (tranne quello che si trova sulla casa di arrivo);
 
-    Esempi di mosse valide per il cavallo:
+    All'immissione di una mossa valida come:
     - Cc3
     - Cxd3
 
-    <i>Se la mossa non è valida o è illegale viene mostrato a video un messaggio di errore. L'applicazione rimane in attesa di un nuovo comando.</i>
+    il programma aggiorna lo stato della scacchiera, altrimenti viene visualizzato un messaggio di errore e
+    l'applicazione rimane in attesa di un nuovo comando.
 
 - [Muovere un Alfiere](https://github.com/softeng1920-inf-uniba/progetto1920-lecun/issues/102)
 
@@ -186,11 +189,12 @@ Di seguito sono riportati i requisiti funzionali (in ordine cronologico rispetto
     ammesso che le case siano libere.
     - non può spostarsi su una casa di un colore differente rispetto al colore di quella su cui si trova.
 
-    Esempi di mosse valide per l' alfiere:
+    All'immissione di una mossa valida come:
     - Ac4
     - Axa6
 
-    <i>Se la mossa non è valida o è illegale viene mostrato a video un messaggio di errore. L'applicazione rimane in attesa di un nuovo comando.</i>
+    il programma aggiorna lo stato della scacchiera, altrimenti viene visualizzato un messaggio di errore e
+    l'applicazione rimane in attesa di un nuovo comando.
 
 - [Muovere una Torre](https://github.com/softeng1920-inf-uniba/progetto1920-lecun/issues/103)
 
@@ -202,7 +206,12 @@ Di seguito sono riportati i requisiti funzionali (in ordine cronologico rispetto
     Con la torre l'utente può:
     - muoversi e catturare orizzontalmente e verticalmente (rispetto alla torre stessa), ammesso che le case siano libere;
 
-    <i>Se la mossa non è valida o è illegale viene mostrato a video un messaggio di errore. L'applicazione rimane in attesa di un nuovo comando.</i>
+    All'immissione di una mossa valida come:
+    - Ta5
+    - Txd4
+
+    il programma aggiorna lo stato della scacchiera, altrimenti viene visualizzato un messaggio di errore e
+    l'applicazione rimane in attesa di un nuovo comando.
 
 - [Muovere una Donna](https://github.com/softeng1920-inf-uniba/progetto1920-lecun/issues/104)
 
@@ -214,11 +223,12 @@ Di seguito sono riportati i requisiti funzionali (in ordine cronologico rispetto
     - muoversi e catturare orizzontalmente e verticalmente ed in diagonale (rispetto alla donna stessa),
     ammesso che le case siano libere.
 
-    Esempi di mosse valide per la donna (o regina):
+    All'immissione di una mossa valida come:
     - Dd4
     - Dxf5
 
-    <i>Se la mossa non è valida o è illegale viene mostrato a video un messaggio di errore. L'applicazione rimane in attesa di un nuovo comando.</i>
+    il programma aggiorna lo stato della scacchiera, altrimenti viene visualizzato un messaggio di errore e
+    l'applicazione rimane in attesa di un nuovo comando.
 
 - [Muovere un Re](https://github.com/softeng1920-inf-uniba/progetto1920-lecun/issues/107)
 
@@ -230,7 +240,12 @@ Di seguito sono riportati i requisiti funzionali (in ordine cronologico rispetto
     - muoversi in tutte le direzioni di una sola casella (rispetto a quella di partenza), ammesso che non sia ostruita;
     - non può muoversi in case minacciate da pezzi avversari (non deve mai rischiare la cattura);
 
-    <i>Se la mossa non è valida o è illegale viene mostrato a video un messaggio di errore. L'applicazione rimane in attesa di un nuovo comando.</i>
+    All'immissione di una mossa valida come:
+    - Re2
+    - Rxd2
+
+    il programma aggiorna lo stato della scacchiera, altrimenti viene visualizzato un messaggio di errore e
+    l'applicazione rimane in attesa di un nuovo comando.
     
 - [Arroccare corto](https://github.com/softeng1920-inf-uniba/progetto1920-lecun/issues/115)
 
@@ -247,11 +262,12 @@ Di seguito sono riportati i requisiti funzionali (in ordine cronologico rispetto
     - il re non deve essere sotto scacco;
     - il re, durante il movimento dell'arrocco, non deve attraversare caselle in cui si troverebbe sotto scacco.
 
-    Esempi di arrocco corto (lato re): 
+    All'immissione delle mosse valide per l'arrocco: 
     - 0-0
     - O-O
 
-    <i>Se la mossa non è valida o è illegale viene mostrato a video un messaggio di errore. L'applicazione rimane in attesa di un nuovo comando.</i>
+    il programma aggiorna lo stato della scacchiera, altrimenti viene visualizzato un messaggio di errore e
+    l'applicazione rimane in attesa di un nuovo comando.
 
 
 - [Arroccare lungo](https://github.com/softeng1920-inf-uniba/progetto1920-lecun/issues/116)
@@ -269,11 +285,12 @@ Di seguito sono riportati i requisiti funzionali (in ordine cronologico rispetto
     - il re non deve essere sotto scacco;
     - il re, durante il movimento dell'arrocco, non deve attraversare caselle in cui si troverebbe sotto scacco.
 
-    Esempi di arrocco lungo (lato donna):
+    All'immissione delle mosse valide per l'arrocco:
     - 0-0-0
     - O-O-O
 
-    <i>Se la mossa non è valida o è illegale viene mostrato a video un messaggio di errore. L'applicazione rimane in attesa di un nuovo comando.</i>
+    il programma aggiorna lo stato della scacchiera, altrimenti viene visualizzato un messaggio di errore e
+    l'applicazione rimane in attesa di un nuovo comando.
 
  <br><br>
 
