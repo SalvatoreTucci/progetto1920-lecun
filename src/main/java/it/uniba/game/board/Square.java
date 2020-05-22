@@ -22,11 +22,10 @@ import it.uniba.game.pieces.Piece;
  * 
  * @author LeCun group
  */
+
+
+
 public final class Square {
-	/**
-	 * This class represents the single square of the chessboard,
-	 * where pieces are placed
-	 */
 
 	/**
 	 * <code> placed </code> represents the piece placed on the square.
@@ -35,8 +34,9 @@ public final class Square {
 	private Piece placed;
 
 	/**
-	 * Constructor for the class Square
-	 * @param toPlace piece to place on the Square
+	 * Constructor for the class Square.
+	 * 
+	 * @param toPlace piece to place on the Square.
 	 */
 	public Square(final Piece toPlace) {
 
@@ -45,6 +45,7 @@ public final class Square {
 
 	// Methods
 	/**
+	 * Getter method for the attribute placed.
 	 * 
 	 * @return the piece placed on the square
 	 */
@@ -54,6 +55,7 @@ public final class Square {
 	}
 
 	/**
+	 * Setter method for the attribute placed.
 	 * 
 	 * @param toPlace the new piece to place on the square
 	 */
@@ -63,6 +65,7 @@ public final class Square {
 	}
 
 	/**
+	 * Return a boolean, true if there is a piece placed on the square, false otherwise.
 	 * 
 	 * @return a boolean:
 	 * <ul>

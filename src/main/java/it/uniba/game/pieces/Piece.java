@@ -7,7 +7,7 @@ import it.uniba.game.Constants;
 
 /**
  * Abstract class representing a generic chess piece <br>
- * Class type: &#60;Entity&#62; <br><br>
+ * Class type: &#60; Entity &#62; <br><br>
  * 
  * Responsibilities: <br>
  * 
@@ -42,10 +42,7 @@ public abstract class Piece {
 
         WHITE,
         BLACK;
-
     }
-
-    // Attributes
 
     /**
      * The piece's color
@@ -58,8 +55,6 @@ public abstract class Piece {
      * symbol.
      */
     private String symbol;
-
-    // Methods
 
 	/**
 	 * Constructor for the class Piece. It is applied in each sub-class constructor.
@@ -82,6 +77,7 @@ public abstract class Piece {
 
     /**
      * Sets the UTF-8 symbol for the chess piece.
+     * 
      * @param sym The symbol to be assigned to the piece.
      * 			  It doesn't make checks on the color/string and on the symbol itself.
      */

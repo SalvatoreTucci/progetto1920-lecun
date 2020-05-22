@@ -7,7 +7,7 @@ import it.uniba.game.Coordinates;
 
 /**
  * Subclass of Piece representing the Knight <br>
- * Class type: &#60;Entity&#62; <br><br>
+ * Class type: &#60; Entity &#62; <br><br>
  * 
  * Responsibilities: <br>
  * 
@@ -34,7 +34,7 @@ public final class Knight extends Piece {
 	/**
 	 * Constructor for the class Knight. It initializes the piece's color and symbol.
 	 * If <code>col==null</code> then the set color is Color.WHITE and the symbol
-	 * is Constants.W_KNIGHT
+	 * is Constants.W_KNIGHT.
 	 * .
 	 * @param col color of the piece.
 	 */
@@ -94,14 +94,12 @@ public final class Knight extends Piece {
 
 				possibleSquares.add(new Coordinates(endingC + Constants.KN_RIGHT_DIRECTION,
 						endingR + Constants.DOWN_DIRECTION));
-
 			}
 
 			if (endingC + Constants.KN_LEFT_DIRECTION >= Constants.FIRST_COLUMN) {
 
 				possibleSquares.add(new Coordinates(endingC + Constants.KN_LEFT_DIRECTION,
 						endingR + Constants.DOWN_DIRECTION));
-
 			}
 
 
@@ -111,18 +109,14 @@ public final class Knight extends Piece {
 
 					possibleSquares.add(new Coordinates(endingC + Constants.RIGHT_DIRECTION,
 							endingR + Constants.KN_DOWN_DIRECTION));
-
 				}
 
 				if (endingC + Constants.LEFT_DIRECTION >= Constants.FIRST_COLUMN) {
 
 					possibleSquares.add(new Coordinates(endingC + Constants.LEFT_DIRECTION,
 							endingR + Constants.KN_DOWN_DIRECTION));
-
 				}
-
 			}
-
 		}
 
 		if (endingR + Constants.UP_DIRECTION >= Constants.FIRST_ROW) {
@@ -131,14 +125,12 @@ public final class Knight extends Piece {
 
 				possibleSquares.add(new Coordinates(endingC + Constants.KN_RIGHT_DIRECTION,
 						endingR + Constants.UP_DIRECTION));
-
 			}
 
 			if (endingC + Constants.KN_LEFT_DIRECTION >= Constants.FIRST_COLUMN) {
 
 				possibleSquares.add(new Coordinates(endingC + Constants.KN_LEFT_DIRECTION,
 						endingR + Constants.UP_DIRECTION));
-
 			}
 
 
@@ -148,22 +140,16 @@ public final class Knight extends Piece {
 
 					possibleSquares.add(new Coordinates(endingC + Constants.RIGHT_DIRECTION,
 							endingR + Constants.KN_UP_DIRECTION));
-
 				}
 
 				if (endingC + Constants.LEFT_DIRECTION >= Constants.FIRST_COLUMN) {
 
 					possibleSquares.add(new Coordinates(endingC + Constants.LEFT_DIRECTION,
 							endingR + Constants.KN_UP_DIRECTION));
-
 				}
-
 			}
-
 		}
-
 
 		return possibleSquares;
 	}
-
 }

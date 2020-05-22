@@ -121,7 +121,7 @@ public final class Rook extends Piece {
 	/**
 	 * Method returning the status of a rook piece.
 	 * 
-	 * @return true if the rook has been moved, false otherwise
+	 * @return true if the rook has been moved, false otherwise.
 	 */
 	public boolean isMoved() {
 
@@ -132,7 +132,7 @@ public final class Rook extends Piece {
 	 * Method setting the status of a rook piece.
 	 * 
 	 * @param hasMoved boolean indicating whether the rook has been moved (true) or not (false)
-	 * 		  for the first time, to set
+	 * 		  for the first time, to set.
 	 */
 	public void setMoved(final boolean hasMoved) {
 

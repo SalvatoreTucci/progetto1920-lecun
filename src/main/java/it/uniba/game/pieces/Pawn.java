@@ -8,7 +8,7 @@ import it.uniba.game.Move;
 
 /**
  * Subclass of Piece representing the Pawn <br>
- * Class type: &#60;Entity&#62; <br><br>
+ * Class type: &#60; Entity &#62; <br><br>
  * 
  * Responsibilities: <br>
  * 
@@ -79,7 +79,7 @@ public final class Pawn extends Piece {
 		/*
 		 * If the color is BLACK, you can move the pawn down, so the starting position can be found
 		 * 	by moving in the UP_DIRECTION, otherwise, if the color is WHITE,
-		 *  by moving in the DOWN_DIRECTION
+		 *  by moving in the DOWN_DIRECTION.
 		 */
 		int addInRow;
 
@@ -147,12 +147,8 @@ public final class Pawn extends Piece {
 				startingPos.add(new Coordinates(target.getEndingPos().getColumn() + 1,
 						target.getEndingPos().getRow() + addInRow));
 			}
-
 		}
-
 
 		return startingPos;
 	}
-
-
 }

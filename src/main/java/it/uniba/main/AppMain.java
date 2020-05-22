@@ -19,13 +19,15 @@ import java.io.UnsupportedEncodingException;
 *
 * @author LeCun group
 */
+
+
+
 public final class AppMain {
 
 	/**
 	 * Private constructor for the class
 	 */
-	private AppMain() {
-	}
+	private AppMain() { }
 
 	/**
 	 * 	 * This is the main entry of the application.

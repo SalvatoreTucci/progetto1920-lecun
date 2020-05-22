@@ -37,7 +37,7 @@ import it.uniba.game.pieces.Piece;
 public final class Move {
 
 	/**
-	 *	Enumerated type used to represent the castling of the move
+	 *	Enumerated type used to represent the castling of the move.
 	 */
 	public enum Castling {
 
@@ -45,8 +45,6 @@ public final class Move {
 		KINGSIDE_CASTLING,
 		QUEENSIDE_CASTLING
     }
-
-	// Attributes
 
 	/**
 	 * This is the piece moved by the player.
@@ -83,7 +81,6 @@ public final class Move {
 	private Castling typeCastling = Castling.NO_CASTLING;
 
 
-	// Methods <br>
 	/**
 	 * Constructor for the class Move. If the move is a castling, input parameters can be null
 	 * and the type of the castling should be set after the construction, since it is initialized as
@@ -107,7 +104,7 @@ public final class Move {
 	}
 
 	/**
-	 * Setter method for the piece of the move
+	 * Setter method for the piece of the move.
 	 * 
 	 * @param pieceToSet The piece to set as the one moving.
 	 */
@@ -117,10 +114,10 @@ public final class Move {
 	}
 
 	/**
-	 * Getter method for the piece of the move
+	 * Getter method for the piece of the move.
 	 * 
 	 * @return A reference the the piece being moved
-	 * 		   (which is usually different from the one on the chessboard)
+	 * 		   (which is usually different from the one on the chessboard).
 	 */
 	public Piece getPiece() {
 
@@ -130,7 +127,7 @@ public final class Move {
 	/**
 	 * Getter method for the ending position of the move.
 	 * 
-	 * @return A Coordinates object containing the ending position of the move
+	 * @return A Coordinates object containing the ending position of the move.
 	 */
 	public Coordinates getEndingPos() {
 
@@ -150,7 +147,7 @@ public final class Move {
 	/**
 	 * Getter method for the starting position of the move.
 	 * 
-	 * @return A Coordinates object containing the starting position of the move
+	 * @return A Coordinates object containing the starting position of the move.
 	 */
 	public Coordinates getStartingPos() {
 
@@ -170,7 +167,7 @@ public final class Move {
 	/**
 	 * Getter method for the capture flag.
 	 * 
-	 * @return <code>true</code> if the move is a capture, <code>false</code> otherwise
+	 * @return <code>true</code> if the move is a capture, <code>false</code> otherwise.
 	 */
 	public boolean getCaptureFlag() {
 
@@ -180,7 +177,7 @@ public final class Move {
 	/**
 	 * Getter method for the <i>en passant</i> flag.
 	 * 
-	 * @return <code>true</code> if the move is an <i>en passant</i> capture, <code>false</code> otherwise
+	 * @return <code>true</code> if the move is an <i>en passant</i> capture, <code>false</code> otherwise.
 	 */
 	public boolean getEnPassant() {
 
@@ -198,7 +195,7 @@ public final class Move {
 	 * Sets the type of the castling. If <code>newCastling==null</code> then the method
 	 * does nothing.
 	 * 
-	 * @param newCastling Castling enumeration to be set
+	 * @param newCastling Castling enumeration to be set.
 	 */
 	public void setCastling(final Castling newCastling) {
 		if (newCastling != null) {
