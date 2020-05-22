@@ -13,25 +13,25 @@ import it.uniba.game.Coordinates;
 import it.uniba.game.pieces.Piece.Color;
 import it.uniba.game.pieces.Pawn;
 
-public class PawnTest {
+class PawnTest {
 	
 	private final Pawn pawnToTestBlack = new Pawn(Color.BLACK);
 	private final Pawn pawnToTestWhite = new Pawn(Color.WHITE);
 	
 	@Test
-	public void createBlackTest() {
+	void createBlackTest() {
 		
 		assertEquals(Constants.B_PAWN, pawnToTestBlack.toString());
 	}
 	
 	@Test
-	public void createWhiteTest() {
+	void createWhiteTest() {
 		
 		assertEquals(Constants.W_PAWN, pawnToTestWhite.toString());
 	}
 	
 	@Test
-	public void reverseMoveValidStartPositionBlackPawnTest() {
+	void reverseMoveValidStartPositionBlackPawnTest() {
 
 		Move moveToTest = new Move(pawnToTestBlack, Constants.EMPTY_COORD, new Coordinates(0, Constants.B_MID_ROW), false);
 		
@@ -46,7 +46,7 @@ public class PawnTest {
 	}
 	
 	@Test
-	public void reverseMoveValidStartPositionWhitePawnTest() {
+	void reverseMoveValidStartPositionWhitePawnTest() {
 		
 		Move moveToTest = new Move(pawnToTestWhite, Constants.EMPTY_COORD, new Coordinates(0, Constants.W_MID_ROW), false);
 		
@@ -61,7 +61,7 @@ public class PawnTest {
 	}
 	
 	@Test
-	public void reverseMoveInvalidBlackPawnTest() {
+	void reverseMoveInvalidBlackPawnTest() {
 		
 		Move moveToTest = new Move(pawnToTestBlack, Constants.EMPTY_COORD, new Coordinates(0, Constants.FIRST_ROW), false);	
 		
@@ -69,7 +69,7 @@ public class PawnTest {
 	}
 	
 	@Test
-	public void reverseMoveInvalidWhitePawnTest() {
+	void reverseMoveInvalidWhitePawnTest() {
 		
 		Move moveToTest = new Move(pawnToTestWhite, Constants.EMPTY_COORD, new Coordinates(0, Constants.LAST_ROW), false);	
 		
@@ -77,7 +77,7 @@ public class PawnTest {
 	}
 	
 	@Test
-	public void reverseMoveValidPositionBlackPawnTest() {
+	void reverseMoveValidPositionBlackPawnTest() {
 
 		Move moveToTest = new Move(pawnToTestBlack, Constants.EMPTY_COORD, new Coordinates(0, 4), false);
 		
@@ -91,7 +91,7 @@ public class PawnTest {
 	}
 	
 	@Test
-	public void reverseMoveValidPositionWhitePawnTest() {
+	void reverseMoveValidPositionWhitePawnTest() {
 		
 		Move moveToTest = new Move(pawnToTestWhite, Constants.EMPTY_COORD, new Coordinates(0, 2), false);
 		
@@ -105,7 +105,7 @@ public class PawnTest {
 	}
 	
 	@Test
-	public void reverseMoveCaptureFirstColumnBlackPawnTest() {
+	void reverseMoveCaptureFirstColumnBlackPawnTest() {
 		
 		Move moveToTest = new Move(pawnToTestBlack, Constants.EMPTY_COORD, new Coordinates(0, 4), true);
 		
@@ -119,7 +119,7 @@ public class PawnTest {
 	}
 	
 	@Test
-	public void reverseMoveCaptureLastColumnBlackPawnTest() {
+	void reverseMoveCaptureLastColumnBlackPawnTest() {
 		
 		Move moveToTest = new Move(pawnToTestBlack, Constants.EMPTY_COORD, new Coordinates(7, 4), true);
 		
@@ -133,7 +133,7 @@ public class PawnTest {
 	}
 	
 	@Test
-	public void reverseMoveCaptureFirstColumnWhitePawnTest() {
+	void reverseMoveCaptureFirstColumnWhitePawnTest() {
 		
 		Move moveToTest = new Move(pawnToTestWhite, Constants.EMPTY_COORD, new Coordinates(0, 4), true);
 		
@@ -147,7 +147,7 @@ public class PawnTest {
 	}
 	
 	@Test
-	public void reverseMoveCaptureCenterBlackPawnTest() {
+	void reverseMoveCaptureCenterBlackPawnTest() {
 		
 		Move moveToTest = new Move(pawnToTestBlack, Constants.EMPTY_COORD, new Coordinates(3, 4), true);
 		
@@ -162,7 +162,7 @@ public class PawnTest {
 	}
 	
 	@Test
-	public void reverseMoveCaputreCenterWhitePawnTest() {
+	void reverseMoveCaputreCenterWhitePawnTest() {
 		
 		Move moveToTest = new Move(pawnToTestWhite, Constants.EMPTY_COORD, new Coordinates(3, 4), true);
 		
@@ -177,7 +177,7 @@ public class PawnTest {
 	}
 	
 	@Test
-	public void reverseMoveCaptureLastColumnWhitePawnTest() {
+	void reverseMoveCaptureLastColumnWhitePawnTest() {
 		
 		Move moveToTest = new Move(pawnToTestWhite, Constants.EMPTY_COORD, new Coordinates(7, 4), true);
 		
@@ -191,7 +191,7 @@ public class PawnTest {
 	}
 	
 	@Test
-	public void reverseMoveInvalidFirstRowBlackPawnTest() {
+	void reverseMoveInvalidFirstRowBlackPawnTest() {
 		
 		Move moveToTest = new Move(pawnToTestBlack, Constants.EMPTY_COORD, new Coordinates(4, 0), false);
 		
@@ -199,7 +199,7 @@ public class PawnTest {
 	}
 	
 	@Test
-	public void reverseMoveInvalidLastRowWhitePawnTest() {
+	void reverseMoveInvalidLastRowWhitePawnTest() {
 		
 		Move moveToTest = new Move(pawnToTestWhite, Constants.EMPTY_COORD, new Coordinates(2, 7), false);
 		
@@ -207,7 +207,7 @@ public class PawnTest {
 	}
 	
 	@Test
-	public void reverseMoveInvalidPositionRowTest() {
+	void reverseMoveInvalidPositionRowTest() {
 	
 		Move moveToTest = new Move(pawnToTestBlack, Constants.EMPTY_COORD, new Coordinates(1, -5), false);
 		
@@ -215,7 +215,7 @@ public class PawnTest {
 	}
 	
 	@Test
-	public void reverseMoveInvalidPositionColumnTest() {
+	void reverseMoveInvalidPositionColumnTest() {
 		
 		Move moveToTest = new Move(pawnToTestWhite, Constants.EMPTY_COORD, new Coordinates(-5, 1), false);
 		
@@ -223,7 +223,7 @@ public class PawnTest {
 	}
 	
 	@Test
-	public void reverseMoveInvalidPositionColumnRowTest() {
+	void reverseMoveInvalidPositionColumnRowTest() {
 		
 		Move moveToTest = new Move(pawnToTestBlack, Constants.EMPTY_COORD, new Coordinates(10, 10), false);
 		
@@ -231,7 +231,7 @@ public class PawnTest {
 	}
 	
 	@Test
-	public void reverseMoveNullTest() {
+	void reverseMoveNullTest() {
 		
 		assertThrows(NullPointerException.class, () -> {
 			
@@ -240,7 +240,7 @@ public class PawnTest {
 	}
 	
 	@Test
-	public void reverseMoveNullPieceTest() {
+	void reverseMoveNullPieceTest() {
 		
 		Move moveToTest = new Move(null, Constants.EMPTY_COORD, new Coordinates(0, 4), false);
 		
@@ -255,7 +255,7 @@ public class PawnTest {
 	}
 	
 	@Test
-	public void reverseMoveNullStartTest() {
+	void reverseMoveNullStartTest() {
 		
 		Move moveToTest = new Move(pawnToTestBlack, null, new Coordinates(0, 4), false);
 		
@@ -269,7 +269,7 @@ public class PawnTest {
 	}
 	
 	@Test
-	public void reverseMoveNullEndTest() {
+	void reverseMoveNullEndTest() {
 		
 		Move moveToTest = new Move(pawnToTestBlack, Constants.EMPTY_COORD, null, false);
 		

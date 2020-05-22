@@ -13,7 +13,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.junit.jupiter.api.Assertions.assertArrayEquals;
 
 
-public class BishopTest {
+class BishopTest {
 	
 	private final Bishop testBishop = new Bishop(Color.BLACK);
 	
@@ -186,13 +186,13 @@ public class BishopTest {
 	}
 	
 	@Test
-	public void reverseMoveNullMoveTest() {	
+	void reverseMoveNullMoveTest() {	
 
 		assertThrows(NullPointerException.class, () ->testBishop.reverseMove(null));
 	}
 
 	@Test
-	public void reverseMoveNullPieceTest() {
+	void reverseMoveNullPieceTest() {
 		
 		Move inputMove = new Move(null, Constants.EMPTY_COORD, new Coordinates(3, 3), false);
 		LinkedList<Coordinates> startingSquares = testBishop.reverseMove(inputMove);
@@ -220,7 +220,7 @@ public class BishopTest {
 	}
 
 	@Test
-	public void reverseMoveNullStartTest() {
+	void reverseMoveNullStartTest() {
 
 		Move inputMove = new Move(testBishop, null, new Coordinates(3, 3), false);
 		LinkedList<Coordinates> startingSquares = testBishop.reverseMove(inputMove);
@@ -247,7 +247,7 @@ public class BishopTest {
 	}
 
 	@Test
-	public void reverseMoveEndMoveTest() {
+	void reverseMoveEndMoveTest() {
 		
 		assertThrows(NullPointerException.class, () ->testBishop.reverseMove(new Move(testBishop,
 				Constants.EMPTY_COORD,

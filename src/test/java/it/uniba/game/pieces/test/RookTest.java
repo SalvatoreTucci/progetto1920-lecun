@@ -14,24 +14,24 @@ import it.uniba.game.Coordinates;
 import it.uniba.game.pieces.Piece.Color;
 import it.uniba.game.pieces.Rook;
 
-public class RookTest {
+class RookTest {
 	
 	private final Rook rookToTest = new Rook(Color.BLACK);
 	
 	@Test
-	public void createBlackTest() {
+	void createBlackTest() {
 		
 		assertEquals(Constants.B_ROOK, new Rook(Color.BLACK).toString());
 	}
 	
 	@Test
-	public void createWhiteTest() {
+	void createWhiteTest() {
 		
 		assertEquals(Constants.W_ROOK, new Rook(Color.WHITE).toString());
 	}
 	
 	@Test
-	public void reverseMoveCenterTest() {
+	void reverseMoveCenterTest() {
 
 		Move moveToTest = new Move(rookToTest, Constants.EMPTY_COORD, new Coordinates(3, 3), false);
 		
@@ -53,7 +53,7 @@ public class RookTest {
 	}
 	
 	@Test
-	public void reverseMoveTopLeftCornerTest() {
+	void reverseMoveTopLeftCornerTest() {
 		
 		Move moveToTest = new Move(rookToTest, Constants.EMPTY_COORD, new Coordinates(0, 0), false);
 		
@@ -69,7 +69,7 @@ public class RookTest {
 	}
 	
 	@Test
-	public void reverseMoveTopRightCornerTest() {
+	void reverseMoveTopRightCornerTest() {
 
 		Move moveToTest = new Move(rookToTest, Constants.EMPTY_COORD, new Coordinates(7, 0), false);
 		
@@ -89,7 +89,7 @@ public class RookTest {
 	}
 	
 	@Test
-	public void reverseMoveBottomLeftCornerTest() {
+	void reverseMoveBottomLeftCornerTest() {
 		
 		Move moveToTest = new Move(rookToTest, Constants.EMPTY_COORD, new Coordinates(0, 7), false);
 		
@@ -109,7 +109,7 @@ public class RookTest {
 	}
 	
 	@Test
-	public void reverseMoveBottomRightCornerTest() {
+	void reverseMoveBottomRightCornerTest() {
 		
 		Move moveToTest = new Move(rookToTest, Constants.EMPTY_COORD, new Coordinates(7, 7), false);
 		
@@ -127,7 +127,7 @@ public class RookTest {
 	}
 	
 	@Test
-	public void reverseMoveInvalidRowTest() {
+	void reverseMoveInvalidRowTest() {
 		
 		Move moveToTest = new Move(rookToTest, Constants.EMPTY_COORD, new Coordinates(3, -1), false);
 		
@@ -139,7 +139,7 @@ public class RookTest {
 	}
 	
 	@Test
-	public void reverseMoveInvalidColumnTest() {
+	void reverseMoveInvalidColumnTest() {
 		
 		Move moveToTest = new Move(rookToTest, Constants.EMPTY_COORD, new Coordinates(-1, 3), false);
 		
@@ -151,7 +151,7 @@ public class RookTest {
 	}
 	
 	@Test
-	public void reverseMoveInvalidColumnRowTest() {
+	void reverseMoveInvalidColumnRowTest() {
 		
 		Move moveToTest = new Move(rookToTest, Constants.EMPTY_COORD, new Coordinates(10, 10), false);
 		
@@ -163,7 +163,7 @@ public class RookTest {
 	}
 	
 	@Test
-	public void reverseMoveNullTest() {
+	void reverseMoveNullTest() {
 		
 		assertThrows(NullPointerException.class, () -> {
 			
@@ -172,7 +172,7 @@ public class RookTest {
 	}
 	
 	@Test
-	public void reverseMoveNullPieceTest() {
+	void reverseMoveNullPieceTest() {
 		
 		Move moveToTest = new Move(null, Constants.EMPTY_COORD, new Coordinates(3, 3), false);
 		
@@ -195,7 +195,7 @@ public class RookTest {
 	}
 	
 	@Test
-	public void reverseMoveNullStartTest() {
+	void reverseMoveNullStartTest() {
 		
 		Move moveToTest = new Move(rookToTest, null, new Coordinates(3, 3), false);
 		
@@ -217,7 +217,7 @@ public class RookTest {
 	}
 	
 	@Test
-	public void reverseMoveNullEndTest() {
+	void reverseMoveNullEndTest() {
 		
 		Move moveToTest = new Move(rookToTest, Constants.EMPTY_COORD, null, false);
 		
@@ -228,7 +228,7 @@ public class RookTest {
 	}
 	
 	@Test
-	public void isMovedTest() {
+	void isMovedTest() {
 		
 		Rook toTest = new Rook(Color.BLACK);
 		
@@ -236,7 +236,7 @@ public class RookTest {
 	}
 
 	@Test
-	public void setMovedTest() {
+	void setMovedTest() {
 		
 		Rook toTest = new Rook(Color.BLACK);
 		toTest.setMoved(true);

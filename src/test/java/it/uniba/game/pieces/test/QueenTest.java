@@ -15,7 +15,7 @@ import static org.junit.jupiter.api.Assertions.assertArrayEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 
-public class QueenTest {
+class QueenTest {
 
 	private final Queen testQueen = new Queen(Color.BLACK);
 	

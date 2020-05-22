@@ -3,10 +3,10 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import org.junit.jupiter.api.Test;
 import it.uniba.game.UI;
 
-public class UITest {
+class UITest {
 	
 	@Test
-	public void getStatusTest() {
+	void getStatusTest() {
 		UI toTest = UI.getUI();
 		assertFalse(toTest.getStatus());
 	}
