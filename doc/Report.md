@@ -104,7 +104,7 @@ Di seguito sono riportati i requisiti funzionali (in ordine cronologico rispetto
      
      
      il formato della scacchiera deve essere quello presente in <code>[Assegnazione progetto.md](../Assegnazione%20progetto.md)</code>. Tutti i pezzi sono rappresentati nel contesto della tastiera in UTF-8 con i caratteri specifici (es. ♔ e ♚ per re bianco e nero).
-     <center><img src ="./drawings/nonuml/Scacchiera.png" width = 450></center>
+     <center><img src ="../res/img/relazione-tecnica-finale/scacchiera.png" width = 450></center>
 
 - [Mostrare le mosse giocate](https://github.com/softeng1920-inf-uniba/progetto1920-lecun/issues/29)
 
@@ -410,7 +410,7 @@ bozza di progetto, che durante lo sviluppo ha ovviamente subìto cambiamenti, do
 necessità emerse in corso d'opera.
 
 ### Diagramma delle classi con prospettiva software (bozza effettuata in forward engineering)
-<center><img src = "./drawings/diagramma_classi_bozza.png"></center>
+<center><img src = "../res/img/relazione-tecnica-finale/diagramma_classi_bozza.png"></center>
 
 <br><br>
 
@@ -420,15 +420,15 @@ necessità emerse in corso d'opera.
 ## Tabelle riassuntiva
 Qui di seguito presentiamo:
 - La tabella riassuntiva del coverage generata da _JaCoCo_;
-<center><img src =  "./drawings/nonuml/tabella_jacoco.png" width=800></center>
+<center><img src =  "../res/img/relazione-tecnica-finale/tabella_jacoco.png" width=800></center>
 
 - Il report sul numero di test eseguiti;
-<center><img src =  "./drawings/nonuml/tabella_numero_test.png" width=800></center>
+<center><img src =  "../res/img/relazione-tecnica-finale/tabella_numero_test.png" width=800></center>
 
 - Infine, il report di [Coveralls](https://coveralls.io/github/softeng1920-inf-uniba/progetto1920-lecun?branch=master).
 
-<center><img src =  "./drawings/nonuml/coveralls_1.png" width=800></center>
-<center><img src =  "./drawings/nonuml/coveralls_2.png"  width=800></center>
+<center><img src =  "../res/img/relazione-tecnica-finale/coveralls_1.png" width=800></center>
+<center><img src =  "../res/img/relazione-tecnica-finale/coveralls_2.png"  width=800></center>
 
 
  <br><br>
@@ -436,8 +436,15 @@ Qui di seguito presentiamo:
 [Torna all'indice](#Indice)
 
 # Manuale utente
-Una volta avviato correttamente il programma, viene visualizzato a schermo il messaggio:<br>
-<code> &#9812; Benvenuto! per conoscere i comandi digita 'help' &#9822;</code> <br>
+Dopo aver eseguito Docker desktop ed aver scaricato l'immagine, è possibile eseguire l'applicazione col comando:
+<center>
+
+ ``` docker run -it --rm docker.pkg.github.com/softeng1920-inf-uniba/docker_1920/lecun:latest ``` </center><br>
+ Se il programma viene avviato correttamente da una delle _shell_ indicate (altre potrebbero non supportare l'UTF e generare quindi un messaggio di errore), viene visualizzato a schermo il messaggio:<br>
+ <center>
+<code> &#9812; Benvenuto! per conoscere i comandi digita 'help' &#9822;</code>
+</center>
+
 Da qui è possibile inserire i seguenti comandi:
 - <code>help</code>: come suggerito dal banner, elenca tutti i possibili comandi accettati dal programma, distinguendo quali sono esclusivamente eseguibili in partita.
 - <code>quit</code>: comando per chiudere l'applicazione. Una volta invocato, il programma richiede una conferma ("si" o "no") e in caso affermativo termina l'applicazione.
@@ -486,7 +493,7 @@ In caso di errori nella mossa sono visualizzati i seguenti messaggi:
     <b>[Discord](https://discord.com/) </b>, perché permette di effettuare conferenze di qualità audio e video alta e di effettuare l'upload di files. <br>
     Abbiamo deciso di rimanere in conferenza per tutta la durata delle sessioni di lavoro, come se fossimo nella stessa stanza e potessimo liberalmente alzarci per controllare ciò che stanno facendo i colleghi. <br>
 
-<center><img src =  "./drawings/nonuml/esempio_schermata.png"></center>
+<center><img src =  "../res/img/relazione-tecnica-finale/esempio_schermata.png"></center>
 
 - ## WorkFlow utilizzato
     E' stato adottato il <b>GitHub Flow</b>:
