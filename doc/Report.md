@@ -63,7 +63,7 @@ Di seguito sono riportati i requisiti funzionali (in ordine cronologico rispetto
 
     All'immisione del comando <code>play</code> viene visualizzato il messaggio di inizio gioco: 
     <code>Nuova Partita! Inizia il bianco:</code>
-    ed il programma si predisone a mostrare un comando o una mossa valida.
+    ed il programma si predispone ad accettare un comando o una mossa valida.
     Nel caso in cui l' utente scriva <code>play</code> mentre una partita è in corso viene stampato un messaggio di conferma. Se l'utente conferma comincia una nuova partita,
     in caso contrario rimane accessibile quella corrente.
 
@@ -74,7 +74,7 @@ Di seguito sono riportati i requisiti funzionali (in ordine cronologico rispetto
     <b>Criteri di accettazione:</b>
 
     All' immissione del comando <code>quit</code> viene visualizzato un messaggio che chiede conferma
-    all'utente sulla chiusura del comando. Nel caso in cui l'utente risponda in modo affermativo, l'utente torna ad interagire con il sistema operativo. Se la risposta è negativa, continua ad interagire con l'applicazione.
+    all'utente sulla chiusura del gioco. Nel caso in cui l'utente risponda in modo affermativo, egli torna ad interagire con il sistema operativo. Se la risposta è negativa, continua ad interagire con l'applicazione.
 
 
 
@@ -84,8 +84,7 @@ Di seguito sono riportati i requisiti funzionali (in ordine cronologico rispetto
     
      <b>Criteri di accettazione:</b>
     
-    Eseguendo il comando <code>help
-    </code>, il risultato è una lista di comandi, uno per riga, ovvero: <br>
+    Eseguendo il comando <code>help</code>, il risultato è una lista di comandi, uno per riga, ovvero: <br>
     
     <code>help  </code> <br>
     <code>play </code><br>
@@ -98,7 +97,7 @@ Di seguito sono riportati i requisiti funzionali (in ordine cronologico rispetto
 
 - [Mostrare scacchiera](https://github.com/softeng1920-inf-uniba/progetto1920-lecun/issues/28)
 
-    L'utente può mostrare a schermo la scacchiera tramite il comando <code>board</code>.
+    L'utente può visualizzare a schermo la scacchiera tramite il comando <code>board</code>.
     
      <b>Criteri di accettazione:</b>
      
@@ -131,7 +130,7 @@ Di seguito sono riportati i requisiti funzionali (in ordine cronologico rispetto
 
     Con il pedone l'utente può:
     - muoversi in una sola direzione (a seconda del colore);
-    - catturare normalmente ed en passant (per quest' ultimo caso è possibile aggiungere 
+    - catturare normalmente ed <i>en passant</i> (per quest'ultimo caso è possibile aggiungere 
     e.p. nel comando, in conformità con la notazione).
 
     All'immissione di una mossa valida come:
@@ -142,7 +141,7 @@ Di seguito sono riportati i requisiti funzionali (in ordine cronologico rispetto
     il programma aggiorna lo stato della scacchiera, altrimenti viene visualizzato un messaggio di errore e
     l'applicazione rimane in attesa di un nuovo comando.
 
-    Sono anche valide le catture en passant:
+    Sono anche valide le catture <i>en passant</i>:
     - exf6
     - exf6 e.p.
 
@@ -153,7 +152,8 @@ Di seguito sono riportati i requisiti funzionali (in ordine cronologico rispetto
     
      <b>Criteri di accettazione:</b>
 
-    con il comando <code>capture</code> vengono stampate le catture sia del bianco che del nero, attraverso i relativi caratteri nella codifica Unicode, nel seguente modo:
+    con il comando <code>capture</code> vengono stampate le catture sia del bianco che del nero, 
+    attraverso i relativi caratteri nella codifica UTF-8, nel seguente modo:
     
     <code> [♟, ♟, ♟] </code> <br>
     <code> [♗, ♕, ♘, ♖] </code> <br>
@@ -161,12 +161,15 @@ Di seguito sono riportati i requisiti funzionali (in ordine cronologico rispetto
 
 - [Muovere un Cavallo](https://github.com/softeng1920-inf-uniba/progetto1920-lecun/issues/101)
 
-    L'utente può muovere un cavallo inserendo il comando in notazione algebrica abbreviata, rispettando le regole degli scacchi. 
+    L'utente può muovere un cavallo inserendo il comando in notazione algebrica abbreviata, 
+    rispettando le regole degli scacchi. 
     
      <b>Criteri di accettazione:</b>
 
     Con il cavallo l'utente può:
-    - muoversi e catturare alternativamente su case bianche e case nere. Il movimento di questo pezzo può essere descritto come due passi in orizzontale (verticale) seguito da un passo in verticale (orizzontale).
+    - Il movimento di questo 
+    pezzo può essere descritto come due passi in orizzontale (verticale) seguito da un passo in 
+    verticale (orizzontale).
     Questo movimento forma idealmente una "L";
     - ignorare i pezzi lungo il suo percorso (tranne quello che si trova sulla casa di arrivo);
 
@@ -174,12 +177,14 @@ Di seguito sono riportati i requisiti funzionali (in ordine cronologico rispetto
     - Cc3
     - Cxd3
 
-    il programma aggiorna lo stato della scacchiera, altrimenti viene visualizzato un messaggio di errore e
+    il programma aggiorna lo stato della scacchiera, altrimenti viene visualizzato un messaggio 
+    di errore e
     l'applicazione rimane in attesa di un nuovo comando.
 
 - [Muovere un Alfiere](https://github.com/softeng1920-inf-uniba/progetto1920-lecun/issues/102)
 
-    L'utente può muovere un alfiere inserendo il comando in notazione algebrica abbreviata, rispettando
+    L'utente può muovere un alfiere inserendo il comando in notazione algebrica abbreviata, 
+    rispettando
     le regole degli scacchi. 
     
      <b>Criteri di accettazione:</b>
@@ -187,7 +192,6 @@ Di seguito sono riportati i requisiti funzionali (in ordine cronologico rispetto
     Con l'alfiere l'utente può:
     - muoversi e catturare sulle case che si trovano lungo le diagonali (rispetto all'alfiere stesso),
     ammesso che le case siano libere.
-    - non può spostarsi su una casa di un colore differente rispetto al colore di quella su cui si trova.
 
     All'immissione di una mossa valida come:
     - Ac4
@@ -249,16 +253,16 @@ Di seguito sono riportati i requisiti funzionali (in ordine cronologico rispetto
     
 - [Arroccare corto](https://github.com/softeng1920-inf-uniba/progetto1920-lecun/issues/115)
 
-    L'utente può effettuare l' arrocco corto inserendo il comando in notazione algebrica abbreviata, rispettando le regole degli scacchi. 
+    L'utente può effettuare l'arrocco corto inserendo il comando in notazione algebrica abbreviata, rispettando le regole degli scacchi. 
 
      <b>Criteri di accettazione:</b>
 
-    Al fine della corretta esecuzione dell' arrocco è necessario che lo stato del gioco rispetti i seguenti requisiti:
+    Al fine della corretta esecuzione dell'arrocco è necessario che lo stato del gioco rispetti i seguenti requisiti:
 
     - il giocatore non ha mai mosso il re;
-    - il giocatore non ha mai mosso la torre coinvolta nell'arrocco;
-    - non ci sono pezzi tra il re e la torre coinvolta;
-    - il re e la torre devono trovarsi sulla stessa traversa (questa regola venne introdotta nel 1972 quando si scoprì che le regole altrimenti permettevano l'arrocco in verticale con un pedone promosso a torre); 
+    - il giocatore non ha mai mosso la torre "lato re";
+    - non ci sono pezzi tra il re e la torre "lato re";
+    - il re e la torre "lato re" devono trovarsi sulla stessa traversa; 
     - il re non deve essere sotto scacco;
     - il re, durante il movimento dell'arrocco, non deve attraversare caselle in cui si troverebbe sotto scacco.
 
@@ -272,16 +276,16 @@ Di seguito sono riportati i requisiti funzionali (in ordine cronologico rispetto
 
 - [Arroccare lungo](https://github.com/softeng1920-inf-uniba/progetto1920-lecun/issues/116)
 
-    L'utente può effettuare l' arrocco lungo inserendo il comando in notazione algebrica abbreviata, rispettando le regole degli scacchi. 
+    L'utente può effettuare l'arrocco lungo inserendo il comando in notazione algebrica abbreviata, rispettando le regole degli scacchi. 
 
     <b>Criteri di accettazione:</b>
 
-    Al fine della corretta esecuzione dell' arrocco è necessario che lo stato del gioco rispetti i seguenti requisiti:
+    Al fine della corretta esecuzione dell'arrocco è necessario che lo stato del gioco rispetti i seguenti requisiti:
 
     - il giocatore non ha mai mosso il re;
-    - il giocatore non ha mai mosso la torre coinvolta nell'arrocco;
-    - non ci sono pezzi tra il re e la torre coinvolta;
-    - il re e la torre devono trovarsi sulla stessa traversa (questa regola venne introdotta nel 1972 quando si scoprì che le regole altrimenti permettevano l'arrocco in verticale con un pedone promosso a torre); 
+    - il giocatore non ha mai mosso la torre "lato regina";
+    - non ci sono pezzi tra il re e la torre "lato regina";
+    - il re e la torre "lato regina" devono trovarsi sulla stessa traversa; 
     - il re non deve essere sotto scacco;
     - il re, durante il movimento dell'arrocco, non deve attraversare caselle in cui si troverebbe sotto scacco.
 
@@ -307,14 +311,14 @@ Di seguito sono riportati i requisiti funzionali (in ordine cronologico rispetto
     <code>winpty docker -it ...</code>)
 
 - ### Affidabilità
-    L'applicazione è progettata per evitare eccezioni non gestite, le eccezioni vengono cattuarate
+    L'applicazione è progettata per evitare eccezioni non gestite. Le eccezioni vengono cattuarate
     e gestite, inoltre per ogni situazione non valida è stampato un messaggio.
 
 - ### Manutenibilità
 
     Il codice è stato suddiviso in diverse sottoclassi: 
     - la presenza di una classe UI separa il comportamento effettivo del gioco dall'interfaccia,
-    rendendo possibile modificare la logica di business da quella di visualizzazione;
+    rendendo possibile modificare la <i>logica di business</i> da quella di <i>visualizzazione</i>;
     - è stata creata una classe contenente tutte le costanti, che potrebbe essere successivamente 
     sostituita da un file;
 
@@ -326,28 +330,40 @@ Di seguito sono riportati i requisiti funzionali (in ordine cronologico rispetto
 # System Design
 
 ## Stile architetturale adottato
-E' stato adottato lo stile architetturale Model-View-Controller, per via della caratteristica, presentata anche fra i requisiti non funzionali, di separare la logica di business dalla presentazione. 
+E' stato adottato lo stile architetturale Model-View-Controller, per via della caratteristica, presentata 
+anche fra i requisiti non funzionali, di separare la logica di <i>business</i> dalla <i>presentazione</i>. 
 
 I tre componenti che implementano questa architettura sono:
 
 - <b>Model</b>
 
     La logica di business è concentrata quasi del tutto all'interno della classe <code>Match</code>. <br>
-    Essa espone, infatti, i metodi necessari per modellare il comportamento di una partita a scacchi, gestendo le strutture dati utilizzate per rappresentare la scacchiera, aggiornandole in base all'input (ammesso che siano stati inseriti comandi corretti)
+    Essa espone, infatti, i metodi necessari per modellare il comportamento di una partita a scacchi, 
+    gestendo le strutture dati utilizzate per rappresentare la scacchiera, aggiornandole in base all'input 
+    (ammesso che siano stati inseriti comandi corretti)
     proveniente da UI (controller). <br>
     La classe <code>Match</code> non interagisce mai con l'interfaccia CLI su cui sono stampati i messaggi.
 
 - <b>View</b> 
 
-    E' possibile visualizzare i risultati delle elaborazioni tramite l'interfaccia CLI (Command Line Interface) adottata per realizzare questo progetto.<br>
-    Tutto ciò che viene mostrato su tale interfaccia è stampato tramite la classe <code>UI</code>, dunque l'interfaccia CLI non interagisce mai con la classe <code>Match</code> se non attraverso <code>UI</code>.
+    E' possibile visualizzare i risultati delle elaborazioni tramite l'interfaccia CLI (Command Line 
+    Interface) adottata per realizzare questo progetto.<br>
+    Tutto ciò che viene mostrato su tale interfaccia è stampato tramite la classe <code>UI</code>, dunque 
+    l'interfaccia CLI non interagisce mai con la classe <code>Match</code> se non attraverso 
+    <code>UI</code>.
 
 
 - <b>Controller</b>
 
-    L'interazione con l'utente avviene tramite la classe <code>UI</code> che chiede direttamente le conferme all'utente, ma riceve dalla classe AppMain la stringa corrispondente al comando inserito. <br>
-    A <code>UI</code> sono demandati i compiti di acquisizione dei comandi e stampa a video (sulla CLI) dei messaggi corrispondenti ad ogni comando. <br>
-    <code>Match</code> lancia messaggi di errore e modifica le strutture dati, tuttavia non interagisce mai direttamente con l'utente, poiché è <code>UI</code> a catturare le <code>MatchException</code> lanciate e stampare tramite CLI i relativi messaggi, ed è sempre <code>UI</code> a stampare scacchiera, mosse effettuate, pezzi catturati ed help.
+    L'interazione con l'utente avviene tramite la classe <code>UI</code> che riceve dalla classe AppMain 
+    la stringa corrispondente al comando inserito. <br>
+    A <code>UI</code> sono demandati i compiti di acquisizione dei comandi e stampa a video (sulla CLI) 
+    dei messaggi corrispondenti ad ogni comando. <br>
+    <code>Match</code> lancia messaggi di errore e modifica le strutture dati, tuttavia non interagisce 
+    mai direttamente con l'utente, poiché è <code>UI</code> a stampare 
+    scacchiera, mosse effettuate, pezzi catturati ed help, ed è sempre <code>UI</code> a catturare le 
+    <code>MatchException</code> 
+    lanciate e stampare tramite CLI i relativi messaggi.
 
 
 
@@ -440,7 +456,7 @@ Dopo aver eseguito Docker desktop ed aver scaricato l'immagine, è possibile ese
 <center>
 
  ``` docker run -it --rm docker.pkg.github.com/softeng1920-inf-uniba/docker_1920/lecun:latest ``` </center><br>
- Se il programma viene avviato correttamente da una delle _shell_ indicate (altre potrebbero non supportare l'UTF e generare quindi un messaggio di errore), viene visualizzato a schermo il messaggio:<br>
+ Se il programma viene avviato correttamente da una delle _shell_ indicate (altre potrebbero non supportare l'UTF-8 e generare quindi un messaggio di errore), viene visualizzato a schermo il messaggio:<br>
  <center>
 <code> &#9812; Benvenuto! per conoscere i comandi digita 'help' &#9822;</code>
 </center>
@@ -451,13 +467,13 @@ Da qui è possibile inserire i seguenti comandi:
 - <code>play</code>: comando per cominciare una nuova partita. Se richiamato quando una partita è già in corso, viene chiesta anche qui una conferma per ricominciare la paritita da zero("si" o "no"); in caso affermativo la partita ricomincia, altrimenti la partita continua normalmente.
 
 I comandi che vengono eseguiti esclusivamente durante una partita (Alternativamente non vengono riconosciuti) sono:
-- <code>board</code>: comando per stampare a schermo lo stato attuale della scacchiera in caratteri **UNICODE**.
+- <code>board</code>: comando per stampare a schermo lo stato attuale della scacchiera in caratteri UTF-8.
 - <code>moves</code>: comando per stampare a schermo la storia delle mosse eseguite durante la partita. Il formato di stampa è in coppie di semimosse, del tipo:
 
     <code> 1. e4 d5 </code>
 
     Le mosse irregolari o illegali non sono visualizzate.
-- <code>captures</code>: comando per mostrare a schermo i pezzi catturati. Il formato di stampa presenta prima le catture del bianco, cioè i pezzi neri, e poi le catture del nero, cioè i pezzi bianchi. Eventuali catture ottenute attraverso mosse irregolari o illegali non sono memorizzate. Infine se nessuna cattura è stata effettuata, viene visualizzato:
+- <code>capture</code>: comando per mostrare a schermo i pezzi catturati. Il formato di stampa presenta prima le catture del bianco, cioè i pezzi neri, e poi le catture del nero, cioè i pezzi bianchi. Eventuali catture ottenute attraverso mosse irregolari o illegali non sono memorizzate. Infine se nessuna cattura è stata effettuata, viene visualizzato:
     
     <code>[]</code><br><code>[]</code>
 
@@ -468,14 +484,14 @@ La mossa deve seguire la sintassi della _**[notazione algebrica ridotta italiana
 In caso di errori nella mossa sono visualizzati i seguenti messaggi:
 
 - <code>La mossa o il comando inserito non è stato riconosciuto</code>: Errore nella sintassi della mossa.
-- <code>Mossa Ambigua</code>: La mossa necessita una disambiguazione sulla colonna o riga di partenza(es. Le torri in a8 e h6 possono entrambi raggiungere la casa a6 col comando Ta6).
-- <code> Disambiguazione mal specificata</code>: Precisazione sulla mossa fornita ma con la componente di disambiguazione errata (es. comunicata la riga al posto della colonna, la riga errata, ecc.).
+- <code>Mossa ambigua</code>: La mossa necessita una disambiguazione sulla colonna o riga di partenza(es. Le torri in a8 e h6 possono entrambi raggiungere la casa a6 col comando Ta6).
+- <code> Disambiguazione mal specificata</code>: Precisazione sulla mossa fornita, ma con la componente di disambiguazione errata (es. comunicata la riga al posto della colonna, la riga errata, ecc.).
 - <code>Impossibile eseguire En Passant sul pezzo selezionato</code>: Tentativo di _en passant_ su un pezzo diverso dal Pedone.
 - <code>La mossa en passant deve essere una cattura</code>: _En passant_ non specificato come cattura.
-- <code>En passant non eseguibile</code>: Errore relativo ad una mossa di _en passant_ non rientrante nella casistica precedente (es. tentativo di e.p. fuori tempo, il Pedone avversario non ha eseguito una mossa lunga, ecc.)
+- <code>En passant non eseguibile</code>: Errore relativo ad una mossa di _en passant_ non rientrante nella casistica precedente (es. tentativo di e.p. fuori tempo, il Pedone avversario non ha eseguito una mossa lunga, ecc.).
 - <code>Pezzo non catturabile</code>: Tentativo di cattura di un pezzo del proprio colore.
 - <code>Mossa irregolare/illegale</code>: Tentativo di esecuzione di una mossa che porta o mantiene in scacco il Re.
-- <code>Arrocco non eseguibile: [specifica]</code>: Tentativo di esecuzione di un arrocco che viola la regola specificata.
+- <code>Arrocco non eseguibile: [causa]</code>: Tentativo di esecuzione di un arrocco che viola la regola specificata dal messaggio.
 - <code>Mossa illegale</code>: Si sta tentando una mossa illegale che non rientra nei casi indcati precedentemente.
  <br><br>
 
@@ -488,7 +504,7 @@ In caso di errori nella mossa sono visualizzati i seguenti messaggi:
     secondo il modello [Scrum](https://it.wikipedia.org/wiki/Scrum_%28informatica%29), prevedendo quattro Sprint separati, ciascuno dei quali avente uno <b>Sprint Goal</b>.
 
 
-- ## Piattaforma adottata
+- ## Piattaforma di comunicazione adottata
     Il nostro gruppo ha adottato, per conferenze e condivisione dello schermo, la piattaforma
     <b>[Discord](https://discord.com/) </b>, perché permette di effettuare conferenze di qualità audio e video alta e di effettuare l'upload di files. <br>
     Abbiamo deciso di rimanere in conferenza per tutta la durata delle sessioni di lavoro, come se fossimo nella stessa stanza e potessimo liberalmente alzarci per controllare ciò che stanno facendo i colleghi. <br>
@@ -507,14 +523,14 @@ In caso di errori nella mossa sono visualizzati i seguenti messaggi:
 
 - ## Suddivisione dei compiti
     Fin dalla creazione del gruppo la divisione dei compiti da svolgere è stata effettuata con l'obiettivo di essere quanto più equi ed onesti possibile. <br>
-    In particolare durante gli scrum meetings giornalieri tenuti durante i primi dieci-quindici minuti abbiamo ripartito i task delle issue tra i membri, in modo da allocare i compiti in base alle seguenti caratteristiche di ogni membro:
+    In particolare durante gli <i>scrum meetings</i> giornalieri, tenuti durante i primi dieci-quindici minuti, abbiamo ripartito i task delle issue tra i membri, in modo da allocare i compiti in base alle seguenti caratteristiche di ogni membro:
     - lavoro svolto durante le giornate precedenti;
-    - lavoro ancora da svolgere per soddisfare il definition of done;
+    - lavoro ancora da svolgere per soddisfare il <i>definition of done</i>;
     - propensione di uno o più componenti del gruppo nei confronti della risoluzione di un determinato task;
 
     Giornalmente venivano anche stabilite le priorità dei task da portare a termine. <br>
-    Il lavoro è stato suddiviso anche dandosi delle deadlines con cadenza settimanale, in base
-    a ciò che era stato assegnato per ogni milestone. <br>
+    Il lavoro è stato suddiviso anche dandosi delle deadlines ogni due/tre giorni, in base
+    a ciò che era stato assegnato per ogni <i>milestone</i>. <br>
 
 
 - ## Pair programming e revisione
@@ -532,17 +548,19 @@ In caso di errori nella mossa sono visualizzati i seguenti messaggi:
 
 
 - ## Uso delle boards
-    La board in stile kanban ci ha aiutati per quanto riguarda il recupero del lavoro 
+    La board in stile <i>kanban</i> ci ha aiutati per quanto riguarda il recupero del lavoro 
     quando un task non veniva portato a termine entro la giornata stessa. <br> Tale board, 
-    fornita da <b>GitHub</b> è stata popolata con i vari issues, che sotto forma di <i>cards</i>
+    fornita da <b>GitHub</b> è stata popolata con i vari <i>issues</i>, che sotto forma di 
+    <i>cards</i>
     possono essere posti su <i>5</i> colonne:
     - <b>TO DO</b> dove finivano automaticamente le issue appena create, da svolgere;
-    - <b>IN PROGRESS</b> dove si trovavano issue su cui qualcuno sta lavorando;
-    - <b>REVIEW</b> dove venivano collocate le issues da revisionare dai componenti del team;
-    - <b>READY</b> dove si posizionavano le issues da revisionare da parte dei docenti;
-    - <b>DONE</b> dove si aggiungevano le issues portate a termine e ufficialmente chiusi;
+    - <b>IN PROGRESS</b> dove si trovavano <i>issues</i> su cui qualcuno sta lavorando;
+    - <b>REVIEW</b> dove venivano collocate le <i>issues</i> da revisionare dai componenti del 
+    team;
+    - <b>READY</b> dove si posizionavano le <i>issues</i> da revisionare da parte dei docenti;
+    - <b>DONE</b> dove si aggiungevano le <i>issues</i> portate a termine e ufficialmente chiusi;
 
-    E' stata creata una [project board di progetto](https://github.com/softeng1920-inf-uniba/progetto1920-lecun/projects/3) (per le user stories) e le seguenti sprint boards:
+    E' stata creata una [project board generale](https://github.com/softeng1920-inf-uniba/progetto1920-lecun/projects/3) (per le user stories) e le seguenti sprint boards:
     - [Sprint 0](https://github.com/softeng1920-inf-uniba/progetto1920-lecun/projects/1) 
     - [Sprint 1](https://github.com/softeng1920-inf-uniba/progetto1920-lecun/projects/2) 
     - [Sprint 2](https://github.com/softeng1920-inf-uniba/progetto1920-lecun/projects/4) 
@@ -560,7 +578,8 @@ Siamo stati molto soddisfatti di come abbiamo diviso il lavoro e di come l'abbia
 perché è stato un assaggio del mondo lavorativo. Il feeling non è stato lo stesso delle 
 tracce svolte per esami precedenti, abbiamo avuto la sensazione di non star svolgendo un mero 
 esercizio di programmazione.
-E' stato molto soddisfacente modellare il progetto nel primo sprint e vederlo evolvere in 
+
+È stato molto soddisfacente modellare il progetto nel primo sprint e vederlo evolvere in 
 base ai cambiamenti richiesti anche in corso d'opera. 
 Comunque è stato piacevole constatare che l'idea iniziale non ha necessitato stravolgimenti 
 per poter portare a termine tutte le user stories richieste.
@@ -570,7 +589,9 @@ per poter portare a termine tutte le user stories richieste.
 Ci ha demoralizzato l'aver lasciato un'eccezione non gestita
 che corrispondeva ad un errore in realtà molto piccolo: il fix è avennuto semplicemente
 aggiungendo un if che è sfuggito a tutti. Questo piccolo errore è stato per noi un fallimento
-poiché abbiamo cercato di dedicare sempre il giusto tempo alle revisioni.
+anche dal punto di vista morale, poiché abbiamo cercato di dedicare sempre il giusto tempo alle 
+revisioni.
+
 Abbiamo trovato molto frustrante l'adozione degli strumenti di analisi statica del codice 
 dopo averlo effetivamente già scritto. Se avessimo saputo in partenza i criteri con cui il
 codice viene analizzato avremmo potuto risolvere i problemi in corso d'opera. Fortunatamente 
