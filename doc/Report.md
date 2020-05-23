@@ -417,14 +417,59 @@ necessità emerse in corso d'opera.
 [Torna all'indice](#Indice)
 
 # Riepilogo dei test
-## Tabella riassuntiva
+## Tabelle riassuntiva
+Qui di seguito presentiamo:
+- La tabella riassuntiva del coverage generata da _JaCoCo_;
+<center><img src =  "./drawings/nonuml/tabella_jacoco.png" width=800></center>
+
+- Il report sul numero di test eseguiti;
+<center><img src =  "./drawings/nonuml/tabella_numero_test.png" width=800></center>
+
+- Infine, il report di [Coveralls](https://coveralls.io/github/softeng1920-inf-uniba/progetto1920-lecun?branch=master).
+
+<center><img src =  "./drawings/nonuml/coveralls_1.png" width=800></center>
+<center><img src =  "./drawings/nonuml/coveralls_2.png"  width=800></center>
+
 
  <br><br>
 
 [Torna all'indice](#Indice)
 
 # Manuale utente
+Una volta avviato correttamente il programma, viene visualizzato a schermo il messaggio:<br>
+<code> &#9812; Benvenuto! per conoscere i comandi digita 'help' &#9822;</code> <br>
+Da qui è possibile inserire i seguenti comandi:
+- <code>help</code>: come suggerito dal banner, elenca tutti i possibili comandi accettati dal programma, distinguendo quali sono esclusivamente eseguibili in partita.
+- <code>quit</code>: comando per chiudere l'applicazione. Una volta invocato, il programma richiede una conferma ("si" o "no") e in caso affermativo termina l'applicazione.
+- <code>play</code>: comando per cominciare una nuova partita. Se richiamato quando una partita è già in corso, viene chiesta anche qui una conferma per ricominciare la paritita da zero("si" o "no"); in caso affermativo la partita ricomincia, altrimenti la partita continua normalmente.
 
+I comandi che vengono eseguiti esclusivamente durante una partita (Alternativamente non vengono riconosciuti) sono:
+- <code>board</code>: comando per stampare a schermo lo stato attuale della scacchiera in caratteri **UNICODE**.
+- <code>moves</code>: comando per stampare a schermo la storia delle mosse eseguite durante la partita. Il formato di stampa è in coppie di semimosse, del tipo:
+
+    <code> 1. e4 d5 </code>
+
+    Le mosse irregolari o illegali non sono visualizzate.
+- <code>captures</code>: comando per mostrare a schermo i pezzi catturati. Il formato di stampa presenta prima le catture del bianco, cioè i pezzi neri, e poi le catture del nero, cioè i pezzi bianchi. Eventuali catture ottenute attraverso mosse irregolari o illegali non sono memorizzate. Infine se nessuna cattura è stata effettuata, viene visualizzato:
+    
+    <code>[]</code><br><code>[]</code>
+
+Una volta eseguito il comando di inizio partita il programma si mette in attesa di una mossa del bianco. Se la mossa è corretta (sia sintatticamente che semanticamente e nel rispetto delle regole del gioco) viene eseguita e il turno viene automaticamente aggiornato.
+
+La mossa deve seguire la sintassi della _**[notazione algebrica ridotta italiana](https://it.wikipedia.org/wiki/Notazione_algebrica)**_, e sono riconosciute anche le varianti "e.p." per l'_en passant_ e le "O" al posto degli "0" per l'arrocco mentre al momento non sono supportate le meccaniche di scacco e promozione e le relative stringhe.
+
+In caso di errori nella mossa sono visualizzati i seguenti messaggi:
+
+- <code>La mossa o il comando inserito non è stato riconosciuto</code>: Errore nella sintassi della mossa.
+- <code>Mossa Ambigua</code>: La mossa necessita una disambiguazione sulla colonna o riga di partenza(es. Le torri in a8 e h6 possono entrambi raggiungere la casa a6 col comando Ta6).
+- <code> Disambiguazione mal specificata</code>: Precisazione sulla mossa fornita ma con la componente di disambiguazione errata (es. comunicata la riga al posto della colonna, la riga errata, ecc.).
+- <code>Impossibile eseguire En Passant sul pezzo selezionato</code>: Tentativo di _en passant_ su un pezzo diverso dal Pedone.
+- <code>La mossa en passant deve essere una cattura</code>: _En passant_ non specificato come cattura.
+- <code>En passant non eseguibile</code>: Errore relativo ad una mossa di _en passant_ non rientrante nella casistica precedente (es. tentativo di e.p. fuori tempo, il Pedone avversario non ha eseguito una mossa lunga, ecc.)
+- <code>Pezzo non catturabile</code>: Tentativo di cattura di un pezzo del proprio colore.
+- <code>Mossa irregolare/illegale</code>: Tentativo di esecuzione di una mossa che porta o mantiene in scacco il Re.
+- <code>Arrocco non eseguibile: [specifica]</code>: Tentativo di esecuzione di un arrocco che viola la regola specificata.
+- <code>Mossa illegale</code>: Si sta tentando una mossa illegale che non rientra nei casi indcati precedentemente.
  <br><br>
 
 [Torna all'indice](#Indice)
