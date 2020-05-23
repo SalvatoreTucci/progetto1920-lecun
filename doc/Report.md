@@ -436,8 +436,15 @@ Qui di seguito presentiamo:
 [Torna all'indice](#Indice)
 
 # Manuale utente
-Una volta avviato correttamente il programma, viene visualizzato a schermo il messaggio:<br>
-<code> &#9812; Benvenuto! per conoscere i comandi digita 'help' &#9822;</code> <br>
+Dopo aver eseguito Docker desktop ed aver scaricato l'immagine, è possibile eseguire l'applicazione col comando:
+<center>
+
+ ``` docker run -it --rm docker.pkg.github.com/softeng1920-inf-uniba/docker_1920/lecun:latest ``` </center><br>
+ Se il programma viene avviato correttamente da una delle _shell_ indicate (altre potrebbero non supportare l'UTF e generare quindi un messaggio di errore), viene visualizzato a schermo il messaggio:<br>
+ <center>
+<code> &#9812; Benvenuto! per conoscere i comandi digita 'help' &#9822;</code>
+</center>
+
 Da qui è possibile inserire i seguenti comandi:
 - <code>help</code>: come suggerito dal banner, elenca tutti i possibili comandi accettati dal programma, distinguendo quali sono esclusivamente eseguibili in partita.
 - <code>quit</code>: comando per chiudere l'applicazione. Una volta invocato, il programma richiede una conferma ("si" o "no") e in caso affermativo termina l'applicazione.
