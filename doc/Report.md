@@ -420,10 +420,10 @@ necessità emerse in corso d'opera.
 ## Tabelle riassuntiva
 Qui di seguito presentiamo:
 - La tabella riassuntiva del coverage generata da _JaCoCo_;
-<center><img src =  "./drawings/nonuml/tabella_jacoco.png" width=800></center>
+<center><img src =  "../res/img/relazione-tecnica-finale/tabella_jacoco.png" width=800></center>
 
 - Il report sul numero di test eseguiti;
-<center><img src =  "./drawings/nonuml/tabella_numero_test.png" width=800></center>
+<center><img src =  "../res/img/relazione-tecnica-finale/tabella_numero_test.png" width=800></center>
 
 - Infine, il report di [Coveralls](https://coveralls.io/github/softeng1920-inf-uniba/progetto1920-lecun?branch=master).
 
