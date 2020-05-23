@@ -393,14 +393,33 @@ I tre componenti che implementano questa architettura sono:
 [Torna all'indice](#Indice)
 
 # Riepilogo dei test
-## Tabella riassuntiva
+## Tabelle riassuntiva
+Qui di seguito presentiamo:
+- La tabella riassuntiva del coverage generata da _JaCoCo_;
+<center><img src =  "./drawings/nonuml/tabella_jacoco.png" width=800></center>
+
+- Il report sul numero di test eseguiti;
+<center><img src =  "./drawings/nonuml/tabella_numero_test.png" width=800></center>
+
+- Infine, il report di [Coveralls](https://coveralls.io/github/softeng1920-inf-uniba/progetto1920-lecun?branch=master).
+
+<center><img src =  "./drawings/nonuml/coveralls_1.png" width=800></center>
+<center><img src =  "./drawings/nonuml/coveralls_2.png"  width=800></center>
+
 
  <br><br>
 
 [Torna all'indice](#Indice)
 
 # Manuale utente
+Una volta avviato correttamente il programma, viene visualizzato a schermo il messaggio:<br>
+<code> &#9812; Benvenuto! per conoscere i comandi digita 'help' &#9822;</code> <br>
+Da qui è possibile inserire i seguenti comandi:
+- <code>help</code> : come suggerito dal banner, elenca tutti i possibili comandi accettati dal programma, distinguendo quali sono esclusivamente eseguibili in partita.
+- <code>quit</code> : comando per chiudere l'applicazione. Una volta invocato, il programma richiede una conferma ("si" o "no") e in caso affermativo termina l'applicazione.
+- <code>play</code> : comando per cominciare una nuova partita. Se richiamato quando una partita è già in corso, viene chiesta anche qui una conferma per ricominciare la paritita da zero("si" o "no"); in caso affermativo la partita ricomincia, altrimenti la partita continua normalmente.
 
+Una volta eseguito quest'ultimo comando il programma si mette in attesa di una mossa del bianco, e se la mossa è corretta (sia sintatticamente che semanticamente e nel rispetto delle regole del gioco) viene eseguita e il turno viene automaticamente aggiornato. La mossa deve seguire la sintassi della _**[notazione algebrica ridotta italiana](https://it.wikipedia.org/wiki/Notazione_algebrica)**_, accettando anche le varianti "e.p." per l'_en passant_ e le "O" al posto degli "0" per l'arrocco.
  <br><br>
 
 [Torna all'indice](#Indice)
