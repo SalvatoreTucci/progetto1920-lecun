@@ -412,21 +412,31 @@ Di seguito sono riportati i requisiti funzionali (in ordine cronologico rispetto
     - lavoro svolto durante le giornate precedenti;
     - lavoro ancora da svolgere per soddisfare il definition of done;
     - propensione di uno o più componenti del gruppo nei confronti della risoluzione di un determinato task;
+
     Giornalmente venivano anche stabilite le priorità dei task da portare a termine. <br>
     Il lavoro è stato suddiviso anche dandosi delle deadlines con cadenza settimanale, in base
     a ciò che era stato assegnato per ogni milestone. <br>
 
 
 - ## Pair programming e revisione
-    Per tasks più o meno grandi, la scelta delle coppie per il pair programming è stata effettuata cercando di non mantenere sempre gli stessi membri, ma scegliendo di lavorare formando tutte le sei combinazioni, riportando nelle pull request e nelle issues tale suddivisione. <br>
-    Per via di questa organizzazione è capitato più di una volta che qualcuno finisse prima degli altri, in tal caso chi doveva ancora completare la issue, avviava la condivisione dello schermo per poter ricevere assistenza, in ogni momento, da chi aveva già completato i suoi tasks. <br>
+    Per tasks più o meno grandi, la scelta delle coppie per il pair programming è stata
+    effettuata cercando di non mantenere sempre gli stessi membri, ma scegliendo di lavorare 
+    formando tutte le sei combinazioni, riportando nelle pull request e nelle issues tale
+    suddivisione. <br>
+    Per via di questa organizzazione è capitato più di una volta che qualcuno finisse prima
+     degli altri, in tal caso chi doveva ancora completare la issue, avviava la condivisione 
+    dello schermo per poter ricevere assistenza, in ogni momento, da chi aveva già completato i 
+    suoi tasks. <br>
     Anche il lavoro di revisione è stato effettuato subito dopo il completamento di ogni task
-    tramite condivisione schermo e/o commentando la pull request per tenere traccia dei punti salienti della discussione. <br>
+    tramite condivisione schermo e/o commentando la pull request per tenere traccia dei punti 
+    salienti della discussione. <br>
 
 
 - ## Uso delle boards
-    La board in stile kamban ci ha aiutati per quanto riguarda il recupero del lavoro 
-    quando un task non veniva portato a termine entro la giornata stessa. <br> Tale board, fornita da <b>GitHub</b> è stata popolata con i vari issues, che sotto forma di <i>cards</i> possono essere posti su <i>5</i> colonne:
+    La board in stile kanban ci ha aiutati per quanto riguarda il recupero del lavoro 
+    quando un task non veniva portato a termine entro la giornata stessa. <br> Tale board, 
+    fornita da <b>GitHub</b> è stata popolata con i vari issues, che sotto forma di <i>cards</i>
+    possono essere posti su <i>5</i> colonne:
     - <b>TO DO</b> dove finivano automaticamente le issue appena create, da svolgere;
     - <b>IN PROGRESS</b> dove si trovavano issue su cui qualcuno sta lavorando;
     - <b>REVIEW</b> dove venivano collocate le issues da revisionare dai componenti del team;
