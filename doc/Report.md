@@ -548,8 +548,34 @@ In caso di errori nella mossa sono visualizzati i seguenti messaggi:
 
 # Analisi retrospettiva
 ## Soddisfazioni
+
+Siamo stati molto soddisfatti di come abbiamo diviso il lavoro e di come l'abbiamo svolto, 
+perché è stato un assaggio del mondo lavorativo. Il feeling non è stato lo stesso delle 
+tracce svolte per esami precedenti, abbiamo avuto la sensazione di non star svolgendo un mero 
+esercizio di programmazione.
+E' stato molto soddisfacente modellare il progetto nel primo sprint e vederlo evolvere in 
+base ai cambiamenti richiesti anche in corso d'opera. 
+Comunque è stato piacevole constatare che l'idea iniziale non ha necessitato stravolgimenti 
+per poter portare a termine tutte le user stories richieste.
+
 ## Insoddisfazioni
+
+Ci ha demoralizzato l'aver lasciato un'eccezione non gestita
+che corrispondeva ad un errore in realtà molto piccolo: il fix è avennuto semplicemente
+aggiungendo un if che è sfuggito a tutti. Questo piccolo errore è stato per noi un fallimento
+poiché abbiamo cercato di dedicare sempre il giusto tempo alle revisioni.
+Abbiamo trovato molto frustrante l'adozione degli strumenti di analisi statica del codice 
+dopo averlo effetivamente già scritto. Se avessimo saputo in partenza i criteri con cui il
+codice viene analizzato avremmo potuto risolvere i problemi in corso d'opera. Fortunatamente 
+lo stile che abbiamo comunemente scelto di adottare non era troppo diverso da ciò che 
+richiedeva checkstyle.
+
 ## Cosa ci ha fatti impazzire
+
+Ci ha fatto impazzire la scomodità generale dei programmi di modellazione UML, abbiamo
+provato  plantUML, visual paradigm e draw.io e abbiamo utilizzato quest'ultimo per via della
+relativa facilità di approccio dei neofiti, la velocità con cui si esportano e importano i
+diagrammi, il minimalismo e il non dover scaricare il software sulla propria macchina.
 
  <br><br>
 
