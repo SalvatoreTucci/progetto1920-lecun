@@ -428,7 +428,7 @@ I comandi che vengono eseguiti esclusivamente durante una partita (Alternativame
     Le mosse irregolari o illegali non sono visualizzate.
 - <code>captures</code>: comando per mostrare a schermo i pezzi catturati. Il formato di stampa presenta prima le catture del bianco, cioè i pezzi neri, e poi le catture del nero, cioè i pezzi bianchi. Eventuali catture ottenute attraverso mosse irregolari o illegali non sono memorizzate. Infine se nessuna cattura è stata effettuata, viene visualizzato:
     
-    <code>[]<br>[]</code>
+    <code>[]</code><br><code>[]</code>
 
 Una volta eseguito il comando di inizio partita il programma si mette in attesa di una mossa del bianco. Se la mossa è corretta (sia sintatticamente che semanticamente e nel rispetto delle regole del gioco) viene eseguita e il turno viene automaticamente aggiornato.
 
