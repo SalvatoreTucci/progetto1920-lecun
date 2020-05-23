@@ -410,7 +410,7 @@ bozza di progetto, che durante lo sviluppo ha ovviamente subìto cambiamenti, do
 necessità emerse in corso d'opera.
 
 ### Diagramma delle classi con prospettiva software (bozza effettuata in forward engineering)
-<center><img src = "./drawings/diagramma_classi_bozza.png"></center>
+<center><img src = "../res/img/relazione-tecnica-finale/diagramma_classi_bozza.png"></center>
 
 <br><br>
 
