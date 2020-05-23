@@ -374,9 +374,8 @@ Il pattern comportamentale **Chain of Responsabilities** è invece utilizzato pe
 basso accoppiamento fra classi, assegnando ad ognuna di esse una particolare responsabilità nella
 gestione di una richiesta da parte di un giocatore. Un esempio può essere ritrovato nel
 diagramma di sequenza associato alla user story
-[Mostrare la scacchiera](https://github.com/softeng1920-inf-uniba/progetto1920-lecun/pull/277#Diagramma-di-sequenza-per-la-user-story-%22Mostrare-scacchiera%22):
-a conoscere la
-modalità di richiesta di visualizzazione della scacchiera è solo `UI`, che a sua volta 
+[Mostrare scacchiera](https://github.com/softeng1920-inf-uniba/progetto1920-lecun/issues/28):
+a conoscere la modalità di richiesta di visualizzazione della scacchiera è solo `UI`, che a sua volta 
 presenterà l'output del metodo `getPrintableChessBoard()` fornito dall'istanza della classe 
 `Match`.
 
