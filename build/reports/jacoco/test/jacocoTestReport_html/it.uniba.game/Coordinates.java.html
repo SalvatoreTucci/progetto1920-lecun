@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="it"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>Coordinates.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">scacchi</a> &gt; <a href="index.source.html" class="el_package">it.uniba.game</a> &gt; <span class="el_source">Coordinates.java</span></div><h1>Coordinates.java</h1><pre class="source lang-java linenums">package it.uniba.game;
+
+/**
+* Class representing the coordinates used when accessing the chessboard &lt;br&gt;
+* Class type : &amp;#60; Entity &amp;#62; &lt;br&gt;
+*
+* Responsibilities : &lt;br&gt;
+*
+* 	Knows :
+* 		&lt;ul&gt;
+* 		&lt;li&gt;A pair of coordinates of a Cartesian-like plain (as the ChessBoard)&lt;/li&gt;
+* 		&lt;/ul&gt;
+*	Does : &lt;br&gt;
+*
+*
+* @author LeCun group
+*/
+
+
+
+<span class="pc bpc" id="L21" title="1 of 2 branches missed.">public final class Coordinates {</span>
+
+	/**
+	 * &lt;code&gt;row&lt;/code&gt; holds the value of the vertical coordinate.
+	 */
+    private int row;
+
+    /**
+	 * &lt;code&gt;column&lt;/code&gt; holds the value of the horizontal coordinate.
+	 */
+    private int column;
+
+    /**
+     * Constructor for the class Coordinates
+     * 
+     * @param x value set to the &lt;code&gt;column&lt;/code&gt; attribute
+     * @param y value set to the &lt;code&gt;row&lt;/code&gt; attribute
+     */
+<span class="fc" id="L39">    public Coordinates(final int x, final int y) {</span>
+
+<span class="fc" id="L41">    	setColumn(x);</span>
+<span class="fc" id="L42">        setRow(y);</span>
+<span class="fc" id="L43">    }</span>
+
+    /**
+     * Getter method for the attribute row.
+     *
+     * @return the value of the row in the coordinate.
+     */
+    public int getRow() {
+
+<span class="fc" id="L52">        return row;</span>
+    }
+
+    /**
+     * Getter method for the attribute column.
+     * 
+     * @return the value of the column in the coordinate.
+     */
+    public int getColumn() {
+
+<span class="fc" id="L62">        return column;</span>
+    }
+
+    /**
+     * Sets the value of the row.
+     * 
+     * @param y value set as the row in the coordinate.
+     */
+    public void setRow(final int y) {
+
+<span class="fc" id="L72">        row = y;</span>
+<span class="fc" id="L73">    }</span>
+
+    /**
+     * Sets the value of the column.
+     * 
+     * @param x value set as the column in the coordinate.
+     */
+    public void setColumn(final int x) {
+
+<span class="fc" id="L82">        column = x;</span>
+<span class="fc" id="L83">    }</span>
+
+    /**
+     * toString Override for the class Coordinates.
+     * 
+     * @return a string representing the coordinate, in the format (column, row).
+     */
+    @Override
+    public String toString() {
+
+<span class="fc" id="L93">    	return &quot;(&quot; + column + &quot;, &quot; + row + &quot;)&quot;;</span>
+    }
+
+    /**
+     * Compares the values of two coordinates.
+     * 
+     * @param toCheck object to compare to the coordinate.
+     * @return true if the two coordinates are equal, false if otherwise.
+     */
+    @Override
+    public boolean equals(final Object toCheck) {
+
+<span class="pc bpc" id="L105" title="2 of 4 branches missed.">    	return (toCheck != null) &amp;&amp; (toCheck instanceof Coordinates)</span>
+<span class="fc bfc" id="L106" title="All 2 branches covered.">    			&amp;&amp; ((row == ((Coordinates) toCheck).getRow())</span>
+<span class="fc bfc" id="L107" title="All 2 branches covered.">    					&amp;&amp; (column == ((Coordinates) toCheck).getColumn()));</span>
+    }
+
+    /**
+     * hashCode override's definition
+     * it will be not implemented for now, but it must be written in
+     * order to conform the style as required.
+     * 
+     * @return Constants.INVALID_HASHCODE
+     */
+    @Override
+    public int hashCode() {
+
+<span class="nc bnc" id="L120" title="All 2 branches missed.">    	assert false : &quot;hashCode not designed&quot;;</span>
+<span class="nc" id="L121">    	return Constants.INVALID_HASHCODE;</span>
+    }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.5.201910111838</span></div></body></html>

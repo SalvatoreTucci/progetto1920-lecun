@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<checkstyle version="8.8">
+<file name="C:\Users\Neo Dom-Z\Desktop\Workspace\progetto1920-lecun\src\main\java\it\uniba\game\Constants.java">
+</file>
+<file name="C:\Users\Neo Dom-Z\Desktop\Workspace\progetto1920-lecun\src\main\java\it\uniba\game\Coordinates.java">
+</file>
+<file name="C:\Users\Neo Dom-Z\Desktop\Workspace\progetto1920-lecun\src\main\java\it\uniba\game\Match.java">
+</file>
+<file name="C:\Users\Neo Dom-Z\Desktop\Workspace\progetto1920-lecun\src\main\java\it\uniba\game\MatchException.java">
+</file>
+<file name="C:\Users\Neo Dom-Z\Desktop\Workspace\progetto1920-lecun\src\main\java\it\uniba\game\Move.java">
+</file>
+<file name="C:\Users\Neo Dom-Z\Desktop\Workspace\progetto1920-lecun\src\main\java\it\uniba\game\UI.java">
+</file>
+<file name="C:\Users\Neo Dom-Z\Desktop\Workspace\progetto1920-lecun\src\main\java\it\uniba\game\board\ChessBoard.java">
+</file>
+<file name="C:\Users\Neo Dom-Z\Desktop\Workspace\progetto1920-lecun\src\main\java\it\uniba\game\board\Square.java">
+</file>
+<file name="C:\Users\Neo Dom-Z\Desktop\Workspace\progetto1920-lecun\src\main\java\it\uniba\game\pieces\Bishop.java">
+</file>
+<file name="C:\Users\Neo Dom-Z\Desktop\Workspace\progetto1920-lecun\src\main\java\it\uniba\game\pieces\King.java">
+</file>
+<file name="C:\Users\Neo Dom-Z\Desktop\Workspace\progetto1920-lecun\src\main\java\it\uniba\game\pieces\Knight.java">
+</file>
+<file name="C:\Users\Neo Dom-Z\Desktop\Workspace\progetto1920-lecun\src\main\java\it\uniba\game\pieces\Pawn.java">
+</file>
+<file name="C:\Users\Neo Dom-Z\Desktop\Workspace\progetto1920-lecun\src\main\java\it\uniba\game\pieces\Piece.java">
+</file>
+<file name="C:\Users\Neo Dom-Z\Desktop\Workspace\progetto1920-lecun\src\main\java\it\uniba\game\pieces\Queen.java">
+</file>
+<file name="C:\Users\Neo Dom-Z\Desktop\Workspace\progetto1920-lecun\src\main\java\it\uniba\game\pieces\Rook.java">
+</file>
+<file name="C:\Users\Neo Dom-Z\Desktop\Workspace\progetto1920-lecun\src\main\java\it\uniba\main\AppMain.java">
+</file>
+</checkstyle>

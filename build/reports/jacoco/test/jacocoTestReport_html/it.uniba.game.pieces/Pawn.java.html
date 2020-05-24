@@ -1,0 +1,153 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="it"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>Pawn.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">scacchi</a> &gt; <a href="index.source.html" class="el_package">it.uniba.game.pieces</a> &gt; <span class="el_source">Pawn.java</span></div><h1>Pawn.java</h1><pre class="source lang-java linenums">package it.uniba.game.pieces;
+
+import java.util.LinkedList;
+
+import it.uniba.game.Constants;
+import it.uniba.game.Coordinates;
+import it.uniba.game.Move;
+
+/**
+ * Subclass of Piece representing the Pawn &lt;br&gt;
+ * Class type: &amp;#60; Entity &amp;#62; &lt;br&gt;&lt;br&gt;
+ * 
+ * Responsibilities: &lt;br&gt;
+ * 
+ * 	Knows:
+ * 		&lt;ul&gt;
+ * 		&lt;li&gt;The symbol (and so the color) of the instance of
+ * 			the Pawn&lt;/li&gt;
+ * 		&lt;/ul&gt;
+ * 
+ * 	Does:
+ * 		&lt;ul&gt;
+ * 		&lt;li&gt;Generates a list of coordinates where a Pawn could
+ * 			possibly be found, given the
+ * 			target position&lt;/li&gt;
+ * 		&lt;/ul&gt;
+ * 
+ * @author LeCun group &lt;br&gt;
+*/
+
+
+
+public final class Pawn extends Piece {
+
+
+	/**
+	 * Constructor for the class Pawn. It initializes the piece's color and symbol,
+	 * If &lt;code&gt;col==null&lt;/code&gt; then the set color is Color.WHITE and the symbol
+	 * is Constants.W_PAWN.
+	 * 
+	 * @param col color of the piece.
+	 */
+	public Pawn(final Color col) {
+
+<span class="fc" id="L45">		super(col);</span>
+
+<span class="fc bfc" id="L47" title="All 2 branches covered.">		if (col == Piece.Color.BLACK) {</span>
+
+<span class="fc" id="L49">			this.setSymbol(Constants.B_PAWN);</span>
+		} else {
+
+<span class="fc" id="L52">			this.setSymbol(Constants.W_PAWN);</span>
+		}
+
+<span class="fc" id="L55">	}</span>
+
+	/**
+	 * Method returning all the possible starting position of a pawn on a chessboard
+	 * given the ending position in a List. If the ending position exceeds the bounds of the
+	 * chessboard (from (0,0) to (7,7)), the returned list is empty. The method assumes
+	 * that &lt;code&gt;target&lt;/code&gt; is a pawn move. Also it checks if the move is a capture or not.
+	 * 
+	 * @param target The move of a pawn, which starting position has to be determined.
+	 * 
+	 * @return A LinkedList of possible starting Coordinates of a pawn.
+	 * 
+	 */
+	public LinkedList&lt;Coordinates&gt; reverseMove(final Move target) {
+
+<span class="fc" id="L70">		LinkedList&lt;Coordinates&gt; startingPos = new LinkedList&lt;Coordinates&gt;();</span>
+
+<span class="fc bfc" id="L72" title="All 2 branches covered.">		if (checkOutOfBound(target)) {</span>
+
+<span class="fc" id="L74">			return startingPos;</span>
+		}
+
+		/*
+		 * If the color is BLACK, you can move the pawn down, so the starting position can be found
+		 * 	by moving in the UP_DIRECTION, otherwise, if the color is WHITE,
+		 *  by moving in the DOWN_DIRECTION.
+		 */
+		int addInRow;
+
+<span class="fc bfc" id="L84" title="All 2 branches covered.">		if (this.getColor() == Piece.Color.BLACK) {</span>
+
+<span class="fc" id="L86">			addInRow = Constants.UP_DIRECTION;</span>
+		} else {
+
+<span class="fc" id="L89">			addInRow = Constants.DOWN_DIRECTION;</span>
+		}
+
+		/*
+		 * If the color is BLACK, you can move the pawn, the first time, to the row B_MID_ROW
+		 * If the color is WHITE, you can move the pawn, the first time, to the row W_MID_ROW
+		 */
+		int initialMoveRow;
+
+<span class="fc bfc" id="L98" title="All 2 branches covered.">		if (this.getColor() == Piece.Color.BLACK) {</span>
+
+<span class="fc" id="L100">			initialMoveRow = Constants.B_MID_ROW;</span>
+		} else {
+
+<span class="fc" id="L103">			initialMoveRow = Constants.W_MID_ROW;</span>
+		}
+
+		// Check if the pawn is moving in the right direction
+<span class="fc bfc" id="L107" title="All 2 branches covered.">		if ((this.getColor() == Piece.Color.BLACK</span>
+<span class="fc bfc" id="L108" title="All 2 branches covered.">				&amp;&amp; target.getEndingPos().getRow() == Constants.FIRST_ROW)</span>
+<span class="fc bfc" id="L109" title="All 2 branches covered.">				|| (this.getColor() == Piece.Color.WHITE</span>
+<span class="fc bfc" id="L110" title="All 2 branches covered.">				&amp;&amp; target.getEndingPos().getRow() == Constants.LAST_ROW)) {</span>
+
+<span class="fc" id="L112">			return startingPos;</span>
+		}
+
+<span class="fc bfc" id="L115" title="All 2 branches covered.">		if (!target.getCaptureFlag()) {</span>
+			// Add the basic movement of the pawn
+<span class="fc" id="L117">			startingPos.add(new Coordinates(target.getEndingPos().getColumn(),</span>
+<span class="fc" id="L118">					target.getEndingPos().getRow() + addInRow));</span>
+
+
+			// If the ending position has the row B_MID_ROW or W_MID_ROW,
+			// add the initial movement of the pawn (2 square up or down)
+<span class="fc bfc" id="L123" title="All 2 branches covered.">			if (target.getEndingPos().getRow() == initialMoveRow) {</span>
+
+<span class="fc" id="L125">				startingPos.add(new Coordinates(target.getEndingPos().getColumn(),</span>
+<span class="fc" id="L126">						target.getEndingPos().getRow() + (addInRow * 2)));</span>
+			}
+
+		} else {
+			/*
+			 * If the ending position has the column &gt; FIRST_ROW,
+			 *   we add the normal capture of the pawn on the left
+			 * 
+			 * If the ending position has the column &lt; LAST_ROW,
+			 *   we add the normal capture of the pawn on the right
+			 */
+<span class="fc bfc" id="L137" title="All 2 branches covered.">			if (target.getEndingPos().getColumn() &gt; Constants.FIRST_ROW) {</span>
+
+<span class="fc" id="L139">				startingPos.add(new Coordinates(target.getEndingPos().getColumn() - 1,</span>
+<span class="fc" id="L140">						target.getEndingPos().getRow() + addInRow));</span>
+			}
+
+<span class="fc bfc" id="L143" title="All 2 branches covered.">			if (target.getEndingPos().getColumn() &lt; Constants.LAST_ROW) {</span>
+
+<span class="fc" id="L145">				startingPos.add(new Coordinates(target.getEndingPos().getColumn() + 1,</span>
+<span class="fc" id="L146">						target.getEndingPos().getRow() + addInRow));</span>
+			}
+		}
+
+<span class="fc" id="L150">		return startingPos;</span>
+	}
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.5.201910111838</span></div></body></html>

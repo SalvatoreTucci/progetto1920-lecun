@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="it"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>Queen.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">scacchi</a> &gt; <a href="index.source.html" class="el_package">it.uniba.game.pieces</a> &gt; <span class="el_source">Queen.java</span></div><h1>Queen.java</h1><pre class="source lang-java linenums">package it.uniba.game.pieces;
+
+import java.util.LinkedList;
+import it.uniba.game.Constants;
+import it.uniba.game.Coordinates;
+import it.uniba.game.Move;
+
+/**
+ * Subclass of Piece representing the Queen &lt;br&gt;
+ * Class type: &amp;#60; Entity &amp;#62; &lt;br&gt;&lt;br&gt;
+ * 
+ * Responsibilities: &lt;br&gt;
+ * 
+ * 	Knows:
+ * 		&lt;ul&gt;
+ * 		&lt;li&gt;The symbol (and so the color) of the instance of
+ * 			the Queen&lt;/li&gt;
+ * 		&lt;/ul&gt;
+ * 
+ * 	Does:
+ * 		&lt;ul&gt;
+ * 		&lt;li&gt;Generates a list of coordinates where a Queen could
+ * 			possibly be found, given the
+ * 			target position&lt;/li&gt;
+ * 		&lt;/ul&gt;
+ * 
+ * @author LeCun group &lt;br&gt;
+*/
+
+
+
+public final class Queen extends Piece {
+
+	/**
+	 * Constructor for the class Queen. It initializes the piece's color and symbol,
+	 * If &lt;code&gt;col==null&lt;/code&gt; then the set color is Color.WHITE and the symbol
+	 * is Constants.W_QUEEN.
+	 * 
+	 * @param col color of the piece.
+	 */
+	public Queen(final Color col) {
+
+<span class="fc" id="L43">		super(col);</span>
+
+<span class="fc bfc" id="L45" title="All 2 branches covered.">		if (col == Color.BLACK) {</span>
+
+<span class="fc" id="L47">			this.setSymbol(Constants.B_QUEEN);</span>
+		} else {
+
+<span class="fc" id="L50">			this.setSymbol(Constants.W_QUEEN);</span>
+		}
+
+<span class="fc" id="L53">	}</span>
+
+	/**
+	 * Method returning all the possible starting position of a queen on a chessboard
+	 * given the ending position in a List. If the ending position exceeds the bounds of the
+	 * chessboard (from (0,0) to (7,7)), the returned list is empty. The method assumes
+	 * that &lt;code&gt;target&lt;/code&gt; is a queen move. Also it checks if the move is a capture or not.
+	 * 
+	 * @param target The move of a pawn, which starting position has to be determined.
+	 * 
+	 * @return A LinkedList of possible starting Coordinates of a queen.
+	 * 
+	 */
+	public LinkedList&lt;Coordinates&gt; reverseMove(final Move target) {
+		/*
+		 *  The starting position of the Queen can be traced through the same checks done
+		 *  for the Rook and the Bishop
+		 */
+
+<span class="fc" id="L72">		LinkedList&lt;Coordinates&gt; possibleSquares = Rook.reverseRookMove(target);</span>
+
+<span class="fc" id="L74">		possibleSquares.addAll(Bishop.reverseBishopMove(target));</span>
+
+<span class="fc" id="L76">		return possibleSquares;</span>
+	}
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.5.201910111838</span></div></body></html>

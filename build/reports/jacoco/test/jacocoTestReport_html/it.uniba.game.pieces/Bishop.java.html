@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="it"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>Bishop.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">scacchi</a> &gt; <a href="index.source.html" class="el_package">it.uniba.game.pieces</a> &gt; <span class="el_source">Bishop.java</span></div><h1>Bishop.java</h1><pre class="source lang-java linenums">package it.uniba.game.pieces;
+
+import java.util.LinkedList;
+import it.uniba.game.Constants;
+import it.uniba.game.Coordinates;
+import it.uniba.game.Move;
+
+/**
+ * Subclass of Piece representing the Bishop &lt;br&gt;
+ * Class type: &amp;#60; Entity &amp;#62; &lt;br&gt;&lt;br&gt;
+ * 
+ * Responsibilities: &lt;br&gt;
+ * 
+ * 	Knows:
+ * 		&lt;ul&gt;
+ * 		&lt;li&gt;The symbol (and so the color) of the instance of
+ * 			the Bishop&lt;/li&gt;
+ * 		&lt;/ul&gt;
+ * 
+ * 	Does:
+ * 		&lt;ul&gt;
+ * 		&lt;li&gt;Generates a list of coordinates where a Bishop could
+ * 			possibly be found, given the
+ * 			target position&lt;/li&gt;
+ * 		&lt;/ul&gt;
+ * 
+ * @author LeCun group &lt;br&gt;
+*/
+
+
+
+public final class Bishop extends Piece {
+
+	/**
+	 * Constructor for the class Bishop. It initializes the piece's color and symbol.
+	 * If &lt;code&gt;col==null&lt;/code&gt; then the set color is Color.WHITE and the symbol
+	 * is Constants.W_BISHOP.
+	 * 
+	 * @param col color of the piece.
+	 */
+	public Bishop(final Color col) {
+
+<span class="fc" id="L43">		super(col);</span>
+
+<span class="fc bfc" id="L45" title="All 2 branches covered.">		if (col == Color.BLACK) {</span>
+
+<span class="fc" id="L47">			this.setSymbol(Constants.B_BISHOP);</span>
+		} else {
+
+<span class="fc" id="L50">			this.setSymbol(Constants.W_BISHOP);</span>
+		}
+
+<span class="fc" id="L53">	}</span>
+
+	/**
+	 * Wrapper method for the class method &lt;i&gt;reverseBishopMove&lt;/i&gt;.
+	 * 
+	 * @param target The move of a bishop, which starting position has to be determined.
+	 * 
+	 * @return A LinkedList of possible starting Coordinates of a bishop.
+	 */
+	public LinkedList&lt;Coordinates&gt; reverseMove(final Move target) {
+
+<span class="fc" id="L64">		return reverseBishopMove(target);</span>
+	}
+
+	/**
+	 * Method returning all the possible starting position of a bishop on a chessboard
+	 * given the ending position in a List. If the ending position exceeds the bounds of the
+	 * chessboard (from (0,0) to (7,7)), the returned list is empty. The method assumes
+	 * that &lt;code&gt;target&lt;/code&gt; is a bishop move.
+	 * 
+	 * @param target The move of a bishop, which starting position has to be determined.
+	 * 
+	 * @return A LinkedList of possible starting Coordinates of a bishop.
+	 */
+	public static LinkedList&lt;Coordinates&gt; reverseBishopMove(final Move target) {
+
+<span class="fc" id="L79">		LinkedList&lt;Coordinates&gt; possibleSquares = new LinkedList&lt;Coordinates&gt;();</span>
+
+<span class="fc bfc" id="L81" title="All 2 branches covered.">		if (checkOutOfBound(target)) {</span>
+
+<span class="fc" id="L83">			return possibleSquares;</span>
+		}
+
+<span class="fc" id="L86">		int i = target.getEndingPos().getRow() + Constants.RIGHT_DIRECTION;</span>
+<span class="fc" id="L87">		int j = target.getEndingPos().getColumn() + Constants.DOWN_DIRECTION;</span>
+
+<span class="fc bfc" id="L89" title="All 4 branches covered.">		while (i &lt;= Constants.LAST_ROW &amp;&amp; j &lt;= Constants.LAST_COLUMN) {</span>
+
+<span class="fc" id="L91">			possibleSquares.add(new Coordinates(j, i));</span>
+<span class="fc" id="L92">			j++;</span>
+<span class="fc" id="L93">			i++;</span>
+		}
+
+<span class="fc" id="L96">		i = target.getEndingPos().getRow() + Constants.LEFT_DIRECTION;</span>
+<span class="fc" id="L97">		j = target.getEndingPos().getColumn() + Constants.UP_DIRECTION;</span>
+
+<span class="fc bfc" id="L99" title="All 4 branches covered.">		while (i &gt;= Constants.FIRST_ROW &amp;&amp; j &gt;= Constants.FIRST_COLUMN) {</span>
+
+<span class="fc" id="L101">			possibleSquares.add(new Coordinates(j, i));</span>
+<span class="fc" id="L102">			j--;</span>
+<span class="fc" id="L103">			i--;</span>
+		}
+
+<span class="fc" id="L106">		i = target.getEndingPos().getRow() + Constants.RIGHT_DIRECTION;</span>
+<span class="fc" id="L107">		j = target.getEndingPos().getColumn() + Constants.UP_DIRECTION;</span>
+
+<span class="fc bfc" id="L109" title="All 4 branches covered.">		while (i &lt;= Constants.LAST_ROW &amp;&amp; j &gt;= Constants.FIRST_COLUMN) {</span>
+
+<span class="fc" id="L111">			possibleSquares.add(new Coordinates(j, i));</span>
+<span class="fc" id="L112">			j--;</span>
+<span class="fc" id="L113">			i++;</span>
+		}
+
+<span class="fc" id="L116">		i = target.getEndingPos().getRow() + Constants.LEFT_DIRECTION;</span>
+<span class="fc" id="L117">		j = target.getEndingPos().getColumn() + Constants.DOWN_DIRECTION;</span>
+
+<span class="fc bfc" id="L119" title="All 4 branches covered.">		while (i &gt;= Constants.FIRST_ROW  &amp;&amp; j &lt;= Constants.LAST_COLUMN) {</span>
+
+<span class="fc" id="L121">			possibleSquares.add(new Coordinates(j, i));</span>
+<span class="fc" id="L122">			j++;</span>
+<span class="fc" id="L123">			i--;</span>
+		}
+
+<span class="fc" id="L126">		return possibleSquares;</span>
+	}
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.5.201910111838</span></div></body></html>
