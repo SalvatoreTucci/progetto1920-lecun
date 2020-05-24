@@ -127,8 +127,6 @@ public abstract class Piece {
      * 
      * @return true if the two pieces have the same symbol (since it identifies the piece's type),
      * 		   false otherwise
-     * 
-     * @throws ClassCastException If toCompare can't be casted to a Piece Object
      */
     @Override
     public boolean equals(final Object toCompare) {

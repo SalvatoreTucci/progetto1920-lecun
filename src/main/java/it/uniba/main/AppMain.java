@@ -7,7 +7,7 @@ import java.io.PrintStream;
 import java.io.UnsupportedEncodingException;
 
 /**
-* The main class for the project
+* The main class for the project <br>
 * Class type : &#60; Boundary &#62; <br><br>
 * Responsibilities : <br>
 * 	Knows : <br>
