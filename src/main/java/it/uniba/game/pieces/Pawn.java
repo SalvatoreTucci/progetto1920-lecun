@@ -16,8 +16,6 @@ import it.uniba.game.Move;
  * 		<ul>
  * 		<li>The symbol (and so the color) of the instance of
  * 			the Pawn</li>
- * 		<li>If it's possible to do the <i>En Passant</i> move
- * 			on an instance of a Pawn</li>
  * 		</ul>
  * 
  * 	Does:

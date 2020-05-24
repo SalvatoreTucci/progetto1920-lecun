@@ -85,7 +85,7 @@ public final class Move {
 	 * Constructor for the class Move. If the move is a castling, input parameters can be null
 	 * and the type of the castling should be set after the construction, since it is initialized as
 	 * Castling.NO_CASTLING.
-	 * Otherwise both startPos and endPos are assumed to be between (0,0) and (7,7) or Constants.EMPTY_COORD
+	 * Futhermore both startPos and endPos are assumed to be between (0,0) and (7,7) or Constants.EMPTY_COORD
 	 * since this class doesn't have the responsibility to check their correctness.
 	 * Finally, it also initializes the flag <i>en passant</i> as <code>false</code>
 	 * 
