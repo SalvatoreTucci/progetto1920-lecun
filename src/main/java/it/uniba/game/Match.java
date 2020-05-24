@@ -25,6 +25,7 @@ import java.util.regex.Pattern;
 * 		<li>Captured pieces by each player</li>
 * 		<li>The history of the moves</li>
 * 		<li>The current player</li>
+* 		<li>The last long move done by a pawn</li>
 * 		</ul>
 *	Does : <br>
 *		<ul>
@@ -32,7 +33,7 @@ import java.util.regex.Pattern;
 *		<li>Establishes whether the move is a Castling, a Capture or a simple one</li>
 *		<li>Checks whether the established move is legal and not ambiguous</li>
 *		<li>Executes the move, if legal</li>
-*		<li>Updates the status of Pawns, Rooks and Kings in order to say if the former can be
+*		<li>Updates the status of Rooks and Kings in order to say if the former can be
 *		captured <i>en passant</i>, or the latter can execute Castling</li>
 *		<li>Records the captures done by the players</li>
 *		<li>Updates the color of the current player according to the flow of the game</li>
