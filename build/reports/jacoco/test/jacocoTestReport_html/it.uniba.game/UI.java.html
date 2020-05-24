@@ -1,0 +1,243 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="it"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>UI.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">scacchi</a> &gt; <a href="index.source.html" class="el_package">it.uniba.game</a> &gt; <span class="el_source">UI.java</span></div><h1>UI.java</h1><pre class="source lang-java linenums">package it.uniba.game;
+
+import java.util.Scanner;
+import it.uniba.game.pieces.Piece;
+
+/**
+ * Class singleton used as User Interface &lt;br&gt;
+ * Class type : &amp;#60; ECB &amp;#62; &lt;br&gt;&lt;br&gt;
+ * 
+ * Responsibilities : &lt;br&gt;
+ * 
+ * 	Knows : &lt;br&gt;
+ * 		&lt;ul&gt;
+ * 			&lt;li&gt;Status of the current match&lt;/li&gt;
+ *  		&lt;li&gt;If the user wants to quit the game&lt;/li&gt;
+ * 		&lt;/ul&gt;
+ * 
+ * 	Does : &lt;br&gt;
+ * 		&lt;ul&gt;
+ *  		&lt;li&gt;Parsifies a command given an input&lt;/li&gt;
+ *   		&lt;li&gt;Handles a command in game, such as &quot;board&quot;, &quot;moves&quot;, ... &lt;/li&gt;
+ *     		&lt;li&gt;Starts a new Match&lt;/li&gt;
+ *       	&lt;li&gt;Prints messages to the output stream&lt;/li&gt;
+ *         	&lt;li&gt;Gets inputs from the user by the input stream&lt;/li&gt;
+ * 		&lt;/ul&gt;
+ * 
+ * @author LeCun group &lt;br&gt;
+ */
+
+
+
+public final class UI {
+
+	/**
+	 * It is the ongoing match, if there is no match ongoing, it is null.
+	 */
+	private Match currentMatch;
+
+	/**
+	 * True if the application needs to be closed, false otherwise.
+	 */
+	private boolean quitGame;
+
+	/**
+	 * It is the unique instance of the class UI.
+	 */
+<span class="fc" id="L47">	private static final UI SINGLETON = new UI();</span>
+
+	/**
+	 * Gets the required status of the application.
+	 * 
+	 * @return the required status of the application (true = to be closed, false = to be kept open).
+	 */
+	public boolean getStatus() {
+
+<span class="fc" id="L56">		return quitGame;</span>
+	}
+
+	/**
+	 * Private constructor, necessary in order to realize the singleton class
+	 * as the design pattern describes.
+	 */
+	private UI() { }
+
+	/**
+	 * Gets the unique instance of the class UI.
+	 * 
+	 * @return the singleton class.
+	 */
+	public static UI getUI() {
+
+<span class="fc" id="L72">		return SINGLETON;</span>
+	}
+
+	/**
+	 * Parses the command read from the keyboard and executes the correspondent routine.
+	 * 
+	 * @param toParse the command inputed by the user that needs to be parsed.
+	 */
+	public void parseCommand(final String toParse) {
+
+<span class="nc bnc" id="L82" title="All 4 branches missed.">		switch (toParse) {</span>
+
+			case Constants.HELP_COMMAND:
+<span class="nc" id="L85">				printHelp();</span>
+<span class="nc" id="L86">				break;</span>
+			case Constants.START_COMMAND:
+<span class="nc bnc" id="L88" title="All 2 branches missed.">				if (currentMatch == null) {</span>
+
+<span class="nc" id="L90">					startGame();</span>
+				} else {
+
+<span class="nc bnc" id="L93" title="All 2 branches missed.">					if (getConfirm(Constants.RESTART_MESS)) {</span>
+
+<span class="nc" id="L95">						startGame();</span>
+					}
+				}
+				break;
+			case Constants.QUIT_COMMAND:
+<span class="nc" id="L100">				quit();</span>
+<span class="nc" id="L101">				break;</span>
+			default:
+<span class="nc" id="L103">				handleInGameCommand(toParse);</span>
+		}
+<span class="nc" id="L105">	}</span>
+
+	/**
+	 * Prosecution of parseCommand, delegated to handling commands during a match.
+	 * It checks whether a match is open before executing the respecting routine, otherwise
+	 * it will display an error.
+	 * 
+	 * @param toParse the command inputed by the user that needs to be parsed.
+	 */
+	private void handleInGameCommand(final String toParse) {
+
+<span class="nc bnc" id="L116" title="All 2 branches missed.">		if (currentMatch != null) {</span>
+
+<span class="nc bnc" id="L118" title="All 4 branches missed.">			switch (toParse) {</span>
+				case Constants.SHOW_BOARD_COMMAND:
+<span class="nc" id="L120">					printBoard();</span>
+<span class="nc" id="L121">					break;</span>
+				case Constants.HISTORY_COMMAND:
+<span class="nc" id="L123">					printMoves();</span>
+<span class="nc" id="L124">					break;</span>
+				case Constants.CAPTURE_COMMAND:
+<span class="nc" id="L126">					printCaptures();</span>
+<span class="nc" id="L127">					break;</span>
+				default:
+					try {
+
+<span class="nc" id="L131">						currentMatch.inputMove(toParse);</span>
+<span class="nc" id="L132">						currentMatch.nextTurn();</span>
+<span class="nc" id="L133">					} catch (MatchException toHandle) {</span>
+
+<span class="nc" id="L135">						System.err.println(toHandle.getMessage());</span>
+<span class="nc" id="L136">					}</span>
+			}
+		} else {
+
+<span class="nc" id="L140">			System.err.println(Constants.ERR_UNRECOGNIZED_COMMAND);</span>
+		}
+<span class="nc" id="L142">	}</span>
+
+	/**
+	 * triggered by the command &quot;play&quot;, print a welcome message
+	 * and inits the currentMatch variable.
+	 */
+	private void startGame() {
+
+<span class="nc" id="L150">		System.out.println(Constants.START_MESS);</span>
+<span class="nc" id="L151">		currentMatch = new Match();</span>
+<span class="nc" id="L152">	}</span>
+
+	/**
+	 * asks the user whether to quit or not the whole application.
+	 * If the response isn't affirmative nor negative, the method keeps
+	 * asking for a response.
+	 */
+	private void quit() {
+
+<span class="nc" id="L161">		quitGame = getConfirm(Constants.QUIT_MESS);</span>
+<span class="nc" id="L162">	}</span>
+
+	/**
+	 * Asks the user whether to do something or not.
+	 * If the response is affirmative, returns true
+	 * else if it's negative negative, returns false
+	 * else the method keeps asking for a response.
+	 * 
+	 * @param question the question that needs to be printed.
+	 * @return a boolean:
+	 * &lt;ul&gt;
+	 * 	&lt;li&gt; true, if the user answers yes to the question;
+	 *  &lt;li&gt; false, otherwise;
+	 * &lt;/ul&gt;
+	 */
+	@SuppressWarnings(&quot;resource&quot;)
+	private boolean getConfirm(final String question) {
+
+<span class="nc" id="L180">		System.out.println(question);</span>
+<span class="nc" id="L181">		Scanner keyboard = new Scanner(System.in, Constants.CHAR_STD);</span>
+		String read;
+		do {
+
+<span class="nc" id="L185">			read = keyboard.nextLine();</span>
+<span class="nc" id="L186">			read = read.toLowerCase();</span>
+<span class="nc" id="L187">			read = read.trim();</span>
+
+<span class="nc bnc" id="L189" title="All 2 branches missed.">			if (read.equals(Constants.YES)) {</span>
+
+<span class="nc" id="L191">				return true;</span>
+<span class="nc bnc" id="L192" title="All 2 branches missed.">			} else if (!read.equals(Constants.NO)) {</span>
+
+<span class="nc" id="L194">				System.out.println(Constants.ERR_INCORRECT_ANSWER);</span>
+			}
+
+<span class="nc bnc" id="L197" title="All 4 branches missed.">		} while (!read.equals(Constants.YES) &amp;&amp; !read.equals(Constants.NO));</span>
+
+<span class="nc" id="L199">		return false;</span>
+	}
+
+	/**
+	 * on command &quot;help&quot;, prints a list of commands on-screen.
+	 */
+	private void printHelp() {
+
+<span class="nc" id="L207">		System.out.println(Constants.HELP);</span>
+<span class="nc" id="L208">	}</span>
+
+	/**
+	 * on command &quot;board&quot;, it prints the current state of the board on screen.
+	 */
+	private void printBoard() {
+
+<span class="nc" id="L215">		System.out.println(currentMatch.getPrintableChessBoard() + &quot;\n&quot;);</span>
+<span class="nc" id="L216">	}</span>
+
+	/**
+	 * on command &quot;moves&quot;, it prints the history of the moves, separated in couples.
+	 */
+	private void printMoves() {
+
+<span class="nc" id="L223">		System.out.println(currentMatch.getPrintableMoves() + &quot;\n&quot;);</span>
+<span class="nc" id="L224">	}</span>
+
+	/**
+	 * on command &quot;capture&quot;, it prints the captured pieces.
+	 */
+	private void printCaptures() {
+
+<span class="nc" id="L231">		System.out.println(currentMatch.getPrintableCaptures(Piece.Color.WHITE) + &quot;\n&quot;);</span>
+<span class="nc" id="L232">		System.out.println(currentMatch.getPrintableCaptures(Piece.Color.BLACK) + &quot;\n&quot;);</span>
+<span class="nc" id="L233">	}</span>
+
+	/**
+	 * It prints a welcome message.
+	 */
+	public void printWelcome() {
+
+<span class="nc" id="L240">		System.out.println(Constants.WELCOME);</span>
+<span class="nc" id="L241">	}</span>
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.5.201910111838</span></div></body></html>
