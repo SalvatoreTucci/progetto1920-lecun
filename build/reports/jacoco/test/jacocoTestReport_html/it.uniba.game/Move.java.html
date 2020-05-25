@@ -1,0 +1,217 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="it"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>Move.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">scacchi</a> &gt; <a href="index.source.html" class="el_package">it.uniba.game</a> &gt; <span class="el_source">Move.java</span></div><h1>Move.java</h1><pre class="source lang-java linenums">package it.uniba.game;
+
+import it.uniba.game.pieces.Piece;
+
+/**
+ * Class representing a generic move converted from the string inserted by the user.&lt;br&gt;
+ * Class type : &amp;#60; Entity &amp;#62; &lt;br&gt;&lt;br&gt;
+ * 
+ * Responsibilities : &lt;br&gt;
+ *
+ * 
+ * 	Knows :&lt;br&gt;
+ * 		&lt;ul&gt;
+ * 			&lt;li&gt;The types of castling&lt;/li&gt;
+ *			&lt;li&gt;The piece to move on the ChessBoard&lt;/li&gt;
+ *			&lt;li&gt;The starting position of the piece to move&lt;/li&gt;
+ *			&lt;li&gt;The ending position of the piece to move&lt;/li&gt;
+ *			&lt;li&gt;If the piece to move captures a piece&lt;/li&gt;
+ *			&lt;li&gt;If the move is &lt;i&gt;en passant&lt;/i&gt;&lt;/li&gt;
+ *			&lt;li&gt;If the move is a castling&lt;/li&gt;
+ * 		&lt;/ul&gt;
+ * 
+ * 	Does :&lt;br&gt;
+ * 		&lt;ul&gt;
+ *			&lt;li&gt;Gets or changes the piece to move&lt;/li&gt;
+ *			&lt;li&gt;Gets or changes the starting and ending position of the piece to move&lt;/li&gt;
+ *			&lt;li&gt;Gets or changes if the move is a capture&lt;/li&gt;
+ *			&lt;li&gt;Gets or changes if the move is &lt;i&gt;en passant&lt;/i&gt;&lt;/li&gt;
+ *			&lt;li&gt;Gets or changes if the move is a castling&lt;/li&gt;
+ * 		&lt;/ul&gt;
+ * 
+ * @author LeCun group&lt;br&gt;
+ */
+
+
+
+public final class Move {
+
+	/**
+	 *	Enumerated type used to represent the castling of the move.
+	 */
+<span class="fc" id="L42">	public enum Castling {</span>
+
+<span class="fc" id="L44">		NO_CASTLING,</span>
+<span class="fc" id="L45">		KINGSIDE_CASTLING,</span>
+<span class="fc" id="L46">		QUEENSIDE_CASTLING</span>
+    }
+
+	/**
+	 * This is the piece moved by the player.
+	 */
+	private Piece toMove;
+
+	/**
+	 * Coordinates of the starting square of the piece being moved.
+	 */
+	private Coordinates startingPos;
+
+	/**
+	 * Coordinates of the ending square of the piece being moved.
+	 */
+	private Coordinates endingPos;
+
+	/**
+	 * Flag indicating whether the move involves a capture (&lt;code&gt;true&lt;/code&gt;) or not.
+	 */
+	private boolean isCapture;
+
+	/**
+	 * Flag indicating whether the move involves a &lt;i&gt;en passant&lt;/i&gt;capture
+	 * (&lt;code&gt;true&lt;/code&gt;) or not.
+	 */
+<span class="fc" id="L73">	private boolean isEnPassant = false;</span>
+
+	/**
+	 * Flag indicating if the move is a Castling or not (&lt;code&gt;Castling.NO_CASTLING&lt;/code&gt;).
+	 * It is usually initialized as &lt;code&gt;Castling.NO_CASTLING&lt;/code&gt;, otherwise it can
+	 * indicate whether the castling is on the king side (&lt;code&gt;Castling.KINGSIDE_CASTLING&lt;/code&gt;)
+	 * or on the queen side (&lt;code&gt;Castling.QUEENSIDE_CASTLING&lt;/code&gt;).
+	 */
+<span class="fc" id="L81">	private Castling typeCastling = Castling.NO_CASTLING;</span>
+
+
+	/**
+	 * Constructor for the class Move. If the move is a castling, input parameters can be null
+	 * and the type of the castling should be set after the construction, since it is initialized as
+	 * Castling.NO_CASTLING.
+	 * Futhermore both startPos and endPos are assumed to be between (0,0) and (7,7) or Constants.EMPTY_COORD
+	 * since this class doesn't have the responsibility to check their correctness.
+	 * Finally, it also initializes the flag &lt;i&gt;en passant&lt;/i&gt; as &lt;code&gt;false&lt;/code&gt;
+	 * 
+	 * @param pieceToSet The piece involved in the move to be set.
+	 * @param startPos The coordinates of the starting square of the piece to be set.
+	 * @param endPos The coordinates of the ending square of the piece to be set.
+	 * @param cap Boolean indicating whether the move is a capture to be set.
+	 */
+	public Move(final Piece pieceToSet, final Coordinates startPos,
+<span class="fc" id="L98">			final Coordinates endPos, final boolean cap) {</span>
+
+<span class="fc" id="L100">		setPiece(pieceToSet);</span>
+<span class="fc" id="L101">		setStartingPos(startPos);</span>
+<span class="fc" id="L102">		setEndingPos(endPos);</span>
+<span class="fc" id="L103">		isCapture = cap;</span>
+<span class="fc" id="L104">	}</span>
+
+	/**
+	 * Setter method for the piece of the move.
+	 * 
+	 * @param pieceToSet The piece to set as the one moving.
+	 */
+	public void setPiece(final Piece pieceToSet) {
+
+<span class="fc" id="L113">		this.toMove = pieceToSet;</span>
+<span class="fc" id="L114">	}</span>
+
+	/**
+	 * Getter method for the piece of the move.
+	 * 
+	 * @return A reference the the piece being moved
+	 * 		   (which is usually different from the one on the chessboard).
+	 */
+	public Piece getPiece() {
+
+<span class="fc" id="L124">		return this.toMove;</span>
+	}
+
+	/**
+	 * Getter method for the ending position of the move.
+	 * 
+	 * @return A Coordinates object containing the ending position of the move.
+	 */
+	public Coordinates getEndingPos() {
+
+<span class="fc" id="L134">		return this.endingPos;</span>
+	}
+
+	/**
+	 * Getter method for the ending position of the move.
+	 * 
+	 * @param posToSet The Coordinates object containing the position of the ending position to be set.
+	 */
+	public void setEndingPos(final Coordinates posToSet) {
+
+<span class="fc" id="L144">		this.endingPos = posToSet;</span>
+<span class="fc" id="L145">	}</span>
+
+	/**
+	 * Getter method for the starting position of the move.
+	 * 
+	 * @return A Coordinates object containing the starting position of the move.
+	 */
+	public Coordinates getStartingPos() {
+
+<span class="fc" id="L154">		return this.startingPos;</span>
+	}
+
+	/**
+	 * Getter method for the starting position of the move.
+	 * 
+	 * @param posToSet The Coordinates object containing the position of the starting position to be set.
+	 */
+	public void setStartingPos(final Coordinates posToSet) {
+
+<span class="fc" id="L164">		this.startingPos = posToSet;</span>
+<span class="fc" id="L165">	}</span>
+
+	/**
+	 * Getter method for the capture flag.
+	 * 
+	 * @return &lt;code&gt;true&lt;/code&gt; if the move is a capture, &lt;code&gt;false&lt;/code&gt; otherwise.
+	 */
+	public boolean getCaptureFlag() {
+
+<span class="fc" id="L174">		return this.isCapture;</span>
+	}
+
+	/**
+	 * Getter method for the &lt;i&gt;en passant&lt;/i&gt; flag.
+	 * 
+	 * @return &lt;code&gt;true&lt;/code&gt; if the move is an &lt;i&gt;en passant&lt;/i&gt; capture, &lt;code&gt;false&lt;/code&gt; otherwise.
+	 */
+	public boolean getEnPassant() {
+
+<span class="fc" id="L184">		return isEnPassant;</span>
+	}
+	/**
+	 * Sets the &lt;i&gt;en passant&lt;/i&gt; flag as true.
+	 */
+	public void setEnPassant() {
+
+<span class="fc" id="L191">		isEnPassant = true;</span>
+<span class="fc" id="L192">	}</span>
+
+	/**
+	 * Sets the type of the castling. If &lt;code&gt;newCastling==null&lt;/code&gt; then the method
+	 * does nothing.
+	 * 
+	 * @param newCastling Castling enumeration to be set.
+	 */
+	public void setCastling(final Castling newCastling) {
+<span class="fc bfc" id="L201" title="All 2 branches covered.">		if (newCastling != null) {</span>
+
+<span class="fc" id="L203">			typeCastling = newCastling;</span>
+		}
+<span class="fc" id="L205">	}</span>
+
+	/**
+	 * Getter method for the castling type.
+	 * 
+	 * @return A Castling enumeration indicating whether and which castling the move is.
+	 */
+	public Castling getCastling() {
+
+<span class="fc" id="L214">		return typeCastling;</span>
+	}
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.5.201910111838</span></div></body></html>

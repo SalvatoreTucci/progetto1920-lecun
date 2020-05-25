@@ -1,0 +1,988 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="it"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>Match.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">scacchi</a> &gt; <a href="index.source.html" class="el_package">it.uniba.game</a> &gt; <span class="el_source">Match.java</span></div><h1>Match.java</h1><pre class="source lang-java linenums">package it.uniba.game;
+
+import it.uniba.game.pieces.Piece;
+import it.uniba.game.pieces.Knight;
+import it.uniba.game.pieces.Rook;
+import it.uniba.game.pieces.King;
+import it.uniba.game.pieces.Queen;
+import it.uniba.game.pieces.Pawn;
+import it.uniba.game.pieces.Bishop;
+import it.uniba.game.pieces.Piece.Color;
+import it.uniba.game.board.ChessBoard;
+import java.util.LinkedList;
+import java.util.Iterator;
+import java.util.regex.Pattern;
+
+/**
+* Class representing a chess match &lt;br&gt;
+* Class type : &amp;#60; Control &amp;#62; &lt;br&gt;&lt;br&gt;
+*
+* Responsibilities : &lt;br&gt;
+*
+* 	Knows : &lt;br&gt;
+* 		&lt;ul&gt;
+* 		&lt;li&gt;The current status of the ChessBoard&lt;/li&gt;
+* 		&lt;li&gt;Captured pieces by each player&lt;/li&gt;
+* 		&lt;li&gt;The history of the moves&lt;/li&gt;
+* 		&lt;li&gt;The current player&lt;/li&gt;
+* 		&lt;li&gt;The last long move done by a pawn&lt;/li&gt;
+* 		&lt;/ul&gt;
+*	Does : &lt;br&gt;
+*		&lt;ul&gt;
+*		&lt;li&gt;Parsifies the move given an input string&lt;/li&gt;
+*		&lt;li&gt;Establishes whether the move is a Castling, a Capture or a simple one&lt;/li&gt;
+*		&lt;li&gt;Checks whether the established move is legal and not ambiguous&lt;/li&gt;
+*		&lt;li&gt;Executes the move, if legal&lt;/li&gt;
+*		&lt;li&gt;Updates the status of Rooks and Kings in order to say if the former can be
+*		captured &lt;i&gt;en passant&lt;/i&gt;, or the latter can execute Castling&lt;/li&gt;
+*		&lt;li&gt;Records the captures done by the players&lt;/li&gt;
+*		&lt;li&gt;Updates the color of the current player according to the flow of the game&lt;/li&gt;
+* 		&lt;/ul&gt;
+*
+* @author LeCun group
+*/
+
+
+
+public final class Match {
+
+	/**
+	 * Represents the field of the match.
+	 */
+	private ChessBoard field;
+
+	/**
+	 * Contains the black player captures.
+	 */
+	private LinkedList&lt;Piece&gt; blackCaptured;
+
+	/**
+	 * Contains the white player captures.
+	 */
+	private LinkedList&lt;Piece&gt; whiteCaptured;
+
+	/**
+	 * Contains the moves of the match.
+	 */
+	private LinkedList&lt;String&gt; moves;
+
+	/**
+	 * Color of the current player.
+	 */
+	private Piece.Color currentPlayer;
+
+	/**
+	 * Last position of the black king.
+	 */
+	private Coordinates blackKingPosition;
+
+	/**
+	 * Last position of the white king.
+	 */
+	private Coordinates whiteKingPosition;
+
+	/**
+	 * Last position of the last pawn that did a long move.
+	 */
+	private Coordinates lastPawnLongMove;
+
+	/**
+	 * Constructor of the class Match
+	 * It initializes the currentPlayer to WHITE and
+	 * creates a new ChessBoard with the pieces at the initial position of a classic chess game.
+	 */
+<span class="fc" id="L94">	public Match() {</span>
+
+<span class="fc" id="L96">		currentPlayer = Piece.Color.WHITE;</span>
+<span class="fc" id="L97">		blackCaptured = new LinkedList&lt;Piece&gt;();</span>
+<span class="fc" id="L98">		whiteCaptured = new LinkedList&lt;Piece&gt;();</span>
+<span class="fc" id="L99">		moves = new LinkedList&lt;String&gt;();</span>
+<span class="fc" id="L100">		field = new ChessBoard();</span>
+<span class="fc" id="L101">		blackKingPosition = new Coordinates(Constants.KING_COL, Constants.BLACK_SIDE_ROW);</span>
+<span class="fc" id="L102">		whiteKingPosition = new Coordinates(Constants.KING_COL, Constants.WHITE_SIDE_ROW);</span>
+<span class="fc" id="L103">		lastPawnLongMove = Constants.EMPTY_COORD;</span>
+<span class="fc" id="L104">	}</span>
+
+	/**
+	 * Method used to execute a move entered by a player.&lt;br&gt;
+	 * The move must be entered in correct Italian algebraic notation.
+	 * It checks whether the passed move is a castling, a normal move
+	 * or a capture. If a move is legal, it will be added to the history
+	 * of the moves, if it is a capture, the captured piece will be added
+	 * to the list of captures. Eventually, it will flag the rooks and the
+	 * king as &quot;moved&quot; (not capable of a castling).
+	 * 
+	 * @param toParse Player move represented as a string.
+	 * 
+	 * @throws MatchException Raised if the user tries to enter an irregular or incorrect move.
+	 */
+	public void inputMove(final String toParse) throws MatchException {
+
+<span class="fc" id="L121">		Move parsedMove = parseMove(toParse);</span>
+
+<span class="fc bfc" id="L123" title="All 2 branches covered.">		if (parsedMove.getCastling() == Move.Castling.NO_CASTLING) {</span>
+
+<span class="fc" id="L125">			boolean isRookMoved = false;</span>
+<span class="fc" id="L126">			findToMove(parsedMove);</span>
+
+<span class="fc bfc" id="L128" title="All 2 branches covered.">			if (parsedMove.getPiece().getClass() == King.class) {</span>
+
+<span class="fc" id="L130">				((King) parsedMove.getPiece()).setMoved(true);</span>
+<span class="fc bfc" id="L131" title="All 2 branches covered.">			} else if (parsedMove.getPiece().getClass() == Rook.class) {</span>
+
+<span class="fc" id="L133">				isRookMoved = ((Rook) parsedMove.getPiece()).isMoved();</span>
+<span class="fc" id="L134">				((Rook) parsedMove.getPiece()).setMoved(true);</span>
+			}
+
+<span class="fc bfc" id="L137" title="All 2 branches covered.">			if (parsedMove.getCaptureFlag()) {</span>
+
+<span class="fc" id="L139">				insertCapture(parsedMove);</span>
+			}
+
+<span class="fc" id="L142">			field.setMove(parsedMove);</span>
+
+<span class="fc bfc" id="L144" title="All 2 branches covered.">			if (parsedMove.getPiece().getClass() != King.class) {</span>
+
+<span class="fc bfc" id="L146" title="All 2 branches covered.">				if ((parsedMove.getPiece().getColor() == Piece.Color.BLACK</span>
+<span class="fc bfc" id="L147" title="All 2 branches covered.">					&amp;&amp; checkKingThreat(new Move(new King(Color.BLACK),</span>
+						null, blackKingPosition, false)))
+<span class="fc bfc" id="L149" title="All 2 branches covered.">					|| ((parsedMove.getPiece().getColor() == Color.WHITE)</span>
+<span class="fc bfc" id="L150" title="All 2 branches covered.">					&amp;&amp; checkKingThreat(new Move(</span>
+						new King(Color.WHITE), null, whiteKingPosition, false)))) {
+
+<span class="fc bfc" id="L153" title="All 2 branches covered.">					if (parsedMove.getPiece().getClass() == Rook.class) {</span>
+
+<span class="fc" id="L155">						((Rook) parsedMove.getPiece()).setMoved(isRookMoved);</span>
+					}
+
+<span class="fc" id="L158">					field.setMove(new Move(parsedMove.getPiece(),</span>
+<span class="fc" id="L159">							parsedMove.getEndingPos(), parsedMove.getStartingPos(), false));</span>
+<span class="fc bfc" id="L160" title="All 2 branches covered.">					if (parsedMove.getCaptureFlag()) {</span>
+
+						Coordinates resetPos;
+
+<span class="fc bfc" id="L164" title="All 2 branches covered.">						if (parsedMove.getEnPassant()) {</span>
+
+<span class="fc" id="L166">							resetPos = new Coordinates(</span>
+<span class="fc" id="L167">									lastPawnLongMove.getColumn(),</span>
+<span class="fc" id="L168">									lastPawnLongMove.getRow());</span>
+						} else {
+
+<span class="fc" id="L171">							resetPos = new Coordinates(</span>
+<span class="fc" id="L172">									parsedMove.getEndingPos().getColumn(),</span>
+<span class="fc" id="L173">									parsedMove.getEndingPos().getRow());</span>
+						}
+
+<span class="fc bfc" id="L176" title="All 2 branches covered.">						if (parsedMove.getPiece().getColor() == Color.BLACK) {</span>
+
+<span class="fc" id="L178">							field.setMove(new Move(blackCaptured.getLast(),</span>
+									resetPos, resetPos, false));
+<span class="fc" id="L180">							blackCaptured.remove(blackCaptured.size() - 1);</span>
+						} else {
+
+<span class="fc" id="L183">							field.setMove(new Move(whiteCaptured.getLast(),</span>
+									resetPos, resetPos, false));
+<span class="fc" id="L185">							whiteCaptured.remove(whiteCaptured.size() - 1);</span>
+						}
+					}
+
+<span class="fc" id="L189">					throw new MatchException(Constants.ERR_KING_THREAT);</span>
+				}
+			} else {
+
+<span class="fc bfc" id="L193" title="All 2 branches covered.">				if (parsedMove.getPiece().getColor() == Piece.Color.BLACK) {</span>
+
+<span class="fc" id="L195">					blackKingPosition.setRow(parsedMove.getEndingPos().getRow());</span>
+<span class="fc" id="L196">					blackKingPosition.setColumn(parsedMove.getEndingPos().getColumn());</span>
+				} else {
+
+<span class="fc" id="L199">					whiteKingPosition.setRow(parsedMove.getEndingPos().getRow());</span>
+<span class="fc" id="L200">					whiteKingPosition.setColumn(parsedMove.getEndingPos().getColumn());</span>
+				}
+			}
+<span class="fc" id="L203">			resetEnPassant();</span>
+<span class="fc bfc" id="L204" title="All 2 branches covered.">			if (parsedMove.getPiece().getClass() == Pawn.class) {</span>
+
+<span class="fc" id="L206">				setEnPassantCondition(parsedMove);</span>
+			}
+<span class="fc" id="L208">		} else {</span>
+
+<span class="fc" id="L210">			handleCastling(parsedMove.getCastling());</span>
+		}
+
+<span class="fc" id="L213">		moves.add(toParse);</span>
+<span class="fc" id="L214">	}</span>
+
+	/**
+	 * If lastPawnLongMove is not empty, it sets the lastPawnLongMove to the empty coordinate,
+	 * otherwise it does nothing.
+	 */
+	private void resetEnPassant() {
+<span class="fc bfc" id="L221" title="All 2 branches covered.">		if (!lastPawnLongMove.equals(Constants.EMPTY_COORD)) {</span>
+
+<span class="fc bfc" id="L223" title="All 2 branches covered.">			if (field.getSquare(lastPawnLongMove).isOccupied()</span>
+<span class="fc bfc" id="L224" title="All 2 branches covered.">					&amp;&amp; field.getSquare(lastPawnLongMove).getPiece() instanceof Pawn) {</span>
+
+<span class="fc" id="L226">				lastPawnLongMove = Constants.EMPTY_COORD;</span>
+			}
+		}
+<span class="fc" id="L229">	}</span>
+
+	/**
+	 * If the capture is en passant, it changes the ending coordinate of captureMove
+	 * to the correct coordinates of the capture, otherwise it gets the ending coordinate
+	 * of captureMove.
+	 * Then, it takes the captured piece from the chessboard with the ending coordinate and
+	 * adds it into the correct list of captured pieces.
+	 * 
+	 * @param captureMove move that triggers a capture.
+	 */
+	private void insertCapture(final Move captureMove) {
+		Coordinates endingSquare;
+
+<span class="fc bfc" id="L243" title="All 2 branches covered.">		if (captureMove.getEnPassant()) {</span>
+
+<span class="fc" id="L245">			int addR = Constants.UP_DIRECTION;</span>
+
+<span class="fc bfc" id="L247" title="All 2 branches covered.">			if (captureMove.getPiece().getColor() == Piece.Color.WHITE) {</span>
+
+<span class="fc" id="L249">				addR = Constants.DOWN_DIRECTION;</span>
+			}
+
+<span class="fc" id="L252">			endingSquare = new Coordinates(captureMove.getEndingPos().getColumn(),</span>
+<span class="fc" id="L253">					captureMove.getEndingPos().getRow() + addR);</span>
+<span class="fc" id="L254">		} else {</span>
+
+<span class="fc" id="L256">			endingSquare = captureMove.getEndingPos();</span>
+		}
+
+<span class="fc" id="L259">		Piece capturedPiece = field.getSquare(endingSquare).getPiece();</span>
+
+<span class="fc bfc" id="L261" title="All 2 branches covered.">		if (capturedPiece.getColor() == Piece.Color.BLACK) {</span>
+
+<span class="fc" id="L263">			whiteCaptured.add(capturedPiece);</span>
+		} else {
+
+<span class="fc" id="L266">			blackCaptured.add(capturedPiece);</span>
+		}
+<span class="fc" id="L268">	}</span>
+
+	/**
+	 * Return a string that contains the pieces captured by the side's color.
+	 * 
+	 * @param side Color of the player we want the captures.
+	 * 
+	 * @return a string that contains the pieces captured by the side's color.
+	 */
+	public String getPrintableCaptures(final Piece.Color side) {
+<span class="fc bfc" id="L278" title="All 2 branches covered.">		if (side == Piece.Color.WHITE) {</span>
+
+<span class="fc" id="L280">			return whiteCaptured.toString();</span>
+		} else {
+
+<span class="fc" id="L283">			return blackCaptured.toString();</span>
+		}
+	}
+
+	/**
+	 *  Returns a string that contains the move history in the format:
+	 *  &lt;ol&gt;
+	 *  	&lt;li&gt; e3, b6
+	 *		&lt;li&gt; c4, f6
+	 *	&lt;/ol&gt;
+	 *
+	 *	@return a string that contains the move history.
+	 */
+	public String getPrintableMoves() {
+
+<span class="fc" id="L298">		StringBuffer historyBuffer = new StringBuffer();</span>
+
+<span class="fc" id="L300">		int i = 0;</span>
+<span class="fc" id="L301">		int j = 1;</span>
+<span class="fc bfc" id="L302" title="All 2 branches covered.">		while (i &lt; moves.size()) {</span>
+
+<span class="fc bfc" id="L304" title="All 2 branches covered.">			if (i % 2 == 0) {</span>
+
+<span class="fc" id="L306">				historyBuffer.append(&quot;\n&quot; + j + &quot;. &quot;);</span>
+<span class="fc" id="L307">				j++;</span>
+			}
+
+<span class="fc" id="L310">			historyBuffer.append(moves.get(i));</span>
+
+<span class="fc bfc" id="L312" title="All 2 branches covered.">			if (i % 2 == 0) {</span>
+
+<span class="fc" id="L314">				historyBuffer.append(&quot; &quot;);</span>
+			}
+
+<span class="fc" id="L317">			i++;</span>
+		}
+
+<span class="fc" id="L320">		return historyBuffer.toString();</span>
+	}
+
+	/**
+	 * Return a string that contains the current status of the chessboard.
+	 * 
+	 * @return a string that contains the current status of the chessboard.
+	 */
+	public String getPrintableChessBoard() {
+
+<span class="nc" id="L330">		return field.toString();</span>
+	}
+
+	/**
+	 * Return the color of the current player turn.
+	 * 
+	 * @return the color of the current player turn.
+	 */
+	public Piece.Color getCurrentPlayer() {
+
+<span class="fc" id="L340">		return currentPlayer;</span>
+	}
+
+	/**
+	 * If the current player color is black, it changes currentPlayer to the color WHITE
+	 * else, it changes currentPlayer to the color BLACK.
+	 */
+	public void nextTurn() {
+
+<span class="fc bfc" id="L349" title="All 2 branches covered.">		if (currentPlayer == Piece.Color.BLACK) {</span>
+
+<span class="fc" id="L351">			currentPlayer = Piece.Color.WHITE;</span>
+		} else {
+
+<span class="fc" id="L354">			currentPlayer = Piece.Color.BLACK;</span>
+		}
+<span class="fc" id="L356">	}</span>
+
+	/**
+	 * Parses a move from a user entered string, following the algebraic notation &lt;br&gt;
+	 * the general form for a recognized move is: &lt;br&gt;
+	 * [Piece][Disambiguation coordinate][Capture][Landing square column][Landing square row].
+	 * 
+	 * @param toParse a string containing the move to be parsed.
+	 * 
+	 * @return an instance of the class Move.
+	 * 
+	 * @throws MatchExcption Raised if the move represented as string is badly formatted.
+	 */
+	private Move parseMove(final String toParse) throws MatchException {
+
+<span class="fc" id="L371">		boolean validMove = Pattern.matches(Constants.GENERAL_MOVE_REGEX, toParse);</span>
+<span class="fc" id="L372">		int offsetFinalCoords = 0;</span>
+
+<span class="fc bfc" id="L374" title="All 2 branches covered.">		if (validMove) {</span>
+
+<span class="fc" id="L376">			boolean capture = toParse.contains(Constants.MOVE_CAPTURE);</span>
+
+<span class="fc" id="L378">			Piece toMove = null;</span>
+<span class="fc" id="L379">			int offsetDisambiguation = 0;</span>
+<span class="fc" id="L380">			boolean enPassant = false;</span>
+
+<span class="fc bfc" id="L382" title="All 2 branches covered.">			if (Pattern.matches(Constants.PIECE_MOVE_REGEX, toParse)) {</span>
+
+<span class="pc bpc" id="L384" title="1 of 6 branches missed.">				switch (toParse.charAt(0)) {</span>
+
+					case Constants.CHAR_KING:
+<span class="fc" id="L387">						toMove = new King(currentPlayer);</span>
+<span class="fc" id="L388">						break;</span>
+					case Constants.CHAR_QUEEN:
+<span class="fc" id="L390">						toMove = new Queen(currentPlayer);</span>
+<span class="fc" id="L391">						break;</span>
+					case Constants.CHAR_ROOK:
+<span class="fc" id="L393">						toMove = new Rook(currentPlayer);</span>
+<span class="fc" id="L394">						break;</span>
+					case Constants.CHAR_BISHOP:
+<span class="fc" id="L396">						toMove = new Bishop(currentPlayer);</span>
+<span class="fc" id="L397">						break;</span>
+					case Constants.CHAR_KNIGHT:
+<span class="fc" id="L399">						toMove = new Knight(currentPlayer);</span>
+<span class="fc" id="L400">						break;</span>
+					default:
+				}
+
+<span class="fc" id="L404">				offsetDisambiguation = 1;</span>
+
+<span class="fc bfc" id="L406" title="All 2 branches covered.">				if (toParse.contains(Constants.STRING_EN_PASSANT)) {</span>
+
+<span class="fc" id="L408">					throw new MatchException(Constants.ERR_EN_PASSANT_BAD_TARGET);</span>
+				}
+			} else {
+
+<span class="fc" id="L412">				toMove = new Pawn(currentPlayer);</span>
+
+
+<span class="fc bfc" id="L415" title="All 2 branches covered.">				if (toParse.contains(Constants.STRING_EN_PASSANT)) {</span>
+
+<span class="fc bfc" id="L417" title="All 2 branches covered.">					if (!capture) {</span>
+
+<span class="fc" id="L419">						throw new MatchException(Constants.ERR_EN_PASSANT_NO_CAPTURE);</span>
+					}
+
+<span class="fc" id="L422">					enPassant = true;</span>
+<span class="fc" id="L423">					offsetFinalCoords = Constants.EN_PASSANT_COORDS_OFFSET;</span>
+				}
+			}
+
+<span class="fc" id="L427">			Coordinates startPos = new Coordinates(Constants.INVALID_POS, Constants.INVALID_POS);</span>
+<span class="fc" id="L428">			Coordinates finalPos = new Coordinates((int) (toParse.charAt(toParse.length()</span>
+					- Constants.MOVE_COLUMN_OFFSET - offsetFinalCoords)
+					- Constants.CHAR_COLUMN_OFFSET),
+<span class="fc" id="L431">						Math.abs(Character.getNumericValue(toParse.charAt(toParse.length()</span>
+						- Constants.MOVE_ROW_OFFSET - offsetFinalCoords))
+						- Constants.ROW_OFFSET));
+
+<span class="fc bfc" id="L435" title="All 2 branches covered.">			if (Pattern.matches(Constants.DISAMBIGUATION_REGEX, toParse)) {</span>
+
+<span class="fc bfc" id="L437" title="All 2 branches covered.">				if ((int) toParse.charAt(offsetDisambiguation) &gt;= Constants.CHAR_COLUMN_OFFSET) {</span>
+
+<span class="fc" id="L439">					startPos.setColumn((int) (toParse.charAt(offsetDisambiguation)</span>
+							- Constants.CHAR_COLUMN_OFFSET));
+				} else {
+
+<span class="fc" id="L443">					startPos.setRow(Math.abs(Character.getNumericValue(</span>
+<span class="fc" id="L444">							toParse.charAt(offsetDisambiguation)) - Constants.ROW_OFFSET));</span>
+				}
+			}
+
+<span class="fc bfc" id="L448" title="All 2 branches covered.">			if (toMove.getClass() == Pawn.class</span>
+<span class="fc bfc" id="L449" title="All 4 branches covered.">					&amp;&amp; startPos.getColumn() == Constants.INVALID_POS</span>
+					&amp;&amp; capture) {
+
+<span class="fc" id="L452">				throw new MatchException(Constants.ERR_UNRECOGNIZED_MOVE);</span>
+			}
+
+<span class="fc" id="L455">			Move returnMove = new Move(toMove, startPos, finalPos, capture);</span>
+
+<span class="fc bfc" id="L457" title="All 2 branches covered.">			if (enPassant) {</span>
+
+<span class="fc" id="L459">				returnMove.setEnPassant();</span>
+			}
+
+<span class="fc" id="L462">			return returnMove;</span>
+<span class="fc bfc" id="L463" title="All 2 branches covered.">		} else if (Pattern.matches(Constants.CASTLING_REGEX, toParse)) {</span>
+
+<span class="fc" id="L465">			Move returnMove = new Move(null, null, null, false);</span>
+
+<span class="fc bfc" id="L467" title="All 2 branches covered.">			if (toParse.length() == Constants.KINGSIDE_STRING_LENGHT) {</span>
+
+<span class="fc" id="L469">				returnMove.setCastling(Move.Castling.KINGSIDE_CASTLING);</span>
+			} else {
+
+<span class="fc" id="L472">				returnMove.setCastling(Move.Castling.QUEENSIDE_CASTLING);</span>
+			}
+
+<span class="fc" id="L475">			return returnMove;</span>
+		} else {
+
+<span class="fc" id="L478">			throw new MatchException(Constants.ERR_UNRECOGNIZED_MOVE);</span>
+		}
+	}
+
+	/**
+	 * Sets the starting position of the move passed by argument, checking
+	 * the possible coordinates that return the reverseMove of the piece to move.
+	 * 
+	 * @param toMove move that needs a starting position.
+	 * 
+	 * @throws MatchException if the move is illegal, irregular or ambiguous, with a specific message.
+	 */
+	private void findToMove(final Move toMove) throws MatchException {
+
+<span class="fc" id="L492">		LinkedList&lt;Coordinates&gt; possibleSquares = toMove.getPiece().reverseMove(toMove);</span>
+
+		//1. checking if there are possible pieces to move in the LinkedList possibleSquares
+<span class="fc" id="L495">		int i = 0;</span>
+
+<span class="fc bfc" id="L497" title="All 2 branches covered.">		while (i &lt; possibleSquares.size()) {</span>
+
+<span class="fc bfc" id="L499" title="All 2 branches covered.">			if (field.getSquare(possibleSquares.get(i)).isOccupied()</span>
+<span class="fc" id="L500">					&amp;&amp; field.getSquare(possibleSquares.get(i))</span>
+<span class="fc bfc" id="L501" title="All 2 branches covered.">					.getPiece().equals(toMove.getPiece())) {</span>
+
+<span class="fc" id="L503">				i++;</span>
+			} else {
+
+<span class="fc" id="L506">				possibleSquares.remove(i);</span>
+			}
+		}
+		// now possibleSquares contains the Coordinates where there's a possible piece to move in the field
+
+		//2. checks whether the target square is full when capturing, empty when moving
+<span class="fc bfc" id="L512" title="All 2 branches covered.">		if (toMove.getCaptureFlag()) {</span>
+
+<span class="fc bfc" id="L514" title="All 2 branches covered.">			if (toMove.getPiece().getClass() == Pawn.class) {</span>
+
+<span class="fc" id="L516">				handlePawn(toMove, possibleSquares);</span>
+<span class="fc bfc" id="L517" title="All 2 branches covered.">			} else if (!field.getSquare(toMove.getEndingPos()).isOccupied()</span>
+<span class="fc" id="L518">					|| (field.getSquare(toMove.getEndingPos()).getPiece().getColor()</span>
+<span class="fc bfc" id="L519" title="All 2 branches covered.">							== toMove.getPiece().getColor())) {</span>
+
+<span class="fc" id="L521">				throw new MatchException(Constants.ERR_ILLEGAL_MOVE);</span>
+			}
+		} else {
+<span class="fc bfc" id="L524" title="All 2 branches covered.">			if (field.getSquare(toMove.getEndingPos()).isOccupied()) {</span>
+
+<span class="fc" id="L526">				throw new MatchException(Constants.ERR_ILLEGAL_MOVE);</span>
+			}
+		}
+
+		//3. checks whether there's a piece in the middle
+<span class="fc bfc" id="L531" title="All 2 branches covered.">		if (toMove.getPiece().getClass() != Pawn.class</span>
+<span class="fc bfc" id="L532" title="All 2 branches covered.">				&amp;&amp; toMove.getPiece().getClass() != Knight.class) {</span>
+
+<span class="fc" id="L534">			int k = 0;</span>
+
+<span class="fc bfc" id="L536" title="All 2 branches covered.">			while (k &lt; possibleSquares.size()) {</span>
+
+<span class="fc" id="L538">				if (!getObstructingPieces(possibleSquares.get(k),</span>
+<span class="fc bfc" id="L539" title="All 2 branches covered.">						toMove.getEndingPos()).isEmpty()) {</span>
+
+<span class="fc" id="L541">					possibleSquares.remove(k);</span>
+				} else {
+
+<span class="fc" id="L544">					k++;</span>
+				}
+			}
+		}
+
+		// 4. solves ambiguities
+<span class="fc bfc" id="L550" title="All 2 branches covered.">		if (possibleSquares.size() &gt; 1) {</span>
+
+<span class="fc" id="L552">			solveAmbiguousMoves(possibleSquares, toMove);</span>
+		}
+
+		// if there are no alternatives raise an exception
+<span class="pc bpc" id="L556" title="1 of 2 branches missed.">		if (possibleSquares.isEmpty()) {</span>
+
+<span class="nc" id="L558">				throw new MatchException(Constants.ERR_ILLEGAL_MOVE);</span>
+<span class="fc bfc" id="L559" title="All 2 branches covered.">		} else if ((toMove.getStartingPos().getColumn() != Constants.INVALID_POS</span>
+<span class="fc bfc" id="L560" title="All 2 branches covered.">				&amp;&amp; toMove.getStartingPos().getColumn() != possibleSquares.getFirst().getColumn())</span>
+<span class="fc bfc" id="L561" title="All 2 branches covered.">				|| (toMove.getStartingPos().getRow() != Constants.INVALID_POS</span>
+<span class="fc bfc" id="L562" title="All 2 branches covered.">				&amp;&amp; toMove.getStartingPos().getRow() != possibleSquares.getFirst().getRow())) {</span>
+
+				//if the user tries to give a wrong disambiguation when not needed
+<span class="fc" id="L565">				throw new MatchException(Constants.ERR_BAD_DISAMBIGUATION);</span>
+		}
+
+<span class="fc bfc" id="L568" title="All 2 branches covered.">		if (toMove.getPiece().getClass() == King.class) {</span>
+
+<span class="fc bfc" id="L570" title="All 2 branches covered.">			if (checkKingThreat(toMove)) {</span>
+
+<span class="fc" id="L572">				throw new MatchException(Constants.ERR_KING_THREAT);</span>
+			}
+		}
+
+<span class="fc" id="L576">		toMove.setStartingPos(possibleSquares.getFirst());</span>
+<span class="fc" id="L577">	}</span>
+
+	/**
+	 * Return a list of pieces that are between the startingPos and the endingPos,
+	 * in horizontally if the coordinates have the same row,
+	 * in vertically if the coordinates have the same column
+	 * or diagonally if the coordinates have different column and row.
+	 * 
+	 * @param startingPos coordinate from which to start looking for pieces.
+	 * @param endingPos coordinate in which to stop the search for pieces.
+	 * 
+	 * @return a list of pieces that are between the startingPos and the endingPos.
+	 */
+	private LinkedList&lt;Piece&gt; getObstructingPieces(final Coordinates startingPos, final Coordinates endingPos) {
+
+		int addR;
+		int addC;
+
+<span class="fc" id="L595">		LinkedList&lt;Piece&gt; toReturn = new LinkedList&lt;Piece&gt;();</span>
+
+<span class="fc bfc" id="L597" title="All 2 branches covered.">		if (startingPos.getRow() == endingPos.getRow()) {</span>
+
+<span class="fc" id="L599">			addR = Constants.STILL_DIRECTION;</span>
+<span class="fc bfc" id="L600" title="All 2 branches covered.">		} else if (startingPos.getRow() &gt; endingPos.getRow()) {</span>
+
+<span class="fc" id="L602">			addR = Constants.UP_DIRECTION;</span>
+		} else {
+
+<span class="fc" id="L605">			addR = Constants.DOWN_DIRECTION;</span>
+		}
+
+<span class="fc bfc" id="L608" title="All 2 branches covered.">		if (startingPos.getColumn() == endingPos.getColumn()) {</span>
+
+<span class="fc" id="L610">			addC = Constants.STILL_DIRECTION;</span>
+<span class="fc bfc" id="L611" title="All 2 branches covered.">		} else if (startingPos.getColumn() &gt; endingPos.getColumn()) {</span>
+
+<span class="fc" id="L613">			addC = Constants.LEFT_DIRECTION;</span>
+		} else {
+
+<span class="fc" id="L616">			addC = Constants.RIGHT_DIRECTION;</span>
+		}
+
+<span class="fc" id="L619">		for (int i = startingPos.getRow() + addR, j = startingPos.getColumn() + addC;</span>
+<span class="fc bfc" id="L620" title="All 4 branches covered.">				i != endingPos.getRow() || j != endingPos.getColumn();</span>
+<span class="fc" id="L621">				i += addR, j += addC) {</span>
+
+<span class="fc bfc" id="L623" title="All 2 branches covered.">			if (field.getSquare(new Coordinates(j, i)).isOccupied()) {</span>
+
+<span class="fc" id="L625">				toReturn.add(field.getSquare(new Coordinates(j, i)).getPiece());</span>
+			}
+		}
+
+<span class="fc" id="L629">		return toReturn;</span>
+	}
+
+	/**
+	 * It resolves ambiguous moves, choosing between the list of possibleSquares, the right
+	 * starting position for toMove, or if there are more than one, or none, starting position
+	 * at the end of the function, it throws a MatchException.
+	 * 
+	 * @param possibleSquares list of possible starting coordinates for the move toMove.
+	 * @param toMove the move that needs a starting coordinate.
+	 * 
+	 * @throws MatchException if the move is illegal or irregular, or if the list of possible
+	 * starting positions, at the end of the function, has more of one coordinate.
+	 */
+	private void solveAmbiguousMoves(final LinkedList&lt;Coordinates&gt; possibleSquares,
+			final Move toMove) throws MatchException {
+
+<span class="fc bfc" id="L646" title="All 2 branches covered.">		if (toMove.getStartingPos().getRow() != Constants.INVALID_POS) {</span>
+
+<span class="fc" id="L648">			Iterator&lt;Coordinates&gt; j = possibleSquares.iterator();</span>
+
+<span class="fc bfc" id="L650" title="All 2 branches covered.">			while (j.hasNext()) {</span>
+
+<span class="fc" id="L652">				Coordinates toCompare = j.next();</span>
+
+<span class="fc bfc" id="L654" title="All 2 branches covered.">				if (toCompare.getRow() != toMove.getStartingPos().getRow()) {</span>
+
+<span class="fc" id="L656">					j.remove();</span>
+				}
+<span class="fc" id="L658">			}</span>
+<span class="fc bfc" id="L659" title="All 2 branches covered.">		} else if (toMove.getStartingPos().getColumn() != Constants.INVALID_POS) {</span>
+
+<span class="fc" id="L661">			Iterator&lt;Coordinates&gt; j = possibleSquares.iterator();</span>
+<span class="fc bfc" id="L662" title="All 2 branches covered.">			while (j.hasNext()) {</span>
+
+<span class="fc" id="L664">				Coordinates toCompare = j.next();</span>
+<span class="fc bfc" id="L665" title="All 2 branches covered.">				if (toCompare.getColumn() != toMove.getStartingPos().getColumn()) {</span>
+
+<span class="fc" id="L667">					j.remove();</span>
+				}
+<span class="fc" id="L669">			}</span>
+<span class="fc" id="L670">		} else {</span>
+
+<span class="fc" id="L672">			throw new MatchException(Constants.ERR_AMBIGUOUS_MOVE);</span>
+		}
+
+		// if there's still more than one alternative raise an exception &lt;br&gt;
+<span class="fc bfc" id="L676" title="All 2 branches covered.">		if (possibleSquares.size() &gt; 1) {</span>
+
+<span class="fc" id="L678">			throw new MatchException(Constants.ERR_BAD_DISAMBIGUATION);</span>
+		}
+<span class="fc" id="L680">	}</span>
+
+	/**
+	 * Handles the various possibilities of a Pawn move.
+	 * It checks whether the move is an En Passant, and its legality.
+	 * Updates the attribute &lt;code&gt;lastPawnMove&lt;/code&gt; if the pawn
+	 * does a long move.
+	 * 
+	 * @param toMove Move parsed from the string entered by the user.
+	 * @param possibleSquares Possible starting squares from where the pawn can be positioned.
+	 * 
+	 * @throws MatchException Raised if the move is not legal.
+	 */
+	private void handlePawn(final Move toMove,
+			final LinkedList&lt;Coordinates&gt; possibleSquares) throws MatchException {
+
+<span class="fc bfc" id="L696" title="All 2 branches covered.">		if (!field.getSquare(toMove.getEndingPos()).isOccupied()) {</span>
+
+			int addR;
+
+<span class="fc bfc" id="L700" title="All 2 branches covered.">			if (toMove.getPiece().getColor() == Piece.Color.WHITE) {</span>
+
+<span class="fc" id="L702">				addR = Constants.DOWN_DIRECTION;</span>
+			} else {
+
+<span class="fc" id="L705">				addR = Constants.UP_DIRECTION;</span>
+			}
+
+<span class="fc" id="L708">			Coordinates toCheck = new Coordinates(toMove.getEndingPos().getColumn(),</span>
+<span class="fc" id="L709">					toMove.getEndingPos().getRow() + addR);</span>
+
+<span class="fc bfc" id="L711" title="All 2 branches covered.">			if (field.getSquare(toCheck).isOccupied()) {</span>
+
+<span class="fc bfc" id="L713" title="All 2 branches covered.">				if ((field.getSquare(toCheck).getPiece().getClass() == Pawn.class)</span>
+<span class="fc" id="L714">						&amp;&amp; (field.getSquare(toCheck).getPiece().getColor()</span>
+<span class="fc bfc" id="L715" title="All 2 branches covered.">								!= toMove.getPiece().getColor())) {</span>
+
+<span class="fc bfc" id="L717" title="All 2 branches covered.">					if (toCheck.equals(lastPawnLongMove)) {</span>
+
+<span class="fc" id="L719">						toMove.setEnPassant();</span>
+					} else {
+
+						// exception regarding the impossibility of doing
+						// an EnPassant move on the target pawn &lt;br&gt;
+<span class="fc" id="L724">						throw new MatchException(Constants.ERR_EN_PASSANT);</span>
+					}
+				} else {
+
+					// exception regarding an incorrect EnPassant move
+<span class="fc" id="L729">					throw new MatchException(Constants.ERR_EN_PASSANT_BAD_TARGET);</span>
+				}
+			} else {
+
+<span class="fc" id="L733">				throw new MatchException(Constants.ERR_ILLEGAL_MOVE);</span>
+			}
+<span class="fc" id="L735">		} else if ((field.getSquare(toMove.getEndingPos()).getPiece().getColor()</span>
+<span class="fc bfc" id="L736" title="All 2 branches covered.">				!= toMove.getPiece().getColor())) {</span>
+
+<span class="fc bfc" id="L738" title="All 2 branches covered.">			if (toMove.getEnPassant()) {</span>
+
+<span class="fc" id="L740">				throw new MatchException(Constants.ERR_EN_PASSANT);</span>
+			}
+		} else {
+
+			// exception regarding the wrong target piece which has to be captured
+<span class="fc" id="L745">			throw new MatchException(Constants.ERR_BAD_TARGET);</span>
+		}
+<span class="fc" id="L747">	}</span>
+
+	/**
+	 * Checks if the move is a long move of a pawn, and if so,
+	 * saves the ending position of the move in lastPawnLongMove, for
+	 * a future en passant move.
+	 * 
+	 * @param toCheck the move to check if it's a long pawn move.
+	 */
+	private void setEnPassantCondition(final Move toCheck) {
+
+<span class="fc bfc" id="L758" title="All 2 branches covered.">		if (Math.abs(toCheck.getStartingPos().getRow()</span>
+<span class="fc" id="L759">				- toCheck.getEndingPos().getRow()) == Constants.LONG_MOVE_LENGTH) {</span>
+
+<span class="fc" id="L761">			lastPawnLongMove = new Coordinates(toCheck.getEndingPos().getColumn(),</span>
+<span class="fc" id="L762">					toCheck.getEndingPos().getRow());</span>
+		}
+<span class="fc" id="L764">	}</span>
+
+	/**
+	 * Checks if the king is threatened by a move of its own
+	 * (the move is irregular).
+	 * 
+	 * @param toMove King move to be checked.
+	 * 
+	 * @return Returns True if the king is threatened after the move execution, false if otherwise.
+	 */
+	private Boolean checkKingThreat(final Move toMove) {
+
+		LinkedList&lt;Coordinates&gt; squaresToCheck;
+		//LinkedList containing the coordinates for possibles threatening pieces
+<span class="fc" id="L778">		squaresToCheck = Bishop.reverseBishopMove(toMove);</span>
+
+<span class="fc" id="L780">		Iterator&lt;Coordinates&gt; i = squaresToCheck.iterator();</span>
+<span class="fc bfc" id="L781" title="All 2 branches covered.">		while (i.hasNext()) {</span>
+
+<span class="fc" id="L783">			Coordinates toCompare = i.next();</span>
+<span class="fc bfc" id="L784" title="All 2 branches covered.">			if ((field.getSquare(toCompare).getPiece() != null)</span>
+<span class="fc bfc" id="L785" title="All 2 branches covered.">					&amp;&amp; (field.getSquare(toCompare).getPiece().getClass() == Bishop.class</span>
+<span class="fc bfc" id="L786" title="All 2 branches covered.">					|| field.getSquare(toCompare).getPiece().getClass() == Queen.class)) {</span>
+
+<span class="fc bfc" id="L788" title="All 2 branches covered.">				if (field.getSquare(toCompare).getPiece().getColor() != toMove.getPiece().getColor()) {</span>
+
+<span class="fc" id="L790">					LinkedList&lt;Piece&gt; obstructors</span>
+<span class="fc" id="L791">						= getObstructingPieces(toCompare, toMove.getEndingPos());</span>
+<span class="pc bpc" id="L792" title="1 of 4 branches missed.">					if (obstructors.isEmpty() || (obstructors.size() == 1</span>
+<span class="fc bfc" id="L793" title="All 2 branches covered.">							&amp;&amp; (obstructors.getFirst().getClass() == King.class))) {</span>
+<span class="fc" id="L794">						return true;</span>
+					}
+				}
+			}
+<span class="fc" id="L798">		}</span>
+
+<span class="fc" id="L800">		squaresToCheck = Rook.reverseRookMove(toMove);</span>
+
+<span class="fc" id="L802">		i = squaresToCheck.iterator();</span>
+<span class="fc bfc" id="L803" title="All 2 branches covered.">		while (i.hasNext()) {</span>
+
+<span class="fc" id="L805">			Coordinates toCompare = i.next();</span>
+<span class="fc bfc" id="L806" title="All 2 branches covered.">			if ((field.getSquare(toCompare).getPiece() != null)</span>
+<span class="fc bfc" id="L807" title="All 2 branches covered.">					&amp;&amp; (field.getSquare(toCompare).getPiece().getClass() == Rook.class</span>
+<span class="fc bfc" id="L808" title="All 2 branches covered.">					|| field.getSquare(toCompare).getPiece().getClass() == Queen.class)) {</span>
+
+<span class="fc bfc" id="L810" title="All 2 branches covered.">				if (field.getSquare(toCompare).getPiece().getColor() != toMove.getPiece().getColor()) {</span>
+
+<span class="fc" id="L812">					LinkedList&lt;Piece&gt; obstructors =</span>
+<span class="fc" id="L813">							getObstructingPieces(toCompare, toMove.getEndingPos());</span>
+<span class="fc bfc" id="L814" title="All 4 branches covered.">					if (obstructors.isEmpty() || (obstructors.size() == 1</span>
+<span class="fc bfc" id="L815" title="All 2 branches covered.">							&amp;&amp; (obstructors.getFirst().getClass() == King.class))) {</span>
+
+<span class="fc" id="L817">						return true;</span>
+					}
+				}
+			}
+<span class="fc" id="L821">		}</span>
+
+<span class="fc" id="L823">		squaresToCheck = Knight.reverseKnightMove(toMove);</span>
+
+<span class="fc" id="L825">		i = squaresToCheck.iterator();</span>
+<span class="fc bfc" id="L826" title="All 2 branches covered.">		while (i.hasNext()) {</span>
+
+<span class="fc" id="L828">			Coordinates toCompare = i.next();</span>
+
+<span class="fc bfc" id="L830" title="All 2 branches covered.">			if ((field.getSquare(toCompare).isOccupied())</span>
+<span class="fc bfc" id="L831" title="All 2 branches covered.">					&amp;&amp; (field.getSquare(toCompare).getPiece().getClass() == Knight.class)) {</span>
+
+<span class="fc bfc" id="L833" title="All 2 branches covered.">				if (field.getSquare(toCompare).getPiece().getColor() != toMove.getPiece().getColor()) {</span>
+
+<span class="fc" id="L835">					return true;</span>
+				}
+			}
+<span class="fc" id="L838">		}</span>
+
+		int rowToCheck;
+
+<span class="fc bfc" id="L842" title="All 2 branches covered.">		if (toMove.getPiece().getColor() == Piece.Color.BLACK) {</span>
+
+<span class="fc" id="L844">			rowToCheck = toMove.getEndingPos().getRow() + Constants.DOWN_DIRECTION;</span>
+		} else {
+
+<span class="fc" id="L847">			rowToCheck = toMove.getEndingPos().getRow() + Constants.UP_DIRECTION;</span>
+		}
+
+<span class="fc" id="L850">		int firstColToCheck = toMove.getEndingPos().getColumn() + Constants.LEFT_DIRECTION;</span>
+<span class="fc" id="L851">		int secondColToCheck = toMove.getEndingPos().getColumn() + Constants.RIGHT_DIRECTION;</span>
+
+<span class="pc bpc" id="L853" title="2 of 4 branches missed.">		if (rowToCheck &gt;= Constants.FIRST_ROW &amp;&amp; rowToCheck &lt;= Constants.LAST_ROW) {</span>
+
+<span class="pc bpc" id="L855" title="2 of 4 branches missed.">			if (firstColToCheck &gt;= Constants.FIRST_COLUMN &amp;&amp; firstColToCheck &lt;= Constants.LAST_COLUMN) {</span>
+
+<span class="fc" id="L857">				if ((field.getSquare(new Coordinates(firstColToCheck,</span>
+<span class="fc bfc" id="L858" title="All 2 branches covered.">						rowToCheck)).getPiece() != null)) {</span>
+
+<span class="fc" id="L860">					if (field.getSquare(new Coordinates(firstColToCheck, rowToCheck))</span>
+<span class="fc bfc" id="L861" title="All 2 branches covered.">							.getPiece().getClass() == Pawn.class</span>
+<span class="fc" id="L862">							&amp;&amp; field.getSquare(new Coordinates(firstColToCheck, rowToCheck))</span>
+<span class="fc bfc" id="L863" title="All 2 branches covered.">							.getPiece().getColor() != toMove.getPiece().getColor()) {</span>
+
+<span class="fc" id="L865">						return true;</span>
+					}
+				}
+			}
+
+<span class="pc bpc" id="L870" title="2 of 4 branches missed.">			if (secondColToCheck &gt;= Constants.FIRST_COLUMN &amp;&amp; secondColToCheck &lt;= Constants.LAST_COLUMN) {</span>
+
+<span class="fc" id="L872">				if (!(field.getSquare(new Coordinates(secondColToCheck, rowToCheck))</span>
+<span class="fc bfc" id="L873" title="All 2 branches covered.">						.getPiece() == null)) {</span>
+
+<span class="fc" id="L875">					if (field.getSquare(new Coordinates(secondColToCheck, rowToCheck))</span>
+<span class="fc bfc" id="L876" title="All 2 branches covered.">							.getPiece().getClass() == Pawn.class</span>
+<span class="fc" id="L877">							&amp;&amp; field.getSquare(new Coordinates(secondColToCheck,</span>
+<span class="fc" id="L878">							rowToCheck)).getPiece().getColor()</span>
+<span class="fc bfc" id="L879" title="All 2 branches covered.">							!= toMove.getPiece().getColor()) {</span>
+
+<span class="fc" id="L881">						return true;</span>
+					}
+				}
+			}
+		}
+
+<span class="fc" id="L887">		return false;</span>
+	}
+
+	/**
+	 * Checks if the executed castling is possible, if so
+	 * executes it.
+	 * 
+	 * @param castlingType Type of the castling entered by the user.
+	 * 
+	 * @throws MatchException Raised if the castling is not possible.
+	 */
+	private void handleCastling(final Move.Castling castlingType) throws MatchException {
+
+		Coordinates kingStartingPosition;
+		Coordinates rookStartingPosition;
+		Coordinates kingEndingPosition;
+		Coordinates rookEndingPosition;
+
+		int rookStartingColumn;
+		int rookEndingColumn;
+		int kingEndingColumn;
+
+<span class="fc bfc" id="L909" title="All 2 branches covered.">		if (castlingType == Move.Castling.KINGSIDE_CASTLING) {</span>
+
+<span class="fc" id="L911">			rookStartingColumn = Constants.R_ROOK_COL;</span>
+<span class="fc" id="L912">			rookEndingColumn = Constants.KS_ROOK_ENDING_COL;</span>
+<span class="fc" id="L913">			kingEndingColumn = Constants.KS_KING_ENDING_COL;</span>
+		} else {
+
+<span class="fc" id="L916">			rookStartingColumn = Constants.L_ROOK_COL;</span>
+<span class="fc" id="L917">			rookEndingColumn = Constants.QS_ROOK_ENDING_COL;</span>
+<span class="fc" id="L918">			kingEndingColumn = Constants.QS_KING_ENDING_COL;</span>
+		}
+
+<span class="fc bfc" id="L921" title="All 2 branches covered.">		if (currentPlayer == Piece.Color.WHITE) {</span>
+
+<span class="fc" id="L923">			kingStartingPosition = new Coordinates(Constants.KING_COL, Constants.WHITE_SIDE_ROW);</span>
+<span class="fc" id="L924">			rookStartingPosition = new Coordinates(rookStartingColumn, Constants.WHITE_SIDE_ROW);</span>
+<span class="fc" id="L925">			kingEndingPosition = new Coordinates(kingEndingColumn, Constants.WHITE_SIDE_ROW);</span>
+<span class="fc" id="L926">			rookEndingPosition = new Coordinates(rookEndingColumn, Constants.WHITE_SIDE_ROW);</span>
+		} else {
+
+<span class="fc" id="L929">			kingStartingPosition = new Coordinates(Constants.KING_COL, Constants.BLACK_SIDE_ROW);</span>
+<span class="fc" id="L930">			rookStartingPosition = new Coordinates(rookStartingColumn, Constants.BLACK_SIDE_ROW);</span>
+<span class="fc" id="L931">			kingEndingPosition = new Coordinates(kingEndingColumn, Constants.BLACK_SIDE_ROW);</span>
+<span class="fc" id="L932">			rookEndingPosition = new Coordinates(rookEndingColumn, Constants.BLACK_SIDE_ROW);</span>
+		}
+
+<span class="pc bpc" id="L935" title="1 of 2 branches missed.">		if (field.getSquare(kingStartingPosition).isOccupied()</span>
+<span class="pc bpc" id="L936" title="1 of 2 branches missed.">				&amp;&amp; field.getSquare(kingStartingPosition).getPiece().getClass() == King.class</span>
+<span class="fc bfc" id="L937" title="All 2 branches covered.">				&amp;&amp; !(((King) field.getSquare(kingStartingPosition).getPiece()).isMoved())) {</span>
+
+				// doesn't check the color since it would imply movement
+<span class="pc bpc" id="L940" title="1 of 2 branches missed.">			if (field.getSquare(rookStartingPosition).isOccupied()</span>
+<span class="pc bpc" id="L941" title="1 of 2 branches missed.">					&amp;&amp; field.getSquare(rookStartingPosition).getPiece().getClass() == Rook.class</span>
+<span class="fc bfc" id="L942" title="All 2 branches covered.">					&amp;&amp; !(((Rook) field.getSquare(rookStartingPosition).getPiece()).isMoved())) {</span>
+
+<span class="fc bfc" id="L944" title="All 2 branches covered.">				if (getObstructingPieces(kingStartingPosition, rookStartingPosition).isEmpty()) {</span>
+
+<span class="fc" id="L946">					King kingToPlace = new King(currentPlayer);</span>
+<span class="fc" id="L947">					Move checkThreat1 = new Move(kingToPlace, null,</span>
+							kingStartingPosition, false); //move wrapper
+
+<span class="fc" id="L950">					Move checkThreat2 = new Move(kingToPlace, null,</span>
+							rookEndingPosition, false); //move wrapper
+
+<span class="fc" id="L953">					Move kingMove = new Move(kingToPlace, kingStartingPosition,</span>
+							kingEndingPosition, false);
+
+<span class="fc bfc" id="L956" title="All 2 branches covered.">					if (!checkKingThreat(checkThreat1)</span>
+<span class="pc bpc" id="L957" title="1 of 2 branches missed.">							&amp;&amp; !checkKingThreat(checkThreat2)</span>
+<span class="pc bpc" id="L958" title="1 of 2 branches missed.">							&amp;&amp; !checkKingThreat(kingMove)) {</span>
+
+<span class="fc" id="L960">						Rook rookToPlace = new Rook(currentPlayer);</span>
+<span class="fc" id="L961">						Move rookMove = new Move(rookToPlace, rookStartingPosition,</span>
+								rookEndingPosition, false);
+<span class="fc" id="L963">						kingToPlace.setMoved(true);</span>
+<span class="fc" id="L964">						rookToPlace.setMoved(true);</span>
+
+<span class="fc" id="L966">						resetEnPassant();</span>
+
+<span class="fc" id="L968">						field.setMove(kingMove);</span>
+<span class="fc" id="L969">						field.setMove(rookMove);</span>
+<span class="fc" id="L970">					} else {</span>
+
+<span class="fc" id="L972">						throw new MatchException(Constants.ERR_NC_KING_THREATENED);</span>
+					}
+<span class="fc" id="L974">				} else {</span>
+
+<span class="fc" id="L976">					throw new MatchException(Constants.ERR_NC_PATH_OBSTR);</span>
+				}
+			} else {
+
+<span class="fc" id="L980">				throw new MatchException(Constants.ERR_NC_ROOK_MOVED);</span>
+			}
+		} else {
+
+<span class="fc" id="L984">			throw new MatchException(Constants.ERR_NC_KING_MOVED);</span>
+		}
+<span class="fc" id="L986">	}</span>
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.5.201910111838</span></div></body></html>

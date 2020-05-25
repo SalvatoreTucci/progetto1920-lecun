@@ -1,0 +1,207 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="it"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>Constants.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">scacchi</a> &gt; <a href="index.source.html" class="el_package">it.uniba.game</a> &gt; <span class="el_source">Constants.java</span></div><h1>Constants.java</h1><pre class="source lang-java linenums">package it.uniba.game;
+
+/**
+* Class containing the constants used in the application &lt;br&gt;
+* Usually the names are self-explanatory, therefore there aren't significant comments to do,
+* except for some of them&lt;br&gt;
+* Class type : &amp;#60; no ECB  &amp;#62;&lt;br&gt;&lt;br&gt;
+* Responsibilities : &lt;br&gt;
+*
+* 	Knows :
+* 		&lt;ul&gt;
+* 		&lt;li&gt;The values of the constants values used in the App&lt;/li&gt;
+* 		&lt;/ul&gt;
+*	Does :
+*
+*
+* @author LeCun group
+*/
+
+
+
+public final class Constants {
+
+	/**
+	 * Private constructor for the class
+	 */
+	private Constants() { }
+
+	// Piece's symbols
+	public static final String W_KING = &quot;\u2654&quot;;
+	public static final String B_KING = &quot;\u265A&quot;;
+	public static final String W_QUEEN = &quot;\u2655&quot;;
+	public static final String B_QUEEN = &quot;\u265B&quot;;
+	public static final String W_BISHOP = &quot;\u2657&quot;;
+	public static final String B_BISHOP = &quot;\u265D&quot;;
+	public static final String W_ROOK = &quot;\u2656&quot;;
+	public static final String B_ROOK = &quot;\u265C&quot;;
+	public static final String W_KNIGHT = &quot;\u2658&quot;;
+	public static final String B_KNIGHT = &quot;\u265E&quot;;
+	public static final String W_PAWN = &quot;\u2659&quot;;
+	public static final String B_PAWN = &quot;\u265F&quot;;
+
+
+	// Constants for the class Pawn
+	public static final int B_MID_ROW = 3;
+	public static final int W_MID_ROW = 4;
+	public static final int LONG_MOVE_LENGTH = 2;
+
+	// Constants for the pieces and chessboard implementation
+	public static final int FIRST_ROW = 0;
+	public static final int LAST_ROW = 7;
+
+	public static final int BLACK_SIDE_ROW = 0;
+	public static final int WHITE_SIDE_ROW = 7;
+	public static final int BLACK_PAWN_ROW = 1;
+	public static final int WHITE_PAWN_ROW = 6;
+
+	public static final int FIRST_COLUMN = 0;
+	public static final int LAST_COLUMN = 7;
+
+	public static final int R_ROOK_COL = 7;
+	public static final int L_ROOK_COL = 0;
+	public static final int R_KNIGHT_COL = 6;
+	public static final int L_KNIGHT_COL = 1;
+	public static final int R_BISHOP_COL = 5;
+	public static final int L_BISHOP_COL = 2;
+	public static final int KING_COL = 4;
+	public static final int QUEEN_COL = 3;
+
+
+	// Constants for the class ChessBoard
+	public static final int CB_DIMENSION = 8;
+	public static final String CB_LETTERS_COORDS = &quot;    A   B   C   D   E   F   G   H\n&quot;;
+	public static final String CB_FIRST_ROW = &quot;  +\u2014\u2014\u2014+\u2014\u2014\u2014+\u2014\u2014&quot;
+			+ &quot;\u2014+\u2014\u2014\u2014+\u2014\u2014\u2014+\u2014\u2014\u2014+\u2014\u2014\u2014+&quot;
+			+ &quot;\u2014\u2014\u2014+\n&quot;;
+	public static final String CB_VERTICAL_SQUARE_SYMBOL = &quot;\u2502&quot;;
+	public static final String CB_MIDDLE_ROW_SQUARES = &quot;  +\u2014\u2014\u2014+\u2014\u2014\u2014+&quot;
+			+ &quot;\u2014\u2014\u2014+\u2014\u2014\u2014+\u2014\u2014\u2014+\u2014\u2014\u2014+\u2014&quot;
+			+ &quot;\u2014\u2014+\u2014\u2014\u2014+\n&quot;;
+	public static final String CB_LAST_ROW = &quot;  +\u2014\u2014\u2014+\u2014\u2014\u2014+\u2014\u2014&quot;
+			+ &quot;\u2014+\u2014\u2014\u2014+\u2014\u2014\u2014+\u2014\u2014\u2014+\u2014\u2014\u2014+&quot;
+			+ &quot;\u2014\u2014\u2014+\n&quot;;
+	public static final String CB_EMPTY_SQUARE = &quot;   &quot;;
+
+	// Constants for the class Match
+	public static final char CHAR_KING = 'R';
+	public static final char CHAR_QUEEN = 'D';
+	public static final char CHAR_ROOK = 'T';
+	public static final char CHAR_BISHOP = 'A';
+	public static final char CHAR_KNIGHT = 'C';
+	public static final String MOVE_CAPTURE = &quot;x&quot;;
+	/**
+	 * Number of characters from the end of the move where
+	 * the ending column char can be found.
+	 */
+	public static final int MOVE_COLUMN_OFFSET = 2;
+	/**
+	 * Number of characters from the end of the move where
+	 * the ending row char can be found.
+	 */
+	public static final int MOVE_ROW_OFFSET = 1;
+	public static final int INVALID_POS = -1;
+	public static final String GENERAL_MOVE_REGEX = &quot;([RDTAC])?([a-h]|[1-8])?(x)?([a-h])([1-8])(\\se\\.p\\.)?&quot;;
+	public static final String PIECE_MOVE_REGEX = &quot;([RDTAC]).*&quot;;
+	public static final String DISAMBIGUATION_REGEX = &quot;.*([a-h]|[1-8])(x)?([a-h])([1-8])(\\se\\.p\\.)?&quot;;
+	public static final String CASTLING_REGEX = &quot;(0-0(-0)?)|(O-O(-O)?)&quot;;
+	public static final int KINGSIDE_STRING_LENGHT = 3;
+	/**
+	 * Numerical offset used to convert the column char index (a...h) specified by the user
+	 * to a correspondent integer index between 0 and 7.
+	 */
+	public static final int CHAR_COLUMN_OFFSET = 97;
+	/**
+	 * Numerical offset used to convert the column integer index (1...8) specified by the user
+	 * to a correspondent integer index between 0 and 7 (i.e. 1 &amp;#62; 7).
+	 */
+	public static final int ROW_OFFSET = 8;
+	public static final String STRING_EN_PASSANT = &quot;e.p.&quot;;
+	/**
+	 * Number of characters from the end of the move where
+	 * the ending position chars can be found if &quot;e.p.&quot; is specified.
+	 */
+	public static final int EN_PASSANT_COORDS_OFFSET = 5;
+
+	// Constants for castling
+	public static final int KS_ROOK_ENDING_COL = 5;
+	public static final int QS_ROOK_ENDING_COL = 3;
+	public static final int KS_KING_ENDING_COL = 6;
+	public static final int QS_KING_ENDING_COL = 2;
+
+
+	// Constants for adders
+	public static final int UP_DIRECTION = -1;
+	public static final int DOWN_DIRECTION = 1;
+	public static final int LEFT_DIRECTION = -1;
+	public static final int RIGHT_DIRECTION = 1;
+	public static final int STILL_DIRECTION = 0;
+
+	// Knight constants
+	public static final int KN_UP_DIRECTION = -2;
+	public static final int KN_DOWN_DIRECTION = 2;
+	public static final int KN_LEFT_DIRECTION = -2;
+	public static final int KN_RIGHT_DIRECTION = 2;
+
+
+	// King constants
+	public static final int START_ROW_KING_REVERSE = -1;
+	public static final int START_COL_KING_REVERSE = -1;
+
+	public static final int MAX_ROW_KING_REVERSE = 1;
+	public static final int MAX_COL_KING_REVERSE = 1;
+
+	// Constants containing Messages and for the class UI
+	// Commands
+	public static final String HELP_COMMAND = &quot;help&quot;;
+	public static final String START_COMMAND = &quot;play&quot;;
+	public static final String QUIT_COMMAND = &quot;quit&quot;;
+	public static final String SHOW_BOARD_COMMAND = &quot;board&quot;;
+	public static final String HISTORY_COMMAND = &quot;moves&quot;;
+	public static final String CAPTURE_COMMAND = &quot;capture&quot;;
+
+	// Messages
+	public static final String WELCOME = W_KING + &quot; Benvenuto! Per conoscere i comandi digita 'help' &quot; + B_KNIGHT;
+	public static final String ERR_UNRECOGNIZED_COMMAND = &quot;Comando Sconosciuto o non eseguibile (prova help)&quot;;
+	public static final String ERR_INCORRECT_ANSWER = &quot;Non ho capito. Sei sicuro? (si/no)&quot;;
+	public static final String START_MESS = &quot;Nuova Partita! Inizia il bianco: &quot;;
+	public static final String RESTART_MESS = &quot;Sei sicuro di voler ricominciare?&quot;;
+	public static final String QUIT_MESS = &quot;Sei sicuro di voler uscire? &quot;;
+	public static final String HELP = &quot;\nhelp \nplay \nquit \n&quot;
+			+ &quot;Riconosciuti solo in-game: \nmoves \nboard \ncapture\n&quot;;
+
+	// Exception Messages
+	public static final String ERR_UNRECOGNIZED_MOVE = &quot;La mossa o il comando inserito non &quot;
+			+ &quot;e' stato riconosciuto&quot;;
+	public static final String ERR_ILLEGAL_MOVE = &quot;Mossa illegale&quot;;
+	public static final String ERR_AMBIGUOUS_MOVE = &quot;Mossa ambigua&quot;;
+	public static final String ERR_BAD_DISAMBIGUATION = &quot;Disambiguazione mal specificata&quot;;
+	public static final String ERR_EN_PASSANT = &quot;En passant non eseguibile&quot;;
+	public static final String ERR_EN_PASSANT_BAD_TARGET = &quot;Impossibile eseguire En Passant &quot;
+			+ &quot;sul pezzo selezionato&quot;;
+	public static final String ERR_EN_PASSANT_NO_CAPTURE = &quot;La mossa en passant deve essere una cattura.&quot;;
+	public static final String ERR_BAD_TARGET = &quot;Pezzo non catturabile&quot;;
+	public static final String ERR_TEMP_BAD_MOVE = &quot;Pezzo non utilizzabile in questa iterazione&quot;;
+	public static final String ERR_KING_THREAT = &quot;Mossa irregolare/illegale&quot;;
+	public static final String ERR_NC_KING_THREATENED = &quot;Arrocco non eseguibile: Re minacciato&quot;;
+	public static final String ERR_NC_KING_MOVED = &quot;Arrocco non eseguibile: Re mosso&quot;;
+	public static final String ERR_NC_ROOK_MOVED = &quot;Arrocco non eseguibile: Torre mossa&quot;;
+	public static final String ERR_NC_PATH_OBSTR = &quot;Arrocco non eseguibile: pezzo/i nel mezzo&quot;;
+	public static final String ERR_UNSUPPORTED_ENCODING = &quot;The system does not support the UTF-8 encoding,&quot;
+			+ &quot; exiting application&quot;;
+
+	// Other
+	public static final String YES = &quot;si&quot;;
+	public static final String NO = &quot;no&quot;;
+
+	// Utility
+	public static final String CHAR_STD = &quot;UTF-8&quot;;
+<span class="fc" id="L199">	public static final Coordinates EMPTY_COORD = new Coordinates(-1, -1);</span>
+	/**
+	 * Constant returned by hashCode() methods of Pawn and Coordinates.
+	 * It is invalid since they have been implemented but won't be used for now.
+	 */
+	public static final int INVALID_HASHCODE = -1;
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.5.201910111838</span></div></body></html>

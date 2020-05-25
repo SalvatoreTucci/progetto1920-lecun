@@ -1,0 +1,196 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="it"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>ChessBoard.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">scacchi</a> &gt; <a href="index.source.html" class="el_package">it.uniba.game.board</a> &gt; <span class="el_source">ChessBoard.java</span></div><h1>ChessBoard.java</h1><pre class="source lang-java linenums">package it.uniba.game.board;
+
+import it.uniba.game.Constants;
+import it.uniba.game.Coordinates;
+import it.uniba.game.Move;
+import it.uniba.game.pieces.Rook;
+import it.uniba.game.pieces.Bishop;
+import it.uniba.game.pieces.King;
+import it.uniba.game.pieces.Knight;
+import it.uniba.game.pieces.Pawn;
+import it.uniba.game.pieces.Queen;
+import it.uniba.game.pieces.Piece;
+
+/**
+ * Class representing the chessboard &lt;br&gt;
+ * Class type : &amp;#60; Entity &amp;#62; &lt;br&gt;&lt;br&gt;
+ * 
+ * Responsibilities : &lt;br&gt;
+ * 
+ * 	Knows :
+ * 		&lt;ul&gt;
+ *			&lt;li&gt;The squares of the field&lt;/li&gt;
+ * 		&lt;/ul&gt;
+ * 
+ * 	Does :
+ *  	&lt;ul&gt;
+ *			&lt;li&gt;Instantiates a ChessBoard&lt;/li&gt;
+ *			&lt;li&gt;Sets a move on the ChessBoard&lt;/li&gt;
+ *			&lt;li&gt;Gets a square, with the polar coordinates&lt;/li&gt;
+ *			&lt;li&gt;Converts to string the ChessBoard&lt;/li&gt;
+ * 		&lt;/ul&gt;
+ *
+ * @author LeCun group
+ */
+
+
+
+public final class ChessBoard {
+
+	private Square[][] elements;
+
+	/**
+	 * Constructor for the class ChessBoard.
+	 * 
+	 * Inizialize the ChessBoard at the initial state of a classic chess match.
+	 */
+<span class="fc" id="L47">	public ChessBoard() {</span>
+
+<span class="fc" id="L49">		elements = new Square[Constants.CB_DIMENSION][Constants.CB_DIMENSION];</span>
+
+		// Inizialize Rook pieces
+<span class="fc" id="L52">		elements[Constants.BLACK_SIDE_ROW][Constants.L_ROOK_COL] =</span>
+									new Square(new Rook(Piece.Color.BLACK));
+<span class="fc" id="L54">		elements[Constants.BLACK_SIDE_ROW][Constants.R_ROOK_COL] =</span>
+									new Square(new Rook(Piece.Color.BLACK));
+<span class="fc" id="L56">		elements[Constants.WHITE_SIDE_ROW][Constants.L_ROOK_COL] =</span>
+									new Square(new Rook(Piece.Color.WHITE));
+<span class="fc" id="L58">		elements[Constants.WHITE_SIDE_ROW][Constants.R_ROOK_COL] =</span>
+									new Square(new Rook(Piece.Color.WHITE));
+
+		// Inizialize Knight pieces
+<span class="fc" id="L62">		elements[Constants.BLACK_SIDE_ROW][Constants.L_KNIGHT_COL] =</span>
+									new Square(new Knight(Piece.Color.BLACK));
+<span class="fc" id="L64">		elements[Constants.BLACK_SIDE_ROW][Constants.R_KNIGHT_COL] =</span>
+									new Square(new Knight(Piece.Color.BLACK));
+<span class="fc" id="L66">		elements[Constants.WHITE_SIDE_ROW][Constants.L_KNIGHT_COL] =</span>
+									new Square(new Knight(Piece.Color.WHITE));
+<span class="fc" id="L68">		elements[Constants.WHITE_SIDE_ROW][Constants.R_KNIGHT_COL] =</span>
+									new Square(new Knight(Piece.Color.WHITE));
+
+		// Inizialize Bishop pieces
+<span class="fc" id="L72">		elements[Constants.BLACK_SIDE_ROW][Constants.L_BISHOP_COL] =</span>
+									new Square(new Bishop(Piece.Color.BLACK));
+<span class="fc" id="L74">		elements[Constants.BLACK_SIDE_ROW][Constants.R_BISHOP_COL] =</span>
+									new Square(new Bishop(Piece.Color.BLACK));
+<span class="fc" id="L76">		elements[Constants.WHITE_SIDE_ROW][Constants.L_BISHOP_COL] =</span>
+									new Square(new Bishop(Piece.Color.WHITE));
+<span class="fc" id="L78">		elements[Constants.WHITE_SIDE_ROW][Constants.R_BISHOP_COL] =</span>
+									new Square(new Bishop(Piece.Color.WHITE));
+
+		// Inizialize King pieces
+<span class="fc" id="L82">		elements[Constants.BLACK_SIDE_ROW][Constants.KING_COL] =</span>
+									new Square(new King(Piece.Color.BLACK));
+<span class="fc" id="L84">		elements[Constants.WHITE_SIDE_ROW][Constants.KING_COL] =</span>
+									new Square(new King(Piece.Color.WHITE));
+
+		// Inizialize Queen pieces
+<span class="fc" id="L88">		elements[Constants.BLACK_SIDE_ROW][Constants.QUEEN_COL] =</span>
+									new Square(new Queen(Piece.Color.BLACK));
+<span class="fc" id="L90">		elements[Constants.WHITE_SIDE_ROW][Constants.QUEEN_COL] =</span>
+									new Square(new Queen(Piece.Color.WHITE));
+
+		// Inizialize Pawn pieces
+<span class="fc bfc" id="L94" title="All 2 branches covered.">		for (int i = Constants.FIRST_COLUMN; i &lt;= Constants.LAST_COLUMN; i++) {</span>
+
+<span class="fc" id="L96">			elements[Constants.BLACK_PAWN_ROW][i] = new Square(new Pawn(Piece.Color.BLACK));</span>
+<span class="fc" id="L97">			elements[Constants.WHITE_PAWN_ROW][i] = new Square(new Pawn(Piece.Color.WHITE));</span>
+		}
+
+		// Inizialize empty Squares
+<span class="fc bfc" id="L101" title="All 2 branches covered.">		for (int i = Constants.BLACK_PAWN_ROW + 1; i &lt; Constants.WHITE_PAWN_ROW; i++) {</span>
+
+<span class="fc bfc" id="L103" title="All 2 branches covered.">			for (int j = Constants.FIRST_COLUMN; j &lt;= Constants.LAST_COLUMN; j++) {</span>
+
+<span class="fc" id="L105">				elements[i][j] = new Square(null);</span>
+			}
+		}
+<span class="fc" id="L108">	}</span>
+
+	/**
+	 * ChessBoard class' toString method.
+	 * 
+	 * @return A string containing the current state of the ChessBoard.
+	 */
+	public String toString() {
+
+<span class="fc" id="L117">		StringBuffer resBuffer = new StringBuffer();</span>
+<span class="fc" id="L118">		resBuffer.append(Constants.CB_LETTERS_COORDS);</span>
+<span class="fc" id="L119">		resBuffer.append(Constants.CB_FIRST_ROW);</span>
+
+<span class="fc bfc" id="L121" title="All 2 branches covered.">		for (int i = Constants.FIRST_ROW; i &lt;= Constants.LAST_ROW; i++) {</span>
+
+<span class="fc bfc" id="L123" title="All 2 branches covered.">			for (int j = Constants.FIRST_COLUMN; j &lt;= Constants.LAST_COLUMN; j++) {</span>
+
+<span class="fc bfc" id="L125" title="All 2 branches covered.">				if (j == 0) {</span>
+
+<span class="fc" id="L127">					resBuffer.append(Math.abs(i - Constants.CB_DIMENSION) + &quot; &quot;);</span>
+				}
+
+<span class="fc" id="L130">				resBuffer.append(Constants.CB_VERTICAL_SQUARE_SYMBOL);</span>
+
+<span class="fc bfc" id="L132" title="All 2 branches covered.">				if (elements[i][j].isOccupied()) {</span>
+
+<span class="fc" id="L134">					resBuffer.append(&quot; &quot; + elements[i][j].getPiece().toString() + &quot; &quot;);</span>
+				} else {
+
+<span class="fc" id="L137">					resBuffer.append(Constants.CB_EMPTY_SQUARE);</span>
+				}
+			}
+
+<span class="fc" id="L141">			resBuffer.append(Constants.CB_VERTICAL_SQUARE_SYMBOL + &quot; &quot;</span>
+<span class="fc" id="L142">					+ Math.abs(i - Constants.CB_DIMENSION) + &quot;\n&quot;);</span>
+<span class="fc bfc" id="L143" title="All 2 branches covered.">			if (i != Constants.LAST_ROW) {</span>
+
+<span class="fc" id="L145">				resBuffer.append(Constants.CB_MIDDLE_ROW_SQUARES);</span>
+			}
+		}
+
+<span class="fc" id="L149">		resBuffer.append(Constants.CB_LAST_ROW);</span>
+<span class="fc" id="L150">		resBuffer.append(Constants.CB_LETTERS_COORDS);</span>
+
+<span class="fc" id="L152">		return resBuffer.toString();</span>
+	}
+
+	/**
+	 * Method that executes the move passed by parameter on the ChessBoard.
+	 * 
+	 * @param currentMove the move to execute on the ChessBoard.
+	 */
+	public void setMove(final Move currentMove) {
+
+<span class="fc" id="L162">		Coordinates start = currentMove.getStartingPos();</span>
+<span class="fc" id="L163">		Coordinates end   = currentMove.getEndingPos();</span>
+
+<span class="fc" id="L165">		elements[start.getRow()][start.getColumn()].setPiece(null);</span>
+<span class="fc" id="L166">		elements[end.getRow()][end.getColumn()].setPiece(currentMove.getPiece());</span>
+
+<span class="fc bfc" id="L168" title="All 2 branches covered.">		if (currentMove.getEnPassant()) {</span>
+
+			int addR;
+
+<span class="fc bfc" id="L172" title="All 2 branches covered.">			if (currentMove.getPiece().getColor() == Piece.Color.WHITE) {</span>
+
+<span class="fc" id="L174">				addR = Constants.DOWN_DIRECTION;</span>
+			} else {
+
+<span class="fc" id="L177">				addR = Constants.UP_DIRECTION;</span>
+			}
+
+<span class="fc" id="L180">			elements[end.getRow() + addR][end.getColumn()].setPiece(null);</span>
+		}
+<span class="fc" id="L182">	}</span>
+
+	/**
+	 * Getter method for a Square in the ChessBoard, with a coordinate.
+	 * 
+	 * @param coord The coordinates from where we want to recover a Square.
+	 * 
+	 * @return the Square at the coordinates passed by argument on the ChessBoard.
+	 */
+	public Square getSquare(final Coordinates coord) {
+
+<span class="fc" id="L193">		return elements[coord.getRow()][coord.getColumn()];</span>
+	}
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.5.201910111838</span></div></body></html>
